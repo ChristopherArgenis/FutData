@@ -216,6 +216,38 @@ svg text{font-family:inherit}
 .dC .nav span.on{color:var(--p-fg)}
 .dC .nav span.on svg{color:var(--p-ac)}
 
+/* ---------- D · Mezcla (B + densidad de A + tipografía de C), solo claro ---------- */
+.dD .mono{font-family:var(--f-mono)}
+.dD .cond{font-family:"Barlow Condensed","Arial Narrow",sans-serif}
+.dD .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.dD .tiles div{background:var(--p-card);border-radius:12px;padding:7px 8px;box-shadow:0 1px 2px rgba(20,40,25,.06)}
+.dD .tiles b{display:block;font-family:var(--f-mono);font-size:15px}
+.dD .tiles span{font-size:9px;letter-spacing:.08em;color:var(--p-mu);font-weight:700}
+.dD .giant{font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:58px;line-height:.85;letter-spacing:-.02em}
+.dD .giant em{font-style:normal;color:var(--p-ac)}
+.dD .st{display:grid;gap:7px}
+.dD .st .lab{display:grid;grid-template-columns:28px 1fr 28px;font-size:10.5px;text-align:center}
+.dD .st .lab b{font-family:var(--f-mono)}
+.dD .st .lab b:first-child{text-align:left}.dD .st .lab b:last-child{text-align:right}
+.dD .st .bars{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+.dD .st .bars i{height:5px;border-radius:3px;display:block}
+.dD .st .bars i:first-child{background:var(--p-us);justify-self:end}
+.dD .st .bars i:last-child{background:var(--p-them)}
+.dD .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;font-family:var(--f-mono);font-size:10px}
+.dD .cal span{height:24px;display:grid;place-items:center;border-radius:8px;position:relative}
+.dD .cal .h{color:var(--p-mu);font-family:inherit;height:14px;font-size:9px;font-weight:700}
+.dD .cal .x::after{content:"";position:absolute;bottom:2px;width:4px;height:4px;border-radius:50%;background:var(--p-ac)}
+.dD .cal .xl::after{background:#e0483b}.dD .cal .xd::after{background:#9aa59c}
+.dD .cal .today{outline:1.5px solid var(--p-fg)}
+.dD .cal .sel{background:var(--p-ac);color:#fff;font-weight:700}
+.dD .cal .sel::after{background:#fff}
+.dD .prob{display:flex;height:22px;border-radius:8px;overflow:hidden;font-family:var(--f-mono);font-size:10px;font-weight:700;color:#fff}
+.dD .prob span{display:grid;place-items:center}
+.dD .share{background:#0f1f15;color:#fff;border-radius:22px;padding:16px;display:grid;gap:8px;position:relative;overflow:hidden}
+.dD .share::after{content:"";position:absolute;right:-50px;bottom:-50px;width:150px;height:150px;border-radius:50%;border:18px solid var(--p-ac);opacity:.9}
+.dD .share .giant{color:#fff}
+.dD .share .k{font-family:"Barlow Condensed",sans-serif;font-weight:700;letter-spacing:.14em;font-size:11px;text-transform:uppercase}
+
 /* tablas */
 .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
 table{border-collapse:collapse;width:100%;font-size:14px;min-width:620px}
@@ -254,11 +286,11 @@ code{font-family:var(--f-mono);font-size:12.5px;background:var(--accent-soft);co
 <div class="wrap">
 
 <header class="hero">
-  <span class="eyebrow">FutData · Propuesta v1 · 17 nov 2026</span>
+  <span class="eyebrow">FutData · Propuesta v2 · Elegida: B (Cancha)</span>
   <h1>Tres direcciones de diseño para FutData</h1>
   <p class="lede">Una app para que un equipo registre su historia: cada partido con marcador, goleadores, tarjetas, sede y rival; el calendario de lo que viene; y análisis que convierten ese historial en decisiones. Abajo hay tres estilos con las mismas cuatro pantallas para compararlos lado a lado, seguidos del plan gratuito/premium, el catálogo de análisis y la arquitectura de datos (SQLite local + nube).</p>
   <nav class="toc" aria-label="Contenido">
-    <a href="#referencias">Referencias</a><a href="#dir-a">A · Pizarra</a><a href="#dir-b">B · Cancha</a><a href="#dir-c">C · Marcador</a>
+    <a href="#referencias">Referencias</a><a href="#dir-a">A · Pizarra</a><a href="#dir-b">B · Cancha</a><a href="#dir-c">C · Marcador</a><a href="#dir-d">B+ · Mezcla</a>
     <a href="#comparar">Comparativa</a><a href="#planes">Gratis vs Premium</a><a href="#analisis">Análisis</a><a href="#datos">Almacenamiento</a><a href="#flutter">Flutter</a><a href="#siguiente">Siguientes pasos</a>
   </nav>
 </header>
@@ -645,6 +677,141 @@ code{font-family:var(--f-mono);font-size:12.5px;background:var(--accent-soft);co
   </div>
 </section>
 
+<!-- ================= MEZCLA ================= -->
+<section id="dir-d">
+  <div class="dir-head">
+    <div class="dir-letter">B+</div>
+    <div class="meta">
+      <h2>Cancha+ · lo mejor de A, B y C</h2>
+      <p class="lede">Base de B (clara, tarjetas, botón “+”) sin modo oscuro. De A toma la densidad: números en monoespaciada, mini-tablero de la temporada, calendario mensual y barras de estadísticas enfrentadas. De C toma el marcador gigante y la tarjeta para compartir en redes.</p>
+      <div class="pills"><span class="pill">Solo tema claro</span><span class="pill">B como base</span><span class="pill g">+ datos de A · + carteles de C</span></div>
+    </div>
+  </div>
+  <div class="strip">
+    <!-- D1 -->
+    <figure><div class="phone dB dD">
+      <div class="sb"><span>9:41</span><i></i></div>
+      <div class="scr">
+        <div class="row"><div class="hi"><small>Hola, capitán</small><b>Halcones FC</b></div><span class="crest us" style="border-color:#e2e9e2">HF</span></div>
+        <div class="hero">
+          <div class="row"><span class="k">PRÓXIMO · LIGA J13</span><span class="k mono">4d 13h</span></div>
+          <div class="vs"><div class="t"><span class="crest us">HF</span>Halcones</div><div class="time"><b class="cond" style="font-size:30px">10:00</b><small>Dom 22 nov</small></div><div class="t"><span class="crest them">AV</span>Atl. Valle</div></div>
+          <div class="loc"><svg width="13" height="13"><use href="#i-pin"/></svg>U. Deportiva Norte · Cancha 3</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px"><span class="btn p">✓ Voy</span><span class="btn s mono">14/18</span></div>
+        </div>
+        <div class="tiles"><div><b>24</b><span>PTS</span></div><div><b>58%</b><span>VICT</span></div><div><b>26</b><span>GF</span></div><div><b style="color:var(--p-ac)">+13</b><span>DG</span></div></div>
+        <div class="card row"><span style="font-weight:700;font-size:11.5px">Forma</span><div class="dots"><b class="w">G</b><b class="w">G</b><b class="l">P</b><b class="d">E</b><b class="w">G</b></div></div>
+        <div class="card row" style="margin-right:58px"><div style="display:grid;gap:1px"><span class="mu" style="font-size:10px;font-weight:700">ÚLTIMO · J12</span><b style="font-size:12.5px">Halcones <span class="mono">3–1</span> R. Arenal</b></div><span class="badge" style="background:#e3f4ea;color:#0b6b38">G</span></div>
+      </div>
+      <div class="fab">+</div>
+      <div class="nav"><span class="on"><svg><use href="#i-home"/></svg>Inicio</span><span><svg><use href="#i-cal"/></svg>Calendario</span><span><svg><use href="#i-chart"/></svg>Análisis</span><span><svg><use href="#i-team"/></svg>Equipo</span></div>
+    </div><figcaption>INICIO</figcaption></figure>
+
+    <!-- D2 -->
+    <figure><div class="phone dB dD">
+      <div class="sb"><span>9:41</span><i></i></div>
+      <div class="scr">
+        <div class="row"><span style="font-size:16px">‹</span><b>Jornada 12 · Final</b><span class="mu">Compartir</span></div>
+        <div class="card" style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center">
+          <div style="display:grid;justify-items:center;gap:4px;font-weight:700"><span class="crest us" style="border-color:#fff">HF</span>Halcones</div>
+          <div class="giant">3<em>–</em>1</div>
+          <div style="display:grid;justify-items:center;gap:4px;font-weight:700"><span class="crest them" style="border-color:#fff">RA</span>R. Arenal</div>
+        </div>
+        <div class="chips"><span>Eventos</span><span class="on">Estadísticas</span><span>Alineación</span><span>Sede</span></div>
+        <div class="card st">
+          <div><div class="lab"><b>14</b><span class="mu">Tiros</span><b>8</b></div><div class="bars"><i style="width:64%"></i><i style="width:36%"></i></div></div>
+          <div><div class="lab"><b>7</b><span class="mu">A puerta</span><b>3</b></div><div class="bars"><i style="width:70%"></i><i style="width:30%"></i></div></div>
+          <div><div class="lab"><b>58</b><span class="mu">Posesión %</span><b>42</b></div><div class="bars"><i style="width:58%"></i><i style="width:42%"></i></div></div>
+          <div><div class="lab"><b>6</b><span class="mu">Córners</span><b>3</b></div><div class="bars"><i style="width:67%"></i><i style="width:33%"></i></div></div>
+          <div><div class="lab"><b>1</b><span class="mu">Amarillas</span><b>3</b></div><div class="bars"><i style="width:25%"></i><i style="width:75%"></i></div></div>
+        </div>
+        <div class="card" style="padding:8px 12px;display:grid;gap:4px">
+          <div class="ev" style="padding:2px 0"><span class="m mono">12'</span><span>⚽ <b>Rivas</b> <span class="mu">asist. Mora</span></span></div>
+          <div class="ev" style="padding:2px 0"><span class="m mono">67'</span><span>⚽ <b>Mora</b> <span class="mu">cabeza</span></span></div>
+          <div class="ev" style="padding:2px 0"><span class="m mono">88'</span><span>⚽ <b>Pérez</b> <span class="mu">penal</span></span></div>
+        </div>
+      </div>
+      <div class="nav"><span><svg><use href="#i-home"/></svg>Inicio</span><span class="on"><svg><use href="#i-cal"/></svg>Calendario</span><span><svg><use href="#i-chart"/></svg>Análisis</span><span><svg><use href="#i-team"/></svg>Equipo</span></div>
+    </div><figcaption>DETALLE DE PARTIDO</figcaption></figure>
+
+    <!-- D3 -->
+    <figure><div class="phone dB dD">
+      <div class="sb"><span>9:41</span><i></i></div>
+      <div class="scr">
+        <div class="row"><b style="font-size:18px">Noviembre 2026</b><span class="mu mono" style="font-weight:700">‹ ›</span></div>
+        <div class="card" style="padding:8px">
+          <div class="cal">
+            <span class="h">L</span><span class="h">M</span><span class="h">M</span><span class="h">J</span><span class="h">V</span><span class="h">S</span><span class="h">D</span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span class="x xl">1</span>
+            <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span class="x xd">8</span>
+            <span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span class="x">15</span>
+            <span>16</span><span class="today">17</span><span>18</span><span>19</span><span>20</span><span>21</span><span class="x sel">22</span>
+            <span>23</span><span>24</span><span class="x">25</span><span>26</span><span>27</span><span>28</span><span class="x">29</span>
+            <span>30</span>
+          </div>
+        </div>
+        <div class="card day"><div class="d0"><small>DOM</small><b>22</b></div><div style="display:grid;gap:2px"><div class="row"><b>vs Atlético Valle</b><span class="mono" style="font-weight:700">10:00</span></div><span class="mu" style="font-size:10.5px">Liga · J13 · U. Deportiva Norte</span><span style="font-size:10px;color:var(--p-ac);font-weight:700">14 van · 2 dudas · 23 °C</span></div></div>
+        <div class="card day" style="margin-right:58px"><div class="d0" style="background:#fdeedf;color:#a34c0b"><small>MIÉ</small><b>25</b></div><div style="display:grid;gap:2px"><div class="row"><b>@ Dep. Costa</b><span class="mono" style="font-weight:700">20:00</span></div><span class="mu" style="font-size:10.5px">Copa · Cuartos</span></div></div>
+      </div>
+      <div class="fab">+</div>
+      <div class="nav"><span><svg><use href="#i-home"/></svg>Inicio</span><span class="on"><svg><use href="#i-cal"/></svg>Calendario</span><span><svg><use href="#i-chart"/></svg>Análisis</span><span><svg><use href="#i-team"/></svg>Equipo</span></div>
+    </div><figcaption>CALENDARIO</figcaption></figure>
+
+    <!-- D4 -->
+    <figure><div class="phone dB dD">
+      <div class="sb"><span>9:41</span><i></i></div>
+      <div class="scr">
+        <div class="row"><b style="font-size:18px">Análisis</b><span class="badge prem">★ PREMIUM</span></div>
+        <div class="chips"><span class="on">Temporada</span><span>Jugadores</span><span>Rivales</span></div>
+        <div class="card" style="display:grid;gap:6px">
+          <div class="row"><b style="font-size:12px">Pronóstico vs Atl. Valle</b><span class="mu" style="font-size:10px">Poisson</span></div>
+          <div class="prob"><span style="width:54%;background:#13924d">G 54%</span><span style="width:24%;background:#9aa59c">E 24%</span><span style="width:22%;background:#e0483b">P 22%</span></div>
+        </div>
+        <div class="card" style="display:grid;gap:4px">
+          <b style="font-size:12px">Goles por franja</b>
+          <svg viewBox="0 0 230 104" width="100%" height="104" role="img" aria-label="Goles a favor y en contra por franja de 15 minutos">
+            <line x1="0" y1="50" x2="230" y2="50" stroke="#cfd9cf" stroke-width="1"/>
+            <g fill="#13924d"><rect x="8" y="30" width="26" height="20" rx="3"/><rect x="45" y="23.3" width="26" height="26.7" rx="3"/><rect x="82" y="16.7" width="26" height="33.3" rx="3"/><rect x="119" y="23.3" width="26" height="26.7" rx="3"/><rect x="156" y="16.7" width="26" height="33.3" rx="3"/><rect x="193" y="16.7" width="26" height="33.3" rx="3"/></g>
+            <g fill="#ee8434"><rect x="8" y="50" width="26" height="6.7" rx="2"/><rect x="45" y="50" width="26" height="6.7" rx="2"/><rect x="82" y="50" width="26" height="13.3" rx="2"/><rect x="119" y="50" width="26" height="13.3" rx="2"/><rect x="156" y="50" width="26" height="6.7" rx="2"/><rect x="193" y="50" width="26" height="40" rx="2" fill="#e0483b"/></g>
+            <g fill="#677769" font-size="8" text-anchor="middle"><text x="21" y="101">0-15</text><text x="58" y="101">16-30</text><text x="95" y="101">31-45</text><text x="132" y="101">46-60</text><text x="169" y="101">61-75</text><text x="206" y="101">76-90</text></g>
+          </svg>
+        </div>
+        <div class="card" style="display:grid;gap:4px;background:#fff8e6">
+          <b style="font-size:12px">Lo que dicen los datos</b>
+          <span style="font-size:10.5px">El <b>46%</b> de los goles en contra llega después del 75'. Con Rivas y Mora de titulares ganas el <b>83%</b>.</span>
+        </div>
+      </div>
+      <div class="nav"><span><svg><use href="#i-home"/></svg>Inicio</span><span><svg><use href="#i-cal"/></svg>Calendario</span><span class="on"><svg><use href="#i-chart"/></svg>Análisis</span><span><svg><use href="#i-team"/></svg>Equipo</span></div>
+    </div><figcaption>ANÁLISIS · PREMIUM</figcaption></figure>
+
+    <!-- D5 -->
+    <figure><div class="phone dB dD">
+      <div class="sb"><span>9:41</span><i></i></div>
+      <div class="scr">
+        <div class="row"><span style="font-size:16px">‹</span><b>Compartir resultado</b><span></span></div>
+        <div class="share">
+          <span class="k" style="color:#7fe0a8">Liga Municipal · J12 · Final</span>
+          <div style="display:flex;justify-content:space-between;align-items:end;position:relative;z-index:1">
+            <div class="giant" style="font-size:96px">3<em>–</em>1</div>
+            <span class="k" style="text-align:right;line-height:1.5">Rivas 12'<br>Mora 67'<br>Pérez 88'</span>
+          </div>
+          <span class="cond" style="font-weight:800;font-size:22px;text-transform:uppercase;line-height:1;position:relative;z-index:1">Halcones FC<br><span style="opacity:.6">vs Real Arenal</span></span>
+          <span class="k" style="opacity:.7;position:relative;z-index:1">Dom 15 nov · U. Deportiva Norte</span>
+        </div>
+        <div class="chips"><span class="on">Historia 9:16</span><span>Cuadrado</span><span>Con escudo</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <span class="btn" style="background:var(--p-ac);color:#fff">WhatsApp</span><span class="btn" style="background:var(--p-card);box-shadow:0 1px 2px rgba(20,40,25,.1)">Guardar imagen</span>
+        </div>
+      </div>
+      <div class="nav"><span><svg><use href="#i-home"/></svg>Inicio</span><span class="on"><svg><use href="#i-cal"/></svg>Calendario</span><span><svg><use href="#i-chart"/></svg>Análisis</span><span><svg><use href="#i-team"/></svg>Equipo</span></div>
+    </div><figcaption>TARJETA PARA COMPARTIR</figcaption></figure>
+  </div>
+  <div class="procon">
+    <div><h4>Qué gana frente a B sola</h4><ul><li>Más datos visibles en Inicio y en el partido sin perder claridad.</li><li>Calendario mensual completo con colores por resultado.</li><li>Tarjeta para redes que promociona la app cada vez que se comparte.</li></ul></div>
+    <div><h4>Costo</h4><ul><li>Dos fuentes extra (monoespaciada y condensada); se pueden limitar a números y marcadores.</li><li>La tarjeta para compartir requiere renderizar un widget a imagen (<code>RepaintBoundary</code> en Flutter).</li></ul></div>
+  </div>
+</section>
+
 <section id="comparar">
   <span class="eyebrow">Para decidir</span>
   <h2>Comparativa rápida</h2>
@@ -658,7 +825,7 @@ code{font-family:var(--f-mono);font-size:12.5px;background:var(--accent-soft);co
       <tr><td>Esfuerzo en Flutter</td><td>Medio</td><td>Bajo (Material 3 casi directo)</td><td>Medio–alto (tipografía y layouts a medida)</td></tr>
     </tbody>
   </table></div>
-  <p class="callout"><b>Recomendación:</b> estructura y flujos de <b>B</b> (fácil para todos, botón “+” para registrar) con un modo oscuro tomado de <b>A</b> para las pantallas de análisis, y las tarjetas compartibles de <b>C</b> como función para redes (“compartir resultado”). En Flutter es un mismo <code>ThemeData</code> con dos esquemas, así que mezclar no cuesta más.</p>
+  <p class="callout"><b>Decisión:</b> se eligió <b>B · Cancha</b>, solo en tema claro. La variante <b>B+</b> (arriba) queda como respaldo: misma base clara con la densidad de datos de A y la tarjeta para compartir de C; sus piezas se pueden ir sumando a B sin rediseñar.</p>
 </section>
 
 <section id="planes">
@@ -802,7 +969,7 @@ flowchart LR
   <span class="eyebrow">Siguientes pasos</span>
   <h2>Qué sigue</h2>
   <ol class="steps">
-    <li><b>Elegir dirección</b> (A, B, C o la mezcla recomendada) y el nombre/colores definitivos.</li>
+    <li><s>Elegir dirección</s> → <b>B · Cancha</b>, tema claro. Probar el prototipo interactivo (<code>design/prototipo.html</code>).</li>
     <li>Crear el proyecto Flutter con la estructura por capas, el tema elegido y la base SQLite con drift a partir de <code>db/schema.sql</code>.</li>
     <li>MVP gratuito: equipos, rivales, sedes, calendario, registrar partido y eventos, estadísticas básicas.</li>
     <li>Premium: cuenta, Supabase, sincronización, RevenueCat y los primeros análisis (franjas, contexto, pronóstico).</li>
