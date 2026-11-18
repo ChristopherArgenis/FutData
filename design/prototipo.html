@@ -129,7 +129,7 @@ nav.tabs button.on{color:var(--ac)}
 .btn.ghost{background:transparent;box-shadow:none;color:var(--mu)}
 .btn.del{flex:0 0 auto;background:transparent;box-shadow:none;color:var(--loss);border:1.5px solid #f2c3be;padding:9px 12px}
 .sheet-head{display:flex;align-items:center;gap:12px}
-.jersey{position:relative;width:40px;height:40px;flex:none;color:var(--ac)}
+.jersey{position:relative;display:inline-block;vertical-align:middle;width:40px;height:40px;flex:none;color:var(--ac)}
 .jersey svg{width:40px;height:40px}
 .jersey b{position:absolute;inset:9px 0 0;text-align:center;font-family:var(--mono);font-size:12px;color:#fff}
 .jersey.sm,.jersey.sm svg{width:32px;height:32px}.jersey.sm b{inset:7px 0 0;font-size:10.5px}
@@ -150,6 +150,22 @@ nav.tabs button.on{color:var(--ac)}
 .otra input{flex:1;background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:7px 10px;min-width:0}
 .fecha-res{display:flex;align-items:center;gap:8px;background:var(--ac-soft);color:var(--ac-dk);border-radius:12px;padding:10px 12px;font-weight:700;font-size:13px}
 .fecha-res svg{width:18px;height:18px;flex:none}
+.pitch{position:relative;width:100%;max-width:100%;aspect-ratio:3/4;border-radius:16px;overflow:hidden;
+  background:repeating-linear-gradient(180deg,#1aa35a 0 12.5%,#169150 12.5% 25%)}
+.pitch svg.lines{position:absolute;inset:0;width:100%;height:100%}
+.slot{position:absolute;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:2px;width:64px;color:#fff;font-size:10.5px;font-weight:700;text-align:center}
+.slot .dot{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:13px;font-weight:700;
+  background:#fff;color:var(--ac-dk);box-shadow:0 3px 8px -2px rgba(0,0,0,.35)}
+.slot.empty .dot{background:rgba(255,255,255,.15);color:#fff;border:2px dashed rgba(255,255,255,.85);box-shadow:none;font-size:18px}
+.slot.gk .dot{background:#f2c933;color:#3d2e00}
+.slot span.n{max-width:64px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 2px rgba(0,0,0,.45)}
+.slot .r{font-size:8.5px;opacity:.85;letter-spacing:.06em}
+.banca{display:flex;flex-wrap:wrap;gap:6px}
+.banca span{font-size:12px;font-weight:600;background:#eef1ee;border-radius:999px;padding:4px 10px}
+.warnbox{background:#fdecea;color:#9b2c22;border-radius:12px;padding:9px 12px;font-size:12.5px;font-weight:600}
+.pick{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;width:100%;text-align:left;padding:9px 0;border-bottom:1px solid var(--line)}
+.pick:last-child{border-bottom:0}
+.hero .lineup-link{display:block;margin-top:8px;font-size:12px;font-weight:700;background:rgba(255,255,255,.16);border-radius:10px;padding:7px 9px;width:100%;text-align:left;color:#fff}
 .bignum{font-family:var(--mono);font-size:34px;font-weight:700;line-height:1}
 .bignum small{font-size:18px;color:var(--mu)}
 .escudo-row{display:flex;align-items:center;gap:12px}
@@ -332,9 +348,9 @@ function seed(){
     {id:'sl', nombre:'San Lorenzo Jr.',  corto:'SL', color:'#2a9d8f'},
   ];
   const sedes = [
-    {id:'s1', nombre:'Unidad Deportiva Norte', cancha:'Cancha 3', direccion:'Blvd. Deportivo 1200, Col. Norte', superficie:'Natural', lat:32.5149, lng:-117.0382, notas:'Estacionamiento gratis, vestidores'},
-    {id:'s2', nombre:'Campo Las Palmas', cancha:'Única', direccion:'Av. Las Palmas 45', superficie:'Sintético', lat:32.4983, lng:-116.9655, notas:'Iluminación nocturna'},
-    {id:'s3', nombre:'Parque Industrial', cancha:'Cancha B', direccion:'Calle Industria 300', superficie:'Tierra', lat:32.5401, lng:-116.9370, notas:''},
+    {id:'s1', nombre:'Unidad Deportiva Norte', cancha:'Cancha 3', direccion:'Blvd. Deportivo 1200, Col. Norte', superficie:'Natural', modalidad:'F11', lat:32.5149, lng:-117.0382, notas:'Estacionamiento gratis, vestidores'},
+    {id:'s2', nombre:'Campo Las Palmas', cancha:'Única', direccion:'Av. Las Palmas 45', superficie:'Sintético', modalidad:'F7', lat:32.4983, lng:-116.9655, notas:'Iluminación nocturna'},
+    {id:'s3', nombre:'Parque Industrial', cancha:'Cancha B', direccion:'Calle Industria 300', superficie:'Tierra', modalidad:'F9', lat:32.5401, lng:-116.9370, notas:''},
   ];
   const J = [['Iván Ramos',1,'POR'],['Jorge Vega',2,'DEF'],['Luis Luna',3,'DEF'],['Diego Salas',4,'DEF'],['Raúl Cano',5,'DEF'],
     ['Kevin Soto',6,'MED'],['Toño Pérez',7,'DEL'],['Andrés Ortiz',8,'MED'],['Marco Rivas',9,'DEL'],['Emilio Mora',10,'MED'],
@@ -382,7 +398,7 @@ function reset(){
   S = seed();
   const n = new Date();
   ui = { tab:'inicio', view:null, calY:n.getFullYear(), calM:n.getMonth(), calDay:null, calFil:'prox', eqSeg:'plantel',
-         anaSeg:'temporada', anaRival:null, pTab:'eventos', premium:false, sheet:null };
+         anaSeg:'temporada', anaRival:null, soloVoy:true, pTab:'eventos', premium:false, sheet:null };
   closeSheet(); render(true);
 }
 
@@ -481,6 +497,62 @@ function matchRow(p){
     ${right}</button>`;
 }
 
+const MODS = {F7:{n:7, txt:'Fútbol 7', forms:['1-2-3-1','1-3-2-1','1-3-3']},
+              F9:{n:9, txt:'Fútbol 9', forms:['1-3-3-2','1-3-4-1','1-4-3-1']},
+              F11:{n:11, txt:'Fútbol 11', forms:['1-4-4-2','1-4-3-3','1-3-5-2']}};
+const POSTXT = {POR:'Portero',DEF:'Defensa',MED:'Medio',DEL:'Delantero'};
+function modalidadDe(p){ return sede(p.sedeId)?.modalidad || p.modalidad || 'F11'; }
+function formacionDe(p){ const m = MODS[modalidadDe(p)]; return m.forms.includes(p.formacion) ? p.formacion : m.forms[0]; }
+function slotsDe(form){  // [{x,y,rol}] del portero (abajo) a la delantera (arriba)
+  const rows = form.split('-').map(Number), out = [];
+  rows.forEach((n,ri)=>{ const rol = ri===0 ? 'POR' : ri===rows.length-1 ? 'DEL' : ri===1 ? 'DEF' : 'MED';
+    const y = 90 - ri*(78/(rows.length-1));
+    for (let k=0;k<n;k++) out.push({x: (k+1)*100/(n+1), y, rol}); });
+  return out;
+}
+function lineupDe(p){ const n = MODS[modalidadDe(p)].n; const l = (p.lineup||[]).slice(0,n); while (l.length<n) l.push(null);
+  return l.map(id => id && jug(id) ? id : null); }
+function poolDe(p){ return S.jugadores.filter(j => !ui.soloVoy || p.rsvp[j.id]==='VOY').sort((a,b)=>a.dorsal-b.dorsal); }
+function autoLineup(p){
+  const sl = slotsDe(formacionDe(p)), l = Array(sl.length).fill(null), pool = poolDe(p).slice();
+  const take = f => { const i = pool.findIndex(f); return i<0 ? null : pool.splice(i,1)[0].id; };
+  sl.forEach((s,i)=>{ l[i] = take(j=>j.pos===s.rol); });
+  sl.forEach((s,i)=>{ if (!l[i]) l[i] = take(j=>s.rol!=='POR' ? j.pos!=='POR' : true) || take(()=>true); });
+  p.lineup = l; p.formacion = formacionDe(p);
+}
+function vCancha(p){
+  const mod = modalidadDe(p), M = MODS[mod], form = formacionDe(p), sl = slotsDe(form), l = lineupDe(p);
+  const voy = S.jugadores.filter(j=>p.rsvp[j.id]==='VOY').length, puestos = l.filter(Boolean).length;
+  const pool = poolDe(p), banca = pool.filter(j=>!l.includes(j.id));
+  let html = `<div class="card" style="display:grid;gap:10px">
+    <div class="row"><div><b>${M.txt}</b> <span class="mu" style="font-size:12px">· ${M.n} en cancha</span></div><span class="badge prog">${puestos}/${M.n}</span></div>
+    ${sede(p.sedeId) ? `<span class="hint">Modalidad tomada de la sede ${esc(sede(p.sedeId).nombre)}.</span>`
+      : `<div class="chips">${Object.entries(MODS).map(([k,v])=>`<button type="button" class="${k===mod?'on':''}" data-act="set-mod" data-id="${p.id}" data-m="${k}">${v.txt}</button>`).join('')}</div>`}
+    <div class="chips">${M.forms.map(f=>`<button type="button" class="${f===form?'on':''}" data-act="set-form" data-id="${p.id}" data-f="${f}">${f.slice(2)}</button>`).join('')}</div>
+    <div class="row"><span style="font-size:12.5px;font-weight:600">Solo los que dijeron que van</span><button type="button" class="toggle ${ui.soloVoy?'on':''}" data-act="solo-voy" aria-pressed="${ui.soloVoy}" aria-label="Mostrar solo confirmados"></button></div>
+    ${ui.soloVoy && voy < M.n ? `<div class="warnbox">Solo ${voy} confirmaron y se necesitan ${M.n}. Faltan ${M.n-voy}; revisa la convocatoria o desactiva el filtro.</div>` : ''}
+  </div>`;
+  html += `<div class="pitch" role="group" aria-label="Cancha con alineación ${form.slice(2)}">
+    <svg class="lines" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2">
+      <rect x="10" y="10" width="280" height="380"/><line x1="10" y1="200" x2="290" y2="200"/><circle cx="150" cy="200" r="38"/>
+      <rect x="80" y="10" width="140" height="56"/><rect x="80" y="334" width="140" height="56"/><rect x="118" y="10" width="64" height="20"/><rect x="118" y="370" width="64" height="20"/></g></svg>
+    ${sl.map((s,i)=>{ const j = l[i] && jug(l[i]);
+      return `<button type="button" class="slot ${j?'':'empty'} ${s.rol==='POR'?'gk':''}" style="left:${s.x}%;top:${s.y}%" data-act="slot" data-id="${p.id}" data-i="${i}" aria-label="${POSTXT[s.rol]} ${i+1}: ${j?esc(j.nombre):'vacío'}">
+        <span class="dot">${j ? j.dorsal : '+'}</span><span class="n">${j ? esc(apellido(j.nombre)) : ''}</span><span class="r">${s.rol}</span></button>`; }).join('')}
+  </div>`;
+  html += `<div class="actions"><button class="btn pri" type="button" data-act="auto-lineup" data-id="${p.id}">Autocompletar</button><button class="btn" type="button" data-act="clear-lineup" data-id="${p.id}">Vaciar</button></div>`;
+  html += `<div class="card"><b style="font-size:13px">Banca · ${banca.length}</b><div class="banca" style="margin-top:8px">${banca.map(j=>`<span>${j.dorsal} · ${esc(apellido(j.nombre))}</span>`).join('') || '<span class="mu" style="background:none;padding:0">Nadie en la banca.</span>'}</div></div>`;
+  return html;
+}
+function elegirSlot(pid, i){
+  const p = partido(pid), l = lineupDe(p), s = slotsDe(formacionDe(p))[i], actual = l[i] && jug(l[i]);
+  const libres = poolDe(p).filter(j=>!l.includes(j.id));
+  const orden = libres.sort((a,b)=>(a.pos===s.rol?0:1)-(b.pos===s.rol?0:1) || a.dorsal-b.dorsal);
+  openSheet(`${POSTXT[s.rol]} · posición ${i+1}`, `${actual?`<div class="card row"><span>${jersey(actual.dorsal,true)} <b>${esc(actual.nombre)}</b></span><button class="btn del" type="button" data-act="slot-quitar" data-id="${pid}" data-i="${i}">Quitar</button></div>`:''}
+    <div class="card" style="padding:4px 14px">${orden.map(j=>`<button type="button" class="pick" data-act="slot-set" data-id="${pid}" data-i="${i}" data-j="${j.id}">${jersey(j.dorsal,true)}<span><b>${esc(j.nombre)}</b><br><span class="mu" style="font-size:11.5px">${POSTXT[j.pos]}${j.pos===s.rol?' · recomendado':''}${p.rsvp[j.id]==='VOY'?'':' · no confirmó'}</span></span><span class="chev">›</span></button>`).join('')
+      || `<div class="empty">No quedan jugadores disponibles.${ui.soloVoy?' Desactiva “Solo los que dijeron que van” para ver a todos.':''}</div>`}</div>
+    <button class="btn" type="button" data-act="close">Cerrar</button>`, jersey(actual ? actual.dorsal : '+'));
+}
 function formaCard(fin){
   const dots = `<div class="dots">${fin.slice(-5).map(p=>`<b class="${res(p)}">${res(p)}</b>`).join('')}</div>`;
   if (fin.length <= 5) return `<div class="card row"><b style="font-size:13px">Forma</b>${dots}</div>`;
@@ -513,7 +585,8 @@ function vInicio(){
         <button type="button" class="${mine==='VOY'?'on':''}" data-act="rsvp-me" data-id="${n.id}" data-v="VOY">✓ Voy</button>
         <button type="button" class="${mine==='DUDA'?'on':''}" data-act="rsvp-me" data-id="${n.id}" data-v="DUDA">Duda</button>
         <button type="button" class="${mine==='NO'?'on':''}" data-act="rsvp-me" data-id="${n.id}" data-v="NO">No voy</button></div>
-        <div style="font-size:11.5px;opacity:.9;margin-top:8px">${c.voy} confirmados · ${c.duda} en duda · ${c.no} no van</div>` : ''}
+        <div style="font-size:11.5px;opacity:.9;margin-top:8px">${c.voy} confirmados · ${c.duda} en duda · ${c.no} no van</div>
+        <button type="button" class="lineup-link" data-act="open-cancha" data-id="${n.id}">⚽ Armar alineación · ${lineupDe(n).filter(Boolean).length}/${MODS[modalidadDe(n)].n} en cancha ›</button>` : ''}
     </div>`;
   } else html += `<div class="card empty">No hay partidos programados.<br><button class="link" data-act="nuevo-partido" type="button">Programar uno</button></div>`;
   html += `<div class="qa">
@@ -576,7 +649,8 @@ function vPartido(p){
   html += `<div class="actions">` + (prog ? `<button class="btn pri" type="button" data-act="iniciar" data-id="${p.id}">Iniciar en vivo</button><button class="btn" type="button" data-act="resultado" data-id="${p.id}">Registrar resultado</button>`
     : vivo ? `<button class="btn pri" type="button" data-act="nuevo-evento" data-id="${p.id}">+ Evento</button><button class="btn warn" type="button" data-act="finalizar" data-id="${p.id}">Finalizar</button>`
     : `<button class="btn" type="button" data-act="nuevo-evento" data-id="${p.id}">+ Evento</button><button class="btn" type="button" data-act="resultado" data-id="${p.id}">Corregir marcador</button>`) + `</div>`;
-  const tabs = [['eventos','Eventos'],['convocatoria', prog?'Convocatoria':'Alineación'],['stats','Estadísticas'],['sede','Sede']];
+  if (ui.pTab==='cancha' && fin) ui.pTab = 'eventos';
+  const tabs = [['eventos','Eventos'],['convocatoria', prog?'Convocatoria':'Alineación'],...(fin?[]:[['cancha','Cancha']]),['stats','Estadísticas'],['sede','Sede']];
   html += `<div class="chips">${tabs.map(([k,l])=>`<button type="button" class="${ui.pTab===k?'on':''}" data-act="ptab" data-t="${k}">${l}</button>`).join('')}</div>`;
 
   if (ui.pTab==='eventos'){
@@ -613,6 +687,7 @@ function vPartido(p){
         <button class="btn" type="button" data-act="edit-stats" data-id="${p.id}">Editar estadísticas</button></div>`;
     }
   }
+  if (ui.pTab==='cancha') html += vCancha(p);
   if (ui.pTab==='sede'){
     if (!s) html += `<div class="card empty">Sin sede asignada.<br><button class="link" type="button" data-act="edit-partido" data-id="${p.id}">Asignar sede</button></div>`;
     else {
@@ -621,7 +696,7 @@ function vPartido(p){
       html += `<div class="card" style="padding:0;overflow:hidden">${mapa(s)}
         <div style="padding:12px 14px;display:grid;gap:6px"><b style="font-size:15px">${esc(s.nombre)}${s.cancha?' · '+esc(s.cancha):''}</b>
         <span class="mu" style="font-size:12.5px">${esc(s.direccion||'Sin dirección')}</span>
-        <span style="font-size:12.5px">Superficie: <b>${esc(s.superficie||'—')}</b>${s.notas?' · '+esc(s.notas):''}</span>
+        <span style="font-size:12.5px">${MODS[s.modalidad||'F11'].txt} · Superficie: <b>${esc(s.superficie||'—')}</b>${s.notas?' · '+esc(s.notas):''}</span>
         <div class="actions" style="margin-top:4px"><a class="btn pri" style="text-decoration:none" href="${esc(href)}" target="_blank" rel="noopener">Cómo llegar</a>
         <button class="btn" type="button" data-act="edit-sede" data-id="${s.id}">Editar sede</button></div></div></div>`;
       const aqui = finalizados().filter(x=>x.sedeId===s.id), rr = resumen(aqui);
@@ -751,7 +826,7 @@ function vEquipo(){
       return `<button type="button" data-act="edit-rival" data-id="${rv.id}">${crestRival(rv,true)}<div><div class="t">${esc(rv.nombre)}</div><div class="s">${h.pj ? `${h.pj} ${h.pj===1?'partido jugado':'partidos jugados'} contra ellos` : 'Aún no han jugado'}</div></div><span class="chev">›</span></button>`; }).join('');
   } else {
     items = S.sedes.map(s=>`<button type="button" data-act="edit-sede" data-id="${s.id}"><span class="crest sm" style="background:var(--ac-soft);color:var(--ac)"><svg width="16" height="16"><use href="#i-pin"/></svg></span>
-      <div><div class="t">${esc(s.nombre)}${s.cancha?' · '+esc(s.cancha):''}</div><div class="s">${esc(s.superficie||'')}${s.direccion?' · '+esc(s.direccion):''}</div></div><span class="chev">›</span></button>`).join('');
+      <div><div class="t">${esc(s.nombre)}${s.cancha?' · '+esc(s.cancha):''}</div><div class="s">${MODS[s.modalidad||'F11'].txt} · ${esc(s.superficie||'')}${s.direccion?' · '+esc(s.direccion):''}</div></div><span class="chev">›</span></button>`).join('');
   }
   html += `<div class="card list" style="padding:4px 14px">${items || '<div class="empty">Vacío</div>'}</div>`;
   html += `<button class="btn pri" type="button" data-act="eq-add">+ Agregar ${({plantel:'jugador',rivales:'rival',sedes:'sede'})[ui.eqSeg]}</button>`;
@@ -874,6 +949,8 @@ function formSede(id){
       <label for="f-murl" style="margin-top:4px">Enlace de Google Maps (opcional)</label>
       <input id="f-murl" name="mapsUrl" inputmode="url" value="${esc(s?.mapsUrl||'')}" placeholder="https://maps.app.goo.gl/…">
       <span class="hint">En Google Maps busca la cancha, toca <b>Compartir › Copiar enlace</b> y pégalo aquí. Si lo dejas vacío usamos el nombre y la dirección.</span></div>
+    <div class="field"><span class="lbl">Tipo de cancha</span><div class="radio" role="radiogroup" aria-label="Tipo de cancha">${Object.entries(MODS).map(([k,v])=>`<label><input type="radio" name="modalidad" value="${k}" ${(s?.modalidad||'F11')===k?'checked':''}>${v.txt.replace('Fútbol','Fut')}</label>`).join('')}</div>
+      <span class="hint">Define cuántos jugadores caben en la alineación (7, 9 u 11).</span></div>
     <div class="field"><label for="f-sup">Superficie</label><select id="f-sup" name="superficie">${['Natural','Sintético','Tierra','Duela'].map(x=>opt(x,x,s?.superficie||'Natural')).join('')}</select></div>
     <div class="field"><label for="f-sno">Notas</label><input id="f-sno" name="notas" value="${esc(s?.notas||'')}" placeholder="Estacionamiento, vestidores…"></div>
     ${btns(s?'del-sede':'')}</form>`);
@@ -928,7 +1005,7 @@ document.addEventListener('click', ev=>{
       confirmar(`Se eliminará el partido ${p.local?'vs':'@'} ${esc(rival(p.rivalId).nombre)} del ${fFecha(p.fecha)} con sus eventos.`, 'do-del-partido', {id:pid}); break; }
     case 'do-del-partido': S.partidos = S.partidos.filter(p=>p.id!==id); closeSheet(); ui.view = null; toast('Partido eliminado'); render(true); break;
     case 'iniciar': { const p = partido(id); p.estado = 'EN_JUEGO'; p.gf = 0; p.gc = 0; p.stats ??= {tiros:[0,0],puerta:[0,0],posesion:50,corners:[0,0]};
-      if (!p.jugaron.length) p.jugaron = Object.entries(p.rsvp).filter(([,v])=>v==='VOY').map(([k])=>k);
+      if (!p.jugaron.length) p.jugaron = [...new Set(lineupDe(p).filter(Boolean).concat(Object.entries(p.rsvp).filter(([,v])=>v==='VOY').map(([k])=>k)))];
       ui.pTab = 'eventos'; toast('Partido en vivo'); render(); break; }
     case 'finalizar': { const p = partido(id); p.estado = 'FINALIZADO'; toast(`Final: ${p.gf}–${p.gc}`); render(); break; }
     case 'resultado': formResultado(id); break;
@@ -966,6 +1043,15 @@ document.addEventListener('click', ev=>{
     case 'do-del-sede': S.sedes = S.sedes.filter(s=>s.id!==id); S.partidos.forEach(p=>{ if (p.sedeId===id) p.sedeId = ''; }); closeSheet(); toast('Sede eliminada'); render(); break;
     case 'close': closeSheet(); break;
     case 'forma': verForma(); break;
+    case 'open-cancha': ui.view = {name:'partido', id}; ui.pTab = 'cancha'; render(true); break;
+    case 'set-mod': { const p = partido(id); p.modalidad = el.dataset.m; p.formacion = null; render(); break; }
+    case 'set-form': { const p = partido(id); const prev = lineupDe(p); p.formacion = el.dataset.f; p.lineup = prev; render(); break; }
+    case 'solo-voy': ui.soloVoy = !ui.soloVoy; render(); break;
+    case 'auto-lineup': autoLineup(partido(id)); toast('Alineación sugerida por posición'); render(); break;
+    case 'clear-lineup': partido(id).lineup = []; render(); break;
+    case 'slot': elegirSlot(id, +el.dataset.i); break;
+    case 'slot-set': { const p = partido(id), l = lineupDe(p); l[+el.dataset.i] = el.dataset.j; p.lineup = l; p.formacion = formacionDe(p); closeSheet(); render(); break; }
+    case 'slot-quitar': { const p = partido(id), l = lineupDe(p); l[+el.dataset.i] = null; p.lineup = l; closeSheet(); render(); break; }
     case 'escudo-quitar': escudoTmp = null; pintarEscudo(); break;
     case 'pick-day': { const f = el.closest('form'); f.dia.value = el.dataset.d; f.querySelector('#f-dia-otro').value = ''; syncFecha(f); break; }
     case 'pick-time': { const f = el.closest('form'); f.hora.value = el.dataset.t; f.querySelector('#f-hora-otra').value = ''; syncFecha(f); break; }
@@ -1035,7 +1121,7 @@ document.addEventListener('submit', ev=>{
       const c = coordsDe(url), prev = id ? sede(id) : null, mismo = prev && prev.mapsUrl===url;
       const data = {nombre:d.nombre.trim(), cancha:d.cancha.trim(), direccion:d.direccion.trim(), mapsUrl:url,
         lat: c ? c[0] : (mismo || (!url && prev && !prev.mapsUrl) ? prev?.lat ?? null : null), lng: c ? c[1] : (mismo || (!url && prev && !prev.mapsUrl) ? prev?.lng ?? null : null),
-        superficie:d.superficie, notas:d.notas.trim()};
+        superficie:d.superficie, modalidad:d.modalidad||'F11', notas:d.notas.trim()};
       if (id) Object.assign(sede(id), data); else S.sedes.push({id:uid('s'), ...data});
       toast(id?'Sede actualizada':'Sede agregada'); break; }
     case 'equipo': Object.assign(S.equipo, {nombre:d.nombre.trim(), corto:(d.corto.trim()||'EQ').toUpperCase(), color:d.color, escudo:escudoTmp}); toast('Equipo actualizado'); break;
