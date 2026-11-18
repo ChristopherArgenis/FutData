@@ -1,6 +1,8 @@
 # FutData · Arquitectura y modelo de producto
 
-Documento base de decisiones. Las pantallas propuestas están en `design/propuestas.html`.
+Documento base de decisiones. Las pantallas propuestas están en `design/propuestas.html` y el prototipo interactivo en `design/prototipo.html`.
+
+**Decisión de diseño:** dirección **B · Cancha**, solo tema claro (sin modo oscuro). La variante B+ (B con la densidad de A y las tarjetas para compartir de C) queda documentada como respaldo.
 
 ## 1. Producto
 
@@ -122,7 +124,7 @@ lib/
 
 ## 6. Roadmap
 
-1. Elegir dirección de diseño (A Pizarra, B Cancha, C Marcador o mezcla).
+1. ~~Elegir dirección de diseño~~ → B · Cancha, tema claro. Validar flujos con el prototipo.
 2. Proyecto Flutter + tema + base drift desde `db/schema.sql`.
 3. MVP gratuito: equipos, rivales, sedes, calendario, registrar partido/eventos, estadísticas básicas.
 4. Premium: cuentas, Supabase, sincronización, RevenueCat, primeros análisis.
