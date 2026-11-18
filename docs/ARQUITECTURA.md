@@ -92,6 +92,32 @@ flowchart LR
   RC -- webhook plan activo --> API
 ```
 
+## 4b. Roles y permisos (borrador para validar)
+
+Cada persona entra con su cuenta y un rol dentro del equipo (`miembros_equipo(usuario_id, equipo_id, rol, jugador_id)`).
+El rol `padre` se vincula a uno o más jugadores (sus hijos) y el rol `jugador` a su propio registro.
+En la nube se aplica con Row Level Security; en la app se ocultan las pantallas y acciones que el rol no puede usar.
+
+| Permiso | Entrenador | Cuerpo técnico | Jugador | Padre/tutor | Por qué |
+|---|:-:|:-:|:-:|:-:|---|
+| Ver calendario, horarios y sedes | ✓ | ✓ | ✓ | ✓ | Todos necesitan saber cuándo y dónde; los padres llevan a los jugadores |
+| Ver resultados, goles y tarjetas | ✓ | ✓ | ✓ | ✓ | Ya es información pública en la cancha y la liga |
+| Ver récord y forma del equipo | ✓ | ✓ | ✓ | ✓ | Resultado colectivo, no señala a nadie |
+| Responder su propia asistencia | — | — | ✓ | ✓ (por su hijo) | Cada quien confirma por sí mismo; el tutor responde por el menor |
+| Ver sus propias estadísticas | — | — | ✓ | ✓ (de su hijo) | Derecho a consultar su propio progreso |
+| Ver la alineación publicada | ✓ | ✓ | ✓ | ✓ | Solo cuando se publica, para no crear expectativas con borradores |
+| Ver plantel completo (nombre, dorsal, posición) | ✓ | ✓ | ✓ | — | Protege datos de otros menores; el padre solo ve a su hijo |
+| Ver tabla de goleadores | ✓ | ✓ | ✓ | — | Motiva al plantel; se evita comparar niños ante padres |
+| Ver y cambiar la convocatoria de todos | ✓ | ✓ | — | — | Planeación del partido; nadie cambia la respuesta de otro |
+| Armar y publicar la alineación | ✓ | ✓ | — | — | Decisión técnica |
+| Registrar resultados, eventos y estadísticas | ✓ | ✓ | — | — | Pocos autorizados evitan marcadores contradictorios |
+| Programar partidos; editar rivales, sedes y plantel | ✓ | ✓ | — | — | Logística que afecta a todos |
+| Análisis comparativos y Premium | ✓ | ✓ | — | — | Para decidir; mostrarlos puede causar conflictos |
+| Eliminar partidos, jugadores, rivales y sedes | ✓ | — | — | — | Irreversible, borra historial |
+| Editar equipo (nombre, escudo) y pagar el plan | ✓ | — | — | — | Es la cuenta que se paga |
+
+Teléfonos, fechas de nacimiento y contactos de jugadores solo los ve el cuerpo técnico.
+
 ## 5. Stack Flutter
 
 | Capa | Paquete |
