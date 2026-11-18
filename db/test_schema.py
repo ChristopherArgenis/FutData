@@ -99,6 +99,12 @@ def main():
         print(f"\n[{nombre}]")
         for f in filas[:6]:
             print("  ", f)
+    # tabla de liga: un rival capturado + mi equipo calculado
+    rid = db.execute("SELECT id FROM equipos WHERE nombre='Atlético Valle'").fetchone()[0]
+    db.execute("INSERT INTO tabla_posiciones(temporada_id,equipo_id,g,e,p,gf,gc) VALUES (?,?,9,1,2,27,12)", (params["temporada"], rid))
+    tabla = db.execute("SELECT equipo_id, pj, pts FROM v_tabla_liga ORDER BY pts DESC").fetchall()
+    print("\nTabla liga:", tabla)
+    assert [t[2] for t in tabla] == [28, 24], tabla
     print("\nOK: esquema y consultas funcionan.")
 
 

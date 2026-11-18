@@ -92,6 +92,18 @@ flowchart LR
   RC -- webhook plan activo --> API
 ```
 
+## 4a. Competición
+
+Sección propia (ícono de trofeo) con dos vistas:
+
+- **Liga**: tabla de posiciones. La fila propia se calcula con los partidos de liga registrados; las de los demás equipos
+  las captura el cuerpo técnico desde la tabla oficial (`tabla_posiciones`). Se marca la zona de liguilla (configurable).
+- **Torneo / copa**: llaves de eliminación directa (`cruces`). Los cruces propios toman el marcador del partido (con penales
+  si hubo empate); los ajenos los captura el cuerpo técnico. Los ganadores avanzan solos de ronda. "Nuestro camino" muestra
+  ronda por ronda cómo nos ha ido y contra quién toca después.
+
+Todos los roles ven la competición; solo entrenador y cuerpo técnico la actualizan.
+
 ## 4b. Roles y permisos (validado)
 
 Cada persona entra con su cuenta y un rol dentro del equipo (`miembros_equipo(usuario_id, equipo_id, rol, jugador_id)`).

@@ -43,8 +43,8 @@ main::-webkit-scrollbar,.sheet::-webkit-scrollbar,.daypick::-webkit-scrollbar{di
 .sheet{scrollbar-width:none}
 main>*{flex-shrink:0}
 [hidden]{display:none!important}
-nav.tabs{flex:none;display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border-top:1px solid var(--line);padding:6px 0 10px}
-nav.tabs button{display:grid;justify-items:center;gap:2px;font-size:11px;font-weight:700;color:var(--mu);padding:4px 0}
+nav.tabs{flex:none;display:grid;grid-template-columns:repeat(5,1fr);background:var(--card);border-top:1px solid var(--line);padding:6px 0 10px}
+nav.tabs button{display:grid;justify-items:center;gap:2px;font-size:10.5px;font-weight:700;color:var(--mu);padding:4px 0}
 nav.tabs button svg{width:22px;height:22px}
 nav.tabs button.on{color:var(--ac)}
 .fab{position:absolute;right:18px;bottom:84px;width:54px;height:54px;border-radius:18px;background:var(--ac);color:#fff;display:grid;place-items:center;
@@ -203,6 +203,51 @@ nav.tabs button.on{color:var(--ac)}
 .grupo>b{display:flex;align-items:center;gap:6px;font-size:12.5px}
 .grupo>b svg{width:16px;height:16px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.comp-hero{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.comp-hero svg{flex:none}
+.badge.zona-no{background:#fdecea;color:#9b2c22}
+.tbl-wrap{overflow-x:auto;scrollbar-width:none}
+.tbl-wrap::-webkit-scrollbar{display:none}
+table.tabla{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
+.tabla th{font-size:10.5px;color:var(--mu);font-weight:700;padding:6px 4px;text-align:center;letter-spacing:.04em}
+.tabla td{padding:7px 4px;text-align:center;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px}
+.tabla .eq{text-align:left;font-family:var(--f);font-weight:600;font-size:12.5px;width:100%}
+.tabla td.eq span{display:flex;align-items:center;gap:7px;white-space:nowrap}
+.tabla td.eq .crest{width:22px;height:22px;font-size:8px;border:0}
+.tabla th:first-child,.tabla td:first-child{padding-left:12px}.tabla th:last-child,.tabla td:last-child{padding-right:12px}
+.tabla .pos{font-weight:700;color:var(--mu)}
+.tabla .pos.in{color:var(--ac);box-shadow:inset 3px 0 var(--ac)}
+.tabla .pts{font-weight:800;color:var(--fg)}
+.tabla tr.yo td{background:var(--ac-soft)}
+.tabla tr.yo .eq{font-weight:800}
+.tabla tr.corte td{border-bottom:2px dashed var(--ac)}
+.camino{display:grid;margin-top:10px}
+.paso{display:grid;grid-template-columns:26px 1fr auto;gap:10px;align-items:start;position:relative;padding-bottom:14px;text-align:left}
+.paso:last-child{padding-bottom:0}
+.paso:not(:last-child)::before{content:"";position:absolute;left:12px;top:26px;bottom:2px;width:2px;background:var(--line)}
+.paso .bolita{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;background:#eef1ee;color:var(--mu);border:2px solid #d5ddd5}
+.paso.ok .bolita{background:var(--ac);border-color:var(--ac);color:#fff}
+.paso.out .bolita{background:var(--loss);border-color:var(--loss);color:#fff}
+.paso.next .bolita{background:#fff;border-color:var(--ac);box-shadow:0 0 0 4px var(--ac-soft)}
+.paso div{display:grid;gap:1px}
+.paso div b{font-size:13px}
+.paso div span{font-size:12.5px;color:var(--mu)}
+.paso.next div span{color:var(--fg);font-weight:600}
+.paso[role=button]{cursor:pointer}
+.cruce{display:grid;gap:6px;width:100%;text-align:left;position:relative}
+.cruce.nuestro{box-shadow:0 0 0 2px var(--ac),var(--sh)}
+.cruce .lado{display:grid;grid-template-columns:auto 1fr auto;gap:9px;align-items:center}
+.cruce .lado .crest{width:26px;height:26px;font-size:9px;border:0}
+.cruce .lado .nm{font-weight:600;font-size:13px}
+.cruce .lado.gana .nm,.cruce .lado.gana b{font-weight:800}
+.cruce .lado.pierde{opacity:.55}
+.cruce .lado b{font-size:14px}
+.cruce .lado b small{font-size:10.5px;color:var(--mu)}
+.cruce .cr-st{font-size:11px;color:var(--mu);font-weight:600}
+.tabla-ed{display:grid;grid-template-columns:1fr repeat(5,42px);gap:5px;align-items:center}
+.tabla-ed b{font-size:10.5px;color:var(--mu);text-align:center}
+.tabla-ed .nm{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tabla-ed input{width:100%;min-width:0;background:var(--card);border:1.5px solid var(--line);border-radius:8px;padding:6px 2px;text-align:center;font-family:var(--mono);font-size:12.5px}
 .bignum{font-family:var(--mono);font-size:34px;font-weight:700;line-height:1}
 .bignum small{font-size:18px;color:var(--mu)}
 .escudo-row{display:flex;align-items:center;gap:12px}
@@ -322,6 +367,7 @@ svg text{font-family:var(--f)}
   <symbol id="i-like" viewBox="0 0 24 24"><path d="M7 10v11H3V10zM7 10l4-7c1.7 0 2.6 1.2 2.3 2.8L12.8 9H19a2 2 0 0 1 2 2.3l-1.3 7.5A2.6 2.6 0 0 1 17.1 21H7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
   <symbol id="i-duda" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.5 9.3a2.6 2.6 0 1 1 3.6 2.4c-.7.3-1.1.9-1.1 1.7v.4M12 17v.3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
   <symbol id="i-no" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5.6 18.4L18.4 5.6" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3M12 13v4M8.5 20h7M9.5 17h5v3h-5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></symbol>
   <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 7V4h4v3M6 7l1 13h10l1-13" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></symbol>
   <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></symbol>
   <symbol id="i-score" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 5v14M7 10v4M17 10v4" stroke="currentColor" stroke-width="2"/></symbol>
@@ -433,7 +479,10 @@ function seed(){
     nuevo({id:'p14', rivalId:'dc', sedeId:'s2', fecha:at(3,20), local:false, comp:'Copa', jornada:'Cuartos'}),
     nuevo({id:'p15', rivalId:'un', sedeId:'s3', fecha:at(7,9), local:false, jornada:'J14'}),
     nuevo({id:'p16', rivalId:'dc', sedeId:'s1', fecha:at(14,10), local:true, jornada:'J15'}));
-  return { equipo, rivales, sedes, jugadores, partidos, yo:'j10' };
+  partidos.push({id:'p0', rivalId:'sl', sedeId:'s2', fecha:at(-11,20), local:true, comp:'Copa', jornada:'Octavos', estado:'FINALIZADO', gf:2, gc:1, rsvp:{},
+    jugaron:['j1','j2','j3','j4','j6','j8','j10','j9','j7','j11','j5'], stats:{tiros:[11,7], puerta:[6,3], posesion:55, corners:[5,2]},
+    eventos:[{id:uid('e'), min:23, tipo:'GOL', rival:false, jugadorId:'j9', asistId:null}, {id:uid('e'), min:61, tipo:'GOL', rival:true}, {id:uid('e'), min:84, tipo:'GOL', rival:false, jugadorId:'j7', asistId:'j10'}]});
+  return { equipo, rivales, sedes, jugadores, partidos, yo:'j10', comp: seedComp(hoy) };
 }
 
 /* ===================== estado ===================== */
@@ -442,7 +491,7 @@ function reset(){
   S = seed();
   const n = new Date();
   ui = { tab:'inicio', view:null, calY:n.getFullYear(), calM:n.getMonth(), calDay:null, calFil:'prox', eqSeg:'plantel',
-         anaSeg:'temporada', anaRival:null, soloVoy:true, pTab:'eventos', premium:false, sheet:null, rol:'entrenador' };
+         anaSeg:'temporada', anaRival:null, compSeg:'liga', ronda:null, soloVoy:true, pTab:'eventos', premium:false, sheet:null, rol:'entrenador' };
   const p13 = partido('p13'); if (p13){ autoLineup(p13); p13.publicada = true; }
   closeSheet(); render(true);
 }
@@ -490,6 +539,127 @@ function pronostico(rivalId){
   const t = G+E+P; return {G:Math.round(100*G/t), E:Math.round(100*E/t), P:100-Math.round(100*G/t)-Math.round(100*E/t), lf, lc, h:h.length, n:f.length};
 }
 
+/* ===================== competición (liga y torneo) ===================== */
+function seedComp(hoy){
+  const extra = {x1:['Club Laguna','CL','#5b8c2a'], x2:['Atlas Sur','AS','#b8452f'], x3:['Real Mar','RM','#1f8fa8'], x4:['Deportivo Río','DR','#6d6d6d'],
+    x5:['Halcón Negro','HN','#2b2b2b'], x6:['Unión Sur','US','#c9862b'], x7:['Juventud FC','JF','#3a5bd9'], x8:['Atlético Mesa','AM','#a03a8a'],
+    x9:['Club Pinos','CP','#2d7a4f'], x10:['Sporting Este','SE','#d24a6c']};
+  const liga = { nombre:'Liga Municipal · Apertura 2026', clasifican:4, actualizado:isoLocal(hoy).slice(0,10), filas:[
+    {id:'av', g:9,e:1,p:2,gf:27,gc:12}, {id:'un', g:8,e:2,p:2,gf:22,gc:11}, {id:'ra', g:6,e:2,p:4,gf:19,gc:16}, {id:'dc', g:5,e:2,p:5,gf:18,gc:17},
+    {id:'sl', g:4,e:2,p:6,gf:15,gc:20}, {id:'x1', g:3,e:3,p:6,gf:12,gc:19}, {id:'x2', g:2,e:3,p:7,gf:10,gc:22}, {id:'x3', g:1,e:3,p:8,gf:9,gc:26}]};
+  const copa = { nombre:'Copa Ciudad 2026', rondas:['Octavos','Cuartos','Semifinal','Final'],
+    llave:['yo','sl','dc','x4','av','x5','un','x6','ra','x7','x1','x8','x2','x9','x3','x10'],
+    res:{ Octavos:[null,{a:3,b:0},{a:2,b:0},{a:1,b:0},{a:4,b:1},{a:0,b:2},{a:1,b:1,pa:5,pb:4},{a:2,b:3}],
+          Cuartos:[null,{a:1,b:1,pa:4,pb:3},{a:2,b:0},null], Semifinal:[null,null], Final:[null] } };
+  return { extra: Object.fromEntries(Object.entries(extra).map(([k,[n,c,col]])=>[k,{id:k,nombre:n,corto:c,color:col}])), liga, copa };
+}
+const ptsLiga = () => resumen(finalizados().filter(p=>p.comp==='Liga')).pts;
+function eqComp(id){ if (id==='yo') return {id:'yo', nombre:S.equipo.nombre, corto:S.equipo.corto, color:S.equipo.color, yo:true};
+  return S.rivales.find(r=>r.id===id) || S.comp.extra[id] || {id, nombre:'Por definir', corto:'?', color:'#c3cbc4'}; }
+function crestComp(e){ return e.yo ? crestMio(true) : `<span class="crest sm" style="background:${esc(e.color)}">${esc(e.corto)}</span>`; }
+function tablaLiga(){
+  const L = S.comp.liga, mia = resumen(finalizados().filter(p=>p.comp==='Liga'));
+  const filas = L.filas.map(f=>({...f, pj:f.g+f.e+f.p, pts:3*f.g+f.e, dg:f.gf-f.gc}))
+    .concat([{id:'yo', pj:mia.pj, g:mia.g, e:mia.e, p:mia.p, gf:mia.gf, gc:mia.gc, dg:mia.gf-mia.gc, pts:mia.pts}]);
+  return filas.sort((a,b)=>b.pts-a.pts || b.dg-a.dg || b.gf-a.gf).map((f,i)=>({...f, pos:i+1}));
+}
+function partidoCopa(ronda, rivalId){ return S.partidos.find(p=>p.comp==='Copa' && p.jornada===ronda && (!rivalId || p.rivalId===rivalId)); }
+function cruces(){  // calcula todas las rondas a partir de la llave y resultados
+  const C = S.comp.copa, out = [];
+  let equipos = C.llave.slice();
+  C.rondas.forEach((ronda, r)=>{
+    const lista = [];
+    for (let k=0; k<equipos.length; k+=2){
+      const a = equipos[k], b = equipos[k+1], i = k/2; let rs = null, partido = null;
+      if (a==='yo' || b==='yo'){
+        const otro = a==='yo' ? b : a; partido = otro ? partidoCopa(ronda, otro) : partidoCopa(ronda);
+        if (partido && partido.estado==='FINALIZADO'){ const f = partido.gf, c = partido.gc, pf = partido.penales?.[0], pc = partido.penales?.[1];
+          rs = a==='yo' ? {a:f,b:c,pa:pf,pb:pc} : {a:c,b:f,pa:pc,pb:pf}; }
+      } else rs = (a && b) ? (C.res[ronda]||[])[i] || null : null;
+      let gana = null;
+      if (rs && a && b){ gana = rs.a>rs.b ? a : rs.b>rs.a ? b : (rs.pa!=null && rs.pb!=null && rs.pa!==rs.pb ? (rs.pa>rs.pb ? a : b) : null); }
+      lista.push({ronda, r, i, a, b, rs, gana, partido});
+    }
+    out.push(lista);
+    equipos = lista.map(x=>x.gana);
+  });
+  return out;
+}
+function marcadorCruce(x, lado){ if (!x.rs) return ''; const g = lado==='a' ? x.rs.a : x.rs.b, pe = lado==='a' ? x.rs.pa : x.rs.pb; return `${g}${x.rs.a===x.rs.b && pe!=null ? ` <small>(${pe})</small>` : ''}`; }
+function scoreTxt(x){ const yoA = x.a==='yo', f = yoA ? x.rs.a : x.rs.b, c = yoA ? x.rs.b : x.rs.a, pf = yoA ? x.rs.pa : x.rs.pb, pc = yoA ? x.rs.pb : x.rs.pa;
+  return `${f}–${c}${f===c && pf!=null ? ` (penales ${pf}–${pc})` : ''}`; }
+function vCompeticion(){
+  const segs = [['liga','Liga'],['copa', S.comp.copa.nombre.replace(/ \d{4}$/,'')]];
+  let html = `<div class="chips">${segs.map(([k,l])=>`<button type="button" class="${ui.compSeg===k?'on':''}" data-act="comp-seg" data-s="${k}">${esc(l)}</button>`).join('')}</div>`;
+  if (ui.compSeg==='liga'){
+    const T = tablaLiga(), yo = T.find(f=>f.id==='yo'), lider = T[0], L = S.comp.liga, zona = yo.pos <= L.clasifican;
+    const dif = yo.pos===1 ? `${yo.pts - T[1].pts} pts de ventaja` : `a ${lider.pts - yo.pts} pts del líder`;
+    html += `<div class="card comp-hero"><div><span class="mu" style="font-size:11.5px;font-weight:700">${esc(L.nombre)}</span>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-top:2px"><span class="bignum">${yo.pos}º</span><span style="font-weight:700">${yo.pts} pts · ${dif}</span></div>
+        <span class="badge ${zona?'prog':'zona-no'}" style="margin-top:6px;display:inline-block">${zona?`En zona de liguilla (top ${L.clasifican})`:`Fuera de liguilla · a ${T[L.clasifican-1].pts - yo.pts} pts del ${L.clasifican}º`}</span></div>
+        <svg width="44" height="44" style="color:var(--gold)"><use href="#i-trophy"/></svg></div>`;
+    html += `<div class="card" style="padding:6px 0 10px"><div class="tbl-wrap"><table class="tabla"><thead><tr><th>#</th><th class="eq">Equipo</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>DG</th><th>PTS</th></tr></thead><tbody>
+      ${T.map(f=>{ const e = eqComp(f.id); return `<tr class="${f.id==='yo'?'yo':''} ${f.pos===L.clasifican?'corte':''}"><td class="pos ${f.pos<=L.clasifican?'in':''}">${f.pos}</td><td class="eq"><span>${crestComp(e)}${esc(e.nombre)}</span></td><td>${f.pj}</td><td>${f.g}</td><td>${f.e}</td><td>${f.p}</td><td>${f.dg>0?'+':''}${f.dg}</td><td class="pts">${f.pts}</td></tr>`; }).join('')}
+      </tbody></table></div>
+      <div class="legend" style="padding:8px 14px 0"><span><i class="dot" style="background:var(--ac)"></i>Clasifica a liguilla</span><span>PJ jugados · DG diferencia de goles</span></div></div>`;
+    html += `<p class="hint" style="margin:0">Tu fila se calcula sola con tus partidos de liga. Las demás las captura el cuerpo técnico con la tabla oficial de la liga · actualizada ${fFecha(L.actualizado+'T12:00')}.</p>`;
+    if (can('competicion_editar')) html += `<button class="btn" type="button" data-act="edit-tabla">Actualizar tabla de la liga</button>`;
+    const prox = programados().find(p=>p.comp==='Liga');
+    if (prox) html += `<div class="sec">Próximo de liga</div>` + matchRow(prox);
+  } else {
+    const C = S.comp.copa, R = cruces();
+    // nuestro camino
+    const pasos = []; let vivo = true;
+    R.forEach((ronda)=>{ const x = ronda.find(c=>c.a==='yo'||c.b==='yo');
+      if (!vivo) return;
+      if (!x){ pasos.push({ronda:ronda[0].ronda, estado:'futuro', txt: 'Si avanzamos'}); return; }
+      const otro = eqComp(x.a==='yo' ? x.b : x.a), ol = x.a==='yo' ? 'b' : 'a';
+      if (x.gana==='yo') pasos.push({ronda:x.ronda, estado:'ok', txt:`Ganamos ${scoreTxt(x)} a ${esc(otro.nombre)}`, x});
+      else if (x.gana){ pasos.push({ronda:x.ronda, estado:'out', txt:`Eliminados: ${scoreTxt(x)} vs ${esc(otro.nombre)}`, x}); vivo = false; }
+      else if (x.a && x.b) pasos.push({ronda:x.ronda, estado:'next', txt:`vs ${esc(otro.nombre)}${x.partido?` · ${fFecha(x.partido.fecha)} · ${fHora(x.partido.fecha)}`:' · fecha por definir'}`, x});
+      else { const r0 = R[x.r-1], fuente = r0 && r0[ x.a==='yo' ? 2*x.i+1 : 2*x.i ];
+        pasos.push({ronda:x.ronda, estado:'futuro', txt: fuente ? `vs ganador de ${esc(eqComp(fuente.a).nombre)} / ${esc(eqComp(fuente.b).nombre)}` : 'Rival por definir', x}); }
+    });
+    const ultima = pasos.filter(p=>p.estado!=='futuro').pop();
+    const estadoTxt = !vivo ? 'Eliminados' : R[R.length-1][0].gana==='yo' ? '¡Campeones!' : `Seguimos vivos · ${ultima?.estado==='next' ? ultima.ronda : 'avanzando'}`;
+    html += `<div class="card comp-hero"><div><span class="mu" style="font-size:11.5px;font-weight:700">${esc(C.nombre)} · eliminación directa</span>
+      <div style="font-size:18px;font-weight:800;margin-top:4px">${estadoTxt}</div></div><svg width="44" height="44" style="color:var(--gold)"><use href="#i-trophy"/></svg></div>`;
+    html += `<div class="card"><b style="font-size:14px">Nuestro camino</b><div class="camino">${pasos.map(p=>`<div class="paso ${p.estado}" ${p.x?.partido?`role="button" tabindex="0" data-act="open-partido" data-id="${p.x.partido.id}"`:''}>
+      <span class="bolita">${p.estado==='ok'?'✓':p.estado==='out'?'✕':''}</span><div><b>${esc(p.ronda)}</b><span>${p.txt}</span></div>${p.x?.partido?'<span class="chev">›</span>':''}</div>`).join('')}</div></div>`;
+    // llaves por ronda
+    const rondaSel = ui.ronda || (ultima?.ronda) || C.rondas[0];
+    html += `<div class="sec">Llaves</div><div class="chips">${C.rondas.map(r=>`<button type="button" class="${r===rondaSel?'on':''}" data-act="ronda" data-r="${esc(r)}">${esc(r)}</button>`).join('')}</div>`;
+    const lista = R[C.rondas.indexOf(rondaSel)];
+    html += lista.map(x=>{ const ea = eqComp(x.a), eb = eqComp(x.b), nuestro = x.a==='yo'||x.b==='yo';
+      const act = nuestro ? (x.partido ? `data-act="open-partido" data-id="${x.partido.id}"` : '') : (can('competicion_editar') && x.a && x.b ? `data-act="edit-cruce" data-r="${esc(x.ronda)}" data-i="${x.i}"` : '');
+      const lado = (e, k) => `<div class="lado ${x.gana && x.gana===(k==='a'?x.a:x.b) ? 'gana' : x.gana ? 'pierde' : ''}">${x[k] ? crestComp(e) : '<span class="crest sm" style="background:#e2e9e2"></span>'}<span class="nm">${x[k] ? esc(e.nombre) : 'Por definir'}</span><b class="num">${marcadorCruce(x,k)}</b></div>`;
+      return `<${act?'button type="button"':'div'} class="card cruce ${nuestro?'nuestro':''}" ${act}>${lado(ea,'a')}${lado(eb,'b')}
+        <span class="cr-st">${x.gana ? 'Final' : x.a && x.b ? (x.partido ? `${fFecha(x.partido.fecha)} · ${fHora(x.partido.fecha)}` : 'Por jugar') : 'Esperando rival'}</span></${act?'button':'div'}>`; }).join('');
+    if (can('competicion_editar')) html += `<p class="hint" style="margin:0">Toca un cruce de otros equipos para capturar su resultado. Los nuestros se llenan solos con el partido.</p>`;
+  }
+  return html;
+}
+function formTabla(){
+  const L = S.comp.liga;
+  openSheet('Actualizar tabla de la liga', `<form data-form="tabla"><p class="hint" style="margin:0">Copia los números de la tabla oficial. Tu equipo se calcula solo con tus partidos.</p>
+    <div class="tabla-ed"><span></span><b>G</b><b>E</b><b>P</b><b>GF</b><b>GC</b>
+    ${L.filas.map((f,i)=>`<span class="nm">${esc(eqComp(f.id).nombre)}</span>${['g','e','p','gf','gc'].map(k=>`<input type="number" min="0" max="99" name="${k}${i}" value="${f[k]}" aria-label="${k.toUpperCase()} de ${esc(eqComp(f.id).nombre)}">`).join('')}`).join('')}</div>
+    <div class="field"><label for="f-clas">Clasifican a liguilla</label><input id="f-clas" type="number" min="1" max="${L.filas.length+1}" name="clasifican" value="${L.clasifican}"></div>
+    ${btns('')}</form>`);
+}
+function formCruce(ronda, i){
+  const x = cruces()[S.comp.copa.rondas.indexOf(ronda)][i], ea = eqComp(x.a), eb = eqComp(x.b), rs = x.rs || {a:0,b:0};
+  openSheet(`${ronda} · resultado`, `<form data-form="cruce" data-r="${esc(ronda)}" data-i="${i}">
+    <div class="stepper">
+      <div class="side">${esc(ea.nombre)}<div class="ctl"><button type="button" data-act="step" data-t="ga" data-d="-1" aria-label="Restar gol">−</button><output id="o-ga">${rs.a}</output><button type="button" data-act="step" data-t="ga" data-d="1" aria-label="Sumar gol">+</button></div></div>
+      <span class="mu" style="font-size:22px">–</span>
+      <div class="side">${esc(eb.nombre)}<div class="ctl"><button type="button" data-act="step" data-t="gb" data-d="-1" aria-label="Restar gol">−</button><output id="o-gb">${rs.b}</output><button type="button" data-act="step" data-t="gb" data-d="1" aria-label="Sumar gol">+</button></div></div>
+    </div><input type="hidden" name="ga" value="${rs.a}"><input type="hidden" name="gb" value="${rs.b}">
+    <div class="two"><div class="field"><label for="f-pa">Penales ${esc(ea.corto)} (si empatan)</label><input id="f-pa" type="number" min="0" name="pa" value="${rs.pa ?? ''}"></div>
+    <div class="field"><label for="f-pb">Penales ${esc(eb.corto)}</label><input id="f-pb" type="number" min="0" name="pb" value="${rs.pb ?? ''}"></div></div>
+    <div class="formbtns">${x.rs?`<button class="btn del" type="button" data-act="cruce-borrar" data-r="${esc(ronda)}" data-i="${i}">Borrar</button>`:''}<button class="btn" type="button" data-act="close">Cancelar</button><button class="btn pri" type="submit">Guardar</button></div><div class="err" id="ferr"></div></form>`);
+}
+
 /* ===================== roles y permisos ===================== */
 const ROLES = {
   entrenador:{nombre:'Entrenador', corto:'E', persona:'Arturo Medina', desc:'Responsable del equipo y de la cuenta. Puede hacer todo.'},
@@ -501,6 +671,7 @@ const PERMS = [
   {k:'calendario', t:'Ver calendario, horarios y sedes', r:['entrenador','staff','jugador','padre'], p:'Todos necesitan saber cuándo y dónde se juega; los padres son quienes llevan a los jugadores.'},
   {k:'resultados', t:'Ver resultados, goles y tarjetas', r:['entrenador','staff','jugador','padre'], p:'Ya es información pública: ocurre frente a todos en la cancha y la liga la publica.'},
   {k:'equipo_resumen', t:'Ver récord y forma del equipo', r:['entrenador','staff','jugador','padre'], p:'Es un resultado colectivo que no señala a nadie en particular.'},
+  {k:'competicion', t:'Ver tabla de la liga y llaves de torneos', r:['entrenador','staff','jugador','padre'], p:'Es información pública de la liga y a todos les interesa saber cómo va el equipo.'},
   {k:'rsvp_propio', t:'Responder su propia asistencia', r:['jugador','padre'], p:'Cada jugador confirma por sí mismo; el padre o tutor responde por su hijo, sobre todo si es menor de edad.'},
   {k:'stats_propias', t:'Ver sus propias estadísticas (o las de su hijo)', r:['jugador','padre'], p:'Cada quien tiene derecho a consultar su propio progreso.'},
   {k:'alineacion_ver', t:'Ver la alineación cuando está publicada', r:['entrenador','staff','jugador','padre'], p:'Jugadores y padres la ven solo cuando el entrenador la publica, para no generar expectativas con borradores.'},
@@ -510,6 +681,7 @@ const PERMS = [
   {k:'alineacion_editar', t:'Armar y publicar la alineación', r:['entrenador','staff'], p:'Es una decisión técnica del cuerpo técnico.'},
   {k:'registrar', t:'Registrar resultados, eventos en vivo y estadísticas', r:['entrenador','staff'], p:'Pocas personas autorizadas evitan marcadores contradictorios.'},
   {k:'programar', t:'Programar partidos y editar rivales, sedes y plantel', r:['entrenador','staff'], p:'Son cambios de logística que afectan a todo el equipo.'},
+  {k:'competicion_editar', t:'Actualizar la tabla y resultados de otros equipos', r:['entrenador','staff'], p:'Se copia de la información oficial de la liga; pocos editores evitan errores.'},
   {k:'analisis_avanzado', t:'Análisis comparativos y Premium', r:['entrenador','staff'], p:'Comparar jugadores (con/sin, por partido) sirve para decidir; mostrarlo al plantel o a los padres puede causar conflictos.'},
   {k:'borrar', t:'Eliminar partidos, jugadores, rivales y sedes', r:['entrenador'], p:'No se puede deshacer y borra historial; solo el responsable decide.'},
   {k:'equipo_cuenta', t:'Editar el equipo (nombre, escudo) y pagar el plan', r:['entrenador'], p:'Es la cuenta que se paga; solo el titular la administra.'},
@@ -524,8 +696,9 @@ const ACT_PERM = {registrar:'registrar', iniciar:'registrar', finalizar:'registr
   'del-partido':'borrar', 'del-partido-sheet':'borrar', 'do-del-partido':'borrar', 'del-jugador':'borrar', 'do-del-jugador':'borrar', 'del-rival':'borrar', 'do-del-rival':'borrar', 'del-sede':'borrar', 'do-del-sede':'borrar',
   rsvp:'convocatoria', jugo:'convocatoria', 'rsvp-me':'rsvp_propio',
   'set-mod':'alineacion_editar', 'set-form':'alineacion_editar', 'solo-voy':'alineacion_editar', 'auto-lineup':'alineacion_editar', 'clear-lineup':'alineacion_editar', slot:'alineacion_editar', 'slot-set':'alineacion_editar', 'slot-quitar':'alineacion_editar', publicar:'alineacion_editar',
+  'edit-tabla':'competicion_editar', 'edit-cruce':'competicion_editar', 'cruce-borrar':'competicion_editar',
   premium:'equipo_cuenta', 'premium-toggle':'equipo_cuenta', 'edit-equipo':'equipo_cuenta', 'escudo-quitar':'equipo_cuenta'};
-const FORM_PERM = {partido:'programar', resultado:'registrar', evento:'registrar', stats:'registrar', jugador:'programar', rival:'programar', sede:'programar', equipo:'equipo_cuenta'};
+const FORM_PERM = {tabla:'competicion_editar', cruce:'competicion_editar', partido:'programar', resultado:'registrar', evento:'registrar', stats:'registrar', jugador:'programar', rival:'programar', sede:'programar', equipo:'equipo_cuenta'};
 
 function rolPill(){ return `<button type="button" class="rolpill" data-act="rol" aria-label="Cambiar rol de vista: ${ROLES[ui.rol].nombre}">${ico('i-eye')}${ROLES[ui.rol].nombre}<span aria-hidden="true">▾</span></button>`; }
 function hojaRoles(){
@@ -571,7 +744,7 @@ function vInicioV(){
         <button type="button" class="lineup-link" data-act="open-cancha" data-id="${n.id}">${n.publicada ? `⚽ Alineación publicada · ${tit ? (q.esPadre?esc(q.nombre)+' es titular':'Eres titular') : mine==='VOY' ? (q.esPadre?esc(q.nombre)+' empieza en la banca':'Empiezas en la banca') : (q.esPadre?'confirma si '+esc(q.nombre)+' va':'confirma si vas')} ›` : '⚽ La alineación aún no se publica'}</button>` : ''}
     </div>`;
   } else html += `<div class="card empty">No hay partidos programados.</div>`;
-  html += `<div class="sec">Equipo</div><div class="tiles"><div><b>${r.pts}</b><span>PTS</span></div><div><b>${r.g}</b><span>GANADOS</span></div><div><b>${r.e}</b><span>EMPATES</span></div><div><b>${r.p}</b><span>PERDIDOS</span></div></div>`;
+  html += `<div class="sec">Equipo</div><div class="tiles"><div><b>${ptsLiga()}</b><span>PTS LIGA</span></div><div><b>${r.g}</b><span>GANADOS</span></div><div><b>${r.e}</b><span>EMPATES</span></div><div><b>${r.p}</b><span>PERDIDOS</span></div></div>`;
   if (last){
     html += `<div class="sec">Último resultado <button type="button" data-act="ver-resultados">Ver todos</button></div>
       <button type="button" class="card row" style="width:100%;text-align:left" data-act="open-partido" data-id="${last.id}">
@@ -628,7 +801,7 @@ function vAnalisisV(){
   html += `<div class="card ring"><svg width="86" height="86" viewBox="0 0 86 86" role="img" aria-label="${r.pctV}% de victorias">
     <circle cx="43" cy="43" r="34" fill="none" stroke="#e2e9e2" stroke-width="10"/><circle cx="43" cy="43" r="34" fill="none" stroke="var(--ac)" stroke-width="10" stroke-dasharray="${dash} ${C}" transform="rotate(-90 43 43)" stroke-linecap="round"/>
     <text x="43" y="48" text-anchor="middle" font-size="17" font-weight="800" fill="var(--fg)">${r.pctV}%</text></svg>
-    <div style="display:grid;gap:4px"><b style="font-size:15px">${r.g} ganados · ${r.e} empates · ${r.p} perdidos</b><span class="mu" style="font-size:12.5px">${r.pj} jugados · ${r.pts} puntos</span></div></div>`;
+    <div style="display:grid;gap:4px"><b style="font-size:15px">${r.g} ganados · ${r.e} empates · ${r.p} perdidos</b><span class="mu" style="font-size:12.5px">${r.pj} jugados · ${ptsLiga()} puntos en liga</span></div></div>`;
   html += formaCard(fin);
   if (can('goleadores')){ const gs = goleadores(), mx = Math.max(1,...gs.map(g=>g.g));
     html += `<div class="card"><div class="ctitle"><b>Goleadores</b><span class="mu" style="font-size:11.5px">goles</span></div><div style="display:grid;gap:8px">${gs.slice(0,6).map(g=>`<div class="bar-row"><span ${g.id===q.j?.id?'style="font-weight:800"':''}>${esc(apellido(jug(g.id).nombre))}</span><span class="b"><i style="width:${100*g.g/mx}%"></i></span><b>${g.g}</b></div>`).join('')}</div></div>`; }
@@ -662,13 +835,13 @@ function render(resetScroll){
       ${can('programar') ? `<button class="iconbtn" data-act="edit-partido" data-id="${p.id}" aria-label="Editar partido">${ico('i-edit')}</button>` : ''}`;
     body = vPartido(p);
   } else {
-    const titles = {inicio:'', calendario:'Calendario', analisis:'Análisis', equipo:'Equipo'};
+    const titles = {inicio:'', calendario:'Calendario', competicion:'Competición', analisis:'Análisis', equipo:'Equipo'};
     if (ui.tab==='inicio'){
       top = `<div style="flex:1;min-width:0"><div class="sub">Hola, ${esc(ROLES[ui.rol].persona.split(' ')[0])}</div><h2>${esc(S.equipo.nombre)}</h2></div>${rolPill()}${crestMio(false,true)}`;
       body = esStaff() ? vInicio() : vInicioV(); fab = can('programar');
     } else {
       top = `<h2>${titles[ui.tab]}</h2>` + (ui.tab==='analisis' && esStaff() ? (ui.premium ? '<span class="badge prem">★ PREMIUM</span>' : '<span class="badge prog">Gratis</span>') : '') + rolPill();
-      body = ui.tab==='calendario' ? vCalendario() : ui.tab==='analisis' ? (esStaff() ? vAnalisis() : vAnalisisV()) : (esStaff() ? vEquipo() : vEquipoV());
+      body = ui.tab==='calendario' ? vCalendario() : ui.tab==='competicion' ? vCompeticion() : ui.tab==='analisis' ? (esStaff() ? vAnalisis() : vAnalisisV()) : (esStaff() ? vEquipo() : vEquipoV());
       fab = (ui.tab==='calendario' || ui.tab==='equipo') && can('programar');
     }
   }
@@ -680,7 +853,7 @@ function render(resetScroll){
   lastKey = key;
   $('#fab').hidden = !fab;
   $('#fab').setAttribute('aria-label', ui.tab==='equipo' && !v ? 'Agregar' : 'Nuevo partido');
-  const tabs = [['inicio','i-home','Inicio'],['calendario','i-cal','Calendario'],['analisis','i-chart','Análisis'],['equipo','i-team','Equipo']];
+  const tabs = [['inicio','i-home','Inicio'],['calendario','i-cal','Calendario'],['competicion','i-trophy','Competición'],['analisis','i-chart','Análisis'],['equipo','i-team','Equipo']];
   const ar = $('#aside-roles'); if (ar) ar.innerHTML = Object.entries(ROLES).map(([k,r])=>`<button type="button" class="${k===ui.rol?'on':''}" data-act="set-rol" data-r="${k}"><span class="rolav ${k}">${r.corto}</span>${r.nombre}</button>`).join('');
   $('#tabs').innerHTML = tabs.map(([k,i,l])=>`<button type="button" class="${ui.tab===k?'on':''}" data-act="tab" data-tab="${k}">${ico(i)}${l}</button>`).join('');
 }
@@ -770,12 +943,12 @@ function elegirSlot(pid, i){
 function formaCard(fin){
   const dots = `<div class="dots">${fin.slice(-5).map(p=>`<b class="${res(p)}">${res(p)}</b>`).join('')}</div>`;
   if (fin.length <= 5) return `<div class="card row"><b style="font-size:13px">Forma</b>${dots}</div>`;
-  return `<button type="button" class="card row forma-btn" data-act="forma"><div style="display:grid"><b style="font-size:13px">Forma</b><span class="mu" style="font-size:11px">Ver las ${fin.length} jornadas ›</span></div>${dots}</button>`;
+  return `<button type="button" class="card row forma-btn" data-act="forma"><div style="display:grid"><b style="font-size:13px">Forma</b><span class="mu" style="font-size:11px">Ver los ${fin.length} partidos ›</span></div>${dots}</button>`;
 }
 function verForma(){
   const fin = finalizados(), r = resumen();
   openSheet(`Forma · ${fin.length} partidos`, `<div class="card"><div class="forma-all">${fin.map(p=>`<span><b class="badge ${res(p)}" style="width:26px;height:26px;display:grid;place-items:center;padding:0;border-radius:50%">${res(p)}</b>${esc(p.jornada||'')}</span>`).join('')}</div>
-    <p class="mu" style="margin:10px 0 0;font-size:12.5px">${r.g} ganados · ${r.e} empates · ${r.p} perdidos · ${r.pts} puntos</p></div>
+    <p class="mu" style="margin:10px 0 0;font-size:12.5px">${r.g} ganados · ${r.e} empates · ${r.p} perdidos · ${ptsLiga()} puntos en liga</p></div>
     <div class="card" style="padding:4px 14px">${fin.slice().reverse().map(p=>`<button type="button" class="ev" data-act="forma-open" data-id="${p.id}" style="grid-template-columns:54px 1fr auto auto"><span class="m">${esc(p.jornada||'')}</span>
       <span class="who"><b>${p.local?'vs':'@'} ${esc(rival(p.rivalId).nombre)}</b> <span class="mu" style="font-size:11.5px">· ${fFecha(p.fecha)}</span></span><span class="num">${p.gf}–${p.gc}</span><span class="badge ${res(p)}">${res(p)}</span></button>`).join('')}</div>
     <button class="btn" type="button" data-act="close">Cerrar</button>`);
@@ -803,7 +976,7 @@ function vInicio(){
   html += `<div class="qa">
     <button type="button" data-act="registrar"><i>${ico('i-score')}</i>Registrar resultado</button>
     <button type="button" data-act="nuevo-partido"><i>${ico('i-cal')}</i>Nuevo partido</button></div>`;
-  html += `<div class="tiles"><div><b>${r.pts}</b><span>PTS</span></div><div><b>${r.pctV}%</b><span>VICT</span></div><div><b>${r.gf}</b><span>GF</span></div><div><b style="color:${r.dg>=0?'var(--ac)':'var(--loss)'}">${r.dg>0?'+':''}${r.dg}</b><span>DG</span></div></div>`;
+  html += `<div class="tiles"><div><b>${ptsLiga()}</b><span>PTS LIGA</span></div><div><b>${r.pctV}%</b><span>VICT</span></div><div><b>${r.gf}</b><span>GF</span></div><div><b style="color:${r.dg>=0?'var(--ac)':'var(--loss)'}">${r.dg>0?'+':''}${r.dg}</b><span>DG</span></div></div>`;
   if (last){
     html += `<div class="sec">Último resultado <button type="button" data-act="ver-resultados">Ver todos</button></div>`;
     const sc = last.eventos.filter(e=>e.tipo==='GOL'&&!e.rival&&e.jugadorId).map(e=>apellido(jug(e.jugadorId)?.nombre));
@@ -947,7 +1120,7 @@ function vAnalisis(){
     html += `<div class="card ring"><svg width="86" height="86" viewBox="0 0 86 86" role="img" aria-label="${r.pctV}% de victorias">
       <circle cx="43" cy="43" r="34" fill="none" stroke="#e2e9e2" stroke-width="10"/><circle cx="43" cy="43" r="34" fill="none" stroke="var(--ac)" stroke-width="10" stroke-dasharray="${dash} ${C}" transform="rotate(-90 43 43)" stroke-linecap="round"/>
       <text x="43" y="48" text-anchor="middle" font-size="17" font-weight="800" fill="var(--fg)">${r.pctV}%</text></svg>
-      <div style="display:grid;gap:4px"><b style="font-size:15px">${r.g} ganados · ${r.e} empates · ${r.p} perdidos</b><span class="mu" style="font-size:12.5px">${r.pj} jugados · ${r.pts} puntos (${(r.pts/r.pj).toFixed(2)} por partido)</span>
+      <div style="display:grid;gap:4px"><b style="font-size:15px">${r.g} ganados · ${r.e} empates · ${r.p} perdidos</b><span class="mu" style="font-size:12.5px">${r.pj} jugados · ${ptsLiga()} puntos en liga (${(r.pts/r.pj).toFixed(2)} por partido)</span>
       <span class="mu" style="font-size:12.5px">${r.gf} a favor · ${r.gc} en contra</span></div></div>`;
     html += formaCard(fin);
     // franjas
@@ -968,14 +1141,14 @@ function vAnalisis(){
     html += lockCard('Rendimiento por contexto', `<div style="display:grid;gap:8px"><span class="mu" style="font-size:11.5px">Puntos por partido</span>${lv('Local',L)}${lv('Visita',V)}
       ${Object.entries(sup).map(([k,ps])=>lv(esc(k),resumen(ps))).join('')}</div>`);
     // puntos acumulados
-    let acc = 0; const ac = fin.map(p=>acc+=pts(p)), n = ac.length, W = 300, H = 120;
+    let acc = 0; const ac = fin.filter(p=>p.comp==='Liga').map(p=>acc+=pts(p)), n = ac.length, W = 300, H = 120;
     const X = i => 20 + (n>1 ? i*(W-40)/(n-1) : (W-40)/2), Y = v => H-18 - v/(3*n)*(H-34);
     let lc = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Puntos acumulados por partido">
       <line x1="${X(0)}" y1="${Y(2)}" x2="${X(n-1)}" y2="${Y(2*n)}" stroke="var(--mu)" stroke-dasharray="4 4"/>
       <polyline fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linejoin="round" points="${ac.map((v,i)=>`${X(i)},${Y(v)}`).join(' ')}"/>
       <circle cx="${X(n-1)}" cy="${Y(ac[n-1])}" r="4" fill="var(--ac)"/><text x="${X(n-1)-6}" y="${Y(ac[n-1])-8}" text-anchor="end" font-size="11" font-weight="800" fill="var(--fg)">${ac[n-1]} pts</text>
       <text x="${X(0)}" y="${H-3}" font-size="9.5" fill="var(--mu)">P1</text><text x="${X(n-1)}" y="${H-3}" text-anchor="end" font-size="9.5" fill="var(--mu)">P${n}</text></svg>`;
-    html += lockCard('Puntos acumulados', `<div class="legend" style="margin-bottom:4px"><span><i style="background:var(--ac)"></i>Tus puntos</span><span><i style="background:var(--mu)"></i>Ritmo de 2 pts/partido</span></div>${lc}`);
+    html += lockCard('Puntos acumulados en liga', `<div class="legend" style="margin-bottom:4px"><span><i style="background:var(--ac)"></i>Tus puntos</span><span><i style="background:var(--mu)"></i>Ritmo de 2 pts/partido</span></div>${lc}`);
     const nx = proximo();
     if (nx){ const pr = pronostico(nx.rivalId); if (pr) html += lockCard(`Pronóstico vs ${esc(rival(nx.rivalId).nombre)}`, probBar(pr)); }
   }
@@ -1108,6 +1281,8 @@ function formResultado(id){
       <div class="side">${esc(rival(p.rivalId).nombre)}<div class="ctl"><button type="button" data-act="step" data-t="gc" data-d="-1" aria-label="Restar gol rival">−</button><output id="o-gc">${gc}</output><button type="button" data-act="step" data-t="gc" data-d="1" aria-label="Sumar gol rival">+</button></div></div>
     </div>
     <input type="hidden" name="gf" value="${gf}"><input type="hidden" name="gc" value="${gc}">
+    ${p.comp!=='Liga' ? `<div class="two"><div class="field"><label for="f-pf">Penales ${esc(S.equipo.corto)} (si empatan)</label><input id="f-pf" type="number" min="0" name="pf" value="${p.penales?.[0] ?? ''}"></div>
+      <div class="field"><label for="f-pc">Penales ${esc(rival(p.rivalId).corto)}</label><input id="f-pc" type="number" min="0" name="pc" value="${p.penales?.[1] ?? ''}"></div></div>` : ''}
     <p class="mu" style="margin:0;font-size:12px">Puedes agregar goleadores y tarjetas después desde el detalle.</p>
     ${btns('')}</form>`);
 }
@@ -1258,6 +1433,11 @@ document.addEventListener('click', ev=>{
     case 'do-del-sede': S.sedes = S.sedes.filter(s=>s.id!==id); S.partidos.forEach(p=>{ if (p.sedeId===id) p.sedeId = ''; }); closeSheet(); toast('Sede eliminada'); render(); break;
     case 'close': closeSheet(); break;
     case 'forma': verForma(); break;
+    case 'comp-seg': ui.compSeg = el.dataset.s; render(true); break;
+    case 'ronda': ui.ronda = el.dataset.r; render(); break;
+    case 'edit-tabla': formTabla(); break;
+    case 'edit-cruce': formCruce(el.dataset.r, +el.dataset.i); break;
+    case 'cruce-borrar': { const arr = S.comp.copa.res[el.dataset.r] ??= []; arr[+el.dataset.i] = null; closeSheet(); toast('Resultado borrado'); render(); break; }
     case 'rol': hojaRoles(); break;
     case 'permisos': hojaPermisos(); break;
     case 'set-rol': { ui.rol = el.dataset.r; ui.view = null; ui.tab = 'inicio'; ui.anaSeg = esStaff() ? 'temporada' : 'yo'; ui.eqSeg = esStaff() ? 'plantel' : (can('plantel_ver') ? 'plantel' : 'sedes');
@@ -1315,7 +1495,9 @@ document.addEventListener('submit', ev=>{
       if (id){ Object.assign(partido(id), data); toast('Partido actualizado'); }
       else { const p = {id:uid('p'), estado:'PROGRAMADO', gf:null, gc:null, eventos:[], rsvp:{}, jugaron:[], stats:null, ...data}; S.partidos.push(p); ui.view = {name:'partido', id:p.id}; ui.pTab='convocatoria'; toast('Partido programado'); }
       break; }
-    case 'resultado': { const p = partido(id); p.gf = +d.gf; p.gc = +d.gc; p.estado = 'FINALIZADO';
+    case 'resultado': { const p = partido(id);
+      if (p.comp!=='Liga' && +d.gf===+d.gc && (d.pf==='' || d.pc==='' || +d.pf===+d.pc)) return err('En copa no hay empate: escribe el resultado de los penales.');
+      p.penales = p.comp!=='Liga' && +d.gf===+d.gc ? [+d.pf, +d.pc] : null; p.gf = +d.gf; p.gc = +d.gc; p.estado = 'FINALIZADO';
       if (!p.jugaron.length) p.jugaron = Object.entries(p.rsvp).filter(([,v])=>v==='VOY').map(([k])=>k);
       ui.view = {name:'partido', id}; ui.pTab = 'eventos'; toast(`Resultado guardado: ${p.gf}–${p.gc}`); break; }
     case 'evento': {
@@ -1346,6 +1528,12 @@ document.addEventListener('submit', ev=>{
         superficie:d.superficie, modalidad:d.modalidad||'F11', notas:d.notas.trim()};
       if (id) Object.assign(sede(id), data); else S.sedes.push({id:uid('s'), ...data});
       toast(id?'Sede actualizada':'Sede agregada'); break; }
+    case 'tabla': { const L = S.comp.liga, n = v => Math.max(0, Math.min(99, parseInt(v)||0));
+      L.filas.forEach((f,i)=>['g','e','p','gf','gc'].forEach(k=>{ f[k] = n(d[k+i]); }));
+      L.clasifican = Math.max(1, Math.min(L.filas.length+1, n(d.clasifican)||4)); L.actualizado = isoLocal(new Date()).slice(0,10); toast('Tabla actualizada'); break; }
+    case 'cruce': { const ga = +d.ga, gb = +d.gb, pa = d.pa===''?null:+d.pa, pb = d.pb===''?null:+d.pb;
+      if (ga===gb && (pa==null || pb==null || pa===pb)) return err('Hubo empate: escribe el resultado de los penales para saber quién avanza.');
+      (S.comp.copa.res[f.dataset.r] ??= [])[+f.dataset.i] = {a:ga, b:gb, pa: ga===gb?pa:null, pb: ga===gb?pb:null}; toast('Resultado guardado'); break; }
     case 'equipo': Object.assign(S.equipo, {nombre:d.nombre.trim(), corto:(d.corto.trim()||'EQ').toUpperCase(), color:d.color, escudo:escudoTmp}); toast('Equipo actualizado'); break;
   }
   closeSheet(); render();
