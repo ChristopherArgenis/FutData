@@ -94,7 +94,9 @@ flowchart LR
 
 ## 4a. Competición
 
-Sección propia (ícono de trofeo) con dos vistas:
+Sección propia (ícono de trofeo). El entrenador crea las competiciones de la temporada y elige su tipo:
+**Liga** (tabla de puntos) o **Torneo** (llaves de 4, 8, 16 o 32 equipos). Al programar un partido se elige la competición
+(o Amistoso); en un torneo la jornada es la ronda (Cuartos, Semifinal…). Cada competición tiene una de estas vistas:
 
 - **Liga**: tabla de posiciones. La fila propia se calcula con los partidos de liga registrados; las de los demás equipos
   las captura el cuerpo técnico desde la tabla oficial (`tabla_posiciones`). Se marca la zona de liguilla (configurable).
@@ -102,7 +104,7 @@ Sección propia (ícono de trofeo) con dos vistas:
   si hubo empate); los ajenos los captura el cuerpo técnico. Los ganadores avanzan solos de ronda. "Nuestro camino" muestra
   ronda por ronda cómo nos ha ido y contra quién toca después.
 
-Todos los roles ven la competición; solo entrenador y cuerpo técnico la actualizan.
+Todos los roles ven la competición; entrenador y cuerpo técnico la actualizan; solo el entrenador crea, edita o elimina competiciones.
 
 ## 4b. Roles y permisos (validado)
 

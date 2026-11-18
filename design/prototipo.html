@@ -8,7 +8,7 @@
   color-scheme:light;
   --page:#e7ede6; --bg:#f3f6f1; --card:#ffffff; --fg:#13251a; --mu:#677769; --line:#e2e9e2;
   --ac:#13924d; --ac-dk:#0b6b38; --ac-soft:#e3f4ea; --them:#ee8434; --them-soft:#fdeedf;
-  --win:#13924d; --draw:#9aa59c; --loss:#e0483b; --liga:#2f6fd6; --liga-soft:#e6eefb; --copa:#8a4fd1; --copa-soft:#f1e9fb; --gold:#f0a92a; --gold-soft:#fff8e6;
+  --win:#13924d; --draw:#9aa59c; --loss:#e0483b; --liga:#2f6fd6; --liga-soft:#e6eefb; --copa:#8a4fd1; --copa-soft:#f1e9fb; --amis:#5f6b62; --gold:#f0a92a; --gold-soft:#fff8e6;
   --f:"Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
   --sh:0 1px 2px rgba(20,40,25,.06),0 6px 16px -10px rgba(20,40,25,.2);
@@ -98,6 +98,7 @@ nav.tabs button.on{color:var(--ac)}
 .match{display:grid;grid-template-columns:50px 1fr auto;gap:12px;align-items:center;text-align:left;width:100%}
 .dbox{display:grid;justify-items:center;border-radius:13px;padding:7px 0;background:var(--liga-soft);color:#1f4fa8}
 .dbox.copa{background:var(--copa-soft);color:#6a35b0}
+.dbox.amis{background:#eceeec;color:#3f4a42}
 .dbox.past{background:#eef1ee;color:var(--mu)}
 .dbox b{font-size:19px;font-weight:800;line-height:1}
 .dbox small{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
@@ -112,16 +113,25 @@ nav.tabs button.on{color:var(--ac)}
 .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}
 .cal .h{font-size:10.5px;color:var(--mu);font-weight:700;padding:2px 0}
 .cal button{height:36px;border-radius:10px;font-family:var(--mono);font-size:12.5px;position:relative}
-.cal button.today{outline:1.5px solid var(--fg);outline-offset:-1.5px}
+.cal button{border:2px solid transparent}
+.cal button.m{border-color:var(--mc);font-weight:700}
+.cal button.today{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px;font-weight:800}
 .cal button.sel{background:var(--ac);color:#fff;font-weight:700}
-.cal button i{position:absolute;bottom:4px;left:50%;width:5px;height:5px;margin-left:-2.5px;border-radius:50%}
-.cal button.sel i{box-shadow:0 0 0 1.5px #fff}
-.cal button i.ring{background:#fff !important;border:2px solid;width:7px;height:7px;margin-left:-3.5px;bottom:3px}
+.cal button.sel.m{box-shadow:inset 0 0 0 2px #fff}
+.legend i.box{width:12px;height:12px;border:2px solid;border-radius:4px;background:transparent}
 .legend i.ring{background:#fff !important;border:2px solid;border-radius:50%}
 .legend i.dot{border-radius:50%}
 
 /* detalle partido */
 .score{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center;gap:6px}
+.score-card{display:block;width:100%;text-align:center}
+.score-hint{display:flex;justify-content:center;align-items:center;gap:5px;margin-top:8px;font-size:11.5px;color:var(--mu);font-weight:600}
+.score-hint svg{width:13px;height:13px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.checks label{display:flex;gap:8px;align-items:center;font-size:12.5px;font-weight:600;background:var(--card);border-radius:10px;padding:8px 10px;box-shadow:var(--sh)}
+.radio.tipos{display:grid;grid-template-columns:repeat(3,1fr)}
+.ev-cambio{display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap}
+.ev-cambio .in{color:var(--ac)}.ev-cambio .out{color:var(--loss)}
 .score .big{font-size:40px;font-weight:800;letter-spacing:-.02em;font-family:var(--mono)}
 .score .team{display:grid;justify-items:center;gap:5px;font-weight:700;font-size:13px}
 .actions{display:flex;gap:8px;flex-wrap:wrap}
@@ -211,9 +221,13 @@ nav.tabs button.on{color:var(--ac)}
 table.tabla{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
 .tabla th{font-size:10.5px;color:var(--mu);font-weight:700;padding:6px 4px;text-align:center;letter-spacing:.04em}
 .tabla td{padding:7px 4px;text-align:center;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px}
-.tabla .eq{text-align:left;font-family:var(--f);font-weight:600;font-size:12.5px;width:100%}
-.tabla td.eq span{display:flex;align-items:center;gap:7px;white-space:nowrap}
-.tabla td.eq .crest{width:22px;height:22px;font-size:8px;border:0}
+.tabla{table-layout:fixed}
+.tabla col.c-pos{width:34px}.tabla col.c-n{width:26px}.tabla col.c-dg{width:36px}.tabla col.c-pts{width:40px}
+.tabla td{vertical-align:middle}
+.tabla .eq{text-align:left;font-family:var(--f);font-weight:600;font-size:12.5px}
+.tabla .eqc{display:flex;align-items:center;gap:8px;min-width:0}
+.tabla .eqc>span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.tabla .eqc .crest{width:24px;height:24px;min-width:24px;font-size:8.5px;border:0;line-height:1}
 .tabla th:first-child,.tabla td:first-child{padding-left:12px}.tabla th:last-child,.tabla td:last-child{padding-right:12px}
 .tabla .pos{font-weight:700;color:var(--mu)}
 .tabla .pos.in{color:var(--ac);box-shadow:inset 3px 0 var(--ac)}
@@ -263,6 +277,7 @@ table.tabla{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-nu
 .ev .m{font-family:var(--mono);font-weight:700;color:var(--mu);font-size:12.5px}
 .ev.rival .who{color:var(--mu)}
 .card-y,.card-r{width:12px;height:16px;border-radius:2px;display:inline-block}
+.ic-les{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:5px;background:var(--loss);color:#fff;font-size:12px;font-weight:800}
 .card-y{background:#f2c933}.card-r{background:#e0483b}
 .st{display:grid;gap:10px}
 .st .lab{display:grid;grid-template-columns:34px 1fr 34px;font-size:12.5px;text-align:center}
@@ -455,8 +470,8 @@ function seed(){
   let gi = 0, ci = 0;
   const partidos = marc.map(([gf,gc],k)=>{
     const p = {id:'p'+(k+1), rivalId:riv[k], sedeId: k%2===0 ? 's1' : (k%3===0 ? 's3':'s2'), fecha: at(-7*(12-k), k%4===3 ? 17 : 10),
-      local: k%2===0, comp:'Liga', jornada:'J'+(k+1), estado:'FINALIZADO', gf, gc, eventos:[], rsvp:{}, jugaron:[],
-      stats:{tiros:[8+Math.round(r()*8), 5+Math.round(r()*6)], puerta:[0,0], posesion:45+Math.round(r()*18), corners:[2+Math.round(r()*6), 1+Math.round(r()*5)]}};
+      local: k%2===0, comp:'liga', jornada:'J'+(k+1), estado:'FINALIZADO', gf, gc, eventos:[], rsvp:{}, jugaron:[],
+      stats:{tiros:[8+Math.round(r()*8), 5+Math.round(r()*6)], puerta:[0,0], corners:[2+Math.round(r()*6), 1+Math.round(r()*5)]}};
     p.stats.puerta = [Math.max(gf, Math.round(p.stats.tiros[0]*.5)), Math.max(gc, Math.round(p.stats.tiros[1]*.4))];
     const mins = Array.from({length:gf},()=>3+Math.round(r()*86)).sort((a,b)=>a-b);
     mins.forEach((m,i)=>{ const who = jid(goleo[gi++ % goleo.length]);
@@ -471,16 +486,16 @@ function seed(){
     if (k===5) p.jugaron = base.filter(x=>x!=='j9').concat('j14');
     return p;
   });
-  const nuevo = (o) => Object.assign({estado:'PROGRAMADO', gf:null, gc:null, eventos:[], rsvp:{}, jugaron:[], stats:null, comp:'Liga'}, o);
+  const nuevo = (o) => Object.assign({estado:'PROGRAMADO', gf:null, gc:null, eventos:[], rsvp:{}, jugaron:[], stats:null, comp:'liga'}, o);
   const p13 = nuevo({id:'p13', rivalId:'av', sedeId:'s1', fecha:at(0,10), local:true, jornada:'J13'});
   jugadores.forEach((j,i)=>{ p13.rsvp[j.id] = i<11 ? 'VOY' : (i<13 ? 'DUDA' : 'PENDIENTE'); });
   p13.rsvp['j10'] = 'PENDIENTE';
   partidos.push(p13,
-    nuevo({id:'p14', rivalId:'dc', sedeId:'s2', fecha:at(3,20), local:false, comp:'Copa', jornada:'Cuartos'}),
+    nuevo({id:'p14', rivalId:'dc', sedeId:'s2', fecha:at(3,20), local:false, comp:'copa', jornada:'Cuartos'}),
     nuevo({id:'p15', rivalId:'un', sedeId:'s3', fecha:at(7,9), local:false, jornada:'J14'}),
     nuevo({id:'p16', rivalId:'dc', sedeId:'s1', fecha:at(14,10), local:true, jornada:'J15'}));
-  partidos.push({id:'p0', rivalId:'sl', sedeId:'s2', fecha:at(-11,20), local:true, comp:'Copa', jornada:'Octavos', estado:'FINALIZADO', gf:2, gc:1, rsvp:{},
-    jugaron:['j1','j2','j3','j4','j6','j8','j10','j9','j7','j11','j5'], stats:{tiros:[11,7], puerta:[6,3], posesion:55, corners:[5,2]},
+  partidos.push({id:'p0', rivalId:'sl', sedeId:'s2', fecha:at(-11,20), local:true, comp:'copa', jornada:'Octavos', estado:'FINALIZADO', gf:2, gc:1, rsvp:{},
+    jugaron:['j1','j2','j3','j4','j6','j8','j10','j9','j7','j11','j5'], stats:{tiros:[11,7], puerta:[6,3], corners:[5,2]},
     eventos:[{id:uid('e'), min:23, tipo:'GOL', rival:false, jugadorId:'j9', asistId:null}, {id:uid('e'), min:61, tipo:'GOL', rival:true}, {id:uid('e'), min:84, tipo:'GOL', rival:false, jugadorId:'j7', asistId:'j10'}]});
   return { equipo, rivales, sedes, jugadores, partidos, yo:'j10', comp: seedComp(hoy) };
 }
@@ -491,7 +506,7 @@ function reset(){
   S = seed();
   const n = new Date();
   ui = { tab:'inicio', view:null, calY:n.getFullYear(), calM:n.getMonth(), calDay:null, calFil:'prox', eqSeg:'plantel',
-         anaSeg:'temporada', anaRival:null, compSeg:'liga', ronda:null, soloVoy:true, pTab:'eventos', premium:false, sheet:null, rol:'entrenador' };
+         anaSeg:'temporada', anaRival:null, compSel:'liga', ronda:null, soloVoy:true, pTab:'eventos', premium:false, sheet:null, rol:'entrenador' };
   const p13 = partido('p13'); if (p13){ autoLineup(p13); p13.publicada = true; }
   closeSheet(); render(true);
 }
@@ -539,49 +554,54 @@ function pronostico(rivalId){
   const t = G+E+P; return {G:Math.round(100*G/t), E:Math.round(100*E/t), P:100-Math.round(100*G/t)-Math.round(100*E/t), lf, lc, h:h.length, n:f.length};
 }
 
-/* ===================== competición (liga y torneo) ===================== */
+/* ===================== competición (ligas y torneos) ===================== */
+const RONDAS = {2:['Final'], 4:['Semifinal','Final'], 8:['Cuartos','Semifinal','Final'], 16:['Octavos','Cuartos','Semifinal','Final'], 32:['Dieciseisavos','Octavos','Cuartos','Semifinal','Final']};
 function seedComp(hoy){
   const extra = {x1:['Club Laguna','CL','#5b8c2a'], x2:['Atlas Sur','AS','#b8452f'], x3:['Real Mar','RM','#1f8fa8'], x4:['Deportivo Río','DR','#6d6d6d'],
     x5:['Halcón Negro','HN','#2b2b2b'], x6:['Unión Sur','US','#c9862b'], x7:['Juventud FC','JF','#3a5bd9'], x8:['Atlético Mesa','AM','#a03a8a'],
     x9:['Club Pinos','CP','#2d7a4f'], x10:['Sporting Este','SE','#d24a6c']};
-  const liga = { nombre:'Liga Municipal · Apertura 2026', clasifican:4, actualizado:isoLocal(hoy).slice(0,10), filas:[
+  const liga = { id:'liga', tipo:'LIGA', nombre:'Liga Municipal', temporada:'Apertura 2026', clasifican:4, actualizado:isoLocal(hoy).slice(0,10), filas:[
     {id:'av', g:9,e:1,p:2,gf:27,gc:12}, {id:'un', g:8,e:2,p:2,gf:22,gc:11}, {id:'ra', g:6,e:2,p:4,gf:19,gc:16}, {id:'dc', g:5,e:2,p:5,gf:18,gc:17},
     {id:'sl', g:4,e:2,p:6,gf:15,gc:20}, {id:'x1', g:3,e:3,p:6,gf:12,gc:19}, {id:'x2', g:2,e:3,p:7,gf:10,gc:22}, {id:'x3', g:1,e:3,p:8,gf:9,gc:26}]};
-  const copa = { nombre:'Copa Ciudad 2026', rondas:['Octavos','Cuartos','Semifinal','Final'],
+  const copa = { id:'copa', tipo:'TORNEO', nombre:'Copa Ciudad', temporada:'2026', rondas:RONDAS[16].slice(),
     llave:['yo','sl','dc','x4','av','x5','un','x6','ra','x7','x1','x8','x2','x9','x3','x10'],
     res:{ Octavos:[null,{a:3,b:0},{a:2,b:0},{a:1,b:0},{a:4,b:1},{a:0,b:2},{a:1,b:1,pa:5,pb:4},{a:2,b:3}],
           Cuartos:[null,{a:1,b:1,pa:4,pb:3},{a:2,b:0},null], Semifinal:[null,null], Final:[null] } };
-  return { extra: Object.fromEntries(Object.entries(extra).map(([k,[n,c,col]])=>[k,{id:k,nombre:n,corto:c,color:col}])), liga, copa };
+  return { extra: Object.fromEntries(Object.entries(extra).map(([k,[n,c,col]])=>[k,{id:k,nombre:n,corto:c,color:col}])), lista:[liga, copa] };
 }
-const ptsLiga = () => resumen(finalizados().filter(p=>p.comp==='Liga')).pts;
+const AMISTOSO = {id:'amistoso', tipo:'AMISTOSO', nombre:'Amistoso', temporada:''};
+const compById = id => S.comp.lista.find(c=>c.id===id) || AMISTOSO;
+const compDe = p => compById(p.comp);
+const esLiga = p => compDe(p).tipo==='LIGA';
+const esTorneo = p => compDe(p).tipo==='TORNEO';
+const TIPOTXT = {LIGA:'Liga', TORNEO:'Torneo', AMISTOSO:'Amistoso'};
+const ptsLiga = () => resumen(finalizados().filter(esLiga)).pts;
 function eqComp(id){ if (id==='yo') return {id:'yo', nombre:S.equipo.nombre, corto:S.equipo.corto, color:S.equipo.color, yo:true};
   return S.rivales.find(r=>r.id===id) || S.comp.extra[id] || {id, nombre:'Por definir', corto:'?', color:'#c3cbc4'}; }
 function crestComp(e){ return e.yo ? crestMio(true) : `<span class="crest sm" style="background:${esc(e.color)}">${esc(e.corto)}</span>`; }
-function tablaLiga(){
-  const L = S.comp.liga, mia = resumen(finalizados().filter(p=>p.comp==='Liga'));
+function tablaLiga(L){
+  const mia = resumen(finalizados().filter(p=>p.comp===L.id));
   const filas = L.filas.map(f=>({...f, pj:f.g+f.e+f.p, pts:3*f.g+f.e, dg:f.gf-f.gc}))
     .concat([{id:'yo', pj:mia.pj, g:mia.g, e:mia.e, p:mia.p, gf:mia.gf, gc:mia.gc, dg:mia.gf-mia.gc, pts:mia.pts}]);
   return filas.sort((a,b)=>b.pts-a.pts || b.dg-a.dg || b.gf-a.gf).map((f,i)=>({...f, pos:i+1}));
 }
-function partidoCopa(ronda, rivalId){ return S.partidos.find(p=>p.comp==='Copa' && p.jornada===ronda && (!rivalId || p.rivalId===rivalId)); }
-function cruces(){  // calcula todas las rondas a partir de la llave y resultados
-  const C = S.comp.copa, out = [];
-  let equipos = C.llave.slice();
+function partidoTorneo(C, ronda, rivalId){ return S.partidos.find(p=>p.comp===C.id && p.jornada===ronda && (!rivalId || p.rivalId===rivalId)); }
+function cruces(C){
+  const out = []; let equipos = C.llave.slice();
   C.rondas.forEach((ronda, r)=>{
     const lista = [];
     for (let k=0; k<equipos.length; k+=2){
-      const a = equipos[k], b = equipos[k+1], i = k/2; let rs = null, partido = null;
+      const a = equipos[k] || null, b = equipos[k+1] || null, i = k/2; let rs = null, partido = null;
       if (a==='yo' || b==='yo'){
-        const otro = a==='yo' ? b : a; partido = otro ? partidoCopa(ronda, otro) : partidoCopa(ronda);
+        const otro = a==='yo' ? b : a; partido = otro ? partidoTorneo(C, ronda, otro) : partidoTorneo(C, ronda);
         if (partido && partido.estado==='FINALIZADO'){ const f = partido.gf, c = partido.gc, pf = partido.penales?.[0], pc = partido.penales?.[1];
           rs = a==='yo' ? {a:f,b:c,pa:pf,pb:pc} : {a:c,b:f,pa:pc,pb:pf}; }
       } else rs = (a && b) ? (C.res[ronda]||[])[i] || null : null;
       let gana = null;
-      if (rs && a && b){ gana = rs.a>rs.b ? a : rs.b>rs.a ? b : (rs.pa!=null && rs.pb!=null && rs.pa!==rs.pb ? (rs.pa>rs.pb ? a : b) : null); }
+      if (rs && a && b) gana = rs.a>rs.b ? a : rs.b>rs.a ? b : (rs.pa!=null && rs.pb!=null && rs.pa!==rs.pb ? (rs.pa>rs.pb ? a : b) : null);
       lista.push({ronda, r, i, a, b, rs, gana, partido});
     }
-    out.push(lista);
-    equipos = lista.map(x=>x.gana);
+    out.push(lista); equipos = lista.map(x=>x.gana);
   });
   return out;
 }
@@ -589,76 +609,108 @@ function marcadorCruce(x, lado){ if (!x.rs) return ''; const g = lado==='a' ? x.
 function scoreTxt(x){ const yoA = x.a==='yo', f = yoA ? x.rs.a : x.rs.b, c = yoA ? x.rs.b : x.rs.a, pf = yoA ? x.rs.pa : x.rs.pb, pc = yoA ? x.rs.pb : x.rs.pa;
   return `${f}–${c}${f===c && pf!=null ? ` (penales ${pf}–${pc})` : ''}`; }
 function vCompeticion(){
-  const segs = [['liga','Liga'],['copa', S.comp.copa.nombre.replace(/ \d{4}$/,'')]];
-  let html = `<div class="chips">${segs.map(([k,l])=>`<button type="button" class="${ui.compSeg===k?'on':''}" data-act="comp-seg" data-s="${k}">${esc(l)}</button>`).join('')}</div>`;
-  if (ui.compSeg==='liga'){
-    const T = tablaLiga(), yo = T.find(f=>f.id==='yo'), lider = T[0], L = S.comp.liga, zona = yo.pos <= L.clasifican;
-    const dif = yo.pos===1 ? `${yo.pts - T[1].pts} pts de ventaja` : `a ${lider.pts - yo.pts} pts del líder`;
-    html += `<div class="card comp-hero"><div><span class="mu" style="font-size:11.5px;font-weight:700">${esc(L.nombre)}</span>
-        <div style="display:flex;align-items:baseline;gap:8px;margin-top:2px"><span class="bignum">${yo.pos}º</span><span style="font-weight:700">${yo.pts} pts · ${dif}</span></div>
-        <span class="badge ${zona?'prog':'zona-no'}" style="margin-top:6px;display:inline-block">${zona?`En zona de liguilla (top ${L.clasifican})`:`Fuera de liguilla · a ${T[L.clasifican-1].pts - yo.pts} pts del ${L.clasifican}º`}</span></div>
-        <svg width="44" height="44" style="color:var(--gold)"><use href="#i-trophy"/></svg></div>`;
-    html += `<div class="card" style="padding:6px 0 10px"><div class="tbl-wrap"><table class="tabla"><thead><tr><th>#</th><th class="eq">Equipo</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>DG</th><th>PTS</th></tr></thead><tbody>
-      ${T.map(f=>{ const e = eqComp(f.id); return `<tr class="${f.id==='yo'?'yo':''} ${f.pos===L.clasifican?'corte':''}"><td class="pos ${f.pos<=L.clasifican?'in':''}">${f.pos}</td><td class="eq"><span>${crestComp(e)}${esc(e.nombre)}</span></td><td>${f.pj}</td><td>${f.g}</td><td>${f.e}</td><td>${f.p}</td><td>${f.dg>0?'+':''}${f.dg}</td><td class="pts">${f.pts}</td></tr>`; }).join('')}
-      </tbody></table></div>
-      <div class="legend" style="padding:8px 14px 0"><span><i class="dot" style="background:var(--ac)"></i>Clasifica a liguilla</span><span>PJ jugados · DG diferencia de goles</span></div></div>`;
-    html += `<p class="hint" style="margin:0">Tu fila se calcula sola con tus partidos de liga. Las demás las captura el cuerpo técnico con la tabla oficial de la liga · actualizada ${fFecha(L.actualizado+'T12:00')}.</p>`;
-    if (can('competicion_editar')) html += `<button class="btn" type="button" data-act="edit-tabla">Actualizar tabla de la liga</button>`;
-    const prox = programados().find(p=>p.comp==='Liga');
-    if (prox) html += `<div class="sec">Próximo de liga</div>` + matchRow(prox);
-  } else {
-    const C = S.comp.copa, R = cruces();
-    // nuestro camino
-    const pasos = []; let vivo = true;
-    R.forEach((ronda)=>{ const x = ronda.find(c=>c.a==='yo'||c.b==='yo');
-      if (!vivo) return;
-      if (!x){ pasos.push({ronda:ronda[0].ronda, estado:'futuro', txt: 'Si avanzamos'}); return; }
-      const otro = eqComp(x.a==='yo' ? x.b : x.a), ol = x.a==='yo' ? 'b' : 'a';
-      if (x.gana==='yo') pasos.push({ronda:x.ronda, estado:'ok', txt:`Ganamos ${scoreTxt(x)} a ${esc(otro.nombre)}`, x});
-      else if (x.gana){ pasos.push({ronda:x.ronda, estado:'out', txt:`Eliminados: ${scoreTxt(x)} vs ${esc(otro.nombre)}`, x}); vivo = false; }
-      else if (x.a && x.b) pasos.push({ronda:x.ronda, estado:'next', txt:`vs ${esc(otro.nombre)}${x.partido?` · ${fFecha(x.partido.fecha)} · ${fHora(x.partido.fecha)}`:' · fecha por definir'}`, x});
-      else { const r0 = R[x.r-1], fuente = r0 && r0[ x.a==='yo' ? 2*x.i+1 : 2*x.i ];
-        pasos.push({ronda:x.ronda, estado:'futuro', txt: fuente ? `vs ganador de ${esc(eqComp(fuente.a).nombre)} / ${esc(eqComp(fuente.b).nombre)}` : 'Rival por definir', x}); }
-    });
-    const ultima = pasos.filter(p=>p.estado!=='futuro').pop();
-    const estadoTxt = !vivo ? 'Eliminados' : R[R.length-1][0].gana==='yo' ? '¡Campeones!' : `Seguimos vivos · ${ultima?.estado==='next' ? ultima.ronda : 'avanzando'}`;
-    html += `<div class="card comp-hero"><div><span class="mu" style="font-size:11.5px;font-weight:700">${esc(C.nombre)} · eliminación directa</span>
-      <div style="font-size:18px;font-weight:800;margin-top:4px">${estadoTxt}</div></div><svg width="44" height="44" style="color:var(--gold)"><use href="#i-trophy"/></svg></div>`;
-    html += `<div class="card"><b style="font-size:14px">Nuestro camino</b><div class="camino">${pasos.map(p=>`<div class="paso ${p.estado}" ${p.x?.partido?`role="button" tabindex="0" data-act="open-partido" data-id="${p.x.partido.id}"`:''}>
-      <span class="bolita">${p.estado==='ok'?'✓':p.estado==='out'?'✕':''}</span><div><b>${esc(p.ronda)}</b><span>${p.txt}</span></div>${p.x?.partido?'<span class="chev">›</span>':''}</div>`).join('')}</div></div>`;
-    // llaves por ronda
-    const rondaSel = ui.ronda || (ultima?.ronda) || C.rondas[0];
-    html += `<div class="sec">Llaves</div><div class="chips">${C.rondas.map(r=>`<button type="button" class="${r===rondaSel?'on':''}" data-act="ronda" data-r="${esc(r)}">${esc(r)}</button>`).join('')}</div>`;
-    const lista = R[C.rondas.indexOf(rondaSel)];
-    html += lista.map(x=>{ const ea = eqComp(x.a), eb = eqComp(x.b), nuestro = x.a==='yo'||x.b==='yo';
-      const act = nuestro ? (x.partido ? `data-act="open-partido" data-id="${x.partido.id}"` : '') : (can('competicion_editar') && x.a && x.b ? `data-act="edit-cruce" data-r="${esc(x.ronda)}" data-i="${x.i}"` : '');
-      const lado = (e, k) => `<div class="lado ${x.gana && x.gana===(k==='a'?x.a:x.b) ? 'gana' : x.gana ? 'pierde' : ''}">${x[k] ? crestComp(e) : '<span class="crest sm" style="background:#e2e9e2"></span>'}<span class="nm">${x[k] ? esc(e.nombre) : 'Por definir'}</span><b class="num">${marcadorCruce(x,k)}</b></div>`;
-      return `<${act?'button type="button"':'div'} class="card cruce ${nuestro?'nuestro':''}" ${act}>${lado(ea,'a')}${lado(eb,'b')}
-        <span class="cr-st">${x.gana ? 'Final' : x.a && x.b ? (x.partido ? `${fFecha(x.partido.fecha)} · ${fHora(x.partido.fecha)}` : 'Por jugar') : 'Esperando rival'}</span></${act?'button':'div'}>`; }).join('');
-    if (can('competicion_editar')) html += `<p class="hint" style="margin:0">Toca un cruce de otros equipos para capturar su resultado. Los nuestros se llenan solos con el partido.</p>`;
-  }
+  const L = S.comp.lista;
+  if (!L.find(c=>c.id===ui.compSel)) ui.compSel = L[0]?.id;
+  let html = `<div class="chips">${L.map(c=>`<button type="button" class="${ui.compSel===c.id?'on':''}" data-act="comp-sel" data-c="${c.id}">${esc(c.nombre)}</button>`).join('')}
+    ${can('competicion_crear') ? `<button type="button" data-act="comp-nueva" aria-label="Agregar competición" style="color:var(--ac)">+ Nueva</button>` : ''}</div>`;
+  const C = compById(ui.compSel);
+  if (!L.length || C===AMISTOSO) return html + `<div class="card empty">Aún no hay competiciones.${can('competicion_crear')?'<br><button class="link" type="button" data-act="comp-nueva">Agregar liga o torneo</button>':''}</div>`;
+  const editar = can('competicion_crear') ? `<button class="iconbtn" type="button" data-act="comp-editar" data-c="${C.id}" aria-label="Editar competición">${ico('i-edit')}</button>` : '';
+  return html + (C.tipo==='LIGA' ? vLiga(C, editar) : vTorneo(C, editar));
+}
+function vLiga(L, editar){
+  const T = tablaLiga(L), yo = T.find(f=>f.id==='yo'), lider = T[0], zona = yo.pos <= L.clasifican;
+  const dif = T.length<2 ? '' : yo.pos===1 ? `${yo.pts - T[1].pts} pts de ventaja` : `a ${lider.pts - yo.pts} pts del líder`;
+  let html = `<div class="card comp-hero"><div><span class="mu" style="font-size:11.5px;font-weight:700">${esc(L.nombre)}${L.temporada?' · '+esc(L.temporada):''} · Liga</span>
+      <div style="display:flex;align-items:baseline;gap:8px;margin-top:2px"><span class="bignum">${yo.pos}º</span><span style="font-weight:700">${yo.pts} pts${dif?' · '+dif:''}</span></div>
+      ${L.clasifican ? `<span class="badge ${zona?'prog':'zona-no'}" style="margin-top:6px;display:inline-block">${zona?`En zona de liguilla (top ${L.clasifican})`:`Fuera de liguilla · a ${(T[L.clasifican-1]?.pts ?? 0) - yo.pts} pts del ${L.clasifican}º`}</span>` : ''}</div>
+      <div style="display:grid;gap:8px;justify-items:end"><svg width="40" height="40" style="color:var(--gold)"><use href="#i-trophy"/></svg>${editar}</div></div>`;
+  html += `<div class="card" style="padding:6px 0 10px"><div class="tbl-wrap"><table class="tabla"><colgroup><col class="c-pos"><col><col class="c-n"><col class="c-n"><col class="c-n"><col class="c-n"><col class="c-dg"><col class="c-pts"></colgroup>
+    <thead><tr><th>#</th><th class="eq">Equipo</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>DG</th><th>PTS</th></tr></thead><tbody>
+    ${T.map(f=>{ const e = eqComp(f.id); return `<tr class="${f.id==='yo'?'yo':''} ${f.pos===L.clasifican?'corte':''}"><td class="pos ${f.pos<=L.clasifican?'in':''}">${f.pos}</td><td class="eq"><div class="eqc">${crestComp(e)}<span>${esc(e.nombre)}</span></div></td><td>${f.pj}</td><td>${f.g}</td><td>${f.e}</td><td>${f.p}</td><td>${f.dg>0?'+':''}${f.dg}</td><td class="pts">${f.pts}</td></tr>`; }).join('')}
+    </tbody></table></div>
+    <div class="legend" style="padding:8px 14px 0"><span><i class="dot" style="background:var(--ac)"></i>Clasifica a liguilla</span><span>PJ jugados · DG diferencia de goles</span></div></div>`;
+  html += `<p class="hint" style="margin:0">Tu fila se calcula sola con tus partidos de esta liga. Las demás las captura el cuerpo técnico con la tabla oficial · actualizada ${fFecha(L.actualizado+'T12:00')}.</p>`;
+  if (can('competicion_editar')) html += `<button class="btn" type="button" data-act="edit-tabla" data-c="${L.id}">Actualizar tabla</button>`;
+  const prox = programados().find(p=>p.comp===L.id);
+  if (prox) html += `<div class="sec">Próximo partido</div>` + matchRow(prox);
   return html;
 }
-function formTabla(){
-  const L = S.comp.liga;
-  openSheet('Actualizar tabla de la liga', `<form data-form="tabla"><p class="hint" style="margin:0">Copia los números de la tabla oficial. Tu equipo se calcula solo con tus partidos.</p>
-    <div class="tabla-ed"><span></span><b>G</b><b>E</b><b>P</b><b>GF</b><b>GC</b>
-    ${L.filas.map((f,i)=>`<span class="nm">${esc(eqComp(f.id).nombre)}</span>${['g','e','p','gf','gc'].map(k=>`<input type="number" min="0" max="99" name="${k}${i}" value="${f[k]}" aria-label="${k.toUpperCase()} de ${esc(eqComp(f.id).nombre)}">`).join('')}`).join('')}</div>
-    <div class="field"><label for="f-clas">Clasifican a liguilla</label><input id="f-clas" type="number" min="1" max="${L.filas.length+1}" name="clasifican" value="${L.clasifican}"></div>
+function vTorneo(C, editar){
+  const R = cruces(C), pasos = []; let vivo = true, enLlave = C.llave.includes('yo');
+  R.forEach((ronda)=>{ if (!vivo) return; const x = ronda.find(c=>c.a==='yo'||c.b==='yo');
+    if (!x){ pasos.push({ronda:ronda[0].ronda, estado:'futuro', txt:'Si avanzamos'}); return; }
+    const otro = eqComp(x.a==='yo' ? x.b : x.a);
+    if (x.gana==='yo') pasos.push({ronda:x.ronda, estado:'ok', txt:`Ganamos ${scoreTxt(x)} a ${esc(otro.nombre)}`, x});
+    else if (x.gana){ pasos.push({ronda:x.ronda, estado:'out', txt:`Eliminados: ${scoreTxt(x)} vs ${esc(otro.nombre)}`, x}); vivo = false; }
+    else if (x.a && x.b) pasos.push({ronda:x.ronda, estado:'next', txt:`vs ${esc(otro.nombre)}${x.partido?` · ${fFecha(x.partido.fecha)} · ${fHora(x.partido.fecha)}`:' · fecha por definir'}`, x});
+    else { const r0 = R[x.r-1], fuente = r0 && r0[x.a==='yo' ? 2*x.i+1 : 2*x.i];
+      pasos.push({ronda:x.ronda, estado:'futuro', txt: fuente && fuente.a && fuente.b ? `vs ganador de ${esc(eqComp(fuente.a).nombre)} / ${esc(eqComp(fuente.b).nombre)}` : 'Rival por definir', x}); }
+  });
+  const ultima = pasos.filter(p=>p.estado!=='futuro').pop();
+  const estadoTxt = !enLlave ? 'Sin participación' : !vivo ? 'Eliminados' : R[R.length-1][0].gana==='yo' ? '¡Campeones!' : `Seguimos vivos · ${ultima?.estado==='next' ? ultima.ronda : (ultima ? 'avanzando' : C.rondas[0])}`;
+  let html = `<div class="card comp-hero"><div><span class="mu" style="font-size:11.5px;font-weight:700">${esc(C.nombre)}${C.temporada?' · '+esc(C.temporada):''} · Torneo</span>
+    <div style="font-size:18px;font-weight:800;margin-top:4px">${estadoTxt}</div><span class="mu" style="font-size:12px">${C.llave.length} equipos · eliminación directa</span></div>
+    <div style="display:grid;gap:8px;justify-items:end"><svg width="40" height="40" style="color:var(--gold)"><use href="#i-trophy"/></svg>${editar}</div></div>`;
+  if (enLlave) html += `<div class="card"><b style="font-size:14px">Nuestro camino</b><div class="camino">${pasos.map(p=>`<div class="paso ${p.estado}" ${p.x?.partido?`role="button" tabindex="0" data-act="open-partido" data-id="${p.x.partido.id}"`:''}>
+    <span class="bolita">${p.estado==='ok'?'✓':p.estado==='out'?'✕':''}</span><div><b>${esc(p.ronda)}</b><span>${p.txt}</span></div>${p.x?.partido?'<span class="chev">›</span>':''}</div>`).join('')}</div></div>`;
+  const rondaSel = C.rondas.includes(ui.ronda) ? ui.ronda : (ultima?.ronda || C.rondas[0]);
+  html += `<div class="sec">Llaves</div><div class="chips">${C.rondas.map(r=>`<button type="button" class="${r===rondaSel?'on':''}" data-act="ronda" data-r="${esc(r)}">${esc(r)}</button>`).join('')}</div>`;
+  const ri = C.rondas.indexOf(rondaSel);
+  html += R[ri].map(x=>{ const ea = eqComp(x.a), eb = eqComp(x.b), nuestro = x.a==='yo'||x.b==='yo';
+    const primera = ri===0 && can('competicion_editar');
+    const act = nuestro && x.partido ? `data-act="open-partido" data-id="${x.partido.id}"` : nuestro && !primera ? '' : (can('competicion_editar') && ((x.a && x.b) || primera) ? `data-act="edit-cruce" data-c="${C.id}" data-r="${esc(x.ronda)}" data-i="${x.i}"` : '');
+    const lado = (e, k) => `<div class="lado ${x.gana && x.gana===(k==='a'?x.a:x.b) ? 'gana' : x.gana ? 'pierde' : ''}">${x[k] ? crestComp(e) : '<span class="crest sm" style="background:#e2e9e2"></span>'}<span class="nm">${x[k] ? esc(e.nombre) : 'Por definir'}</span><b class="num">${marcadorCruce(x,k)}</b></div>`;
+    return `<${act?'button type="button"':'div'} class="card cruce ${nuestro?'nuestro':''}" ${act}>${lado(ea,'a')}${lado(eb,'b')}
+      <span class="cr-st">${x.gana ? 'Final' : x.a && x.b ? (x.partido ? `${fFecha(x.partido.fecha)} · ${fHora(x.partido.fecha)}` : 'Por jugar') : 'Esperando rival'}</span></${act?'button':'div'}>`; }).join('');
+  if (can('competicion_editar')) html += `<p class="hint" style="margin:0">Toca un cruce de otros equipos para capturar su resultado${ri===0?' o definir quién juega':''}. Los nuestros se llenan solos con el partido.</p>`;
+  return html;
+}
+function formTabla(cid){
+  const L = compById(cid), usados = new Set(L.filas.map(f=>f.id)), libres = S.rivales.filter(r=>!usados.has(r.id));
+  openSheet(`Tabla · ${L.nombre}`, `<form data-form="tabla" data-c="${cid}"><p class="hint" style="margin:0">Copia los números de la tabla oficial. Tu equipo se calcula solo con tus partidos.</p>
+    ${L.filas.length ? `<div class="tabla-ed"><span></span><b>G</b><b>E</b><b>P</b><b>GF</b><b>GC</b>
+    ${L.filas.map((f,i)=>`<span class="nm">${esc(eqComp(f.id).nombre)}</span>${['g','e','p','gf','gc'].map(k=>`<input type="number" min="0" max="99" name="${k}${i}" value="${f[k]}" aria-label="${k.toUpperCase()} de ${esc(eqComp(f.id).nombre)}">`).join('')}`).join('')}</div>` : '<p class="mu" style="margin:0">Todavía no hay otros equipos en la tabla.</p>'}
+    ${libres.length ? `<div class="field"><label for="f-addeq">Agregar equipo a la tabla</label><select id="f-addeq" name="addeq"><option value="">—</option>${libres.map(r=>opt(r.id,r.nombre,'')).join('')}</select><span class="hint">Si no aparece, agrégalo primero en Equipo › Rivales.</span></div>` : ''}
+    <div class="field"><label for="f-clas">Clasifican a liguilla</label><input id="f-clas" type="number" min="0" max="${L.filas.length+1}" name="clasifican" value="${L.clasifican}"><span class="hint">0 si no hay liguilla.</span></div>
     ${btns('')}</form>`);
 }
-function formCruce(ronda, i){
-  const x = cruces()[S.comp.copa.rondas.indexOf(ronda)][i], ea = eqComp(x.a), eb = eqComp(x.b), rs = x.rs || {a:0,b:0};
-  openSheet(`${ronda} · resultado`, `<form data-form="cruce" data-r="${esc(ronda)}" data-i="${i}">
-    <div class="stepper">
-      <div class="side">${esc(ea.nombre)}<div class="ctl"><button type="button" data-act="step" data-t="ga" data-d="-1" aria-label="Restar gol">−</button><output id="o-ga">${rs.a}</output><button type="button" data-act="step" data-t="ga" data-d="1" aria-label="Sumar gol">+</button></div></div>
+function formCruce(cid, ronda, i){
+  const C = compById(cid), ri = C.rondas.indexOf(ronda), x = cruces(C)[ri][i], ea = eqComp(x.a), eb = eqComp(x.b), rs = x.rs || {a:0,b:0};
+  const equipoSel = (k, val) => { const ocup = new Set(C.llave.filter((t,j)=>t && j!==2*i+(k==='a'?0:1)));
+    const ops = [['yo',S.equipo.nombre], ...S.rivales.map(r=>[r.id,r.nombre]), ...Object.values(S.comp.extra).map(e=>[e.id,e.nombre])].filter(([id])=>!ocup.has(id)||id===val);
+    return `<select name="eq${k}" id="f-eq${k}"><option value="">Por definir</option>${ops.map(([id,n])=>opt(id,n,val)).join('')}</select>`; };
+  const pick = ri===0 ? `<div class="two"><div class="field"><label for="f-eqa">Equipo 1</label>${equipoSel('a',x.a)}</div><div class="field"><label for="f-eqb">Equipo 2</label>${equipoSel('b',x.b)}</div></div>` : '';
+  const nuestro = x.a==='yo' || x.b==='yo';
+  openSheet(`${ronda} · cruce ${i+1}`, `<form data-form="cruce" data-c="${cid}" data-r="${esc(ronda)}" data-i="${i}">${pick}
+    ${nuestro ? '<p class="hint" style="margin:0">Nuestro resultado se toma del partido; prográmalo con el botón + eligiendo esta competición y ronda.</p>' : `<div class="stepper">
+      <div class="side">${x.a?esc(ea.nombre):'Equipo 1'}<div class="ctl"><button type="button" data-act="step" data-t="ga" data-d="-1" aria-label="Restar gol">−</button><output id="o-ga">${rs.a}</output><button type="button" data-act="step" data-t="ga" data-d="1" aria-label="Sumar gol">+</button></div></div>
       <span class="mu" style="font-size:22px">–</span>
-      <div class="side">${esc(eb.nombre)}<div class="ctl"><button type="button" data-act="step" data-t="gb" data-d="-1" aria-label="Restar gol">−</button><output id="o-gb">${rs.b}</output><button type="button" data-act="step" data-t="gb" data-d="1" aria-label="Sumar gol">+</button></div></div>
+      <div class="side">${x.b?esc(eb.nombre):'Equipo 2'}<div class="ctl"><button type="button" data-act="step" data-t="gb" data-d="-1" aria-label="Restar gol">−</button><output id="o-gb">${rs.b}</output><button type="button" data-act="step" data-t="gb" data-d="1" aria-label="Sumar gol">+</button></div></div>
     </div><input type="hidden" name="ga" value="${rs.a}"><input type="hidden" name="gb" value="${rs.b}">
-    <div class="two"><div class="field"><label for="f-pa">Penales ${esc(ea.corto)} (si empatan)</label><input id="f-pa" type="number" min="0" name="pa" value="${rs.pa ?? ''}"></div>
-    <div class="field"><label for="f-pb">Penales ${esc(eb.corto)}</label><input id="f-pb" type="number" min="0" name="pb" value="${rs.pb ?? ''}"></div></div>
-    <div class="formbtns">${x.rs?`<button class="btn del" type="button" data-act="cruce-borrar" data-r="${esc(ronda)}" data-i="${i}">Borrar</button>`:''}<button class="btn" type="button" data-act="close">Cancelar</button><button class="btn pri" type="submit">Guardar</button></div><div class="err" id="ferr"></div></form>`);
+    <label class="otra" style="gap:10px"><input type="checkbox" name="jugado" ${x.rs?'checked':''} style="flex:none;width:18px;height:18px"> Ya se jugó (guardar marcador)</label>
+    <div class="two"><div class="field"><label for="f-pa">Penales equipo 1 (si empatan)</label><input id="f-pa" type="number" min="0" name="pa" value="${rs.pa ?? ''}"></div>
+    <div class="field"><label for="f-pb">Penales equipo 2</label><input id="f-pb" type="number" min="0" name="pb" value="${rs.pb ?? ''}"></div></div>`}
+    <div class="err" id="ferr"></div><div class="formbtns"><button class="btn" type="button" data-act="close">Cancelar</button><button class="btn pri" type="submit">Guardar</button></div></form>`);
 }
+function formComp(cid){
+  const C = cid ? compById(cid) : null, usos = C ? S.partidos.filter(p=>p.comp===C.id).length : 0;
+  openSheet(C ? 'Editar competición' : 'Nueva competición', `<form data-form="comp" data-c="${cid||''}">
+    <div class="field"><label for="f-cn">Nombre</label><input id="f-cn" name="nombre" required value="${esc(C?.nombre||'')}" placeholder="Liga Municipal, Copa Ciudad…"></div>
+    <div class="field"><label for="f-ct">Temporada o edición</label><input id="f-ct" name="temporada" value="${esc(C?.temporada||'')}" placeholder="Apertura 2026"></div>
+    <div class="field"><span class="lbl">Tipo</span><div class="radio" role="radiogroup" aria-label="Tipo de competición">
+      <label><input type="radio" name="tipo" value="LIGA" ${(!C||C.tipo==='LIGA')?'checked':''} ${C?'disabled':''}>Liga · tabla de puntos</label><label><input type="radio" name="tipo" value="TORNEO" ${C?.tipo==='TORNEO'?'checked':''} ${C?'disabled':''}>Torneo · llaves</label></div>
+      ${C?'<span class="hint">El tipo no se puede cambiar después de crearla.</span>':''}</div>
+    <div class="field" data-show="LIGA"><label for="f-cc">Clasifican a liguilla</label><input id="f-cc" type="number" min="0" max="32" name="clasifican" value="${C?.clasifican ?? 4}"></div>
+    ${C ? '' : `<div class="field" data-show="TORNEO"><label for="f-cs">Equipos en la llave</label><select id="f-cs" name="tam">${[4,8,16,32].map(n=>opt(n,`${n} equipos · empieza en ${RONDAS[n][0]}`,8)).join('')}</select>
+      <span class="hint">Tu equipo entra en el primer cruce; los demás se definen tocando cada cruce.</span></div>
+    <div class="field" data-show="LIGA"><span class="lbl">Rivales en la liga</span><div class="checks">${S.rivales.map(r=>`<label><input type="checkbox" name="riv" value="${r.id}">${esc(r.nombre)}</label>`).join('')}</div>
+      <span class="hint">Después puedes agregar más en “Actualizar tabla”.</span></div>`}
+    <div class="err" id="ferr"></div><div class="formbtns">${C ? `<button class="btn del" type="button" data-act="comp-borrar" data-c="${C.id}" ${usos?`title="Tiene ${usos} partidos"`:''}>Eliminar</button>` : ''}<button class="btn" type="button" data-act="close">Cancelar</button><button class="btn pri" type="submit">Guardar</button></div></form>`);
+  syncCompForm();
+}
+function syncCompForm(){ const f = $('#sheet form[data-form="comp"]'); if (!f) return; const t = (f.querySelector('input[name=tipo]:checked')||{}).value;
+  f.querySelectorAll('[data-show]').forEach(el=>{ el.hidden = el.dataset.show!==t; }); }
 
 /* ===================== roles y permisos ===================== */
 const ROLES = {
@@ -682,6 +734,7 @@ const PERMS = [
   {k:'registrar', t:'Registrar resultados, eventos en vivo y estadísticas', r:['entrenador','staff'], p:'Pocas personas autorizadas evitan marcadores contradictorios.'},
   {k:'programar', t:'Programar partidos y editar rivales, sedes y plantel', r:['entrenador','staff'], p:'Son cambios de logística que afectan a todo el equipo.'},
   {k:'competicion_editar', t:'Actualizar la tabla y resultados de otros equipos', r:['entrenador','staff'], p:'Se copia de la información oficial de la liga; pocos editores evitan errores.'},
+  {k:'competicion_crear', t:'Crear ligas y torneos de la temporada', r:['entrenador'], p:'Define en qué compite el equipo; es una decisión del responsable.'},
   {k:'analisis_avanzado', t:'Análisis comparativos y Premium', r:['entrenador','staff'], p:'Comparar jugadores (con/sin, por partido) sirve para decidir; mostrarlo al plantel o a los padres puede causar conflictos.'},
   {k:'borrar', t:'Eliminar partidos, jugadores, rivales y sedes', r:['entrenador'], p:'No se puede deshacer y borra historial; solo el responsable decide.'},
   {k:'equipo_cuenta', t:'Editar el equipo (nombre, escudo) y pagar el plan', r:['entrenador'], p:'Es la cuenta que se paga; solo el titular la administra.'},
@@ -696,9 +749,9 @@ const ACT_PERM = {registrar:'registrar', iniciar:'registrar', finalizar:'registr
   'del-partido':'borrar', 'del-partido-sheet':'borrar', 'do-del-partido':'borrar', 'del-jugador':'borrar', 'do-del-jugador':'borrar', 'del-rival':'borrar', 'do-del-rival':'borrar', 'del-sede':'borrar', 'do-del-sede':'borrar',
   rsvp:'convocatoria', jugo:'convocatoria', 'rsvp-me':'rsvp_propio',
   'set-mod':'alineacion_editar', 'set-form':'alineacion_editar', 'solo-voy':'alineacion_editar', 'auto-lineup':'alineacion_editar', 'clear-lineup':'alineacion_editar', slot:'alineacion_editar', 'slot-set':'alineacion_editar', 'slot-quitar':'alineacion_editar', publicar:'alineacion_editar',
-  'edit-tabla':'competicion_editar', 'edit-cruce':'competicion_editar', 'cruce-borrar':'competicion_editar',
+  'edit-tabla':'competicion_editar', 'edit-cruce':'competicion_editar', 'comp-nueva':'competicion_crear', 'comp-editar':'competicion_crear', 'comp-borrar':'competicion_crear', 'do-comp-borrar':'competicion_crear',
   premium:'equipo_cuenta', 'premium-toggle':'equipo_cuenta', 'edit-equipo':'equipo_cuenta', 'escudo-quitar':'equipo_cuenta'};
-const FORM_PERM = {tabla:'competicion_editar', cruce:'competicion_editar', partido:'programar', resultado:'registrar', evento:'registrar', stats:'registrar', jugador:'programar', rival:'programar', sede:'programar', equipo:'equipo_cuenta'};
+const FORM_PERM = {tabla:'competicion_editar', cruce:'competicion_editar', comp:'competicion_crear', partido:'programar', resultado:'registrar', evento:'registrar', stats:'registrar', jugador:'programar', rival:'programar', sede:'programar', equipo:'equipo_cuenta'};
 
 function rolPill(){ return `<button type="button" class="rolpill" data-act="rol" aria-label="Cambiar rol de vista: ${ROLES[ui.rol].nombre}">${ico('i-eye')}${ROLES[ui.rol].nombre}<span aria-hidden="true">▾</span></button>`; }
 function hojaRoles(){
@@ -731,7 +784,7 @@ function vInicioV(){
     const cuando = n.estado==='EN_JUEGO' ? 'EN VIVO' : dias<=0 ? 'hoy' : dias===1 ? 'mañana' : `en ${dias} días`;
     const l = lineupDe(n), tit = l.includes(q.j?.id);
     html += `<div class="hero" role="button" tabindex="0" data-act="open-partido" data-id="${n.id}">
-      <div class="row"><span class="k">PRÓXIMO · ${esc(n.comp.toUpperCase())} ${esc(n.jornada||'')}</span><span class="k">${cuando}</span></div>
+      <div class="row"><span class="k">PRÓXIMO · ${esc(compDe(n).nombre.toUpperCase())} ${esc(n.jornada||'')}</span><span class="k">${cuando}</span></div>
       <div class="vs"><div class="t">${crestMio()}${esc(S.equipo.nombre.split(' ')[0])}</div>
         <div class="time">${n.estado==='EN_JUEGO' ? `<b class="num">${n.gf}–${n.gc}</b><small>en juego</small>` : `<b>${fHora(n.fecha)}</b><small>${fFecha(n.fecha)}</small>`}</div>
         <div class="t">${crestRival(rv)}${esc(rv.nombre)}</div></div>
@@ -831,7 +884,7 @@ function render(resetScroll){
   if (v && v.name==='partido'){
     const p = partido(v.id); if (!p){ ui.view = null; return render(true); }
     top = `<button class="iconbtn" data-act="back" aria-label="Volver">${ico('i-back')}</button>
-      <div style="flex:1;min-width:0"><h2>${p.comp} · ${esc(p.jornada||'')}</h2><div class="sub">${fFecha(p.fecha)} · ${fHora(p.fecha)}</div></div>
+      <div style="flex:1;min-width:0"><h2>${esc(compDe(p).nombre)}${p.jornada?' · '+esc(p.jornada):''}</h2><div class="sub">${fFecha(p.fecha)} · ${fHora(p.fecha)}</div></div>
       ${can('programar') ? `<button class="iconbtn" data-act="edit-partido" data-id="${p.id}" aria-label="Editar partido">${ico('i-edit')}</button>` : ''}`;
     body = vPartido(p);
   } else {
@@ -842,7 +895,7 @@ function render(resetScroll){
     } else {
       top = `<h2>${titles[ui.tab]}</h2>` + (ui.tab==='analisis' && esStaff() ? (ui.premium ? '<span class="badge prem">★ PREMIUM</span>' : '<span class="badge prog">Gratis</span>') : '') + rolPill();
       body = ui.tab==='calendario' ? vCalendario() : ui.tab==='competicion' ? vCompeticion() : ui.tab==='analisis' ? (esStaff() ? vAnalisis() : vAnalisisV()) : (esStaff() ? vEquipo() : vEquipoV());
-      fab = (ui.tab==='calendario' || ui.tab==='equipo') && can('programar');
+      fab = (ui.tab==='calendario' || ui.tab==='equipo' || ui.tab==='competicion') && can('programar');
     }
   }
   $('#top').innerHTML = top;
@@ -866,13 +919,13 @@ function crestMio(sm, borde){ const b = borde ? 'border-color:var(--line);' : ''
 function matchRow(p){
   const r = rival(p.rivalId), s = sede(p.sedeId), d = new Date(p.fecha);
   const fin = p.estado==='FINALIZADO';
-  const box = fin ? 'past' : p.comp==='Copa' ? 'copa' : '';
+  const box = fin ? 'past' : esTorneo(p) ? 'copa' : compDe(p).tipo==='AMISTOSO' ? 'amis' : '';
   const right = fin ? `<div class="score-r">${p.gf}–${p.gc}<span class="badge ${res(p)}">${res(p)}</span></div>`
     : p.estado==='EN_JUEGO' ? `<div class="score-r">${p.gf}–${p.gc}<span class="badge live">EN VIVO</span></div>`
     : `<div class="score-r" style="font-size:13px">${fHora(p.fecha)}</div>`;
   return `<button type="button" class="card match" data-act="open-partido" data-id="${p.id}">
     <div class="dbox ${box}"><small>${DIAS[d.getDay()]}</small><b>${d.getDate()}</b></div>
-    <div><div class="ttl">${p.local?'vs':'@'} ${esc(r.nombre)}</div><div class="meta">${esc(p.comp)}${p.jornada?' · '+esc(p.jornada):''}${s?' · '+esc(s.nombre):''}</div></div>
+    <div><div class="ttl">${p.local?'vs':'@'} ${esc(r.nombre)}</div><div class="meta">${esc(compDe(p).nombre)}${p.jornada?' · '+esc(p.jornada):''}${s?' · '+esc(s.nombre):''}</div></div>
     ${right}</button>`;
 }
 
@@ -964,18 +1017,15 @@ function vInicio(){
     const dias = Math.round((new Date(n.fecha.slice(0,10)) - new Date(isoLocal(new Date()).slice(0,10)))/864e5);
     const cuando = n.estado==='EN_JUEGO' ? 'EN VIVO' : dias<=0 ? 'hoy' : dias===1 ? 'mañana' : `en ${dias} días`;
     html += `<div class="hero" role="button" tabindex="0" data-act="open-partido" data-id="${n.id}">
-      <div class="row"><span class="k">PRÓXIMO · ${esc(n.comp.toUpperCase())} ${esc(n.jornada||'')}</span><span class="k">${cuando}</span></div>
+      <div class="row"><span class="k">PRÓXIMO · ${esc(compDe(n).nombre.toUpperCase())} ${esc(n.jornada||'')}</span><span class="k">${cuando}</span></div>
       <div class="vs"><div class="t">${crestMio()}${esc(S.equipo.nombre.split(' ')[0])}</div>
         <div class="time">${n.estado==='EN_JUEGO' ? `<b class="num">${n.gf}–${n.gc}</b><small>en juego</small>` : `<b>${fHora(n.fecha)}</b><small>${fFecha(n.fecha)}</small>`}</div>
         <div class="t">${crestRival(rv)}${esc(rv.nombre)}</div></div>
       ${s?`<div class="loc">${ico('i-pin')}<span>${esc(s.nombre)}${s.cancha?' · '+esc(s.cancha):''}</span></div>`:''}
       ${n.estado==='PROGRAMADO' ? `<button type="button" class="conv" data-act="open-conv" data-id="${n.id}" aria-label="Ver convocatoria">${rsvpIcons(c)}<span aria-hidden="true">›</span></button>
-        <button type="button" class="lineup-link" data-act="open-cancha" data-id="${n.id}">⚽ Armar alineación · ${lineupDe(n).filter(Boolean).length}/${MODS[modalidadDe(n)].n} en cancha${n.publicada?' · publicada':''} ›</button>` : ''}
+        <button type="button" class="lineup-link" data-act="open-cancha" data-id="${n.id}">⚽ Alineación ›</button>` : ''}
     </div>`;
   } else html += `<div class="card empty">No hay partidos programados.<br><button class="link" data-act="nuevo-partido" type="button">Programar uno</button></div>`;
-  html += `<div class="qa">
-    <button type="button" data-act="registrar"><i>${ico('i-score')}</i>Registrar resultado</button>
-    <button type="button" data-act="nuevo-partido"><i>${ico('i-cal')}</i>Nuevo partido</button></div>`;
   html += `<div class="tiles"><div><b>${ptsLiga()}</b><span>PTS LIGA</span></div><div><b>${r.pctV}%</b><span>VICT</span></div><div><b>${r.gf}</b><span>GF</span></div><div><b style="color:${r.dg>=0?'var(--ac)':'var(--loss)'}">${r.dg>0?'+':''}${r.dg}</b><span>DG</span></div></div>`;
   if (last){
     html += `<div class="sec">Último resultado <button type="button" data-act="ver-resultados">Ver todos</button></div>`;
@@ -1000,9 +1050,9 @@ function vCalendario(){
   let cells = ['L','M','M','J','V','S','D'].map(d=>`<span class="h">${d}</span>`).join('') + '<span></span>'.repeat(lead);
   for (let d=1; d<=days; d++){
     const k = `${y}-${pad(m+1)}-${pad(d)}`, ps = byDay[k];
-    let dot = '';
-    if (ps){ const p = ps[0]; const fin = p.estado==='FINALIZADO', c = fin ? ({G:'var(--win)',E:'var(--draw)',P:'var(--loss)'})[res(p)] : p.comp==='Copa' ? 'var(--copa)' : 'var(--liga)'; dot = fin ? `<i style="background:${c}"></i>` : `<i class="ring" style="border-color:${c}"></i>`; }
-    cells += `<button type="button" class="${k===todayK?'today':''} ${k===ui.calDay?'sel':''}" data-act="cal-day" data-d="${k}" aria-label="${d} de ${MESL[m]}${ps?', '+ps.length+' partido':''}">${d}${dot}</button>`;
+    let mc = '';
+    if (ps){ const p = ps[0]; const fin = p.estado==='FINALIZADO'; mc = fin ? ({G:'var(--win)',E:'var(--draw)',P:'var(--loss)'})[res(p)] : esTorneo(p) ? 'var(--copa)' : compDe(p).tipo==='AMISTOSO' ? 'var(--amis)' : 'var(--liga)'; }
+    cells += `<button type="button" class="${k===todayK?'today':''} ${k===ui.calDay?'sel':''} ${mc?'m':''}" ${mc?`style="--mc:${mc}"`:''} data-act="cal-day" data-d="${k}" aria-label="${d} de ${MESL[m]}${ps?', '+ps.length+' partido':''}">${d}</button>`;
   }
   let lista;
   if (ui.calDay){ lista = (byDay[ui.calDay]||[]); }
@@ -1014,7 +1064,7 @@ function vCalendario(){
       <div class="calhead"><button class="iconbtn" data-act="cal-prev" aria-label="Mes anterior">${ico('i-back')}</button><b>${MESL[m]} ${y}</b>
       <button class="iconbtn" data-act="cal-next" aria-label="Mes siguiente" style="transform:scaleX(-1)">${ico('i-back')}</button></div>
       <div class="cal" style="margin-top:8px">${cells}</div>
-      <div class="legend" style="margin-top:8px;flex-wrap:wrap"><span><i class="ring" style="border-color:var(--liga)"></i>Próx. liga</span><span><i class="ring" style="border-color:var(--copa)"></i>Próx. copa</span><span><i class="dot" style="background:var(--win)"></i>Ganado</span><span><i class="dot" style="background:var(--draw)"></i>Empate</span><span><i class="dot" style="background:var(--loss)"></i>Perdido</span></div>
+      <div class="legend" style="margin-top:8px;flex-wrap:wrap"><span><i class="box" style="border-color:var(--liga)"></i>Liga</span><span><i class="box" style="border-color:var(--copa)"></i>Torneo</span><span><i class="box" style="border-color:var(--amis)"></i>Amistoso</span><span><i class="box" style="border-color:var(--win)"></i>Ganado</span><span><i class="box" style="border-color:var(--draw)"></i>Empate</span><span><i class="box" style="border-color:var(--loss)"></i>Perdido</span></div>
     </div>
     ${ui.calDay ? `<div class="row"><b>${DIAS[d0.getDay()]} ${d0.getDate()} ${MES[d0.getMonth()]}</b><button class="link" type="button" data-act="cal-clear">Ver todos</button></div>`
       : `<div class="chips">${[['prox','Próximos'],['res','Resultados'],['todos','Todos']].map(([k,l])=>`<button type="button" class="${ui.calFil===k?'on':''}" data-act="cal-fil" data-f="${k}">${l}</button>`).join('')}</div>`}
@@ -1026,13 +1076,14 @@ function vPartido(p){
   const r = rival(p.rivalId), s = sede(p.sedeId);
   const fin = p.estado==='FINALIZADO', vivo = p.estado==='EN_JUEGO', prog = p.estado==='PROGRAMADO';
   const mio = `<div class="team">${crestMio()}${esc(S.equipo.nombre.split(' ')[0])}</div>`, suyo = `<div class="team">${crestRival(r)}${esc(r.nombre)}</div>`;
-  let html = `<div class="card"><div class="score">${p.local?mio:suyo}
+  const tocar = can('registrar');
+  let html = `<${tocar?`button type="button" data-act="resultado" data-id="${p.id}" aria-label="${prog?'Registrar resultado':'Editar marcador'}"`:'div'} class="card score-card"><div class="score">${p.local?mio:suyo}
     <div>${prog ? `<div class="big" style="font-size:30px">${fHora(p.fecha)}</div><span class="badge prog">Programado</span>`
       : `<div class="big">${p.local?p.gf:p.gc} – ${p.local?p.gc:p.gf}</div>${vivo?'<span class="badge live">EN VIVO</span>':`<span class="badge ${res(p)}">${({G:'Victoria',E:'Empate',P:'Derrota'})[res(p)]}</span>`}`}</div>
-    ${p.local?suyo:mio}</div></div>`;
-  if (can('registrar')) html += `<div class="actions">` + (prog ? `<button class="btn pri" type="button" data-act="iniciar" data-id="${p.id}">Iniciar en vivo</button><button class="btn" type="button" data-act="resultado" data-id="${p.id}">Registrar resultado</button>`
+    ${p.local?suyo:mio}</div>${tocar?`<span class="score-hint">${ico('i-edit')}${prog?'Toca para registrar el resultado':'Toca el marcador para corregirlo'}</span>`:''}</${tocar?'button':'div'}>`;
+  if (can('registrar')) html += `<div class="actions">` + (prog ? `<button class="btn pri" type="button" data-act="iniciar" data-id="${p.id}">Iniciar en vivo</button>`
     : vivo ? `<button class="btn pri" type="button" data-act="nuevo-evento" data-id="${p.id}">+ Evento</button><button class="btn warn" type="button" data-act="finalizar" data-id="${p.id}">Finalizar</button>`
-    : `<button class="btn" type="button" data-act="nuevo-evento" data-id="${p.id}">+ Evento</button><button class="btn" type="button" data-act="resultado" data-id="${p.id}">Corregir marcador</button>`) + `</div>`;
+    : `<button class="btn" type="button" data-act="nuevo-evento" data-id="${p.id}">+ Evento</button>`) + `</div>`;
   if (ui.pTab==='cancha' && fin) ui.pTab = 'eventos';
   const tabs = [['eventos','Eventos'],['convocatoria', prog?'Convocatoria':'Alineación'],...(fin?[]:[['cancha','Cancha']]),['stats','Estadísticas'],['sede','Sede']];
   html += `<div class="chips">${tabs.map(([k,l])=>`<button type="button" class="${ui.pTab===k?'on':''}" data-act="ptab" data-t="${k}">${l}</button>`).join('')}</div>`;
@@ -1040,9 +1091,12 @@ function vPartido(p){
   if (ui.pTab==='eventos'){
     if (!p.eventos.length) html += `<div class="card empty">${prog?'Los eventos se registran cuando inicia el partido.':'Sin eventos registrados.'}${prog||!can('registrar')?'':`<br><button class="link" type="button" data-act="nuevo-evento" data-id="${p.id}">Agregar gol o tarjeta</button>`}</div>`;
     else html += `<div class="card" style="padding:4px 14px">` + p.eventos.slice().sort((a,b)=>a.min-b.min).map(e=>{
-      const icon = e.tipo==='GOL' ? `<svg width="18" height="18" style="color:${e.rival?'var(--them)':'var(--ac)'}"><use href="#i-ball"/></svg>` : `<span class="card-${e.tipo==='ROJA'?'r':'y'}"></span>`;
-      const quien = e.rival ? esc(rival(p.rivalId).nombre) : esc(jug(e.jugadorId)?.nombre || '—');
-      const extra = e.tipo==='GOL' && e.asistId ? ` <span class="mu">· asist. ${esc(apellido(jug(e.asistId)?.nombre))}</span>` : (e.rival ? ` <span class="mu">· ${({GOL:'gol',AMARILLA:'amarilla',ROJA:'roja'})[e.tipo]}</span>` : '');
+      const icon = e.tipo==='GOL' ? `<svg width="18" height="18" style="color:${e.rival?'var(--them)':'var(--ac)'}"><use href="#i-ball"/></svg>`
+        : e.tipo==='CAMBIO' ? `<svg width="18" height="18" style="color:var(--liga)"><use href="#i-swap"/></svg>` : e.tipo==='LESION' ? `<span class="ic-les" aria-hidden="true">✚</span>` : `<span class="card-${e.tipo==='ROJA'?'r':'y'}"></span>`;
+      const quien = e.rival ? esc(rival(p.rivalId).nombre)
+        : e.tipo==='CAMBIO' ? `<span class="ev-cambio"><span class="in">↑ ${esc(apellido(jug(e.jugadorId)?.nombre))}</span><span class="out">↓ ${esc(apellido(jug(e.jugadorSaleId)?.nombre))}</span></span>`
+        : e.tipo==='LESION' ? `Lesión: ${esc(jug(e.jugadorId)?.nombre || '—')}` : esc(jug(e.jugadorId)?.nombre || '—');
+      const extra = e.tipo==='GOL' && e.asistId ? ` <span class="mu">· asist. ${esc(apellido(jug(e.asistId)?.nombre))}</span>` : (e.rival ? ` <span class="mu">· ${({GOL:'gol',AMARILLA:'amarilla',ROJA:'roja'})[e.tipo]}</span>` : e.tipo==='LESION' && e.detalle ? ` <span class="mu">· ${esc(e.detalle)}</span>` : '');
       const inner = `<span class="m">${e.min}'</span>${icon}<span class="who"><b>${quien}</b>${extra}</span>`;
       return can('registrar') ? `<button type="button" class="ev ${e.rival?'rival':''}" data-act="edit-evento" data-id="${p.id}" data-e="${e.id}">${inner}<span class="chev">›</span></button>` : `<div class="ev ${e.rival?'rival':''}">${inner}<span></span></div>`;
     }).join('') + `</div>`;
@@ -1068,7 +1122,7 @@ function vPartido(p){
       const st = p.stats, bar = (lbl,a,b) => { const t = (a+b)||1; return `<div><div class="lab"><b>${a}</b><span class="mu">${lbl}</span><b>${b}</b></div><div class="bars"><i style="width:${100*a/t}%"></i><i style="width:${100*b/t}%"></i></div></div>`; };
       const am = p.eventos.filter(e=>e.tipo==='AMARILLA'), rj = p.eventos.filter(e=>e.tipo==='ROJA');
       html += `<div class="card st"><div class="row" style="font-size:12px;font-weight:700"><span style="color:var(--ac)">${esc(S.equipo.corto)}</span><span style="color:var(--them)">${esc(r.corto)}</span></div>
-        ${bar('Tiros',st.tiros[0],st.tiros[1])}${bar('A puerta',st.puerta[0],st.puerta[1])}${bar('Posesión %',st.posesion,100-st.posesion)}${bar('Córners',st.corners[0],st.corners[1])}
+        ${bar('Tiros',st.tiros[0],st.tiros[1])}${bar('A puerta',st.puerta[0],st.puerta[1])}${bar('Córners',st.corners[0],st.corners[1])}
         ${bar('Amarillas',am.filter(e=>!e.rival).length,am.filter(e=>e.rival).length)}${bar('Rojas',rj.filter(e=>!e.rival).length,rj.filter(e=>e.rival).length)}
         ${can('registrar')?`<button class="btn" type="button" data-act="edit-stats" data-id="${p.id}">Editar estadísticas</button>`:''}</div>`;
     }
@@ -1141,7 +1195,7 @@ function vAnalisis(){
     html += lockCard('Rendimiento por contexto', `<div style="display:grid;gap:8px"><span class="mu" style="font-size:11.5px">Puntos por partido</span>${lv('Local',L)}${lv('Visita',V)}
       ${Object.entries(sup).map(([k,ps])=>lv(esc(k),resumen(ps))).join('')}</div>`);
     // puntos acumulados
-    let acc = 0; const ac = fin.filter(p=>p.comp==='Liga').map(p=>acc+=pts(p)), n = ac.length, W = 300, H = 120;
+    let acc = 0; const ac = fin.filter(esLiga).map(p=>acc+=pts(p)), n = ac.length, W = 300, H = 120;
     const X = i => 20 + (n>1 ? i*(W-40)/(n-1) : (W-40)/2), Y = v => H-18 - v/(3*n)*(H-34);
     let lc = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Puntos acumulados por partido">
       <line x1="${X(0)}" y1="${Y(2)}" x2="${X(n-1)}" y2="${Y(2*n)}" stroke="var(--mu)" stroke-dasharray="4 4"/>
@@ -1257,7 +1311,10 @@ function syncFecha(f){
   f.querySelector('#fecha-res span').textContent = textoFecha(f.dia.value, f.hora.value);
   f.querySelector('.dchip.on')?.scrollIntoView({block:'nearest', inline:'nearest'});
 }
-function formPartido(id, fecha){
+function syncJornada(f){ const C = compById(f.comp.value), dl = f.querySelector('#dl-jor'), inp = f.jornada, lab = f.querySelector('label[for="f-jor"]');
+  if (C.tipo==='TORNEO'){ dl.innerHTML = C.rondas.map(r=>`<option value="${esc(r)}">`).join(''); inp.placeholder = C.rondas.join(', '); lab.textContent = 'Ronda'; }
+  else { dl.innerHTML = ''; inp.placeholder = C.tipo==='LIGA' ? 'J13' : 'Opcional'; lab.textContent = C.tipo==='LIGA' ? 'Jornada' : 'Nota'; } }
+function formPartido(id, fecha, compPre){
   const p = id ? partido(id) : null;
   const def = fecha ? fecha+'T10:00' : (()=>{ const d = new Date(); d.setDate(d.getDate()+((7-d.getDay())%7||7)); d.setHours(10,0,0,0); return isoLocal(d); })();
   openSheet(p?'Editar partido':'Nuevo partido', `<form data-form="partido" data-id="${id||''}">
@@ -1265,15 +1322,16 @@ function formPartido(id, fecha){
     <div class="radio" role="radiogroup" aria-label="Condición"><label><input type="radio" name="local" value="1" ${!p||p.local?'checked':''}>Local</label><label><input type="radio" name="local" value="0" ${p&&!p.local?'checked':''}>Visita</label></div>
     ${pickerFecha(p?.fecha||def)}
     <div class="field"><label for="f-sede">Sede</label><select id="f-sede" name="sedeId"><option value="">Sin sede</option>${S.sedes.map(s=>opt(s.id,s.nombre,p?.sedeId)).join('')}</select></div>
-    <div class="two"><div class="field"><label for="f-comp">Competición</label><select id="f-comp" name="comp">${['Liga','Copa','Amistoso','Torneo'].map(c=>opt(c,c,p?.comp||'Liga')).join('')}</select></div>
-    <div class="field"><label for="f-jor">Jornada / fase</label><input id="f-jor" name="jornada" placeholder="J13, Cuartos…" value="${esc(p?.jornada||'')}"></div></div>
+    <div class="two"><div class="field"><label for="f-comp">Competición</label><select id="f-comp" name="comp">${S.comp.lista.map(c=>opt(c.id,`${c.nombre} · ${TIPOTXT[c.tipo]}`,p?.comp||compPre||S.comp.lista[0]?.id)).join('')}${opt('amistoso','Amistoso',p?.comp)}</select></div>
+    <div class="field"><label for="f-jor">Jornada / fase</label><input id="f-jor" name="jornada" list="dl-jor" autocomplete="off" value="${esc(p?.jornada||'')}"><datalist id="dl-jor"></datalist></div></div>
     <div class="field"><label for="f-notas">Notas</label><textarea id="f-notas" name="notas" rows="2" placeholder="Uniforme, cuota de arbitraje…">${esc(p?.notas||'')}</textarea></div>
     ${btns(p?'del-partido-sheet':'')}</form>`);
+  syncJornada($('#sheet form[data-form="partido"]'));
 }
 function formResultado(id){
   const p = partido(id);
   const gf = p.gf ?? 0, gc = p.gc ?? 0;
-  openSheet('Registrar resultado', `<form data-form="resultado" data-id="${id}">
+  openSheet(p.estado==='PROGRAMADO'?'Registrar resultado':'Marcador', `<form data-form="resultado" data-id="${id}">
     <p class="mu" style="margin:0;font-size:12.5px">${p.local?'vs':'@'} ${esc(rival(p.rivalId).nombre)} · ${fFecha(p.fecha)}</p>
     <div class="stepper">
       <div class="side">${esc(S.equipo.nombre)}<div class="ctl"><button type="button" data-act="step" data-t="gf" data-d="-1" aria-label="Restar gol nuestro">−</button><output id="o-gf">${gf}</output><button type="button" data-act="step" data-t="gf" data-d="1" aria-label="Sumar gol nuestro">+</button></div></div>
@@ -1281,35 +1339,40 @@ function formResultado(id){
       <div class="side">${esc(rival(p.rivalId).nombre)}<div class="ctl"><button type="button" data-act="step" data-t="gc" data-d="-1" aria-label="Restar gol rival">−</button><output id="o-gc">${gc}</output><button type="button" data-act="step" data-t="gc" data-d="1" aria-label="Sumar gol rival">+</button></div></div>
     </div>
     <input type="hidden" name="gf" value="${gf}"><input type="hidden" name="gc" value="${gc}">
-    ${p.comp!=='Liga' ? `<div class="two"><div class="field"><label for="f-pf">Penales ${esc(S.equipo.corto)} (si empatan)</label><input id="f-pf" type="number" min="0" name="pf" value="${p.penales?.[0] ?? ''}"></div>
+    ${esTorneo(p) ? `<div class="two"><div class="field"><label for="f-pf">Penales ${esc(S.equipo.corto)} (si empatan)</label><input id="f-pf" type="number" min="0" name="pf" value="${p.penales?.[0] ?? ''}"></div>
       <div class="field"><label for="f-pc">Penales ${esc(rival(p.rivalId).corto)}</label><input id="f-pc" type="number" min="0" name="pc" value="${p.penales?.[1] ?? ''}"></div></div>` : ''}
     <p class="mu" style="margin:0;font-size:12px">Puedes agregar goleadores y tarjetas después desde el detalle.</p>
     ${btns('')}</form>`);
 }
 function formEvento(pid, eid){
   const p = partido(pid), e = eid ? p.eventos.find(x=>x.id===eid) : null;
-  const lado = e?.rival ? '1' : '0', tipo = e?.tipo || 'GOL';
+  const lado = e?.rival ? '1' : '0', tipo = e?.tipo || 'GOL', T = (v,l) => `<label><input type="radio" name="tipo" value="${v}" ${tipo===v?'checked':''}>${l}</label>`;
   const jsel = (name, sel, vacio) => `<select name="${name}" id="f-${name}">${vacio?`<option value="">${vacio}</option>`:''}${S.jugadores.slice().sort((a,b)=>a.dorsal-b.dorsal).map(j=>opt(j.id,`${j.dorsal} · ${j.nombre}`,sel)).join('')}</select>`;
   openSheet(e?'Editar evento':'Nuevo evento', `<form data-form="evento" data-id="${pid}" data-e="${eid||''}">
-    <div class="radio" role="radiogroup" aria-label="Tipo"><label><input type="radio" name="tipo" value="GOL" ${tipo==='GOL'?'checked':''}>⚽ Gol</label><label><input type="radio" name="tipo" value="AMARILLA" ${tipo==='AMARILLA'?'checked':''}>Amarilla</label><label><input type="radio" name="tipo" value="ROJA" ${tipo==='ROJA'?'checked':''}>Roja</label></div>
-    <div class="radio" role="radiogroup" aria-label="Equipo"><label><input type="radio" name="rival" value="0" ${lado==='0'?'checked':''}>${esc(S.equipo.nombre)}</label><label><input type="radio" name="rival" value="1" ${lado==='1'?'checked':''}>${esc(rival(p.rivalId).nombre)}</label></div>
+    <div class="radio tipos" role="radiogroup" aria-label="Tipo">${T('GOL','⚽ Gol')}${T('AMARILLA','Amarilla')}${T('ROJA','Roja')}${T('CAMBIO','⇄ Cambio')}${T('LESION','✚ Lesión')}</div>
+    <div class="radio" role="radiogroup" aria-label="Equipo" data-show="lado"><label><input type="radio" name="rival" value="0" ${lado==='0'?'checked':''}>${esc(S.equipo.nombre)}</label><label><input type="radio" name="rival" value="1" ${lado==='1'?'checked':''}>${esc(rival(p.rivalId).nombre)}</label></div>
     <div class="field"><label for="f-min">Minuto</label><input id="f-min" type="number" name="min" min="0" max="130" required value="${e?.min ?? ''}" placeholder="Ej. 67"></div>
-    <div class="field" data-show="mio"><label for="f-jugadorId">Jugador</label>${jsel('jugadorId', e?.jugadorId)}</div>
+    <div class="field" data-show="cambio"><label for="f-jugadorSaleId">Sale</label>${jsel('jugadorSaleId', e?.jugadorSaleId)}</div>
+    <div class="field" data-show="mio"><label for="f-jugadorId" id="lbl-jug">Jugador</label>${jsel('jugadorId', e?.jugadorId)}</div>
     <div class="field" data-show="mio-gol"><label for="f-asistId">Asistencia (opcional)</label>${jsel('asistId', e?.asistId, 'Sin asistencia')}</div>
+    <div class="field" data-show="lesion"><label for="f-det">Detalle (opcional)</label><input id="f-det" name="detalle" value="${esc(e?.detalle||'')}" placeholder="Tobillo, golpe en la cabeza…"></div>
     ${btns(e?'del-evento':'')}</form>`);
   syncEventoForm();
 }
 function syncEventoForm(){
   const f = $('#sheet form[data-form="evento"]'); if (!f) return;
-  const rv = f.rival.value==='1', gol = f.tipo.value==='GOL';
+  const t = f.tipo.value, propio = t==='CAMBIO' || t==='LESION', rv = !propio && f.rival.value==='1', gol = t==='GOL';
+  f.querySelector('[data-show="lado"]').hidden = propio;
   f.querySelector('[data-show="mio"]').hidden = rv;
   f.querySelector('[data-show="mio-gol"]').hidden = rv || !gol;
+  f.querySelector('[data-show="cambio"]').hidden = t!=='CAMBIO';
+  f.querySelector('[data-show="lesion"]').hidden = t!=='LESION';
+  $('#lbl-jug').textContent = t==='CAMBIO' ? 'Entra' : t==='LESION' ? 'Lesionado' : 'Jugador';
 }
 function formStats(pid){
-  const p = partido(pid), s = p.stats || {tiros:[0,0],puerta:[0,0],posesion:50,corners:[0,0]}, r = rival(p.rivalId);
+  const p = partido(pid), s = p.stats || {tiros:[0,0],puerta:[0,0],corners:[0,0]}, r = rival(p.rivalId);
   const pair = (lbl,k) => `<div class="two"><div class="field"><label for="f-${k}0">${lbl} · ${esc(S.equipo.corto)}</label><input id="f-${k}0" type="number" min="0" name="${k}0" value="${s[k][0]}"></div><div class="field"><label for="f-${k}1">${lbl} · ${esc(r.corto)}</label><input id="f-${k}1" type="number" min="0" name="${k}1" value="${s[k][1]}"></div></div>`;
-  openSheet('Estadísticas del partido', `<form data-form="stats" data-id="${pid}">${pair('Tiros','tiros')}${pair('A puerta','puerta')}${pair('Córners','corners')}
-    <div class="field"><label for="f-pos">Posesión de ${esc(S.equipo.nombre)} (%)</label><input id="f-pos" type="number" min="0" max="100" name="posesion" value="${s.posesion}"></div>${btns('')}</form>`);
+  openSheet('Estadísticas del partido', `<form data-form="stats" data-id="${pid}">${pair('Tiros','tiros')}${pair('A puerta','puerta')}${pair('Córners','corners')}${btns('')}</form>`);
 }
 function formJugador(id){
   const j = id ? jug(id) : null;
@@ -1394,7 +1457,7 @@ document.addEventListener('click', ev=>{
     case 'del-partido': case 'del-partido-sheet': { const pid = id || $('#sheet form')?.dataset.id; const p = partido(pid);
       confirmar(`Se eliminará el partido ${p.local?'vs':'@'} ${esc(rival(p.rivalId).nombre)} del ${fFecha(p.fecha)} con sus eventos.`, 'do-del-partido', {id:pid}); break; }
     case 'do-del-partido': S.partidos = S.partidos.filter(p=>p.id!==id); closeSheet(); ui.view = null; toast('Partido eliminado'); render(true); break;
-    case 'iniciar': { const p = partido(id); p.estado = 'EN_JUEGO'; p.gf = 0; p.gc = 0; p.stats ??= {tiros:[0,0],puerta:[0,0],posesion:50,corners:[0,0]};
+    case 'iniciar': { const p = partido(id); p.estado = 'EN_JUEGO'; p.gf = 0; p.gc = 0; p.stats ??= {tiros:[0,0],puerta:[0,0],corners:[0,0]};
       if (!p.jugaron.length) p.jugaron = [...new Set(lineupDe(p).filter(Boolean).concat(Object.entries(p.rsvp).filter(([,v])=>v==='VOY').map(([k])=>k)))];
       ui.pTab = 'eventos'; toast('Partido en vivo'); render(); break; }
     case 'finalizar': { const p = partido(id); p.estado = 'FINALIZADO'; toast(`Final: ${p.gf}–${p.gc}`); render(); break; }
@@ -1420,7 +1483,7 @@ document.addEventListener('click', ev=>{
     case 'edit-jugador': formJugador(id); break;
     case 'edit-rival': formRival(id); break;
     case 'edit-sede': formSede(id); break;
-    case 'del-jugador': { const jid = $('#sheet form').dataset.id; const usos = S.partidos.filter(p=>p.eventos.some(e=>e.jugadorId===jid||e.asistId===jid)).length;
+    case 'del-jugador': { const jid = $('#sheet form').dataset.id; const usos = S.partidos.filter(p=>p.eventos.some(e=>e.jugadorId===jid||e.asistId===jid||e.jugadorSaleId===jid)).length;
       if (usos){ $('#ferr').textContent = `Tiene goles o tarjetas en ${usos} partido(s). Elimina esos eventos primero.`; break; }
       confirmar(`Se eliminará a ${esc(jug(jid).nombre)} del plantel.`, 'do-del-jugador', {id:jid}); break; }
     case 'do-del-jugador': S.jugadores = S.jugadores.filter(j=>j.id!==id); S.partidos.forEach(p=>{ delete p.rsvp[id]; p.jugaron = p.jugaron.filter(x=>x!==id); }); closeSheet(); toast('Jugador eliminado'); render(); break;
@@ -1433,11 +1496,16 @@ document.addEventListener('click', ev=>{
     case 'do-del-sede': S.sedes = S.sedes.filter(s=>s.id!==id); S.partidos.forEach(p=>{ if (p.sedeId===id) p.sedeId = ''; }); closeSheet(); toast('Sede eliminada'); render(); break;
     case 'close': closeSheet(); break;
     case 'forma': verForma(); break;
-    case 'comp-seg': ui.compSeg = el.dataset.s; render(true); break;
+    case 'comp-sel': ui.compSel = el.dataset.c; ui.ronda = null; render(true); break;
     case 'ronda': ui.ronda = el.dataset.r; render(); break;
-    case 'edit-tabla': formTabla(); break;
-    case 'edit-cruce': formCruce(el.dataset.r, +el.dataset.i); break;
-    case 'cruce-borrar': { const arr = S.comp.copa.res[el.dataset.r] ??= []; arr[+el.dataset.i] = null; closeSheet(); toast('Resultado borrado'); render(); break; }
+    case 'edit-tabla': formTabla(el.dataset.c); break;
+    case 'edit-cruce': formCruce(el.dataset.c, el.dataset.r, +el.dataset.i); break;
+    case 'comp-nueva': formComp(null); break;
+    case 'comp-editar': formComp(el.dataset.c); break;
+    case 'comp-borrar': { const C = compById(el.dataset.c), n = S.partidos.filter(p=>p.comp===C.id).length;
+      if (n){ $('#ferr').textContent = `Tiene ${n} partido(s). Cámbialos de competición o elimínalos primero.`; break; }
+      confirmar(`Se eliminará ${esc(C.nombre)} con su tabla o sus llaves.`, 'do-comp-borrar', {c:C.id}); break; }
+    case 'do-comp-borrar': S.comp.lista = S.comp.lista.filter(c=>c.id!==el.dataset.c); closeSheet(); toast('Competición eliminada'); render(true); break;
     case 'rol': hojaRoles(); break;
     case 'permisos': hojaPermisos(); break;
     case 'set-rol': { ui.rol = el.dataset.r; ui.view = null; ui.tab = 'inicio'; ui.anaSeg = esStaff() ? 'temporada' : 'yo'; ui.eqSeg = esStaff() ? 'plantel' : (can('plantel_ver') ? 'plantel' : 'sedes');
@@ -1460,7 +1528,7 @@ document.addEventListener('click', ev=>{
     case 'reset': reset(); toast('Datos de ejemplo restaurados'); break;
   }
 });
-$('#fab').addEventListener('click', ()=>{ if (!can('programar')) return; if (ui.tab==='equipo' && !ui.view) ({plantel:()=>formJugador(), rivales:()=>formRival(), sedes:()=>formSede()})[ui.eqSeg](); else formPartido(null, ui.tab==='calendario' ? ui.calDay : null); });
+$('#fab').addEventListener('click', ()=>{ if (!can('programar')) return; if (ui.tab==='equipo' && !ui.view) ({plantel:()=>formJugador(), rivales:()=>formRival(), sedes:()=>formSede()})[ui.eqSeg](); else formPartido(null, ui.tab==='calendario' ? ui.calDay : null, ui.tab==='competicion' ? ui.compSel : null); });
 document.addEventListener('keydown', ev=>{
   if (ev.key==='Escape' && $('#sheet').innerHTML) closeSheet();
   if ((ev.key==='Enter'||ev.key===' ') && ev.target.matches('.hero[data-act]')){ ev.preventDefault(); ev.target.click(); }
@@ -1468,6 +1536,8 @@ document.addEventListener('keydown', ev=>{
 document.addEventListener('change', ev=>{
   const t = ev.target;
   if (t.form?.dataset.form==='evento') syncEventoForm();
+  if (t.form?.dataset.form==='comp' && t.name==='tipo') syncCompForm();
+  if (t.form?.dataset.form==='partido' && t.name==='comp') syncJornada(t.form);
   if (t.id==='f-partjug'){ ui.partJug = t.value; render(); }
   if (t.id==='f-dia-otro' && t.value){ const f = t.form; f.dia.value = t.value; syncFecha(f); }
   if (t.id==='f-hora-otra' && t.value){ const f = t.form; f.hora.value = t.value; syncFecha(f); }
@@ -1490,28 +1560,32 @@ document.addEventListener('submit', ev=>{
   switch(f.dataset.form){
     case 'partido': {
       if (!d.rivalId) return err('Agrega un rival en Equipo › Rivales.');
+      { const C = compById(d.comp); if (C.tipo==='TORNEO' && !C.rondas.includes(d.jornada.trim())) return err(`Elige la ronda del torneo: ${C.rondas.join(', ')}.`); }
       if (!d.dia || !/^\d\d:\d\d$/.test(d.hora)) return err('Elige el día y la hora del partido.');
       const data = {rivalId:d.rivalId, sedeId:d.sedeId, fecha:`${d.dia}T${d.hora}`, local:d.local==='1', comp:d.comp, jornada:d.jornada.trim(), notas:d.notas.trim()};
       if (id){ Object.assign(partido(id), data); toast('Partido actualizado'); }
       else { const p = {id:uid('p'), estado:'PROGRAMADO', gf:null, gc:null, eventos:[], rsvp:{}, jugaron:[], stats:null, ...data}; S.partidos.push(p); ui.view = {name:'partido', id:p.id}; ui.pTab='convocatoria'; toast('Partido programado'); }
       break; }
     case 'resultado': { const p = partido(id);
-      if (p.comp!=='Liga' && +d.gf===+d.gc && (d.pf==='' || d.pc==='' || +d.pf===+d.pc)) return err('En copa no hay empate: escribe el resultado de los penales.');
-      p.penales = p.comp!=='Liga' && +d.gf===+d.gc ? [+d.pf, +d.pc] : null; p.gf = +d.gf; p.gc = +d.gc; p.estado = 'FINALIZADO';
+      if (esTorneo(p) && p.estado!=='EN_JUEGO' && +d.gf===+d.gc && (d.pf==='' || d.pc==='' || +d.pf===+d.pc)) return err('En torneo no hay empate: escribe el resultado de los penales.');
+      p.penales = esTorneo(p) && +d.gf===+d.gc ? [+d.pf, +d.pc] : null; p.gf = +d.gf; p.gc = +d.gc; if (p.estado!=='EN_JUEGO') p.estado = 'FINALIZADO';
       if (!p.jugaron.length) p.jugaron = Object.entries(p.rsvp).filter(([,v])=>v==='VOY').map(([k])=>k);
       ui.view = {name:'partido', id}; ui.pTab = 'eventos'; toast(`Resultado guardado: ${p.gf}–${p.gc}`); break; }
     case 'evento': {
       const p = partido(id), min = +d.min;
       if (!(d.min!=='' && min>=0 && min<=130)) return err('Escribe el minuto (0 a 130).');
       if (p.estado==='PROGRAMADO'){ p.estado = 'EN_JUEGO'; p.gf = 0; p.gc = 0; }
-      const e = {min, tipo:d.tipo, rival:d.rival==='1'};
+      const propio = d.tipo==='CAMBIO' || d.tipo==='LESION';
+      const e = {min, tipo:d.tipo, rival: !propio && d.rival==='1'};
       if (!e.rival) { e.jugadorId = d.jugadorId; e.asistId = e.tipo==='GOL' && d.asistId && d.asistId!==d.jugadorId ? d.asistId : null; }
+      if (e.tipo==='CAMBIO'){ if (d.jugadorSaleId===d.jugadorId) return err('El que entra y el que sale deben ser distintos.'); e.jugadorSaleId = d.jugadorSaleId; }
+      if (e.tipo==='LESION') e.detalle = (d.detalle||'').trim();
       if (f.dataset.e){ const old = p.eventos.find(x=>x.id===f.dataset.e); golDelta(p, old, -1); Object.keys(old).forEach(k=>{ if(k!=='id') delete old[k]; }); Object.assign(old, e); golDelta(p, old, 1); toast('Evento actualizado'); }
-      else { e.id = uid('e'); p.eventos.push(e); golDelta(p, e, 1); toast(e.tipo==='GOL' ? `¡Gol! ${p.gf}–${p.gc}` : 'Tarjeta registrada');
+      else { e.id = uid('e'); p.eventos.push(e); golDelta(p, e, 1); toast(e.tipo==='GOL' ? `¡Gol! ${p.gf}–${p.gc}` : e.tipo==='CAMBIO' ? 'Cambio registrado' : e.tipo==='LESION' ? 'Lesión registrada' : 'Tarjeta registrada');
         if (!e.rival && !p.jugaron.includes(e.jugadorId)) p.jugaron.push(e.jugadorId); }
       ui.pTab = 'eventos'; break; }
     case 'stats': { const n = k => Math.max(0, +d[k]||0);
-      partido(id).stats = {tiros:[n('tiros0'),n('tiros1')], puerta:[n('puerta0'),n('puerta1')], corners:[n('corners0'),n('corners1')], posesion:Math.min(100,n('posesion'))}; toast('Estadísticas guardadas'); break; }
+      partido(id).stats = {tiros:[n('tiros0'),n('tiros1')], puerta:[n('puerta0'),n('puerta1')], corners:[n('corners0'),n('corners1')]}; toast('Estadísticas guardadas'); break; }
     case 'jugador': {
       const dor = +d.dorsal; if (S.jugadores.some(j=>j.dorsal===dor && j.id!==id)) return err(`El dorsal ${dor} ya lo usa ${jug(S.jugadores.find(j=>j.dorsal===dor).id).nombre}.`);
       const data = {nombre:d.nombre.trim(), dorsal:dor, pos:d.pos};
@@ -1528,12 +1602,27 @@ document.addEventListener('submit', ev=>{
         superficie:d.superficie, modalidad:d.modalidad||'F11', notas:d.notas.trim()};
       if (id) Object.assign(sede(id), data); else S.sedes.push({id:uid('s'), ...data});
       toast(id?'Sede actualizada':'Sede agregada'); break; }
-    case 'tabla': { const L = S.comp.liga, n = v => Math.max(0, Math.min(99, parseInt(v)||0));
-      L.filas.forEach((f,i)=>['g','e','p','gf','gc'].forEach(k=>{ f[k] = n(d[k+i]); }));
-      L.clasifican = Math.max(1, Math.min(L.filas.length+1, n(d.clasifican)||4)); L.actualizado = isoLocal(new Date()).slice(0,10); toast('Tabla actualizada'); break; }
-    case 'cruce': { const ga = +d.ga, gb = +d.gb, pa = d.pa===''?null:+d.pa, pb = d.pb===''?null:+d.pb;
-      if (ga===gb && (pa==null || pb==null || pa===pb)) return err('Hubo empate: escribe el resultado de los penales para saber quién avanza.');
-      (S.comp.copa.res[f.dataset.r] ??= [])[+f.dataset.i] = {a:ga, b:gb, pa: ga===gb?pa:null, pb: ga===gb?pb:null}; toast('Resultado guardado'); break; }
+    case 'tabla': { const L = compById(f.dataset.c), n = v => Math.max(0, Math.min(99, parseInt(v)||0));
+      L.filas.forEach((r,i)=>['g','e','p','gf','gc'].forEach(k=>{ r[k] = n(d[k+i]); }));
+      if (d.addeq) L.filas.push({id:d.addeq, g:0,e:0,p:0,gf:0,gc:0});
+      L.clasifican = Math.max(0, Math.min(L.filas.length+1, n(d.clasifican))); L.actualizado = isoLocal(new Date()).slice(0,10); toast('Tabla actualizada'); break; }
+    case 'cruce': { const C = compById(f.dataset.c), ri = C.rondas.indexOf(f.dataset.r), i = +f.dataset.i;
+      if (ri===0 && 'eqa' in d){ if (d.eqa && d.eqa===d.eqb) return err('Elige dos equipos distintos.'); C.llave[2*i] = d.eqa || null; C.llave[2*i+1] = d.eqb || null; }
+      if ('ga' in d){ const arr = (C.res[f.dataset.r] ??= []);
+        if (d.jugado){ const ga = +d.ga, gb = +d.gb, pa = d.pa===''?null:+d.pa, pb = d.pb===''?null:+d.pb;
+          if (!(ri===0 ? (C.llave[2*i] && C.llave[2*i+1]) : true)) return err('Define los dos equipos antes de guardar un marcador.');
+          if (ga===gb && (pa==null || pb==null || pa===pb)) return err('Hubo empate: escribe los penales para saber quién avanza.');
+          arr[i] = {a:ga, b:gb, pa: ga===gb?pa:null, pb: ga===gb?pb:null}; }
+        else arr[i] = null; }
+      toast('Cruce guardado'); break; }
+    case 'comp': { const nombre = d.nombre.trim(); if (!nombre) return err('Escribe el nombre.');
+      if (f.dataset.c){ const C = compById(f.dataset.c); C.nombre = nombre; C.temporada = d.temporada.trim(); if (C.tipo==='LIGA') C.clasifican = Math.max(0, parseInt(d.clasifican)||0); toast('Competición actualizada'); }
+      else { const id = uid('c'), tipo = d.tipo;
+        if (tipo==='LIGA') S.comp.lista.push({id, tipo, nombre, temporada:d.temporada.trim(), clasifican:Math.max(0, parseInt(d.clasifican)||0), actualizado:isoLocal(new Date()).slice(0,10),
+          filas: new FormData(f).getAll('riv').map(r=>({id:r, g:0,e:0,p:0,gf:0,gc:0}))});
+        else { const tam = +d.tam; S.comp.lista.push({id, tipo, nombre, temporada:d.temporada.trim(), rondas:RONDAS[tam].slice(), llave:['yo', ...Array(tam-1).fill(null)], res:{}}); }
+        ui.compSel = id; ui.ronda = null; toast(`${TIPOTXT[tipo]} creada`); }
+      break; }
     case 'equipo': Object.assign(S.equipo, {nombre:d.nombre.trim(), corto:(d.corto.trim()||'EQ').toUpperCase(), color:d.color, escudo:escudoTmp}); toast('Equipo actualizado'); break;
   }
   closeSheet(); render();

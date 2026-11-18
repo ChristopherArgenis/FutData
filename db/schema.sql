@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS jugadores (
 CREATE TABLE IF NOT EXISTS competiciones (
   id              TEXT PRIMARY KEY,
   nombre          TEXT NOT NULL,             -- 'Liga Municipal', 'Copa Ciudad'
-  tipo            TEXT NOT NULL CHECK (tipo IN ('LIGA','COPA','AMISTOSO','TORNEO')),
+  tipo            TEXT NOT NULL CHECK (tipo IN ('LIGA','TORNEO','AMISTOSO')),  -- LIGA = tabla de puntos, TORNEO = llaves
   creado_en       TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')),
   actualizado_en  TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')),
   eliminado_en    TEXT,
@@ -153,6 +153,7 @@ CREATE TABLE IF NOT EXISTS eventos (
   pos_x           REAL CHECK (pos_x BETWEEN 0 AND 1),     -- TIRO: coordenadas normalizadas
   pos_y           REAL CHECK (pos_y BETWEEN 0 AND 1),
   xg              REAL,                                   -- calculado (Premium)
+  detalle         TEXT,                                   -- LESION: zona o descripción
   creado_en       TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')),
   actualizado_en  TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')),
   eliminado_en    TEXT,
@@ -163,7 +164,6 @@ CREATE TABLE IF NOT EXISTS estadisticas_partido (
   partido_id      TEXT PRIMARY KEY REFERENCES partidos(id) ON DELETE CASCADE,
   tiros_favor     INTEGER, tiros_contra     INTEGER,
   a_puerta_favor  INTEGER, a_puerta_contra  INTEGER,
-  posesion_favor  INTEGER CHECK (posesion_favor BETWEEN 0 AND 100),
   corners_favor   INTEGER, corners_contra   INTEGER,
   faltas_favor    INTEGER, faltas_contra    INTEGER,
   fueras_juego_favor INTEGER, fueras_juego_contra INTEGER,
