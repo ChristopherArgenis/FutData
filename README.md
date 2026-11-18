@@ -15,9 +15,26 @@ convocatorias, con análisis gratuitos y premium.
 | `db/schema.sql` | Esquema SQLite local (preparado para sincronizar con Postgres/Supabase) |
 | `db/consultas_analisis.sql` | Consultas de análisis gratuitas y premium |
 | `db/test_schema.py` | Prueba del esquema con datos de ejemplo |
+| `db/supabase/` | Esquema de la nube con reglas de acceso por rol (RLS) y sus pruebas |
+| `docs/SEGURIDAD.md` | Pruebas de seguridad, hallazgos corregidos y recomendaciones |
+| `docs/legal/` | Borrador de Términos y Condiciones y Aviso de Privacidad (para revisión legal) |
 
 ## Probar el esquema
 
 ```bash
 python3 db/test_schema.py
+```
+
+## Pruebas de seguridad
+
+```bash
+python3 db/test_seguridad_sqlite.py
+```
+
+```bash
+cd db/supabase && npm install && npm test
+```
+
+```bash
+node tests/seguridad_prototipo.js
 ```

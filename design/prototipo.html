@@ -729,6 +729,7 @@ const PERMS = [
   {k:'alineacion_ver', t:'Ver la alineación cuando está publicada', r:['entrenador','staff','jugador','padre'], p:'Jugadores y padres la ven solo cuando el entrenador la publica, para no generar expectativas con borradores.'},
   {k:'plantel_ver', t:'Ver el plantel completo (nombre, dorsal, posición)', r:['entrenador','staff','jugador'], p:'Los compañeros se conocen entre sí. Un padre solo ve a su hijo para proteger los datos de otros menores.'},
   {k:'goleadores', t:'Ver la tabla de goleadores', r:['entrenador','staff','jugador'], p:'Motiva al plantel. A los padres no se les muestra para evitar comparaciones entre niños.'},
+  {k:'lesiones', t:'Ver lesiones de los jugadores', r:['entrenador','staff'], p:'Es información de salud (dato sensible). Cada jugador y su tutor ven solo las suyas.'},
   {k:'convocatoria', t:'Ver y cambiar la convocatoria de todos', r:['entrenador','staff'], p:'Para planear el partido hay que ver a todo el plantel; nadie debe cambiar la respuesta de otro.'},
   {k:'alineacion_editar', t:'Armar y publicar la alineación', r:['entrenador','staff'], p:'Es una decisión técnica del cuerpo técnico.'},
   {k:'registrar', t:'Registrar resultados, eventos en vivo y estadísticas', r:['entrenador','staff'], p:'Pocas personas autorizadas evitan marcadores contradictorios.'},
@@ -833,7 +834,7 @@ function vCanchaV(p){
   const q = quien(), l = lineupDe(p), i = l.indexOf(q.j?.id), sl = slotsDe(formacionDe(p));
   const msg = !q.j ? '' : i>=0 ? `${q.esPadre?esc(q.nombre)+' es titular':'Eres titular'} como <b>${POSTXT[sl[i].rol].toLowerCase()}</b>.` : p.rsvp[q.j.id]==='VOY' ? `${q.esPadre?esc(q.nombre)+' empieza':'Empiezas'} en la banca.` : `${q.esPadre?esc(q.nombre)+' no está':'No estás'} convocado: no ${q.esPadre?'confirmó':'confirmaste'} asistencia.`;
   return `<div class="card row"><div><b>${MODS[modalidadDe(p)].txt}</b> <span class="mu" style="font-size:12px">· ${formacionDe(p).slice(2)}</span></div><span class="badge prog">Publicada</span></div>
-    ${msg?`<div class="insight">${msg}</div>`:''}${pitchHtml(p, false, q.j?.id)}`;
+    ${msg?`<div class="insight">${msg}</div>`:''}${pitchHtml(p, false, q.j?.id, ui.rol==='padre')}`;
 }
 function vAnalisisV(){
   const q = quien(), segs = [['equipo','Equipo'],['yo', q.esPadre ? esc(q.nombre) : 'Yo']];
@@ -971,7 +972,7 @@ function vCancha(p){
   html += `<div class="card"><b style="font-size:13px">Banca · ${banca.length}</b><div class="banca" style="margin-top:8px">${banca.map(j=>`<span>${j.dorsal} · ${esc(apellido(j.nombre))}</span>`).join('') || '<span class="mu" style="background:none;padding:0">Nadie en la banca.</span>'}</div></div>`;
   return html;
 }
-function pitchHtml(p, editable, focusId){
+function pitchHtml(p, editable, focusId, soloFoco){
   const form = formacionDe(p), sl = slotsDe(form), l = lineupDe(p);
   return `<div class="pitch" role="group" aria-label="Cancha con alineación ${form.slice(2)}">
     <svg class="lines" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2">
@@ -979,7 +980,8 @@ function pitchHtml(p, editable, focusId){
       <rect x="80" y="10" width="140" height="56"/><rect x="80" y="334" width="140" height="56"/><rect x="118" y="10" width="64" height="20"/><rect x="118" y="370" width="64" height="20"/></g></svg>
     ${sl.map((s,i)=>{ const j = l[i] && jug(l[i]);
       const cls = `slot ${j?'':'empty'} ${s.rol==='POR'?'gk':''} ${j&&j.id===focusId?'me':''} ${editable?'':'ro'}`, pos = `left:${s.x}%;top:${s.y}%`;
-      const inner = `<span class="dot">${j ? j.dorsal : (editable?'+':'')}</span><span class="n">${j ? esc(apellido(j.nombre)) : ''}</span><span class="r">${s.rol}</span>`;
+      const nom = j && (!soloFoco || j.id===focusId) ? esc(apellido(j.nombre)) : '';
+      const inner = `<span class="dot">${j ? (soloFoco && j.id!==focusId ? '' : j.dorsal) : (editable?'+':'')}</span><span class="n">${nom}</span><span class="r">${s.rol}</span>`;
       return editable ? `<button type="button" class="${cls}" style="${pos}" data-act="slot" data-id="${p.id}" data-i="${i}" aria-label="${POSTXT[s.rol]} ${i+1}: ${j?esc(j.nombre):'vacío'}">${inner}</button>`
         : `<div class="${cls}" style="${pos}">${inner}</div>`; }).join('')}
   </div>`;
@@ -1090,7 +1092,7 @@ function vPartido(p){
 
   if (ui.pTab==='eventos'){
     if (!p.eventos.length) html += `<div class="card empty">${prog?'Los eventos se registran cuando inicia el partido.':'Sin eventos registrados.'}${prog||!can('registrar')?'':`<br><button class="link" type="button" data-act="nuevo-evento" data-id="${p.id}">Agregar gol o tarjeta</button>`}</div>`;
-    else html += `<div class="card" style="padding:4px 14px">` + p.eventos.slice().sort((a,b)=>a.min-b.min).map(e=>{
+    else html += `<div class="card" style="padding:4px 14px">` + p.eventos.filter(e=>e.tipo!=='LESION' || esStaff() || e.jugadorId===yoId()).sort((a,b)=>a.min-b.min).map(e=>{
       const icon = e.tipo==='GOL' ? `<svg width="18" height="18" style="color:${e.rival?'var(--them)':'var(--ac)'}"><use href="#i-ball"/></svg>`
         : e.tipo==='CAMBIO' ? `<svg width="18" height="18" style="color:var(--liga)"><use href="#i-swap"/></svg>` : e.tipo==='LESION' ? `<span class="ic-les" aria-hidden="true">✚</span>` : `<span class="card-${e.tipo==='ROJA'?'r':'y'}"></span>`;
       const quien = e.rival ? esc(rival(p.rivalId).nombre)
@@ -1275,6 +1277,17 @@ function vEquipo(){
   return html;
 }
 
+function mapsValido(url){
+  let u; try { u = new URL(url); } catch { return false; }
+  if (u.protocol !== 'https:' || u.username || u.password || u.port) return false;
+  const h = u.hostname.toLowerCase();
+  if (h === 'maps.app.goo.gl') return true;
+  if (h === 'goo.gl') return u.pathname.startsWith('/maps');
+  if (/^(www\.|maps\.)?google\.(com|com\.mx|es|com\.ar|com\.co|cl|com\.pe|com\.us)$/.test(h)) return h.startsWith('maps.') || u.pathname.startsWith('/maps');
+  return false;
+}
+const LIMITES = {notas:500, mapsUrl:400, direccion:160, detalle:120};
+const colorSeguro = (v, def) => /^#[0-9a-f]{6}$/i.test(v||'') ? v : def;
 const mapsSearch = (n, dir) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(((n||'')+' '+(dir||'')).trim() || 'cancha de futbol')}`;
 function coordsDe(url){ const m = url.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/) || url.match(/[?&](?:q|query|ll|destination)=(-?\d+\.\d+),\s*(-?\d+\.\d+)/);
   if (!m) return null; const a = +m[1], b = +m[2]; return (a>=-90&&a<=90&&b>=-180&&b<=180) ? [a,b] : null; }
@@ -1282,6 +1295,7 @@ document.addEventListener('input', ev=>{ const f = ev.target.form; if (f?.datase
 
 /* ===================== hojas (formularios) ===================== */
 function openSheet(title, inner, icon){ $('#sheet').innerHTML = `<div class="scrim" data-act="scrim"><div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(title)}"><span class="grab"></span><div class="sheet-head">${icon||''}<h3>${esc(title)}</h3></div>${inner}</div></div>`;
+  $('#sheet').querySelectorAll('input:not([type]),input[type=text],input[inputmode],textarea').forEach(i=>{ if (!i.maxLength || i.maxLength<0) i.maxLength = LIMITES[i.name] || 80; });
   const f = $('#sheet').querySelector('input:not([type=hidden]):not([type=radio]),select'); if (f && matchMedia('(pointer:fine)').matches) f.focus(); }
 function closeSheet(){ $('#sheet').innerHTML = ''; }
 const opt = (v,l,sel) => `<option value="${esc(v)}" ${String(v)===String(sel)?'selected':''}>${esc(l)}</option>`;
@@ -1557,6 +1571,7 @@ document.addEventListener('submit', ev=>{
   const f = ev.target; if (!f.dataset.form) return; ev.preventDefault();
   if (FORM_PERM[f.dataset.form] && !can(FORM_PERM[f.dataset.form])){ toast(`Tu rol (${ROLES[ui.rol].nombre}) no puede guardar esto`); closeSheet(); return; }
   const d = Object.fromEntries(new FormData(f)), id = f.dataset.id, err = m => { $('#ferr').textContent = m; };
+  for (const k in d) if (typeof d[k]==='string') d[k] = d[k].slice(0, LIMITES[k] || 80);
   switch(f.dataset.form){
     case 'partido': {
       if (!d.rivalId) return err('Agrega un rival en Equipo › Rivales.');
@@ -1592,10 +1607,10 @@ document.addEventListener('submit', ev=>{
       if (id) Object.assign(jug(id), data); else S.jugadores.push({id:uid('j'), ...data});
       toast(id?'Jugador actualizado':'Jugador agregado'); break; }
     case 'rival': { const nombre = d.nombre.trim(); const corto = (d.corto.trim() || nombre.split(/\s+/).map(w=>w[0]).join('').slice(0,2)).toUpperCase();
-      const data = {nombre, corto, color:d.color}; if (id) Object.assign(rival(id), data); else S.rivales.push({id:uid('r'), ...data});
+      const data = {nombre, corto, color: colorSeguro(d.color, '#3b6fd8')}; if (id) Object.assign(rival(id), data); else S.rivales.push({id:uid('r'), ...data});
       toast(id?'Rival actualizado':'Rival agregado'); break; }
     case 'sede': { const url = (d.mapsUrl||'').trim();
-      if (url && !/^https?:\/\/(www\.)?(google\.[a-z.]+\/maps|maps\.google\.[a-z.]+|maps\.app\.goo\.gl|goo\.gl\/maps)/i.test(url)) return err('Pega un enlace copiado desde Google Maps (empieza con https://maps.app.goo.gl o https://www.google.com/maps).');
+      if (url && !mapsValido(url)) return err('Pega un enlace copiado desde Google Maps (empieza con https://maps.app.goo.gl o https://www.google.com/maps).');
       const c = coordsDe(url), prev = id ? sede(id) : null, mismo = prev && prev.mapsUrl===url;
       const data = {nombre:d.nombre.trim(), cancha:d.cancha.trim(), direccion:d.direccion.trim(), mapsUrl:url,
         lat: c ? c[0] : (mismo || (!url && prev && !prev.mapsUrl) ? prev?.lat ?? null : null), lng: c ? c[1] : (mismo || (!url && prev && !prev.mapsUrl) ? prev?.lng ?? null : null),
@@ -1623,7 +1638,7 @@ document.addEventListener('submit', ev=>{
         else { const tam = +d.tam; S.comp.lista.push({id, tipo, nombre, temporada:d.temporada.trim(), rondas:RONDAS[tam].slice(), llave:['yo', ...Array(tam-1).fill(null)], res:{}}); }
         ui.compSel = id; ui.ronda = null; toast(`${TIPOTXT[tipo]} creada`); }
       break; }
-    case 'equipo': Object.assign(S.equipo, {nombre:d.nombre.trim(), corto:(d.corto.trim()||'EQ').toUpperCase(), color:d.color, escudo:escudoTmp}); toast('Equipo actualizado'); break;
+    case 'equipo': Object.assign(S.equipo, {nombre:d.nombre.trim(), corto:(d.corto.trim()||'EQ').toUpperCase(), color: colorSeguro(d.color, S.equipo.color), escudo:escudoTmp}); toast('Equipo actualizado'); break;
   }
   closeSheet(); render();
 });
