@@ -38,7 +38,9 @@ button{cursor:pointer;border:0;background:none;padding:0}
 .iconbtn{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:var(--card);box-shadow:var(--sh);flex:none}
 .iconbtn svg,.btn svg{width:18px;height:18px}
 .iconbtn.danger{color:var(--loss)}
-main{flex:1;overflow-y:auto;padding:4px 16px 96px;display:flex;flex-direction:column;gap:12px}
+main{flex:1;overflow-y:auto;padding:4px 16px 96px;display:flex;flex-direction:column;gap:12px;scrollbar-width:none}
+main::-webkit-scrollbar,.sheet::-webkit-scrollbar,.daypick::-webkit-scrollbar{display:none}
+.sheet{scrollbar-width:none}
 main>*{flex-shrink:0}
 [hidden]{display:none!important}
 nav.tabs{flex:none;display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border-top:1px solid var(--line);padding:6px 0 10px}
@@ -136,7 +138,7 @@ nav.tabs button.on{color:var(--ac)}
 .hint{font-size:11.5px;color:var(--mu)}
 .crest-img{background:#fff;overflow:hidden;padding:0}
 .crest-img img{width:100%;height:100%;object-fit:cover;display:block}
-.daypick{display:flex;gap:6px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:thin}
+.daypick{display:flex;gap:6px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none}
 .dchip{flex:none;width:54px;display:grid;justify-items:center;gap:1px;padding:7px 0;border-radius:14px;background:var(--card);box-shadow:var(--sh);border:1.5px solid transparent}
 .dchip small{font-size:10px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.04em}
 .dchip b{font-size:18px;font-weight:800;line-height:1.1}
@@ -192,6 +194,15 @@ nav.tabs button.on{color:var(--ac)}
 .info .roles button{background:var(--card);box-shadow:var(--sh);border-radius:10px;padding:8px;font-weight:700;font-size:12.5px;text-align:left;display:flex;gap:8px;align-items:center}
 .info .roles button.on{outline:2px solid var(--ac)}
 .info .roles .rolav{width:26px;height:26px;font-size:10px;border-radius:8px}
+.rsvp-ic{display:inline-flex;gap:14px;align-items:center;font-family:var(--mono);font-weight:700;font-size:15px}
+.rsvp-ic span{display:inline-flex;align-items:center;gap:5px}
+.rsvp-ic svg{width:18px;height:18px}
+.rsvp-ic.color .v{color:var(--ac)}.rsvp-ic.color .d{color:#b07a00}.rsvp-ic.color .n{color:var(--loss)}
+.hero .conv{display:flex;justify-content:space-between;align-items:center;margin-top:10px;background:rgba(255,255,255,.16);border-radius:10px;padding:8px 10px;width:100%;color:#fff}
+.grupo{display:grid;gap:6px;padding-top:10px}
+.grupo>b{display:flex;align-items:center;gap:6px;font-size:12.5px}
+.grupo>b svg{width:16px;height:16px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .bignum{font-family:var(--mono);font-size:34px;font-weight:700;line-height:1}
 .bignum small{font-size:18px;color:var(--mu)}
 .escudo-row{display:flex;align-items:center;gap:12px}
@@ -308,6 +319,9 @@ svg text{font-family:var(--f)}
   <symbol id="i-jersey" viewBox="0 0 24 24"><path d="M8 3l-5 3 2 5 2-1v11h10V10l2 1 2-5-5-3c-.6 1.5-2.1 2.4-4 2.4S8.6 4.5 8 3z" fill="currentColor"/></symbol>
   <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="currentColor"/></symbol>
   <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6M12 7.5v.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-like" viewBox="0 0 24 24"><path d="M7 10v11H3V10zM7 10l4-7c1.7 0 2.6 1.2 2.3 2.8L12.8 9H19a2 2 0 0 1 2 2.3l-1.3 7.5A2.6 2.6 0 0 1 17.1 21H7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-duda" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.5 9.3a2.6 2.6 0 1 1 3.6 2.4c-.7.3-1.1.9-1.1 1.7v.4M12 17v.3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="i-no" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5.6 18.4L18.4 5.6" stroke="currentColor" stroke-width="2"/></symbol>
   <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 7V4h4v3M6 7l1 13h10l1-13" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></symbol>
   <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></symbol>
   <symbol id="i-score" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 5v14M7 10v4M17 10v4" stroke="currentColor" stroke-width="2"/></symbol>
@@ -504,7 +518,7 @@ const PERM = Object.fromEntries(PERMS.map(x=>[x.k,x]));
 const can = k => PERM[k].r.includes(ui.rol);
 const esStaff = () => ui.rol==='entrenador' || ui.rol==='staff';
 const yoId = () => ROLES[ui.rol].jugadorId;
-const porQue = k => `<p class="why">${ico('i-info')}<span>${esc(PERM[k].p)}</span></p>`;
+const porQue = k => ui.rol==='padre' ? '' : `<p class="why">${ico('i-info')}<span>${esc(PERM[k].p)}</span></p>`;
 const ACT_PERM = {registrar:'registrar', iniciar:'registrar', finalizar:'registrar', resultado:'registrar', 'nuevo-evento':'registrar', 'edit-evento':'registrar', 'del-evento':'registrar', 'edit-stats':'registrar', step:'registrar',
   'nuevo-partido':'programar', 'edit-partido':'programar', 'nueva-sede':'programar', 'edit-sede':'programar', 'edit-rival':'programar', 'eq-add':'programar', 'edit-jugador':'programar',
   'del-partido':'borrar', 'del-partido-sheet':'borrar', 'do-del-partido':'borrar', 'del-jugador':'borrar', 'do-del-jugador':'borrar', 'del-rival':'borrar', 'do-del-rival':'borrar', 'del-sede':'borrar', 'do-del-sede':'borrar',
@@ -553,13 +567,10 @@ function vInicioV(){
         <button type="button" class="${mine==='VOY'?'on':''}" data-act="rsvp-me" data-id="${n.id}" data-v="VOY">✓ ${q.esPadre?'Sí va':'Voy'}</button>
         <button type="button" class="${mine==='DUDA'?'on':''}" data-act="rsvp-me" data-id="${n.id}" data-v="DUDA">Duda</button>
         <button type="button" class="${mine==='NO'?'on':''}" data-act="rsvp-me" data-id="${n.id}" data-v="NO">${q.esPadre?'No va':'No voy'}</button></div>
-        <div style="font-size:11.5px;opacity:.9;margin-top:8px">${c.voy} del equipo ya confirmaron</div>
-        <button type="button" class="lineup-link" data-act="open-cancha" data-id="${n.id}">${n.publicada ? `⚽ Alineación publicada · ${q.esPadre?esc(q.nombre)+(tit?' es titular':' empieza en la banca'):(tit?'Eres titular':'Empiezas en la banca')} ›` : '⚽ La alineación aún no se publica'}</button>` : ''}
+        <div style="margin-top:8px;font-size:13px">${rsvpIcons(c)}</div>
+        <button type="button" class="lineup-link" data-act="open-cancha" data-id="${n.id}">${n.publicada ? `⚽ Alineación publicada · ${tit ? (q.esPadre?esc(q.nombre)+' es titular':'Eres titular') : mine==='VOY' ? (q.esPadre?esc(q.nombre)+' empieza en la banca':'Empiezas en la banca') : (q.esPadre?'confirma si '+esc(q.nombre)+' va':'confirma si vas')} ›` : '⚽ La alineación aún no se publica'}</button>` : ''}
     </div>`;
   } else html += `<div class="card empty">No hay partidos programados.</div>`;
-  if (q.j){ const st = statsDe(q.j.id);
-    html += `<div class="sec">${q.esPadre?`Temporada de ${esc(q.nombre)}`:'Mi temporada'}</div>
-      <div class="tiles"><div><b>${st.pj}<small class="mu" style="font-size:11px">/${st.total}</small></b><span>JUGADOS</span></div><div><b>${st.goles}</b><span>GOLES</span></div><div><b>${st.am}</b><span>AMARILLAS</span></div><div><b>${st.rj}</b><span>ROJAS</span></div></div>`; }
   html += `<div class="sec">Equipo</div><div class="tiles"><div><b>${r.pts}</b><span>PTS</span></div><div><b>${r.g}</b><span>GANADOS</span></div><div><b>${r.e}</b><span>EMPATES</span></div><div><b>${r.p}</b><span>PERDIDOS</span></div></div>`;
   if (last){
     html += `<div class="sec">Último resultado <button type="button" data-act="ver-resultados">Ver todos</button></div>
@@ -577,10 +588,13 @@ function vConvocatoriaV(p){
   let html = q.j ? `<div class="card"><div class="row"><span>${jersey(q.j.dorsal,true)} <b>${esc(q.j.nombre)}</b></span>
       <span class="seg">${[['VOY','Voy','v'],['DUDA','Duda','d'],['NO','No','n']].map(([k,l,cl])=>`<button type="button" class="${v===k?'on '+cl:''}" data-act="rsvp-me" data-id="${p.id}" data-v="${k}">${l}</button>`).join('')}</span></div>
       ${porQue('rsvp_propio')}</div>` : '';
-  html += `<div class="card"><b>${c.voy} van · ${c.duda} en duda · ${c.no} no van</b>`;
-  if (can('plantel_ver')) html += `<div class="banca" style="margin-top:8px">${S.jugadores.filter(j=>p.rsvp[j.id]==='VOY').map(j=>`<span>${j.dorsal} · ${esc(apellido(j.nombre))}</span>`).join('')}</div>
-    <p class="hint" style="margin:8px 0 0">Ves quién confirmó para organizarte (por ejemplo, para compartir transporte). Solo el cuerpo técnico puede cambiar respuestas de otros.</p>`;
-  else html += porQue('plantel_ver');
+  html += `<div class="card">${rsvpIcons(c,true)}`;
+  if (can('plantel_ver')){
+    const grupo = (k, icon, cls, txt) => { const js = S.jugadores.filter(j=>(p.rsvp[j.id]||'PENDIENTE')===k);
+      return js.length ? `<div class="grupo"><b class="rsvp-ic color" style="font-family:var(--f);font-size:12.5px"><span class="${cls}">${ico(icon)}</span>${txt} · ${js.length}</b><div class="banca">${js.map(j=>`<span ${j.id===q.j?.id?'class="me"':''}>${j.dorsal} · ${esc(apellido(j.nombre))}</span>`).join('')}</div></div>` : ''; };
+    html += grupo('VOY','i-like','v','Van') + grupo('DUDA','i-duda','d','En duda') + grupo('NO','i-no','n','No van');
+    html += `<p class="hint" style="margin:10px 0 0">Solo el cuerpo técnico puede cambiar las respuestas de otros.</p>`;
+  }
   return html + `</div>`;
 }
 function vJugaronV(p){
@@ -589,7 +603,7 @@ function vJugaronV(p){
   return `<div class="card"><b>${p.jugaron.length} jugaron</b><div class="banca" style="margin-top:8px">${S.jugadores.filter(j=>p.jugaron.includes(j.id)).map(j=>`<span ${j.id===q.j?.id?'class="me"':''}>${j.dorsal} · ${esc(apellido(j.nombre))}</span>`).join('')}</div></div>`;
 }
 function vCanchaV(p){
-  if (!p.publicada) return `<div class="card empty">El cuerpo técnico todavía no publica la alineación.<br>Aparecerá aquí cuando esté lista.</div>` + `<div class="card">${porQue('alineacion_ver')}</div>`;
+  if (!p.publicada) return `<div class="card empty">El cuerpo técnico todavía no publica la alineación.<br>Aparecerá aquí cuando esté lista.</div>` + (porQue('alineacion_ver') ? `<div class="card">${porQue('alineacion_ver')}</div>` : '');
   const q = quien(), l = lineupDe(p), i = l.indexOf(q.j?.id), sl = slotsDe(formacionDe(p));
   const msg = !q.j ? '' : i>=0 ? `${q.esPadre?esc(q.nombre)+' es titular':'Eres titular'} como <b>${POSTXT[sl[i].rol].toLowerCase()}</b>.` : p.rsvp[q.j.id]==='VOY' ? `${q.esPadre?esc(q.nombre)+' empieza':'Empiezas'} en la banca.` : `${q.esPadre?esc(q.nombre)+' no está':'No estás'} convocado: no ${q.esPadre?'confirmó':'confirmaste'} asistencia.`;
   return `<div class="card row"><div><b>${MODS[modalidadDe(p)].txt}</b> <span class="mu" style="font-size:12px">· ${formacionDe(p).slice(2)}</span></div><span class="badge prog">Publicada</span></div>
@@ -606,7 +620,7 @@ function vAnalisisV(){
       <div class="card"><b style="font-size:13px">Participación por partido</b><div style="display:flex;align-items:baseline;gap:10px;margin-top:10px"><span class="bignum">${st.pj}<small>/${st.total}</small></span><span class="mu" style="font-size:12.5px">partidos jugados de ${st.total} disputados</span></div></div>
       <div class="tiles" style="grid-template-columns:repeat(3,1fr)"><div><b>${st.goles}</b><span>GOLES</span></div><div><b>${st.am}</b><span>AMARILLAS</span></div><div><b>${st.rj}</b><span>ROJAS</span></div></div>
       ${st.ult?`<button type="button" class="card row" style="width:100%;text-align:left" data-act="open-partido" data-id="${st.ult.id}"><span>Último partido jugado: <b>${fFecha(st.ult.fecha)}</b> vs ${esc(rival(st.ult.rivalId).nombre)}</span><span class="chev">›</span></button>`:''}
-      <div class="card">${porQue('stats_propias')}${porQue('analisis_avanzado')}</div>`;
+      ${ui.rol==='jugador' ? `<div class="card">${porQue('stats_propias')}${porQue('analisis_avanzado')}</div>` : ''}`;
     return html;
   }
   if (!fin.length) return html + `<div class="card empty">Aún no hay partidos jugados.</div>`;
@@ -618,7 +632,6 @@ function vAnalisisV(){
   html += formaCard(fin);
   if (can('goleadores')){ const gs = goleadores(), mx = Math.max(1,...gs.map(g=>g.g));
     html += `<div class="card"><div class="ctitle"><b>Goleadores</b><span class="mu" style="font-size:11.5px">goles</span></div><div style="display:grid;gap:8px">${gs.slice(0,6).map(g=>`<div class="bar-row"><span ${g.id===q.j?.id?'style="font-weight:800"':''}>${esc(apellido(jug(g.id).nombre))}</span><span class="b"><i style="width:${100*g.g/mx}%"></i></span><b>${g.g}</b></div>`).join('')}</div></div>`; }
-  else html += `<div class="card"><b style="font-size:13px">Tabla de goleadores</b>${porQue('goleadores')}</div>`;
   return html;
 }
 function vEquipoV(){
@@ -632,8 +645,7 @@ function vEquipoV(){
     <p class="hint" style="margin:0">Solo nombre, dorsal y posición. Teléfonos y fechas de nacimiento no se comparten con el plantel.</p>`;
   else html += `<div class="card list" style="padding:4px 14px">${S.sedes.map(s=>`<div class="ro"><span class="crest sm" style="background:var(--ac-soft);color:var(--ac)"><svg width="16" height="16"><use href="#i-pin"/></svg></span>
       <div><div class="t">${esc(s.nombre)}${s.cancha?' · '+esc(s.cancha):''}</div><div class="s">${MODS[s.modalidad||'F11'].txt} · ${esc(s.direccion||'')}</div></div><a class="link" style="font-size:12.5px" href="${esc(rutaSede(s))}" target="_blank" rel="noopener">Cómo llegar</a></div>`).join('')}</div>`;
-  if (!can('plantel_ver')) html += `<div class="card"><b style="font-size:13px">Plantel</b>${porQue('plantel_ver')}</div>`;
-  html += `<button class="btn" type="button" data-act="permisos">¿Qué puede ver cada rol?</button>`;
+  if (ui.rol==='jugador') html += `<button class="btn" type="button" data-act="permisos">¿Qué puede ver cada rol?</button>`;
   return html;
 }
 function rutaSede(s){ return s.lat!=null && s.lng!=null ? `https://www.google.com/maps/dir/?api=1&destination=${s.lat},${s.lng}` : s.mapsUrl ? s.mapsUrl : `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${s.nombre} ${s.direccion||''}`)}`; }
@@ -768,6 +780,7 @@ function verForma(){
       <span class="who"><b>${p.local?'vs':'@'} ${esc(rival(p.rivalId).nombre)}</b> <span class="mu" style="font-size:11.5px">· ${fFecha(p.fecha)}</span></span><span class="num">${p.gf}–${p.gc}</span><span class="badge ${res(p)}">${res(p)}</span></button>`).join('')}</div>
     <button class="btn" type="button" data-act="close">Cerrar</button>`);
 }
+function rsvpIcons(c, color){ return `<span class="rsvp-ic ${color?'color':''}"><span class="v" title="Van">${ico('i-like')}${c.voy}<span class="sr">van</span></span><span class="d" title="En duda">${ico('i-duda')}${c.duda}<span class="sr">en duda</span></span><span class="n" title="No van">${ico('i-no')}${c.no}<span class="sr">no van</span></span></span>`; }
 function rsvpCount(p){ const v = Object.values(p.rsvp); return {voy:v.filter(x=>x==='VOY').length, duda:v.filter(x=>x==='DUDA').length, no:v.filter(x=>x==='NO').length}; }
 
 function vInicio(){
@@ -783,7 +796,7 @@ function vInicio(){
         <div class="time">${n.estado==='EN_JUEGO' ? `<b class="num">${n.gf}–${n.gc}</b><small>en juego</small>` : `<b>${fHora(n.fecha)}</b><small>${fFecha(n.fecha)}</small>`}</div>
         <div class="t">${crestRival(rv)}${esc(rv.nombre)}</div></div>
       ${s?`<div class="loc">${ico('i-pin')}<span>${esc(s.nombre)}${s.cancha?' · '+esc(s.cancha):''}</span></div>`:''}
-      ${n.estado==='PROGRAMADO' ? `<button type="button" class="lineup-link" data-act="open-conv" data-id="${n.id}">✓ Convocatoria: ${c.voy} confirmados · ${c.duda} en duda · ${c.no} no van · ${S.jugadores.length-c.voy-c.duda-c.no} sin responder ›</button>
+      ${n.estado==='PROGRAMADO' ? `<button type="button" class="conv" data-act="open-conv" data-id="${n.id}" aria-label="Ver convocatoria">${rsvpIcons(c)}<span aria-hidden="true">›</span></button>
         <button type="button" class="lineup-link" data-act="open-cancha" data-id="${n.id}">⚽ Armar alineación · ${lineupDe(n).filter(Boolean).length}/${MODS[modalidadDe(n)].n} en cancha${n.publicada?' · publicada':''} ›</button>` : ''}
     </div>`;
   } else html += `<div class="card empty">No hay partidos programados.<br><button class="link" data-act="nuevo-partido" type="button">Programar uno</button></div>`;
@@ -865,7 +878,7 @@ function vPartido(p){
   else if (ui.pTab==='convocatoria'){
     if (prog){
       const c = rsvpCount(p);
-      html += `<div class="card"><div class="row" style="margin-bottom:6px"><b>${c.voy} van · ${c.duda} duda · ${c.no} no</b><span class="mu" style="font-size:12px">${S.jugadores.length} en plantel</span></div><div class="plist">` +
+      html += `<div class="card"><div class="row" style="margin-bottom:6px">${rsvpIcons(c,true)}<span class="mu" style="font-size:12px">${S.jugadores.length} en plantel</span></div><div class="plist">` +
         S.jugadores.map(j=>{ const v = p.rsvp[j.id]||'PENDIENTE';
           return `<div><span class="dorsal">${j.dorsal}</span><span>${esc(j.nombre)} <span class="mu" style="font-size:11px">${j.pos}</span></span>
           <span class="seg">${[['VOY','Voy','v'],['DUDA','Duda','d'],['NO','No','n']].map(([k,l,c])=>`<button type="button" class="${v===k?'on '+c:''}" data-act="rsvp" data-id="${p.id}" data-j="${j.id}" data-v="${k}">${l}</button>`).join('')}</span></div>`; }).join('') + `</div></div>`;

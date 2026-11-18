@@ -92,7 +92,7 @@ flowchart LR
   RC -- webhook plan activo --> API
 ```
 
-## 4b. Roles y permisos (borrador para validar)
+## 4b. Roles y permisos (validado)
 
 Cada persona entra con su cuenta y un rol dentro del equipo (`miembros_equipo(usuario_id, equipo_id, rol, jugador_id)`).
 El rol `padre` se vincula a uno o más jugadores (sus hijos) y el rol `jugador` a su propio registro.
@@ -117,6 +117,8 @@ En la nube se aplica con Row Level Security; en la app se ocultan las pantallas 
 | Editar equipo (nombre, escudo) y pagar el plan | ✓ | — | — | — | Es la cuenta que se paga |
 
 Teléfonos, fechas de nacimiento y contactos de jugadores solo los ve el cuerpo técnico.
+
+Decisiones confirmadas: el padre no ve la tabla de goleadores; los avisos de "por qué no ves esto" solo se muestran a jugadores (a padres no); el jugador ve quién va, quién duda y quién no va; el cuerpo técnico no puede borrar nada.
 
 ## 5. Stack Flutter
 
