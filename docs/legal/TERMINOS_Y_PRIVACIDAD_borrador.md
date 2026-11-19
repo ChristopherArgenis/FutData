@@ -53,7 +53,7 @@
 - **Finalidades primarias:** operar la cuenta y el equipo, sincronizar dispositivos, convocatorias, avisos de partido, análisis, soporte.
 - **Finalidades secundarias** (con opción de negarse): mejoras del producto con datos agregados y anónimos, comunicaciones de novedades.
 - **Datos de menores:** se tratan con el consentimiento de quien ejerce la patria potestad o tutela; el tutor puede ver, corregir o pedir el borrado de los datos de su hijo.
-- **Datos sensibles (lesiones):** consentimiento expreso y por escrito del jugador adulto o del tutor; solo los ven el cuerpo técnico, el jugador y su tutor.
+- **Datos sensibles (lesiones):** consentimiento expreso y por escrito del jugador adulto o del tutor; los ven los miembros del equipo para enterarse de ausencias (así se informa al dar el consentimiento).
 - **Transferencias y encargados:** proveedor de nube (Supabase) y su ubicación, gestor de suscripciones (RevenueCat), tiendas (Apple, Google), servicio de notificaciones. No se venden datos.
 - **Derechos ARCO** (acceso, rectificación, cancelación, oposición), revocación del consentimiento y limitación de uso: cómo solicitarlos, plazos de respuesta, y opción dentro de la app (exportar y borrar).
 - **Conservación:** mientras la cuenta esté activa; tras borrarla, [30] días para recuperación y luego borrado definitivo, salvo obligación legal.
@@ -62,11 +62,26 @@
 - **Cambios al aviso** y dónde se publican.
 - **Aviso simplificado** para mostrar al registrarse e **integral** enlazado desde la app y la tienda.
 
-## 3. Lo que hay que agregar en la app
+## 3. Pantalla de aceptación (implementada en el prototipo)
 
-- [ ] Pantalla de registro con casillas separadas: aceptar Términos, aceptar Aviso de Privacidad, y (si aplica) consentimiento para datos de salud.
+Al abrir la app por primera vez, o cuando cambia la versión de los documentos, cada persona ve un resumen, enlaces a ambos
+textos y casillas. El botón “Aceptar y continuar” se activa solo con las obligatorias. Se guarda fecha, versión y casillas.
+
+| Rol | Casillas obligatorias | Opcional |
+|---|---|---|
+| Todos | Acepto los Términos · Leí el Aviso de Privacidad y autorizo el tratamiento de mis datos | Recibir novedades |
+| Entrenador | Cuento con la autorización de jugadores y tutores y soy responsable de lo que capturo · Registraré lesiones solo de quien lo autorizó, sabiendo que las ve el equipo | |
+| Cuerpo técnico | Usaré los datos de contacto y salud solo para fines del equipo | |
+| Jugador | Tengo 18+, o 13–17 con autorización de mi tutor · Autorizo de forma expresa el registro de mis lesiones y que las vea el equipo | |
+| Padre / tutor | Soy padre, madre o tutor legal de [hijo] y autorizo el tratamiento de sus datos · Autorizo el registro de sus lesiones y que las vea el equipo | |
+
+Antes de activar Premium se muestran precio, prueba gratis, renovación automática, cómo cancelar y restaurar compras.
+
+## 4. Lo que hay que agregar en la app
+
+- [x] Pantalla de registro con casillas separadas (prototipo): aceptar Términos, aceptar Aviso de Privacidad, y (si aplica) consentimiento para datos de salud.
 - [ ] Al invitar a un padre: consentimiento del tutor para los datos de su hijo, guardado con fecha y versión.
 - [ ] Antes de registrar la primera lesión de un jugador: verificar que existe el consentimiento de datos de salud.
-- [ ] Ajustes › Privacidad: ver y descargar mis datos, borrar mi cuenta, retirar consentimientos, enlaces a ambos documentos.
-- [ ] Pantalla de Premium con precio, periodo, renovación automática, cómo cancelar, restaurar compras y enlaces legales.
-- [ ] Tabla `consentimientos(usuario_id, tipo, version, aceptado_en, revocado_en)` en la nube.
+- [x] Ajustes › Privacidad (prototipo, en Equipo): ver y descargar mis datos, borrar mi cuenta, retirar consentimientos, enlaces a ambos documentos.
+- [x] Pantalla de Premium con precio, periodo, renovación automática, cómo cancelar, restaurar compras y enlaces legales.
+- [x] Tabla `consentimientos(usuario_id, tipo, version, aceptado_en, revocado_en)` en la nube (`db/supabase/esquema_rls.sql`).

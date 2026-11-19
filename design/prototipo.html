@@ -147,6 +147,7 @@ nav.tabs button.on{color:var(--ac)}
 .jersey.sm,.jersey.sm svg{width:32px;height:32px}.jersey.sm b{inset:7px 0 0;font-size:10.5px}
 .hint{font-size:11.5px;color:var(--mu)}
 .crest-img{background:#fff;overflow:hidden;padding:0}
+.crest>svg{width:16px;height:16px}
 .crest-img img{width:100%;height:100%;object-fit:cover;display:block}
 .daypick{display:flex;gap:6px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none}
 .dchip{flex:none;width:54px;display:grid;justify-items:center;gap:1px;padding:7px 0;border-radius:14px;background:var(--card);box-shadow:var(--sh);border:1.5px solid transparent}
@@ -262,6 +263,39 @@ table.tabla{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-nu
 .tabla-ed b{font-size:10.5px;color:var(--mu);text-align:center}
 .tabla-ed .nm{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tabla-ed input{width:100%;min-width:0;background:var(--card);border:1.5px solid var(--line);border-radius:8px;padding:6px 2px;text-align:center;font-family:var(--mono);font-size:12.5px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.kpis div{background:var(--bg);border-radius:12px;padding:8px;display:grid;gap:2px}
+.kpis b{font-family:var(--mono);font-size:18px}
+.kpis span{font-size:10.5px;color:var(--mu);line-height:1.25}
+.posbars{display:flex;gap:4px;align-items:flex-end;height:96px;margin-top:6px}
+.posbar{flex:1;display:grid;grid-template-rows:1fr auto auto;justify-items:center;height:100%;font-size:9.5px;color:var(--mu)}
+.posbar i{align-self:end;width:100%;background:#d5ddd5;border-radius:4px 4px 0 0;min-height:2px;display:block}
+.posbar.in i{background:var(--ac)}
+.posbar.hoy span{color:var(--fg);font-weight:800}
+.posbar b{font-family:var(--mono);font-size:9.5px;color:var(--fg);height:12px}
+.minrow{display:grid;grid-template-columns:62px 1fr 48px 50px;gap:6px;align-items:center;font-size:12px;padding:3px 0}
+.minrow.head{font-size:10px;color:var(--mu);font-weight:700}
+.minrow .b{position:relative;height:14px;background:#eef1ee;border-radius:5px;overflow:hidden}
+.minrow .b i{position:absolute;inset:0 auto 0 0;background:var(--ac);border-radius:5px}
+.minrow .b b{position:relative;font-family:var(--mono);font-size:10px;padding-left:5px;color:var(--fg)}
+.minrow>span:nth-child(3),.minrow>span:nth-child(4){font-family:var(--mono);text-align:right}
+.onb{display:grid;gap:12px;padding-bottom:8px}
+.onb-head{display:flex;gap:12px;align-items:center;padding-top:4px}
+.onb-head .crest{width:52px;height:52px}
+.onb-res ul{margin:6px 0 10px;padding-left:18px;font-size:12.5px;display:grid;gap:4px}
+.onb-form{display:grid;gap:10px}
+.chk{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;background:var(--card);border-radius:14px;padding:11px 12px;box-shadow:var(--sh);font-size:12.5px;line-height:1.4;cursor:pointer}
+.chk input{width:20px;height:20px;margin:0;accent-color:var(--ac)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.jsonprev{background:var(--card);border-radius:12px;padding:10px;font-size:10.5px;font-family:var(--mono);max-height:300px;overflow:auto;white-space:pre-wrap;word-break:break-word;margin:0}
+.legal h4{margin:10px 0 2px;font-size:13px}
+.legal p{margin:0;font-size:12.5px;color:var(--fg)}
+.list .ro .t{font-weight:700}
+.list svg{width:16px;height:16px}
+.aprob{display:grid;gap:8px;box-shadow:0 0 0 2px #f0a92a,var(--sh)}
+.code{font-size:22px;font-weight:700;letter-spacing:.08em}
+.qr{min-height:150px;display:grid;place-items:center}
+.qr img,.qr canvas{border-radius:8px}
 .bignum{font-family:var(--mono);font-size:34px;font-weight:700;line-height:1}
 .bignum small{font-size:18px;color:var(--mu)}
 .escudo-row{display:flex;align-items:center;gap:12px}
@@ -383,6 +417,12 @@ svg text{font-family:var(--f)}
   <symbol id="i-duda" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.5 9.3a2.6 2.6 0 1 1 3.6 2.4c-.7.3-1.1.9-1.1 1.7v.4M12 17v.3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
   <symbol id="i-no" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5.6 18.4L18.4 5.6" stroke="currentColor" stroke-width="2"/></symbol>
   <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3M12 13v4M8.5 20h7M9.5 17h5v3h-5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 7V4h4v3M6 7l1 13h10l1-13" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></symbol>
   <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></symbol>
   <symbol id="i-score" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 5v14M7 10v4M17 10v4" stroke="currentColor" stroke-width="2"/></symbol>
@@ -401,9 +441,12 @@ svg text{font-family:var(--f)}
       <li>En un partido programado: <b>Iniciar en vivo</b> y registra goles y tarjetas minuto a minuto.</li>
       <li>En <b>Análisis</b>, desbloquea Premium (simulado) para ver pronósticos y gráficas.</li>
       <li>En <b>Equipo</b> administras plantel, rivales y sedes.</li>
+      <li>Al entrar, cada rol acepta sus propios términos. Cambia de rol para verlos.</li>
+      <li>Como entrenador, en <b>Equipo › Miembros y accesos</b> invitas, apruebas y quitas accesos.</li>
     </ul>
     <div style="display:grid;gap:6px"><b style="font-size:13px">Ver la app como</b><div class="roles" id="aside-roles"></div>
-      <button class="link" type="button" data-act="permisos" style="justify-self:start;font-size:13px">Ver tabla de permisos ›</button></div>
+      <button class="link" type="button" data-act="permisos" style="justify-self:start;font-size:13px">Ver tabla de permisos ›</button>
+      <button class="link" type="button" data-act="canje" style="justify-self:start;font-size:13px">Probar “Tengo un código” ›</button></div>
     <p class="note">Los datos viven solo en esta pestaña. Al recargar vuelve la temporada de ejemplo.</p>
     <button class="reset" data-act="reset" type="button">Restablecer datos de ejemplo</button>
   </aside>
@@ -417,6 +460,7 @@ svg text{font-family:var(--f)}
   </div></div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 /* ===================== utilidades ===================== */
 const $ = s => document.querySelector(s);
@@ -469,7 +513,7 @@ function seed(){
   const minC = [80,22,85,57,40,78,88,12,33,79,86,52,90];
   let gi = 0, ci = 0;
   const partidos = marc.map(([gf,gc],k)=>{
-    const p = {id:'p'+(k+1), rivalId:riv[k], sedeId: k%2===0 ? 's1' : (k%3===0 ? 's3':'s2'), fecha: at(-7*(12-k), k%4===3 ? 17 : 10),
+    const p = {id:'p'+(k+1), rivalId:riv[k], sedeId: k%2===0 ? 's1' : (k%3===0 ? 's3':'s2'), fecha: at(-7*(12-k), k%4===3 ? 17 : k%3===1 ? 9 : 10),
       local: k%2===0, comp:'liga', jornada:'J'+(k+1), estado:'FINALIZADO', gf, gc, eventos:[], rsvp:{}, jugaron:[],
       stats:{tiros:[8+Math.round(r()*8), 5+Math.round(r()*6)], puerta:[0,0], corners:[2+Math.round(r()*6), 1+Math.round(r()*5)]}};
     p.stats.puerta = [Math.max(gf, Math.round(p.stats.tiros[0]*.5)), Math.max(gc, Math.round(p.stats.tiros[1]*.4))];
@@ -484,6 +528,16 @@ function seed(){
     const base = ['j1','j2','j3','j4','j6','j8','j10','j9','j7','j11','j5'];
     p.jugaron = (k===3 || k===9) ? base.filter(x=>x!=='j10').concat('j13') : base.slice();
     if (k===5) p.jugaron = base.filter(x=>x!=='j9').concat('j14');
+    p.titulares = p.jugaron.slice(0, 11);
+    // cambios: entran de la banca los que no fueron titulares
+    const temprano = fHora(p.fecha)==='09:00';
+    const banca = ['j13','j14','j12'].filter(x=>!p.jugaron.includes(x)).slice(0, temprano ? 1 : 2);
+    const salen = ['j7','j11','j8','j3'];
+    banca.forEach((b,i)=>{ const m = 55 + Math.round(r()*25); p.eventos.push({id:uid('e'), min:m, tipo:'CAMBIO', rival:false, jugadorId:b, jugadorSaleId:salen[(k+i)%4]}); p.jugaron.push(b); });
+    p.eventos.sort((a,b)=>a.min-b.min);
+    // convocatoria histórica: quien dijo "voy" casi siempre llegó; a las 9:00 fallan más
+    jugadores.forEach(j=>{ const jugo = p.jugaron.includes(j.id), x = r();
+      p.rsvp[j.id] = jugo ? (x < .93 ? 'VOY' : 'DUDA') : (x < (temprano ? .55 : .2) ? 'VOY' : x < .8 ? 'DUDA' : 'NO'); });
     return p;
   });
   const nuevo = (o) => Object.assign({estado:'PROGRAMADO', gf:null, gc:null, eventos:[], rsvp:{}, jugaron:[], stats:null, comp:'liga'}, o);
@@ -497,7 +551,7 @@ function seed(){
   partidos.push({id:'p0', rivalId:'sl', sedeId:'s2', fecha:at(-11,20), local:true, comp:'copa', jornada:'Octavos', estado:'FINALIZADO', gf:2, gc:1, rsvp:{},
     jugaron:['j1','j2','j3','j4','j6','j8','j10','j9','j7','j11','j5'], stats:{tiros:[11,7], puerta:[6,3], corners:[5,2]},
     eventos:[{id:uid('e'), min:23, tipo:'GOL', rival:false, jugadorId:'j9', asistId:null}, {id:uid('e'), min:61, tipo:'GOL', rival:true}, {id:uid('e'), min:84, tipo:'GOL', rival:false, jugadorId:'j7', asistId:'j10'}]});
-  return { equipo, rivales, sedes, jugadores, partidos, yo:'j10', comp: seedComp(hoy) };
+  return { equipo, rivales, sedes, jugadores, partidos, yo:'j10', comp: seedComp(hoy), acc: seedMiembros(hoy), legal:{aceptaciones:{}} };
 }
 
 /* ===================== estado ===================== */
@@ -508,6 +562,7 @@ function reset(){
   ui = { tab:'inicio', view:null, calY:n.getFullYear(), calM:n.getMonth(), calDay:null, calFil:'prox', eqSeg:'plantel',
          anaSeg:'temporada', anaRival:null, compSel:'liga', ronda:null, soloVoy:true, pTab:'eventos', premium:false, sheet:null, rol:'entrenador' };
   const p13 = partido('p13'); if (p13){ autoLineup(p13); p13.publicada = true; }
+  S.acc.invitaciones.filter(i=>i.codigoDemo).forEach(i=>hashCodigo(i.codigoDemo).then(h=>{ i.hash = h; }));
   closeSheet(); render(true);
 }
 
@@ -560,9 +615,9 @@ function seedComp(hoy){
   const extra = {x1:['Club Laguna','CL','#5b8c2a'], x2:['Atlas Sur','AS','#b8452f'], x3:['Real Mar','RM','#1f8fa8'], x4:['Deportivo Río','DR','#6d6d6d'],
     x5:['Halcón Negro','HN','#2b2b2b'], x6:['Unión Sur','US','#c9862b'], x7:['Juventud FC','JF','#3a5bd9'], x8:['Atlético Mesa','AM','#a03a8a'],
     x9:['Club Pinos','CP','#2d7a4f'], x10:['Sporting Este','SE','#d24a6c']};
-  const liga = { id:'liga', tipo:'LIGA', nombre:'Liga Municipal', temporada:'Apertura 2026', clasifican:4, actualizado:isoLocal(hoy).slice(0,10), filas:[
-    {id:'av', g:9,e:1,p:2,gf:27,gc:12}, {id:'un', g:8,e:2,p:2,gf:22,gc:11}, {id:'ra', g:6,e:2,p:4,gf:19,gc:16}, {id:'dc', g:5,e:2,p:5,gf:18,gc:17},
-    {id:'sl', g:4,e:2,p:6,gf:15,gc:20}, {id:'x1', g:3,e:3,p:6,gf:12,gc:19}, {id:'x2', g:2,e:3,p:7,gf:10,gc:22}, {id:'x3', g:1,e:3,p:8,gf:9,gc:26}]};
+  const liga = { id:'liga', tipo:'LIGA', nombre:'Liga Municipal', temporada:'Apertura 2026', clasifican:4, jornadas:18, actualizado:isoLocal(hoy).slice(0,10), filas:[
+    {id:'av', g:9,e:1,p:2,gf:27,gc:12}, {id:'un', g:8,e:2,p:2,gf:22,gc:11}, {id:'ra', g:7,e:2,p:3,gf:21,gc:14}, {id:'dc', g:7,e:1,p:4,gf:20,gc:15},
+    {id:'sl', g:6,e:2,p:4,gf:18,gc:16}, {id:'x1', g:3,e:3,p:6,gf:12,gc:19}, {id:'x2', g:2,e:3,p:7,gf:10,gc:22}, {id:'x3', g:1,e:3,p:8,gf:9,gc:26}]};
   const copa = { id:'copa', tipo:'TORNEO', nombre:'Copa Ciudad', temporada:'2026', rondas:RONDAS[16].slice(),
     llave:['yo','sl','dc','x4','av','x5','un','x6','ra','x7','x1','x8','x2','x9','x3','x10'],
     res:{ Octavos:[null,{a:3,b:0},{a:2,b:0},{a:1,b:0},{a:4,b:1},{a:0,b:2},{a:1,b:1,pa:5,pb:4},{a:2,b:3}],
@@ -701,7 +756,8 @@ function formComp(cid){
     <div class="field"><span class="lbl">Tipo</span><div class="radio" role="radiogroup" aria-label="Tipo de competición">
       <label><input type="radio" name="tipo" value="LIGA" ${(!C||C.tipo==='LIGA')?'checked':''} ${C?'disabled':''}>Liga · tabla de puntos</label><label><input type="radio" name="tipo" value="TORNEO" ${C?.tipo==='TORNEO'?'checked':''} ${C?'disabled':''}>Torneo · llaves</label></div>
       ${C?'<span class="hint">El tipo no se puede cambiar después de crearla.</span>':''}</div>
-    <div class="field" data-show="LIGA"><label for="f-cc">Clasifican a liguilla</label><input id="f-cc" type="number" min="0" max="32" name="clasifican" value="${C?.clasifican ?? 4}"></div>
+    <div class="two" data-show="LIGA"><div class="field"><label for="f-cc">Clasifican a liguilla</label><input id="f-cc" type="number" min="0" max="32" name="clasifican" value="${C?.clasifican ?? 4}"></div>
+      <div class="field"><label for="f-cj">Jornadas de la temporada</label><input id="f-cj" type="number" min="1" max="60" name="jornadas" value="${C?.jornadas ?? 18}"></div></div>
     ${C ? '' : `<div class="field" data-show="TORNEO"><label for="f-cs">Equipos en la llave</label><select id="f-cs" name="tam">${[4,8,16,32].map(n=>opt(n,`${n} equipos · empieza en ${RONDAS[n][0]}`,8)).join('')}</select>
       <span class="hint">Tu equipo entra en el primer cruce; los demás se definen tocando cada cruce.</span></div>
     <div class="field" data-show="LIGA"><span class="lbl">Rivales en la liga</span><div class="checks">${S.rivales.map(r=>`<label><input type="checkbox" name="riv" value="${r.id}">${esc(r.nombre)}</label>`).join('')}</div>
@@ -711,6 +767,357 @@ function formComp(cid){
 }
 function syncCompForm(){ const f = $('#sheet form[data-form="comp"]'); if (!f) return; const t = (f.querySelector('input[name=tipo]:checked')||{}).value;
   f.querySelectorAll('[data-show]').forEach(el=>{ el.hidden = el.dataset.show!==t; }); }
+
+/* ===================== análisis avanzados (grupo A) ===================== */
+function poissonSample(l, rnd){ const L = Math.exp(-Math.max(0.05, l)); let k = 0, q = 1; do { k++; q *= rnd(); } while (q > L); return k - 1; }
+function fuerzas(){  // ataque y defensa por equipo (goles por partido, suavizado) usando la liga principal
+  const L = S.comp.lista.find(c=>c.tipo==='LIGA'), F = {};
+  if (L) tablaLiga(L).forEach(f=>{ F[f.id] = {at:(f.gf+1)/(f.pj+1), df:(f.gc+1)/(f.pj+1)}; });
+  const vals = Object.values(F), prom = vals.length ? mean(vals.map(v=>v.at)) : 1.4;
+  return { F, prom, de: id => F[id] || {at:prom, df:prom} };
+}
+function golesEsperados(fz, a, b){ const A = fz.de(a), B = fz.de(b); return [A.at*B.df/fz.prom, B.at*A.df/fz.prom]; }
+function proyeccionLiga(L, N=2000){
+  const T = tablaLiga(L), fz = fuerzas(), rnd = rng(20261119), total = L.jornadas || 2*(T.length-1);
+  const misProx = S.partidos.filter(p=>p.comp===L.id && p.estado!=='FINALIZADO').map(p=>p.rivalId);
+  const pos = Array(T.length).fill(0), extraOk = {}; let sumPts = 0, enZona = 0, primero = 0; const misPts = [];
+  for (let n=0; n<N; n++){
+    const fin = T.map(f=>{ let pts = f.pts, dg = f.dg; const rem = Math.max(0, total - f.pj);
+      for (let k=0; k<rem; k++){ const rivalId = f.id==='yo' ? misProx[k] : null; const [lf, lc] = rivalId ? golesEsperados(fz, 'yo', rivalId) : [fz.de(f.id).at, fz.de(f.id).df];
+        const a = poissonSample(lf, rnd), b = poissonSample(lc, rnd); pts += a>b ? 3 : a===b ? 1 : 0; dg += a-b; }
+      return {id:f.id, pts, dg, extra: pts - f.pts, desempate: rnd()}; });
+    fin.sort((x,y)=>y.pts-x.pts || y.dg-x.dg || y.desempate-x.desempate);
+    const i = fin.findIndex(f=>f.id==='yo'), yo = fin[i]; pos[i]++; sumPts += yo.pts; misPts.push(yo.pts);
+    const dentro = L.clasifican ? i < L.clasifican : false; if (dentro) enZona++; if (i===0) primero++;
+    (extraOk[yo.extra] ??= [0,0]); extraOk[yo.extra][0]++; if (dentro) extraOk[yo.extra][1]++;
+  }
+  misPts.sort((a,b)=>a-b);
+  const yo = T.find(f=>f.id==='yo'), rem = Math.max(0, total - yo.pj);
+  let necesarios = null;
+  for (let x=0; x<=3*rem; x++){ let tot=0, ok=0; for (const [e,[t,o]] of Object.entries(extraOk)) if (+e>=x){ tot+=t; ok+=o; } if (tot>=30 && ok/tot >= .9){ necesarios = x; break; } }
+  return { N, pos:pos.map(v=>v/N), media: sumPts/N, p10: misPts[Math.floor(N*.1)], p90: misPts[Math.floor(N*.9)], zona: enZona/N, primero: primero/N, rem, necesarios, actual: yo.pts, clasifican: L.clasifican };
+}
+function probTorneo(C, N=2000){
+  const fz = fuerzas(), rnd = rng(77), R0 = cruces(C), llega = C.rondas.map(()=>0); let campeon = 0;
+  for (let n=0; n<N; n++){
+    let equipos = C.llave.slice();
+    C.rondas.forEach((ronda, r)=>{
+      const sig = [];
+      for (let k=0; k<equipos.length; k+=2){
+        const a = equipos[k], b = equipos[k+1], fijo = R0[r][k/2];
+        if (a==='yo' || b==='yo') llega[r]++;
+        let g;
+        if (fijo && fijo.gana && fijo.a===a && fijo.b===b) g = fijo.gana;
+        else if (!a || !b) g = a || b || null;
+        else { const [la, lb] = golesEsperados(fz, a, b), x = poissonSample(la, rnd), y = poissonSample(lb, rnd); g = x>y ? a : y>x ? b : (rnd()<.5 ? a : b); }
+        sig.push(g);
+      }
+      equipos = sig;
+    });
+    if (equipos[0]==='yo') campeon++;
+  }
+  return { rondas: C.rondas.map((r,i)=>({ronda:r, p: llega[i]/N})), campeon: campeon/N };
+}
+function lineaMarcador(p){  // estado del marcador minuto a minuto
+  const goles = p.eventos.filter(e=>e.tipo==='GOL').sort((a,b)=>a.min-b.min);
+  let f = 0, c = 0, ultimo = 0; const tramos = { arriba:0, empate:0, abajo:0 }; let primero = null, estuvoArriba = false, estuvoAbajo = false;
+  const estado = () => f>c ? 'arriba' : f===c ? 'empate' : 'abajo';
+  for (const g of goles){ const m = Math.min(90, Math.max(0, g.min)); tramos[estado()] += m - ultimo; ultimo = m;
+    if (g.rival) c++; else f++; if (!primero) primero = g.rival ? 'ellos' : 'nosotros'; if (f>c) estuvoArriba = true; if (f<c) estuvoAbajo = true; }
+  tramos[estado()] += 90 - ultimo;
+  return { tramos, primero, estuvoArriba, estuvoAbajo, final: res(p), pts: pts(p) };
+}
+function analisisMarcador(){
+  const L = finalizados().map(lineaMarcador), t = {arriba:0, empate:0, abajo:0};
+  L.forEach(x=>{ for (const k in t) t[k] += x.tramos[k]; });
+  const tot = sum(Object.values(t)) || 1, nos = L.filter(x=>x.primero==='nosotros'), ellos = L.filter(x=>x.primero==='ellos');
+  const perdidos = sum(L.filter(x=>x.estuvoArriba && x.final!=='G').map(x=>3-x.pts)), rescatados = sum(L.filter(x=>x.estuvoAbajo).map(x=>x.pts));
+  const remontadas = L.filter(x=>x.estuvoAbajo && x.final!=='P').length, cerosCeros = L.filter(x=>!x.primero).length;
+  return { pct:{arriba:t.arriba/tot, empate:t.empate/tot, abajo:t.abajo/tot}, nos, ellos, perdidos, rescatados, remontadas, vecesAbajo: L.filter(x=>x.estuvoAbajo).length, cerosCeros,
+    ganaPrimero: nos.length ? nos.filter(x=>x.final==='G').length/nos.length : null, ganaTrasRecibir: ellos.length ? ellos.filter(x=>x.final!=='P').length/ellos.length : null };
+}
+function minutosDe(p){
+  const dur = p.duracion || 90, m = {}, tit = p.titulares || (lineupDe(p).some(Boolean) ? lineupDe(p).filter(Boolean) : p.jugaron.slice(0, MODS[modalidadDe(p)].n));
+  const ini = {}, fin = {}; tit.forEach(j=>{ ini[j] = 0; });
+  p.eventos.filter(e=>e.tipo==='CAMBIO').sort((a,b)=>a.min-b.min).forEach(e=>{ if (e.jugadorSaleId in ini && !(e.jugadorSaleId in fin)) fin[e.jugadorSaleId] = Math.min(dur, e.min); if (!(e.jugadorId in ini)) ini[e.jugadorId] = Math.min(dur, e.min); });
+  for (const j in ini) m[j] = (fin[j] ?? dur) - ini[j];
+  return m;
+}
+function minutosReales(){
+  const fin = finalizados(), tot = {}, gol = {}, posibles = sum(fin.map(p=>p.duracion||90));
+  fin.forEach(p=>{ const m = minutosDe(p); for (const j in m) tot[j] = (tot[j]||0) + m[j];
+    p.eventos.forEach(e=>{ if (e.tipo==='GOL' && !e.rival && e.jugadorId) gol[e.jugadorId] = (gol[e.jugadorId]||0) + 1; }); });
+  const filas = S.jugadores.map(j=>({j, min: tot[j.id]||0, goles: gol[j.id]||0})).map(x=>({...x, pct: posibles ? x.min/posibles : 0, g90: x.min ? 90*x.goles/x.min : 0})).sort((a,b)=>b.min-a.min);
+  return { filas, posibles };
+}
+function franjaHora(h){ const n = +h.slice(0,2); return n < 10 ? 'Antes de las 10:00' : n < 13 ? '10:00 a 13:00' : n < 19 ? 'Tarde' : 'Noche'; }
+function confiabilidad(){
+  const fin = finalizados().filter(p=>Object.keys(p.rsvp).length), por = {VOY:[0,0], DUDA:[0,0], NO:[0,0]}, pj = {}, hora = {};
+  fin.forEach(p=>{ const fr = franjaHora(fHora(p.fecha)); (hora[fr] ??= {voy:0, llegaron:0, partidos:0}); hora[fr].partidos++;
+    for (const [j, v] of Object.entries(p.rsvp)){ if (!por[v] || !jug(j)) continue; const llego = p.jugaron.includes(j); por[v][0]++; if (llego) por[v][1]++;
+      if (v==='VOY'){ (pj[j] ??= {voy:0, falto:0}); pj[j].voy++; if (!llego) pj[j].falto++; hora[fr].voy++; if (llego) hora[fr].llegaron++; } } });
+  const fallan = Object.entries(pj).filter(([,x])=>x.falto>0).map(([id,x])=>({j: jug(id), ...x, tasa: 1 - x.falto/x.voy})).sort((a,b)=>b.falto-a.falto || a.tasa-b.tasa);
+  return { n: fin.length, tasa: Object.fromEntries(Object.entries(por).map(([k,[t,l]])=>[k, t ? l/t : null])), muestras: por, hora, fallan };
+}
+const pctTxt = x => x==null ? '—' : `${Math.round(100*x)}%`;
+function barra(lbl, x, color, der){ return `<div class="bar-row"><span>${lbl}</span><span class="b"><i style="width:${Math.round(100*Math.max(0,Math.min(1,x||0)))}%${color?`;background:${color}`:''}"></i></span><b>${der ?? pctTxt(x)}</b></div>`; }
+
+function vProyeccion(){
+  let html = '';
+  const L = S.comp.lista.filter(c=>c.tipo==='LIGA');
+  L.forEach(liga=>{
+    const pr = proyeccionLiga(liga), T = tablaLiga(liga), yo = T.find(f=>f.id==='yo'), mx = Math.max(...pr.pos, .01);
+    const bars = pr.pos.map((v,i)=>`<div class="posbar ${i < (liga.clasifican||0) ? 'in' : ''} ${i+1===yo.pos ? 'hoy' : ''}"><i style="height:${Math.round(100*v/mx)}%"></i><span>${i+1}º</span><b>${v>=.005?Math.round(100*v):''}</b></div>`).join('');
+    html += lockCard(`Proyección · ${esc(liga.nombre)}`, `
+      <div class="kpis"><div><b>${pctTxt(pr.zona)}</b><span>de entrar a liguilla</span></div><div><b>${Math.round(pr.media)}</b><span>puntos al final (${pr.p10}–${pr.p90})</span></div><div><b>${pctTxt(pr.primero)}</b><span>de terminar 1º</span></div></div>
+      <span class="mu" style="font-size:11.5px">Posición final más probable</span><div class="posbars">${bars}</div>
+      <div class="insight" style="margin-top:8px">${pr.rem ? (pr.necesarios===0 ? `Quedan <b>${pr.rem} partidos</b>. Aunque no sumes más puntos, entras a liguilla 9 de cada 10 veces.` : pr.necesarios!=null ? `Quedan <b>${pr.rem} partidos</b> (${3*pr.rem} puntos). Con <b>${pr.necesarios} puntos más</b> entras a liguilla 9 de cada 10 veces.` : `Quedan ${pr.rem} partidos; aun ganándolos todos la liguilla no está asegurada.`) : 'La fase regular terminó.'}</div>
+      <p class="hint" style="margin:6px 0 0">Simulamos ${pr.N.toLocaleString('es-MX')} veces lo que falta de la temporada con los goles a favor y en contra de cada equipo.</p>`);
+  });
+  S.comp.lista.filter(c=>c.tipo==='TORNEO' && c.llave.includes('yo')).forEach(C=>{
+    const pt = probTorneo(C);
+    html += lockCard(`Probabilidades · ${esc(C.nombre)}`, `<div style="display:grid;gap:8px">${pt.rondas.map(x=>barra(`Llegar a ${esc(x.ronda)}`, x.p, 'var(--copa)')).join('')}${barra('Ser campeones', pt.campeon, 'var(--gold)')}</div>
+      <p class="hint" style="margin:8px 0 0">Los cruces ya jugados cuentan como están; el resto se simula ${(2000).toLocaleString('es-MX')} veces.</p>`);
+  });
+  return html || '<div class="card empty">Crea una liga o un torneo en Competición para ver proyecciones.</div>';
+}
+function cardMarcador(){
+  const a = analisisMarcador(), w = k => `${Math.round(100*a.pct[k])}%`;
+  return lockCard('El marcador durante el partido', `
+    <span class="mu" style="font-size:11.5px">Tiempo jugado</span>
+    <div class="prob" style="margin:4px 0 8px"><span style="width:${w('arriba')};background:var(--win)">${w('arriba')}</span><span style="width:${w('empate')};background:var(--draw)">${w('empate')}</span><span style="width:${w('abajo')};background:var(--loss)">${w('abajo')}</span></div>
+    <div class="legend" style="margin-bottom:10px"><span><i class="dot" style="background:var(--win)"></i>Ganando</span><span><i class="dot" style="background:var(--draw)"></i>Empatando</span><span><i class="dot" style="background:var(--loss)"></i>Perdiendo</span></div>
+    <div class="kpis"><div><b>${pctTxt(a.ganaPrimero)}</b><span>ganados cuando anotamos primero (${a.nos.length})</span></div><div><b>${a.perdidos}</b><span>puntos perdidos estando arriba</span></div><div><b>${a.remontadas}/${a.vecesAbajo}</b><span>veces que remontamos</span></div></div>
+    <div class="insight" style="margin-top:8px">${a.perdidos >= a.rescatados ? `Dejamos escapar <b>${a.perdidos} puntos</b> después de ir ganando y rescatamos ${a.rescatados} yendo abajo: el reto es <b>cerrar los partidos</b>.` : `Rescatamos <b>${a.rescatados} puntos</b> yendo abajo y solo dejamos ir ${a.perdidos}: el equipo <b>reacciona bien</b>.`}</div>`);
+}
+function cardMinutos(){
+  const m = minutosReales(), mx = Math.max(1, ...m.filas.map(x=>x.min)), pocos = m.filas.slice(-5), parteBaja = sum(pocos.map(x=>x.min)) / (sum(m.filas.map(x=>x.min)) || 1);
+  return lockCard('Minutos reales y reparto', `
+    <div class="minrow head"><span>Jugador</span><span>Minutos</span><span>% del total</span><span>Goles/90</span></div>
+    ${m.filas.map(x=>`<div class="minrow"><span>${esc(apellido(x.j.nombre))}</span><span class="b"><i style="width:${Math.round(100*x.min/mx)}%"></i><b>${x.min}</b></span><span>${pctTxt(x.pct)}</span><span>${x.min ? x.g90.toFixed(2) : '—'}</span></div>`).join('')}
+    <div class="insight" style="margin-top:8px">Los 5 con menos minutos juntan el <b>${pctTxt(parteBaja)}</b> del tiempo jugado. ${parteBaja < .1 ? 'Si es categoría infantil, conviene repartir más.' : 'El reparto es parejo.'}</div>
+    <p class="hint" style="margin:6px 0 0">Se calcula con titulares y cambios: quien sale al 60' suma 60 minutos; quien entra al 70', 20.</p>`);
+}
+function vAsistencia(){
+  const c = confiabilidad();
+  if (!c.n) return '<div class="card empty">Aún no hay partidos con convocatoria registrada.</div>';
+  const hs = Object.entries(c.hora).sort((a,b)=>(b[1].voy ? b[1].llegaron/b[1].voy : 0) - (a[1].voy ? a[1].llegaron/a[1].voy : 0));
+  const peor = hs[hs.length-1], peorTasa = peor && peor[1].voy ? peor[1].llegaron/peor[1].voy : 1, voyPorPartido = peor ? peor[1].voy/peor[1].partidos : 0, faltan = Math.round(voyPorPartido*(1-peorTasa));
+  return lockCard('¿Quién llega de verdad?', `
+    <div style="display:grid;gap:8px">${barra('Dijeron “voy”', c.tasa.VOY, 'var(--win)', `${pctTxt(c.tasa.VOY)} llegó`)}${barra('Dijeron “duda”', c.tasa.DUDA, '#e0a400', `${pctTxt(c.tasa.DUDA)} llegó`)}${barra('Dijeron “no”', c.tasa.NO, 'var(--loss)', `${pctTxt(c.tasa.NO)} llegó`)}</div>
+    <p class="hint" style="margin:8px 0 0">Con ${c.n} partidos. “Llegó” = aparece en la Alineación del partido.</p>`) +
+  lockCard('Asistencia por horario', `<div style="display:grid;gap:8px">${hs.map(([k,x])=>barra(`${k} <small class="mu">(${x.partidos})</small>`, x.voy ? x.llegaron/x.voy : 0, 'var(--liga)')).join('')}</div>
+    ${peor && faltan>0 ? `<div class="insight" style="margin-top:8px">En “${peor[0]}” falla ${pctTxt(1-peorTasa)} de los que confirman: <b>convoca a ${faltan} de más</b> para completar el equipo.</div>` : ''}`) +
+  lockCard('Confirman y no llegan', c.fallan.length ? `<div style="display:grid;gap:6px">${c.fallan.slice(0,6).map(x=>`<div class="row" style="font-size:12.5px"><span>${jersey(x.j.dorsal,true)} ${esc(x.j.nombre)}</span><span class="num">${x.falto} de ${x.voy} <span class="mu">· ${pctTxt(x.tasa)} cumple</span></span></div>`).join('')}</div>
+    <p class="hint" style="margin:8px 0 0">Solo lo ve el cuerpo técnico.</p>` : '<span class="mu">Todos los que confirman llegan.</span>');
+}
+
+/* ===================== legal: términos, aviso de privacidad y consentimientos ===================== */
+const LEGAL = { version:'1.0', fecha:'2026-11-19', empresa:'[Razón social de FutData]', contacto:'privacidad@[dominio]' };
+function itemsConsentimiento(rol){
+  const hijo = jug(ROLES.padre.jugadorId)?.nombre || 'mi hijo';
+  const base = [
+    {k:'terminos', req:true, t:'Leí y acepto los <a data-act="leer-terminos" href="#" class="link">Términos y Condiciones</a>.'},
+    {k:'privacidad', req:true, t:'Leí el <a data-act="leer-aviso" href="#" class="link">Aviso de Privacidad</a> y autorizo el tratamiento de mis datos personales para las finalidades que ahí se describen.'},
+  ];
+  const porRol = {
+    entrenador:[
+      {k:'responsable', req:true, t:'Declaro que cuento con la autorización de los jugadores y, en el caso de menores de edad, de sus padres o tutores, para registrar sus datos en FutData, y que soy responsable de la información que capturo.'},
+      {k:'salud', req:true, t:'Registraré datos de salud (lesiones) solo de jugadores que lo hayan autorizado, sabiendo que serán visibles para los miembros del equipo.'}],
+    staff:[
+      {k:'confidencial', req:true, t:'Me comprometo a usar los datos de contacto y de salud del plantel solo para fines del equipo y a no compartirlos fuera de él.'}],
+    jugador:[
+      {k:'edad', req:true, t:'Tengo 18 años o más, o tengo entre 13 y 17 años y mi padre, madre o tutor autorizó mi cuenta.'},
+      {k:'salud', req:true, t:'Autorizo de forma expresa que se registren mis lesiones (datos de salud) y que las vean los miembros del equipo para saber de mis ausencias.'}],
+    padre:[
+      {k:'tutor', req:true, t:`Soy padre, madre o tutor legal de <b>${esc(hijo)}</b> y autorizo el tratamiento de sus datos como menor de edad.`},
+      {k:'salud', req:true, t:`Autorizo de forma expresa que se registren las lesiones de ${esc(hijo.split(' ')[0])} (datos de salud) y que las vean los miembros del equipo.`}],
+  };
+  return base.concat(porRol[rol] || [], [{k:'novedades', req:false, t:'Quiero recibir novedades y promociones de FutData (opcional).'}]);
+}
+const aceptacion = () => S.legal.aceptaciones[ui.rol];
+const necesitaAceptar = () => { const a = aceptacion(); return !a || a.version !== LEGAL.version; };
+function vBienvenida(){
+  const r = ROLES[ui.rol], previa = aceptacion(), items = itemsConsentimiento(ui.rol);
+  return `<div class="onb">
+    <div class="onb-head">${crestMio(false,true)}<div><span class="mu" style="font-size:12px;font-weight:700">${previa ? 'ACTUALIZAMOS LOS TÉRMINOS' : 'BIENVENIDO A FUTDATA'}</span><h2 style="margin:0;font-size:22px">${esc(S.equipo.nombre)}</h2>
+      <span class="mu" style="font-size:12.5px">Entrarás como <b>${r.nombre}</b> · ${esc(r.persona)}</span></div></div>
+    <div class="card onb-res"><b>Antes de empezar, lo importante:</b>
+      <ul>
+        <li>Guardamos los datos del equipo: partidos, asistencia, estadísticas y, si se registran, lesiones.</li>
+        <li>Cada rol ve solo lo que le corresponde${ui.rol==='padre' ? '; tú ves los datos de tu hijo y la información general del equipo' : ''}.</li>
+        <li>Las lesiones son datos de salud: solo se registran con autorización y las ve el equipo.</li>
+        <li>No vendemos tus datos. Puedes descargarlos o borrar tu cuenta cuando quieras desde Equipo › Privacidad.</li>
+        ${ui.rol==='entrenador' ? '<li>El plan Premium se cobra por la tienda de tu teléfono y se renueva solo hasta que lo canceles.</li>' : ''}
+      </ul>
+      <div class="actions"><button class="btn" type="button" data-act="leer-terminos">Leer Términos</button><button class="btn" type="button" data-act="leer-aviso">Leer Aviso de Privacidad</button></div></div>
+    <form data-form="aceptar" class="onb-form">
+      ${items.map(x=>`<label class="chk"><input type="checkbox" name="${x.k}" ${x.req?'data-req="1"':''}><span>${x.t}${x.req?'':''}</span></label>`).join('')}
+      <div class="err" id="ferr"></div>
+      <button class="btn pri" type="submit" id="btn-aceptar" disabled>Aceptar y continuar</button>
+      <p class="hint" style="margin:0;text-align:center">Versión ${LEGAL.version} · ${fFecha(LEGAL.fecha+'T12:00')} · Guardamos la fecha y la versión que aceptas.</p>
+    </form></div>`;
+}
+function syncAceptar(){ const f = $('form[data-form="aceptar"]'); if (!f) return; $('#btn-aceptar').disabled = [...f.querySelectorAll('[data-req]')].some(i=>!i.checked); }
+const TXT_TERMINOS = [
+  ['1. Quiénes somos', `${LEGAL.empresa}, responsable de FutData. Contacto: ${LEGAL.contacto}. Al usar la app aceptas estos términos en su versión ${LEGAL.version}.`],
+  ['2. Qué es FutData', 'Una herramienta para registrar partidos, calendario, convocatorias, alineaciones, competiciones y análisis de un equipo. No es un servicio oficial de ninguna liga.'],
+  ['3. Cuentas y edad', 'Los equipos los crean mayores de 18 años. Jugadores de 13 a 17 años usan la app con autorización de su padre, madre o tutor; los menores de 13 no tienen cuenta propia y los representa su tutor. Cuida tu acceso: no compartas tu cuenta.'],
+  ['4. Roles y responsabilidad del equipo', 'El entrenador invita a los miembros y decide qué datos se registran. Declara contar con la autorización de jugadores y tutores y es responsable de la información que captura. Cada rol ve y hace solo lo que la app le permite.'],
+  ['5. Contenido que subes', 'Eres dueño de lo que subes (escudos, notas). Nos das permiso limitado para mostrarlo dentro del servicio. No subas contenido ofensivo, de terceros sin permiso ni datos de personas que no lo autorizaron.'],
+  ['6. Uso aceptable', 'Prohibido acosar o exhibir a menores, usar la app para apuestas, intentar entrar a datos de otros equipos o vulnerar la seguridad. Podemos suspender cuentas que lo hagan.'],
+  ['7. Plan gratuito', 'Los datos se guardan solo en tu teléfono. Si borras la app o pierdes el teléfono sin respaldo, se pierden y no podemos recuperarlos.'],
+  ['8. Suscripción Premium', 'Precio en pesos mexicanos con IVA incluido, cobrado por App Store o Google Play. Se renueva automáticamente cada periodo hasta que la canceles en la tienda, al menos 24 horas antes de la renovación. La prueba gratis de 7 días se convierte en pago si no cancelas. Los reembolsos siguen la política de cada tienda. Avisaremos antes de cambiar el precio. Si dejas de pagar, tus datos siguen en el teléfono y los de la nube se conservan 90 días.'],
+  ['9. Análisis y pronósticos', 'Son estimaciones con los datos que capturas. No garantizan resultados y no deben usarse para apostar.'],
+  ['10. Salud', 'FutData no es un servicio médico. Registrar una lesión no sustituye la atención de un profesional.'],
+  ['11. Disponibilidad y responsabilidad', 'Ofrecemos el servicio tal cual y puede tener interrupciones. Nuestra responsabilidad se limita a lo pagado en los últimos 12 meses y no cubre decisiones deportivas ni pérdida de datos guardados solo en el teléfono.'],
+  ['12. Cuenta y borrado', 'Puedes borrar tu cuenta en cualquier momento desde Equipo › Privacidad. Podemos suspenderla si incumples estos términos.'],
+  ['13. Cambios', 'Si cambiamos algo importante te avisaremos en la app y te pediremos aceptar de nuevo.'],
+  ['14. Ley aplicable', 'Leyes de México y tribunales de [ciudad]. Puedes acudir a PROFECO.'],
+];
+const TXT_AVISO = [
+  ['Responsable', `${LEGAL.empresa}. Contacto para datos personales: ${LEGAL.contacto}.`],
+  ['Datos que recabamos', 'Cuenta: nombre, correo o teléfono y rol. Jugadores: nombre, dorsal, posición, asistencia, minutos, goles y tarjetas; opcionalmente fecha de nacimiento y teléfono de contacto. Datos sensibles: lesiones (salud), solo con autorización expresa. No recibimos datos de tarjetas: los pagos los procesa la tienda.'],
+  ['Para qué los usamos', 'Primarias: operar tu cuenta y tu equipo, convocatorias, avisos de partidos, análisis y soporte. Secundarias (puedes negarte): enviarte novedades y mejorar la app con datos agregados y anónimos.'],
+  ['Menores de edad', 'Tratamos datos de menores con la autorización de su padre, madre o tutor, quien puede consultarlos, corregirlos o pedir que se borren.'],
+  ['Quién más los ve', 'Dentro del equipo, cada rol ve lo que la app le permite. Usamos proveedores para operar: nube (Supabase), suscripciones (RevenueCat), tiendas (Apple, Google) y notificaciones. No vendemos tus datos.'],
+  ['Tus derechos', 'Acceder, rectificar, cancelar u oponerte (ARCO), revocar tu consentimiento o limitar su uso, escribiendo a ' + LEGAL.contacto + ' o desde Equipo › Privacidad (descargar mis datos, borrar mi cuenta).'],
+  ['Cuánto tiempo', 'Mientras tu cuenta esté activa. Al borrarla, 30 días para recuperarla y después se eliminan, salvo obligación legal.'],
+  ['Seguridad', 'Cifrado en tránsito y en el teléfono, acceso por roles e invitaciones de un solo uso.'],
+  ['Cambios', 'Publicaremos cambios en la app y te pediremos aceptar la nueva versión.'],
+];
+function hojaTexto(titulo, partes){ openSheet(titulo, `<div class="legal">${partes.map(([h,t])=>`<h4>${esc(h)}</h4><p>${esc(t)}</p>`).join('')}<p class="hint">Versión ${LEGAL.version} · ${fFecha(LEGAL.fecha+'T12:00')} · Borrador sujeto a revisión legal.</p></div><button class="btn" type="button" data-act="close">Cerrar</button>`); }
+function cardPrivacidad(){
+  const a = aceptacion();
+  return `<div class="card"><b style="font-size:14px">Privacidad y legal</b>
+    <p class="mu" style="margin:4px 0 8px;font-size:12px">${a ? `Aceptaste los Términos y el Aviso de Privacidad v${a.version} el ${fFecha(a.fecha)} a las ${fHora(a.fecha)}.` : ''}</p>
+    <div class="list" style="padding:0">
+      <button type="button" data-act="leer-terminos"><span class="crest sm" style="background:var(--ac-soft);color:var(--ac)">${ico('i-doc')}</span><div class="t">Términos y Condiciones</div><span class="chev">›</span></button>
+      <button type="button" data-act="leer-aviso"><span class="crest sm" style="background:var(--ac-soft);color:var(--ac)">${ico('i-lock')}</span><div class="t">Aviso de Privacidad</div><span class="chev">›</span></button>
+      <div class="ro"><span class="crest sm" style="background:var(--ac-soft);color:var(--ac)">${ico('i-mail')}</span><div><div class="t">Recibir novedades</div><div class="s">Puedes cambiarlo cuando quieras</div></div><button type="button" class="toggle ${a?.items?.novedades?'on':''}" data-act="toggle-novedades" aria-pressed="${!!a?.items?.novedades}" aria-label="Recibir novedades"></button></div>
+      <button type="button" data-act="descargar-datos"><span class="crest sm" style="background:var(--ac-soft);color:var(--ac)">${ico('i-down')}</span><div><div class="t">Descargar mis datos</div><div class="s">Archivo con todo lo que guardamos de ti</div></div><span class="chev">›</span></button>
+      <button type="button" data-act="borrar-cuenta"><span class="crest sm" style="background:#fdecea;color:var(--loss)">${ico('i-x')}</span><div><div class="t" style="color:var(--loss)">Eliminar mi cuenta</div><div class="s">${ui.rol==='entrenador' ? 'Primero transfiere el equipo a otro entrenador' : 'Se borra en 30 días; puedes arrepentirte antes'}</div></div><span class="chev">›</span></button>
+    </div></div>`;
+}
+function hojaPremium(){
+  openSheet('FutData Premium', `<div class="card" style="display:grid;gap:6px"><b style="font-size:16px">7 días gratis, después $59 MXN al mes</b>
+    <span class="mu" style="font-size:12.5px">o $499 MXN al año · IVA incluido · se cobra por la tienda de tu teléfono</span>
+    <ul style="margin:6px 0 0;padding-left:18px;font-size:12.5px;display:grid;gap:4px"><li>Proyección de la liga y probabilidades del torneo</li><li>Marcador durante el partido, minutos reales y asistencia</li><li>Nube, varios dispositivos y cuerpo técnico</li></ul></div>
+    <p class="hint" style="margin:0">La suscripción se renueva automáticamente al terminar la prueba y cada mes, hasta que la canceles en la tienda (App Store o Google Play) al menos 24 horas antes. Puedes restaurar tus compras en otro teléfono. Al continuar aceptas los <a data-act="leer-terminos" href="#" class="link">Términos</a> y el <a data-act="leer-aviso" href="#" class="link">Aviso de Privacidad</a>.</p>
+    <button class="btn pri" type="button" data-act="premium-confirmar">Iniciar prueba gratis de 7 días</button><button class="btn ghost" type="button" data-act="close">Ahora no</button>`);
+}
+
+/* ===================== miembros e invitaciones (credenciales) ===================== */
+const ALFA = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';   // sin 0/O ni 1/I/L para no confundir
+const ROLINV = {staff:'Cuerpo técnico', jugador:'Jugador', padre:'Padre / tutor'};
+const VIGENCIAS = [[24,'24 horas'],[72,'3 días'],[168,'7 días']];
+const MAX_TUTORES = 2, MAX_INTENTOS = 5, BLOQUEO_MIN = 15;
+function generarCodigo(){ const b = new Uint8Array(10); crypto.getRandomValues(b); const c = [...b].map(x=>ALFA[x % 32]).join(''); return `FUT-${c.slice(0,5)}-${c.slice(5)}`; }
+function sha256Hex(bytes){  // respaldo cuando crypto.subtle no existe (páginas no seguras)
+  const K = [0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+  const H = [0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+  const l = bytes.length, n = ((l + 9 + 63) >> 6) << 6, m = new Uint8Array(n); m.set(bytes); m[l] = 0x80;
+  const dv = new DataView(m.buffer); dv.setUint32(n - 4, l * 8); dv.setUint32(n - 8, Math.floor(l / 0x20000000));
+  const w = new Uint32Array(64), rot = (x, k) => (x >>> k) | (x << (32 - k));
+  for (let o = 0; o < n; o += 64){
+    for (let i = 0; i < 16; i++) w[i] = dv.getUint32(o + 4*i);
+    for (let i = 16; i < 64; i++){ const s0 = rot(w[i-15],7)^rot(w[i-15],18)^(w[i-15]>>>3), s1 = rot(w[i-2],17)^rot(w[i-2],19)^(w[i-2]>>>10); w[i] = (w[i-16]+s0+w[i-7]+s1)|0; }
+    let [a,b,c,d,e,f,g,h] = H;
+    for (let i = 0; i < 64; i++){ const t1 = (h + (rot(e,6)^rot(e,11)^rot(e,25)) + ((e&f)^(~e&g)) + K[i] + w[i])|0, t2 = ((rot(a,2)^rot(a,13)^rot(a,22)) + ((a&b)^(a&c)^(b&c)))|0;
+      h = g; g = f; f = e; e = (d + t1)|0; d = c; c = b; b = a; a = (t1 + t2)|0; }
+    H[0]=(H[0]+a)|0; H[1]=(H[1]+b)|0; H[2]=(H[2]+c)|0; H[3]=(H[3]+d)|0; H[4]=(H[4]+e)|0; H[5]=(H[5]+f)|0; H[6]=(H[6]+g)|0; H[7]=(H[7]+h)|0;
+  }
+  return H.map(x=>(x>>>0).toString(16).padStart(8,'0')).join('');
+}
+async function hashCodigo(code){ const bytes = new TextEncoder().encode(String(code).trim().toUpperCase());
+  if (globalThis.crypto?.subtle){ const d = await crypto.subtle.digest('SHA-256', bytes); return [...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,'0')).join(''); }
+  return sha256Hex(bytes); }
+function seedMiembros(hoy){
+  const t = d => { const x = new Date(hoy); x.setDate(x.getDate()+d); return isoLocal(x); };
+  return { miembros:[
+      {id:'m1', persona:'Arturo Medina', rol:'entrenador', contacto:'arturo@correo.mx', desde:t(-200), estado:'activo'},
+      {id:'m2', persona:'Hugo Treviño', rol:'staff', contacto:'+52 664 555 0102', desde:t(-120), estado:'activo'},
+      {id:'m3', persona:'Emilio Mora', rol:'jugador', jugadorId:'j10', contacto:'emilio@correo.mx', desde:t(-90), estado:'activo'},
+      {id:'m4', persona:'Laura Soto', rol:'padre', jugadorId:'j6', contacto:'+52 664 555 0166', desde:t(-60), estado:'activo'},
+      {id:'m5', persona:'Omar Gil', rol:'jugador', jugadorId:'j13', contacto:'omar.gil@correo.mx', desde:t(0), estado:'por_aprobar', invId:'i0', dispositivo:'Android · Tijuana'}],
+    invitaciones:[
+      {id:'i0', rol:'jugador', jugadorId:'j13', para:'Omar', creada:t(-1), expira:t(2), estado:'canjeada', hash:null},
+      {id:'i1', rol:'padre', jugadorId:'j9', para:'Papá de Marco', creada:t(-1), expira:t(2), estado:'pendiente', hash:null, codigoDemo:'FUT-K7Q2M-X9PTA'}],
+    intentos:{ fallidos:[], bloqueadoHasta:null }, auditoria:[] };
+}
+function auditar(txt){ S.acc.auditoria.unshift({fecha:isoLocal(new Date()), quien:ROLES[ui.rol].persona, txt}); S.acc.auditoria = S.acc.auditoria.slice(0, 30); }
+const vencida = i => i.estado==='pendiente' && i.expira < isoLocal(new Date());
+const estadoInv = i => vencida(i) ? 'vencida' : i.estado;
+function vMiembros(){
+  const A = S.acc, act = A.miembros.filter(m=>m.estado==='activo'), por = A.miembros.filter(m=>m.estado==='por_aprobar'), inv = A.invitaciones.filter(i=>['pendiente'].includes(i.estado));
+  const quien = m => m.jugadorId ? `${m.rol==='padre'?'Tutor de ':''}${esc(jug(m.jugadorId)?.nombre||'—')}` : '';
+  let html = `<div class="card" style="display:grid;gap:6px"><b>Cada persona entra con su propia cuenta</b>
+    <span class="mu" style="font-size:12.5px">Tú no creas ni ves contraseñas: envías una invitación de un solo uso. Quien la recibe crea su cuenta con su correo o teléfono, y tú apruebas que sea la persona correcta.</span>
+    <button class="btn pri" type="button" data-act="invitar">+ Invitar</button></div>`;
+  if (por.length) html += `<div class="sec">Por aprobar · ${por.length}</div>` + por.map(m=>`<div class="card aprob"><div><b>${esc(m.persona)}</b> <span class="badge prog">${ROLINV[m.rol]}</span><div class="mu" style="font-size:12px">${quien(m)} · ${esc(m.contacto)}</div>
+      <div class="mu" style="font-size:11.5px">Canjeó la invitación ${fFecha(m.desde)} desde ${esc(m.dispositivo||'un teléfono')}. Confirma que es quien debe ser.</div></div>
+      <div class="actions"><button class="btn del" type="button" data-act="rechazar-miembro" data-id="${m.id}">Rechazar</button><button class="btn pri" type="button" data-act="aprobar-miembro" data-id="${m.id}">Aprobar</button></div></div>`).join('');
+  html += `<div class="sec">Invitaciones enviadas</div><div class="card list" style="padding:4px 14px">${inv.length ? inv.map(i=>`<div class="ro"><span class="rolav ${i.rol}">${ROLES[i.rol].corto}</span>
+      <div><div class="t">${esc(i.para||ROLINV[i.rol])} <span class="mu" style="font-weight:600;font-size:11.5px">· ${ROLINV[i.rol]}</span></div><div class="s">${i.jugadorId?esc(jug(i.jugadorId)?.nombre)+' · ':''}${vencida(i)?'<b style="color:var(--loss)">Venció</b>':`vence ${fFecha(i.expira)} ${fHora(i.expira)}`}</div></div>
+      <span style="display:flex;gap:6px">${i.codigoDemo && !vencida(i) ? `<button class="link" type="button" data-act="simular-canje" data-id="${i.id}" style="font-size:11.5px">Simular canje</button>` : ''}<button class="btn del" type="button" data-act="revocar-inv" data-id="${i.id}" style="padding:6px 9px;font-size:11.5px">${vencida(i)?'Quitar':'Revocar'}</button></span></div>`).join('') : '<div class="empty">No hay invitaciones pendientes.</div>'}</div>`;
+  const orden = {entrenador:0, staff:1, jugador:2, padre:3};
+  html += `<div class="sec">Con acceso · ${act.length}</div><div class="card list" style="padding:4px 14px">${act.sort((a,b)=>orden[a.rol]-orden[b.rol]).map(m=>`<div class="ro"><span class="rolav ${m.rol}">${ROLES[m.rol].corto}</span>
+      <div><div class="t">${esc(m.persona)}</div><div class="s">${ROLES[m.rol].nombre}${m.jugadorId?' · '+quien(m):''} · desde ${fFecha(m.desde)}</div></div>
+      ${m.rol==='entrenador' ? '<span class="badge prog">Dueño</span>' : `<button class="btn del" type="button" data-act="quitar-miembro" data-id="${m.id}" style="padding:6px 9px;font-size:11.5px">Quitar</button>`}</div>`).join('')}</div>`;
+  if (A.auditoria.length) html += `<div class="sec">Registro de accesos</div><div class="card" style="display:grid;gap:6px">${A.auditoria.slice(0,8).map(a=>`<div style="font-size:12px"><span class="mu num">${fFecha(a.fecha)} ${fHora(a.fecha)}</span> · ${esc(a.txt)}</div>`).join('')}</div>`;
+  html += `<p class="hint" style="margin:0">Las invitaciones sirven una sola vez, vencen solas y quedan ligadas al rol y al jugador que elegiste; quien la canjea no puede cambiarlos. Si alguien sale del equipo, quítale el acceso: se cierra su sesión en todos sus teléfonos.</p>`;
+  return html;
+}
+function formInvitar(){
+  openSheet('Invitar al equipo', `<form data-form="invitar">
+    <div class="field"><span class="lbl">¿A quién invitas?</span><div class="radio" role="radiogroup" aria-label="Rol">${Object.entries(ROLINV).map(([k,v],i)=>`<label><input type="radio" name="rol" value="${k}" ${i===1?'checked':''}>${v}</label>`).join('')}</div></div>
+    <div class="warnbox" data-show-rol="staff">El cuerpo técnico ve teléfonos, asistencia y datos de todo el plantel, y puede registrar resultados. Invita solo a personas de tu confianza.</div>
+    <div class="field" data-show-rol="jugador padre"><label for="f-ij">Jugador</label><select id="f-ij" name="jugadorId">${S.jugadores.slice().sort((a,b)=>a.dorsal-b.dorsal).map(j=>opt(j.id,`${j.dorsal} · ${j.nombre}`,'')).join('')}</select>
+      <span class="hint" data-show-rol="padre">Máximo ${MAX_TUTORES} tutores por jugador.</span></div>
+    <div class="field"><label for="f-ipara">Nombre de quien la recibe</label><input id="f-ipara" name="para" required placeholder="Ej. Mamá de Marco"><span class="hint">Solo para que tú la identifiques en la lista.</span></div>
+    <div class="field"><span class="lbl">Vence en</span><div class="radio" role="radiogroup" aria-label="Vigencia">${VIGENCIAS.map(([h,l],i)=>`<label><input type="radio" name="horas" value="${h}" ${i===1?'checked':''}>${l}</label>`).join('')}</div></div>
+    ${btns('')}</form>`);
+  syncInvitar();
+}
+function syncInvitar(){ const f = $('#sheet form[data-form="invitar"]'); if (!f) return; const r = f.rol.value;
+  f.querySelectorAll('[data-show-rol]').forEach(el=>{ el.hidden = !el.dataset.showRol.split(' ').includes(r); }); }
+function hojaCodigo(inv, code){
+  const msg = `Hola ${inv.para}. Te invito al equipo ${S.equipo.nombre} en FutData como ${ROLINV[inv.rol]}${inv.jugadorId?` (${jug(inv.jugadorId).nombre})`:''}.\n1. Descarga FutData.\n2. Crea tu cuenta con tu correo o teléfono.\n3. Toca "Tengo un código" y escribe: ${code}\nEl código sirve una sola vez y vence el ${fFecha(inv.expira)} a las ${fHora(inv.expira)}.`;
+  openSheet('Invitación lista', `<div class="card" style="display:grid;gap:10px;justify-items:center;text-align:center">
+      <div id="qr" class="qr" aria-label="Código QR de la invitación"></div>
+      <div class="code num">${esc(code)}</div>
+      <span class="mu" style="font-size:12px">${ROLINV[inv.rol]}${inv.jugadorId?' · '+esc(jug(inv.jugadorId).nombre):''} · un solo uso · vence ${fFecha(inv.expira)} ${fHora(inv.expira)}</span></div>
+    <div class="warnbox" style="background:var(--gold-soft);color:#6b4a00">Envíalo por mensaje privado, nunca en el grupo del equipo. Este código solo se muestra ahora; si lo pierdes, revócalo y genera otro.</div>
+    <textarea id="msg-inv" readonly rows="6" style="width:100%;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:10px;font-size:12.5px">${esc(msg)}</textarea>
+    <div class="actions"><button class="btn pri" type="button" data-act="copiar-inv">Copiar mensaje</button><button class="btn" type="button" data-act="close">Listo</button></div>`);
+  const box = $('#qr');
+  if (window.QRCode && box){ try { new QRCode(box, {text:`https://futdata.app/i/${code}`, width:150, height:150, correctLevel: QRCode.CorrectLevel.M}); } catch { box.textContent = ''; } }
+  else if (box) box.innerHTML = '<span class="mu" style="font-size:11px">El código QR aparece al abrirlo con internet.</span>';
+}
+function hojaCanje(){
+  const A = S.acc.intentos, bloq = A.bloqueadoHasta && A.bloqueadoHasta > Date.now();
+  openSheet('Tengo un código', `<form data-form="canje"><p class="mu" style="margin:0;font-size:12.5px">Así lo ve quien recibe la invitación, después de crear su cuenta con su correo o teléfono.</p>
+    <div class="field"><label for="f-code">Código de invitación</label><input id="f-code" name="codigo" required autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="FUT-XXXXX-XXXXX" style="font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase"></div>
+    <div class="field"><label for="f-cnom">Tu nombre</label><input id="f-cnom" name="nombre" required placeholder="Como te conocen en el equipo"></div>
+    ${bloq ? `<div class="warnbox">Demasiados intentos. Vuelve a intentar en ${Math.ceil((A.bloqueadoHasta-Date.now())/60000)} min.</div>` : ''}
+    <div class="err" id="ferr"></div><div class="formbtns"><button class="btn" type="button" data-act="close">Cancelar</button><button class="btn pri" type="submit" ${bloq?'disabled':''}>Canjear</button></div></form>`);
+}
+async function canjear(codigo, nombre){
+  const A = S.acc, I = A.intentos, ahora = Date.now();
+  if (I.bloqueadoHasta && I.bloqueadoHasta > ahora) return `Demasiados intentos. Espera ${Math.ceil((I.bloqueadoHasta-ahora)/60000)} min.`;
+  const h = await hashCodigo(codigo), inv = A.invitaciones.find(i=>i.hash===h);
+  const fallo = m => { I.fallidos = I.fallidos.filter(t=>ahora-t < 3600e3).concat(ahora);
+    if (I.fallidos.length >= MAX_INTENTOS){ I.bloqueadoHasta = ahora + BLOQUEO_MIN*60e3; auditar(`Canje bloqueado ${BLOQUEO_MIN} min por ${MAX_INTENTOS} intentos fallidos`); return `Demasiados intentos. Espera ${BLOQUEO_MIN} min.`; }
+    return `${m} Te quedan ${MAX_INTENTOS - I.fallidos.length} intentos.`; };
+  if (!inv) return fallo('Ese código no existe.');
+  if (inv.estado!=='pendiente') return fallo('Ese código ya se usó o fue revocado.');
+  if (vencida(inv)) return fallo('Ese código ya venció. Pide uno nuevo al entrenador.');
+  inv.estado = 'canjeada'; inv.hash = null;
+  A.miembros.push({id:uid('m'), persona:nombre.trim().slice(0,60), rol:inv.rol, jugadorId:inv.jugadorId, contacto:'(cuenta verificada)', desde:isoLocal(new Date()), estado:'por_aprobar', invId:inv.id, dispositivo:'iPhone · demo'});
+  auditar(`${nombre.trim().slice(0,60)} canjeó una invitación de ${ROLINV[inv.rol]}`);
+  I.fallidos = [];
+  return null;
+}
 
 /* ===================== roles y permisos ===================== */
 const ROLES = {
@@ -727,9 +1134,8 @@ const PERMS = [
   {k:'rsvp_propio', t:'Responder su propia asistencia', r:['jugador','padre'], p:'Cada jugador confirma por sí mismo; el padre o tutor responde por su hijo, sobre todo si es menor de edad.'},
   {k:'stats_propias', t:'Ver sus propias estadísticas (o las de su hijo)', r:['jugador','padre'], p:'Cada quien tiene derecho a consultar su propio progreso.'},
   {k:'alineacion_ver', t:'Ver la alineación cuando está publicada', r:['entrenador','staff','jugador','padre'], p:'Jugadores y padres la ven solo cuando el entrenador la publica, para no generar expectativas con borradores.'},
-  {k:'plantel_ver', t:'Ver el plantel completo (nombre, dorsal, posición)', r:['entrenador','staff','jugador'], p:'Los compañeros se conocen entre sí. Un padre solo ve a su hijo para proteger los datos de otros menores.'},
+  {k:'plantel_ver', t:'Ver el plantel (nombre, dorsal, posición)', r:['entrenador','staff','jugador','padre'], p:'Todos se conocen en persona; teléfonos y fechas de nacimiento no se comparten.'},
   {k:'goleadores', t:'Ver la tabla de goleadores', r:['entrenador','staff','jugador'], p:'Motiva al plantel. A los padres no se les muestra para evitar comparaciones entre niños.'},
-  {k:'lesiones', t:'Ver lesiones de los jugadores', r:['entrenador','staff'], p:'Es información de salud (dato sensible). Cada jugador y su tutor ven solo las suyas.'},
   {k:'convocatoria', t:'Ver y cambiar la convocatoria de todos', r:['entrenador','staff'], p:'Para planear el partido hay que ver a todo el plantel; nadie debe cambiar la respuesta de otro.'},
   {k:'alineacion_editar', t:'Armar y publicar la alineación', r:['entrenador','staff'], p:'Es una decisión técnica del cuerpo técnico.'},
   {k:'registrar', t:'Registrar resultados, eventos en vivo y estadísticas', r:['entrenador','staff'], p:'Pocas personas autorizadas evitan marcadores contradictorios.'},
@@ -737,6 +1143,7 @@ const PERMS = [
   {k:'competicion_editar', t:'Actualizar la tabla y resultados de otros equipos', r:['entrenador','staff'], p:'Se copia de la información oficial de la liga; pocos editores evitan errores.'},
   {k:'competicion_crear', t:'Crear ligas y torneos de la temporada', r:['entrenador'], p:'Define en qué compite el equipo; es una decisión del responsable.'},
   {k:'analisis_avanzado', t:'Análisis comparativos y Premium', r:['entrenador','staff'], p:'Comparar jugadores (con/sin, por partido) sirve para decidir; mostrarlo al plantel o a los padres puede causar conflictos.'},
+  {k:'miembros_gestionar', t:'Invitar, aprobar y quitar miembros del equipo', r:['entrenador'], p:'Son las llaves de acceso al equipo y a datos de menores; solo el responsable las entrega.'},
   {k:'borrar', t:'Eliminar partidos, jugadores, rivales y sedes', r:['entrenador'], p:'No se puede deshacer y borra historial; solo el responsable decide.'},
   {k:'equipo_cuenta', t:'Editar el equipo (nombre, escudo) y pagar el plan', r:['entrenador'], p:'Es la cuenta que se paga; solo el titular la administra.'},
 ];
@@ -751,15 +1158,16 @@ const ACT_PERM = {registrar:'registrar', iniciar:'registrar', finalizar:'registr
   rsvp:'convocatoria', jugo:'convocatoria', 'rsvp-me':'rsvp_propio',
   'set-mod':'alineacion_editar', 'set-form':'alineacion_editar', 'solo-voy':'alineacion_editar', 'auto-lineup':'alineacion_editar', 'clear-lineup':'alineacion_editar', slot:'alineacion_editar', 'slot-set':'alineacion_editar', 'slot-quitar':'alineacion_editar', publicar:'alineacion_editar',
   'edit-tabla':'competicion_editar', 'edit-cruce':'competicion_editar', 'comp-nueva':'competicion_crear', 'comp-editar':'competicion_crear', 'comp-borrar':'competicion_crear', 'do-comp-borrar':'competicion_crear',
+  invitar:'miembros_gestionar', miembros:'miembros_gestionar', 'revocar-inv':'miembros_gestionar', 'aprobar-miembro':'miembros_gestionar', 'rechazar-miembro':'miembros_gestionar', 'quitar-miembro':'miembros_gestionar', 'do-quitar-miembro':'miembros_gestionar', 'simular-canje':'miembros_gestionar', 'premium-confirmar':'equipo_cuenta',
   premium:'equipo_cuenta', 'premium-toggle':'equipo_cuenta', 'edit-equipo':'equipo_cuenta', 'escudo-quitar':'equipo_cuenta'};
-const FORM_PERM = {tabla:'competicion_editar', cruce:'competicion_editar', comp:'competicion_crear', partido:'programar', resultado:'registrar', evento:'registrar', stats:'registrar', jugador:'programar', rival:'programar', sede:'programar', equipo:'equipo_cuenta'};
+const FORM_PERM = {invitar:'miembros_gestionar', tabla:'competicion_editar', cruce:'competicion_editar', comp:'competicion_crear', partido:'programar', resultado:'registrar', evento:'registrar', stats:'registrar', jugador:'programar', rival:'programar', sede:'programar', equipo:'equipo_cuenta'};
 
 function rolPill(){ return `<button type="button" class="rolpill" data-act="rol" aria-label="Cambiar rol de vista: ${ROLES[ui.rol].nombre}">${ico('i-eye')}${ROLES[ui.rol].nombre}<span aria-hidden="true">▾</span></button>`; }
 function hojaRoles(){
   openSheet('Ver la app como…', `<p class="mu" style="margin:0;font-size:12.5px">En la app real cada persona entra con su cuenta y su rol. Aquí puedes cambiar para comparar.</p>
     <div class="card" style="padding:4px 14px">${Object.entries(ROLES).map(([k,r])=>`<button type="button" class="pick" data-act="set-rol" data-r="${k}">
       <span class="rolav ${k}">${r.corto}</span><span><b>${r.nombre}</b> <span class="mu" style="font-size:12px">· ${esc(r.persona)}</span><br><span class="mu" style="font-size:12px">${esc(r.desc)}</span></span>${k===ui.rol?'<span class="badge prog">Actual</span>':'<span class="chev">›</span>'}</button>`).join('')}</div>
-    <button class="btn" type="button" data-act="permisos">Ver tabla de permisos</button>`);
+    <button class="btn" type="button" data-act="permisos">Ver tabla de permisos</button><button class="btn ghost" type="button" data-act="canje">Probar “Tengo un código”</button>`);
 }
 function hojaPermisos(){
   const ks = Object.keys(ROLES);
@@ -816,7 +1224,7 @@ function vConvocatoriaV(p){
       <span class="seg">${[['VOY','Voy','v'],['DUDA','Duda','d'],['NO','No','n']].map(([k,l,cl])=>`<button type="button" class="${v===k?'on '+cl:''}" data-act="rsvp-me" data-id="${p.id}" data-v="${k}">${l}</button>`).join('')}</span></div>
       ${porQue('rsvp_propio')}</div>` : '';
   html += `<div class="card">${rsvpIcons(c,true)}`;
-  if (can('plantel_ver')){
+  if (ui.rol==='jugador'){
     const grupo = (k, icon, cls, txt) => { const js = S.jugadores.filter(j=>(p.rsvp[j.id]||'PENDIENTE')===k);
       return js.length ? `<div class="grupo"><b class="rsvp-ic color" style="font-family:var(--f);font-size:12.5px"><span class="${cls}">${ico(icon)}</span>${txt} · ${js.length}</b><div class="banca">${js.map(j=>`<span ${j.id===q.j?.id?'class="me"':''}>${j.dorsal} · ${esc(apellido(j.nombre))}</span>`).join('')}</div></div>` : ''; };
     html += grupo('VOY','i-like','v','Van') + grupo('DUDA','i-duda','d','En duda') + grupo('NO','i-no','n','No van');
@@ -834,7 +1242,7 @@ function vCanchaV(p){
   const q = quien(), l = lineupDe(p), i = l.indexOf(q.j?.id), sl = slotsDe(formacionDe(p));
   const msg = !q.j ? '' : i>=0 ? `${q.esPadre?esc(q.nombre)+' es titular':'Eres titular'} como <b>${POSTXT[sl[i].rol].toLowerCase()}</b>.` : p.rsvp[q.j.id]==='VOY' ? `${q.esPadre?esc(q.nombre)+' empieza':'Empiezas'} en la banca.` : `${q.esPadre?esc(q.nombre)+' no está':'No estás'} convocado: no ${q.esPadre?'confirmó':'confirmaste'} asistencia.`;
   return `<div class="card row"><div><b>${MODS[modalidadDe(p)].txt}</b> <span class="mu" style="font-size:12px">· ${formacionDe(p).slice(2)}</span></div><span class="badge prog">Publicada</span></div>
-    ${msg?`<div class="insight">${msg}</div>`:''}${pitchHtml(p, false, q.j?.id, ui.rol==='padre')}`;
+    ${msg?`<div class="insight">${msg}</div>`:''}${pitchHtml(p, false, q.j?.id)}`;
 }
 function vAnalisisV(){
   const q = quien(), segs = [['equipo','Equipo'],['yo', q.esPadre ? esc(q.nombre) : 'Yo']];
@@ -872,6 +1280,7 @@ function vEquipoV(){
     <p class="hint" style="margin:0">Solo nombre, dorsal y posición. Teléfonos y fechas de nacimiento no se comparten con el plantel.</p>`;
   else html += `<div class="card list" style="padding:4px 14px">${S.sedes.map(s=>`<div class="ro"><span class="crest sm" style="background:var(--ac-soft);color:var(--ac)"><svg width="16" height="16"><use href="#i-pin"/></svg></span>
       <div><div class="t">${esc(s.nombre)}${s.cancha?' · '+esc(s.cancha):''}</div><div class="s">${MODS[s.modalidad||'F11'].txt} · ${esc(s.direccion||'')}</div></div><a class="link" style="font-size:12.5px" href="${esc(rutaSede(s))}" target="_blank" rel="noopener">Cómo llegar</a></div>`).join('')}</div>`;
+  html += cardPrivacidad();
   if (ui.rol==='jugador') html += `<button class="btn" type="button" data-act="permisos">¿Qué puede ver cada rol?</button>`;
   return html;
 }
@@ -882,7 +1291,15 @@ let lastKey = '';
 function render(resetScroll){
   const v = ui.view, view = $('#view');
   let top = '', body = '', fab = false;
-  if (v && v.name==='partido'){
+  if (necesitaAceptar()){
+    $('#top').innerHTML = `<div style="flex:1"></div>${rolPill()}`; view.innerHTML = vBienvenida(); view.scrollTop = 0; lastKey = 'onb';
+    $('#fab').hidden = true; $('#tabs').innerHTML = ''; const ar = $('#aside-roles'); if (ar) ar.innerHTML = Object.entries(ROLES).map(([k,r])=>`<button type="button" class="${k===ui.rol?'on':''}" data-act="set-rol" data-r="${k}"><span class="rolav ${k}">${r.corto}</span>${r.nombre}</button>`).join(''); return;
+  }
+  if (v && v.name==='miembros'){
+    if (!can('miembros_gestionar')){ ui.view = null; return render(true); }
+    top = `<button class="iconbtn" data-act="back" aria-label="Volver">${ico('i-back')}</button><div style="flex:1;min-width:0"><h2>Miembros y accesos</h2><div class="sub">${S.acc.miembros.filter(m=>m.estado==='activo').length} con acceso</div></div>`;
+    body = vMiembros();
+  } else if (v && v.name==='partido'){
     const p = partido(v.id); if (!p){ ui.view = null; return render(true); }
     top = `<button class="iconbtn" data-act="back" aria-label="Volver">${ico('i-back')}</button>
       <div style="flex:1;min-width:0"><h2>${esc(compDe(p).nombre)}${p.jornada?' · '+esc(p.jornada):''}</h2><div class="sub">${fFecha(p.fecha)} · ${fHora(p.fecha)}</div></div>
@@ -1092,7 +1509,7 @@ function vPartido(p){
 
   if (ui.pTab==='eventos'){
     if (!p.eventos.length) html += `<div class="card empty">${prog?'Los eventos se registran cuando inicia el partido.':'Sin eventos registrados.'}${prog||!can('registrar')?'':`<br><button class="link" type="button" data-act="nuevo-evento" data-id="${p.id}">Agregar gol o tarjeta</button>`}</div>`;
-    else html += `<div class="card" style="padding:4px 14px">` + p.eventos.filter(e=>e.tipo!=='LESION' || esStaff() || e.jugadorId===yoId()).sort((a,b)=>a.min-b.min).map(e=>{
+    else html += `<div class="card" style="padding:4px 14px">` + p.eventos.slice().sort((a,b)=>a.min-b.min).map(e=>{
       const icon = e.tipo==='GOL' ? `<svg width="18" height="18" style="color:${e.rival?'var(--them)':'var(--ac)'}"><use href="#i-ball"/></svg>`
         : e.tipo==='CAMBIO' ? `<svg width="18" height="18" style="color:var(--liga)"><use href="#i-swap"/></svg>` : e.tipo==='LESION' ? `<span class="ic-les" aria-hidden="true">✚</span>` : `<span class="card-${e.tipo==='ROJA'?'r':'y'}"></span>`;
       const quien = e.rival ? esc(rival(p.rivalId).nombre)
@@ -1166,7 +1583,7 @@ function lockCard(title, inner){
   return `<div class="card locked"><div class="inner">${c}</div><div class="over"><b>${title}</b><span class="mu" style="font-size:12px">Disponible en Premium</span>${can('equipo_cuenta') ? '<button type="button" data-act="premium">Probar Premium gratis</button>' : '<span style="font-size:12px;font-weight:600">El entrenador administra el plan.</span>'}</div></div>`;
 }
 function vAnalisis(){
-  const segs = [['temporada','Temporada'],['jugadores','Jugadores'],['rivales','Rivales']];
+  const segs = [['temporada','Temporada'],['proyeccion','Proyección'],['jugadores','Jugadores'],['asistencia','Asistencia'],['rivales','Rivales']];
   let html = `<div class="chips">${segs.map(([k,l])=>`<button type="button" class="${ui.anaSeg===k?'on':''}" data-act="ana-seg" data-s="${k}">${l}</button>`).join('')}</div>`;
   const fin = finalizados();
   if (fin.length===0) return html + `<div class="card empty">Registra tu primer resultado para ver análisis.</div>`;
@@ -1204,10 +1621,13 @@ function vAnalisis(){
       <polyline fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linejoin="round" points="${ac.map((v,i)=>`${X(i)},${Y(v)}`).join(' ')}"/>
       <circle cx="${X(n-1)}" cy="${Y(ac[n-1])}" r="4" fill="var(--ac)"/><text x="${X(n-1)-6}" y="${Y(ac[n-1])-8}" text-anchor="end" font-size="11" font-weight="800" fill="var(--fg)">${ac[n-1]} pts</text>
       <text x="${X(0)}" y="${H-3}" font-size="9.5" fill="var(--mu)">P1</text><text x="${X(n-1)}" y="${H-3}" text-anchor="end" font-size="9.5" fill="var(--mu)">P${n}</text></svg>`;
+    html += cardMarcador();
     html += lockCard('Puntos acumulados en liga', `<div class="legend" style="margin-bottom:4px"><span><i style="background:var(--ac)"></i>Tus puntos</span><span><i style="background:var(--mu)"></i>Ritmo de 2 pts/partido</span></div>${lc}`);
     const nx = proximo();
     if (nx){ const pr = pronostico(nx.rivalId); if (pr) html += lockCard(`Pronóstico vs ${esc(rival(nx.rivalId).nombre)}`, probBar(pr)); }
   }
+  if (ui.anaSeg==='proyeccion') html += vProyeccion();
+  if (ui.anaSeg==='asistencia') html += vAsistencia();
   if (ui.anaSeg==='jugadores'){
     const gs = goleadores(), mx = Math.max(1, ...gs.map(g=>g.g));
     html += `<div class="card"><div class="ctitle"><b>Goleadores</b><span class="mu" style="font-size:11.5px">goles</span></div><div style="display:grid;gap:8px">` +
@@ -1219,6 +1639,7 @@ function vAnalisis(){
         <div style="display:flex;align-items:baseline;gap:10px;margin-top:12px"><span class="bignum">${n}<small>/${fin.length}</small></span><span class="mu" style="font-size:12.5px">partidos jugados de ${fin.length} disputados</span></div>
         <p class="hint" style="margin:8px 0 0">Sale de la “Alineación” de cada partido.</p></div>`; }
     const por = gs.filter(g=>g.pj).map(g=>({...g, x:g.g/g.pj})).sort((a,b)=>b.x-a.x).slice(0,6);
+    html += cardMinutos();
     html += lockCard('Goles por partido jugado', `<div style="display:grid;gap:8px">${por.map(g=>`<div class="bar-row"><span>${esc(apellido(jug(g.id).nombre))}</span><span class="b"><i style="width:${Math.min(100,100*g.x)}%;background:var(--them)"></i></span><b>${g.x.toFixed(2)}</b></div>`).join('') || '<span class="mu">Marca quién jugó en cada partido.</span>'}</div>`);
 
     const top = gs.slice(0,3);
@@ -1256,6 +1677,8 @@ function vEquipo(){
     ${can('equipo_cuenta') ? `<button class="iconbtn" type="button" data-act="edit-equipo" aria-label="Editar equipo">${ico('i-edit')}</button>` : ''}</div>
     <div class="card plan"><div class="txt"><b>Premium</b><div class="mu" style="font-size:12px">${can('equipo_cuenta') ? 'Nube, análisis avanzados y colaboradores. $59 MXN/mes.' : `Plan ${ui.premium?'activo':'no activo'}. Lo administra el entrenador.`}</div></div>
     ${can('equipo_cuenta') ? `<button type="button" class="toggle ${ui.premium?'on':''}" data-act="premium-toggle" aria-pressed="${ui.premium}" aria-label="Activar Premium de prueba"></button>` : ''}</div>`;
+  if (can('miembros_gestionar')){ const por = S.acc.miembros.filter(m=>m.estado==='por_aprobar').length;
+    html += `<button type="button" class="card plan" data-act="miembros" style="width:100%;text-align:left">${'<span class="crest sm" style="background:var(--ac-soft);color:var(--ac)">'+ico('i-key')+'</span>'}<div class="txt"><b>Miembros y accesos</b><div class="mu" style="font-size:12px">${S.acc.miembros.filter(m=>m.estado==='activo').length} con acceso · invita al cuerpo técnico, jugadores y padres</div></div>${por?`<span class="badge" style="background:#f0a92a;color:#3d2600">${por} por aprobar</span>`:'<span class="chev">›</span>'}</button>`; }
   const segs = [['plantel','Plantel'],['rivales','Rivales'],['sedes','Sedes']];
   html += `<div class="chips">${segs.map(([k,l])=>`<button type="button" class="${ui.eqSeg===k?'on':''}" data-act="eq-seg" data-s="${k}">${l}</button>`).join('')}</div>`;
   let items = '';
@@ -1272,6 +1695,7 @@ function vEquipo(){
   }
   html += `<div class="card list" style="padding:4px 14px">${items || '<div class="empty">Vacío</div>'}</div>`;
   html += `<button class="btn pri" type="button" data-act="eq-add">+ Agregar ${({plantel:'jugador',rivales:'rival',sedes:'sede'})[ui.eqSeg]}</button>`;
+  html += cardPrivacidad();
   html += `<button class="btn" type="button" data-act="permisos">¿Qué puede ver cada rol?</button>`;
   html += `<button class="btn ghost" type="button" data-act="reset">Restablecer datos de ejemplo</button>`;
   return html;
@@ -1450,6 +1874,8 @@ document.addEventListener('click', ev=>{
   const a = el.dataset.act, id = el.dataset.id;
   if (ACT_PERM[a] && !can(ACT_PERM[a])){ toast(`Tu rol (${ROLES[ui.rol].nombre}) no puede hacer esto`); return; }
   if (a==='scrim'){ if (ev.target===el) closeSheet(); return; }
+  if (el.tagName==='A' && el.getAttribute('href')==='#') ev.preventDefault();
+  if (necesitaAceptar() && !['leer-terminos','leer-aviso','close','rol','set-rol','permisos','reset','canje','scrim'].includes(a)) return;
   switch(a){
     case 'tab': ui.tab = el.dataset.tab; ui.view = null; render(true); break;
     case 'back': ui.view = null; render(true); break;
@@ -1489,8 +1915,28 @@ document.addEventListener('click', ev=>{
     case 'cal-fil': ui.calFil = el.dataset.f; render(); break;
     case 'ana-seg': ui.anaSeg = el.dataset.s; render(true); break;
     case 'ana-rival': ui.anaRival = el.dataset.r; render(); break;
-    case 'premium': ui.premium = true; toast('Premium activado (demo)'); render(); break;
-    case 'premium-toggle': ui.premium = !ui.premium; toast(ui.premium?'Premium activado (demo)':'Volviste al plan Gratis'); render(); break;
+    case 'premium': hojaPremium(); break;
+    case 'premium-confirmar': ui.premium = true; closeSheet(); toast('Prueba Premium activada (demo)'); render(); break;
+    case 'premium-toggle': if (!ui.premium) hojaPremium(); else { ui.premium = false; toast('Volviste al plan Gratis'); render(); } break;
+    case 'leer-terminos': hojaTexto('Términos y Condiciones', TXT_TERMINOS); break;
+    case 'leer-aviso': hojaTexto('Aviso de Privacidad', TXT_AVISO); break;
+    case 'toggle-novedades': { const ac = aceptacion(); ac.items.novedades = !ac.items.novedades; toast(ac.items.novedades ? 'Recibirás novedades' : 'Ya no recibirás novedades'); render(); break; }
+    case 'descargar-datos': { const yo = yoId(), datos = {cuenta:{persona:ROLES[ui.rol].persona, rol:ROLES[ui.rol].nombre}, consentimientos:aceptacion(),
+        ...(yo ? {jugador:jug(yo), partidos_jugados:finalizados().filter(p=>p.jugaron.includes(yo)).map(p=>({fecha:p.fecha, rival:rival(p.rivalId).nombre})), eventos:S.partidos.flatMap(p=>p.eventos.filter(e=>e.jugadorId===yo).map(e=>({partido:p.id, ...e})))} : {})};
+      openSheet('Descargar mis datos', `<p class="mu" style="margin:0;font-size:12.5px">En la app se genera un archivo JSON con todo lo que guardamos de ti. Así se ve:</p><pre class="jsonprev">${esc(JSON.stringify(datos, null, 2).slice(0, 2500))}</pre><button class="btn" type="button" data-act="close">Cerrar</button>`); break; }
+    case 'borrar-cuenta': if (ui.rol==='entrenador'){ openSheet('Eliminar mi cuenta', `<p style="margin:0">Eres el dueño del equipo. Antes de eliminar tu cuenta, transfiere el equipo a otro entrenador desde Miembros y accesos, o elimina el equipo completo.</p><button class="btn" type="button" data-act="close">Entendido</button>`); }
+      else confirmar(`Se cerrará tu sesión y tu cuenta se borrará en 30 días. ${ui.rol==='padre'?'Los datos de tu hijo siguen en el equipo; pide al entrenador que los borre si quieres.':''}`, 'do-borrar-cuenta', {}); break;
+    case 'do-borrar-cuenta': { delete S.legal.aceptaciones[ui.rol]; const m = S.acc.miembros.find(x=>x.persona===ROLES[ui.rol].persona); if (m) m.estado = 'eliminada'; closeSheet(); toast('Cuenta eliminada (demo)'); render(true); break; }
+    case 'miembros': ui.view = {name:'miembros'}; render(true); break;
+    case 'invitar': formInvitar(); break;
+    case 'revocar-inv': { const i = S.acc.invitaciones.find(x=>x.id===id); i.estado = 'revocada'; i.hash = null; auditar(`Revocó la invitación de ${i.para||ROLINV[i.rol]}`); toast('Invitación revocada: el código ya no sirve'); render(); break; }
+    case 'aprobar-miembro': { const m = S.acc.miembros.find(x=>x.id===id); m.estado = 'activo'; m.desde = isoLocal(new Date()); auditar(`Aprobó a ${m.persona} como ${ROLINV[m.rol]}`); toast(`${m.persona} ya tiene acceso`); render(); break; }
+    case 'rechazar-miembro': { const m = S.acc.miembros.find(x=>x.id===id); m.estado = 'rechazado'; auditar(`Rechazó a ${m.persona}`); toast('Acceso rechazado'); render(); break; }
+    case 'quitar-miembro': { const m = S.acc.miembros.find(x=>x.id===id); confirmar(`${esc(m.persona)} perderá el acceso al equipo y se cerrará su sesión en todos sus teléfonos.`, 'do-quitar-miembro', {id}); break; }
+    case 'do-quitar-miembro': { const m = S.acc.miembros.find(x=>x.id===id); m.estado = 'quitado'; auditar(`Quitó el acceso a ${m.persona}`); closeSheet(); toast('Acceso retirado'); render(); break; }
+    case 'simular-canje': { const i = S.acc.invitaciones.find(x=>x.id===id); hojaCanje(); $('#f-code').value = i.codigoDemo; $('#f-cnom').value = i.para; break; }
+    case 'canje': hojaCanje(); break;
+    case 'copiar-inv': { const t = $('#msg-inv'); navigator.clipboard?.writeText(t.value).then(()=>toast('Mensaje copiado')).catch(()=>{ t.select(); toast('Selecciona y copia el mensaje'); }) ?? (t.select(), toast('Selecciona y copia el mensaje')); break; }
     case 'eq-seg': ui.eqSeg = el.dataset.s; render(); break;
     case 'eq-add': ({plantel:()=>formJugador(), rivales:()=>formRival(), sedes:()=>formSede()})[ui.eqSeg](); break;
     case 'edit-equipo': formEquipo(); break;
@@ -1550,6 +1996,8 @@ document.addEventListener('keydown', ev=>{
 document.addEventListener('change', ev=>{
   const t = ev.target;
   if (t.form?.dataset.form==='evento') syncEventoForm();
+  if (t.form?.dataset.form==='aceptar') syncAceptar();
+  if (t.form?.dataset.form==='invitar' && t.name==='rol') syncInvitar();
   if (t.form?.dataset.form==='comp' && t.name==='tipo') syncCompForm();
   if (t.form?.dataset.form==='partido' && t.name==='comp') syncJornada(t.form);
   if (t.id==='f-partjug'){ ui.partJug = t.value; render(); }
@@ -1569,6 +2017,25 @@ document.addEventListener('change', ev=>{
 
 document.addEventListener('submit', ev=>{
   const f = ev.target; if (!f.dataset.form) return; ev.preventDefault();
+  if (f.dataset.form==='aceptar'){ if ([...f.querySelectorAll('[data-req]')].some(i=>!i.checked)){ $('#ferr').textContent = 'Marca las casillas obligatorias para continuar.'; return; }
+    S.legal.aceptaciones[ui.rol] = {version:LEGAL.version, fecha:isoLocal(new Date()), persona:ROLES[ui.rol].persona, items:Object.fromEntries([...f.querySelectorAll('input[type=checkbox]')].map(i=>[i.name, i.checked]))};
+    toast('Listo, bienvenido'); render(true); return; }
+  if (f.dataset.form==='canje'){ const d0 = Object.fromEntries(new FormData(f)); canjear(String(d0.codigo||'').slice(0,40), String(d0.nombre||'')).then(e=>{
+      if (e){ const er = $('#ferr'); if (er) er.textContent = e; return; } closeSheet(); toast('Código aceptado. El entrenador debe aprobarte.'); render(); }); return; }
+  if (f.dataset.form==='invitar'){
+    if (!can('miembros_gestionar')){ toast(`Tu rol (${ROLES[ui.rol].nombre}) no puede invitar`); closeSheet(); return; }
+    const d0 = Object.fromEntries(new FormData(f)), rol = d0.rol, jid = rol==='staff' ? null : d0.jugadorId, para = String(d0.para||'').trim().slice(0,60), horas = [24,72,168].includes(+d0.horas) ? +d0.horas : 72;
+    const er = m => { $('#ferr').textContent = m; };
+    if (!ROLINV[rol]) return er('Elige un rol.');
+    if (!para) return er('Escribe a quién se la envías.');
+    if (jid && !jug(jid)) return er('Elige un jugador.');
+    const vivos = S.acc.miembros.filter(m=>['activo','por_aprobar'].includes(m.estado)), pend = S.acc.invitaciones.filter(i=>i.estado==='pendiente' && !vencida(i));
+    if (rol==='jugador' && (vivos.some(m=>m.rol==='jugador' && m.jugadorId===jid) || pend.some(i=>i.rol==='jugador' && i.jugadorId===jid))) return er(`${jug(jid).nombre} ya tiene cuenta o una invitación pendiente.`);
+    if (rol==='padre' && vivos.filter(m=>m.rol==='padre' && m.jugadorId===jid).length + pend.filter(i=>i.rol==='padre' && i.jugadorId===jid).length >= MAX_TUTORES) return er(`${jug(jid).nombre} ya tiene ${MAX_TUTORES} tutores o invitaciones de tutor.`);
+    const code = generarCodigo(), exp = new Date(Date.now() + horas*3600e3);
+    hashCodigo(code).then(h=>{ const inv = {id:uid('i'), rol, jugadorId:jid, para, creada:isoLocal(new Date()), expira:isoLocal(exp), estado:'pendiente', hash:h, codigoDemo:code};
+      S.acc.invitaciones.push(inv); auditar(`Invitó a ${para} como ${ROLINV[rol]}`); render(); hojaCodigo(inv, code); });
+    return; }
   if (FORM_PERM[f.dataset.form] && !can(FORM_PERM[f.dataset.form])){ toast(`Tu rol (${ROLES[ui.rol].nombre}) no puede guardar esto`); closeSheet(); return; }
   const d = Object.fromEntries(new FormData(f)), id = f.dataset.id, err = m => { $('#ferr').textContent = m; };
   for (const k in d) if (typeof d[k]==='string') d[k] = d[k].slice(0, LIMITES[k] || 80);
@@ -1631,9 +2098,9 @@ document.addEventListener('submit', ev=>{
         else arr[i] = null; }
       toast('Cruce guardado'); break; }
     case 'comp': { const nombre = d.nombre.trim(); if (!nombre) return err('Escribe el nombre.');
-      if (f.dataset.c){ const C = compById(f.dataset.c); C.nombre = nombre; C.temporada = d.temporada.trim(); if (C.tipo==='LIGA') C.clasifican = Math.max(0, parseInt(d.clasifican)||0); toast('Competición actualizada'); }
+      if (f.dataset.c){ const C = compById(f.dataset.c); C.nombre = nombre; C.temporada = d.temporada.trim(); if (C.tipo==='LIGA'){ C.clasifican = Math.max(0, parseInt(d.clasifican)||0); C.jornadas = Math.max(1, Math.min(60, parseInt(d.jornadas)||18)); } toast('Competición actualizada'); }
       else { const id = uid('c'), tipo = d.tipo;
-        if (tipo==='LIGA') S.comp.lista.push({id, tipo, nombre, temporada:d.temporada.trim(), clasifican:Math.max(0, parseInt(d.clasifican)||0), actualizado:isoLocal(new Date()).slice(0,10),
+        if (tipo==='LIGA') S.comp.lista.push({id, tipo, nombre, temporada:d.temporada.trim(), clasifican:Math.max(0, parseInt(d.clasifican)||0), jornadas:Math.max(1, Math.min(60, parseInt(d.jornadas)||18)), actualizado:isoLocal(new Date()).slice(0,10),
           filas: new FormData(f).getAll('riv').map(r=>({id:r, g:0,e:0,p:0,gf:0,gc:0}))});
         else { const tam = +d.tam; S.comp.lista.push({id, tipo, nombre, temporada:d.temporada.trim(), rondas:RONDAS[tam].slice(), llave:['yo', ...Array(tam-1).fill(null)], res:{}}); }
         ui.compSel = id; ui.ronda = null; toast(`${TIPOTXT[tipo]} creada`); }

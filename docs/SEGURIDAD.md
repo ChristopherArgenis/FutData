@@ -15,9 +15,9 @@ node tests/seguridad_prototipo.js            # prototipo (requiere Playwright)
 
 | Suite | Pruebas | Resultado |
 |---|---|---|
-| Reglas de acceso en la nube (RLS, Postgres) | 58 | 58 ✓ |
+| Reglas de acceso en la nube (RLS, Postgres) | 90 | 90 ✓ (incluye 32 de credenciales) |
 | Base local SQLite | 19 | 19 ✓ |
-| Prototipo (navegador) | 21 | 21 ✓ después de corregir 5 hallazgos |
+| Prototipo (navegador) | 35 | 35 ✓ (incluye términos e invitaciones) |
 
 ### Qué se probó
 
@@ -45,8 +45,13 @@ nombres de otros menores visibles para un padre; lesiones ajenas visibles.
 | 1 | Un enlace con dominio que imita a Google (`https://www.google.com.evil.example/maps`) pasaba como enlace de Maps | Medio: “Cómo llegar” podía llevar a un sitio falso (phishing) | Validación por nombre de host exacto con `URL()` y lista de dominios permitidos |
 | 2 | Un color manipulado (`red;background-image:url(...)`) se guardaba tal cual | Bajo: inyección de CSS, rastreo por imagen externa | Solo se aceptan colores `#rrggbb` |
 | 3 | Sin límite de largo en textos | Bajo: llenar la base o romper pantallas | Límite en cada campo (80 caracteres, notas 500) en formulario y al guardar |
-| 4 | El padre veía los nombres de los otros niños en la alineación publicada | Medio: contradice la regla de privacidad de menores | El padre ve solo el nombre y dorsal de su hijo; los demás lugares aparecen vacíos |
-| 5 | Las lesiones (dato de salud) las veía todo el equipo | Alto (legal): dato sensible de menores | Solo cuerpo técnico, el jugador y su tutor; aplicado en app y en RLS |
+| 4 | El padre veía los nombres de los otros niños en la alineación publicada | — | **Revertido por decisión de producto (19 nov 2026):** los padres ven alineación y plantel porque conocen a los niños en persona. Teléfonos y fechas de nacimiento siguen ocultos |
+| 5 | Las lesiones (dato de salud) las veía todo el equipo | Legal | **Se mantienen visibles por decisión de producto** (avisar ausencias). Mitigación: consentimiento expreso de datos de salud al iniciar la app (jugador y tutor) y declaración del entrenador; queda registrado con fecha y versión |
+
+## Credenciales
+
+Diseño completo en [`docs/CREDENCIALES.md`](CREDENCIALES.md): invitaciones de un solo uso, ligadas a rol y jugador, con vencimiento,
+hash del código, bloqueo tras 5 intentos y aprobación del entrenador antes de dar acceso.
 
 ## Recomendaciones para la app real (Flutter)
 

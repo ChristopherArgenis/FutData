@@ -46,6 +46,7 @@ async function como(user, sql, params=[]){
   finally { await db.exec('reset role'); }
 }
 const resultados = []; let fallos = 0;
+function caso_manual(seccion, desc, pasa, det){ if (!pasa) fallos++; resultados.push({seccion, desc, pasa, espera:'sí', obtenido: pasa ? 'sí' : `no ${det||''}`}); }
 async function caso(seccion, desc, user, sql, espera, params){
   const r = await como(user, sql, params);
   let pasa, obtenido;
@@ -67,7 +68,7 @@ await caso(S1, 'Visitante sin sesión no puede leer partidos', null, `select * f
 await caso(S1, 'Visitante sin sesión no puede leer jugadores', null, `select * from jugadores`, 'error');
 
 const S2 = '2 · Padre / tutor';
-await caso(S2, 'Ve solo a su hijo en el plantel', U.padre, `select * from jugadores`, 1);
+await caso(S2, 'Ve el plantel del equipo (decisión: se conocen en persona)', U.padre, `select id,nombre,dorsal from jugadores`, 3);
 await caso(S2, 'Ve solo los datos privados de su hijo', U.padre, `select * from jugadores_privado`, 1);
 await caso(S2, 'Ve solo la convocatoria de su hijo', U.padre, `select * from convocatorias`, 1);
 await caso(S2, 'Puede responder por su hijo', U.padre, `update convocatorias set respuesta='NO_VOY' where jugador_id='${ID.kevin}'`, 1);
@@ -106,9 +107,9 @@ await caso(S4, 'No puede invitar miembros ni cambiar roles', U.staff, `insert in
 await caso(S4, 'No puede colgar un evento de un partido de otro equipo', U.staff, `insert into eventos(partido_id,equipo_id,tipo,minuto) values ('${ID.pB}','${ID.A}','GOL',5)`, 'error');
 await caso(S4, 'No puede escribir con el equipo_id de otro equipo', U.staff, `insert into eventos(partido_id,equipo_id,tipo,minuto) values ('${ID.pB}','${ID.B}','GOL',5)`, 'error');
 
-const SL = '4b · Lesiones (dato de salud)';
-await caso(SL, 'El padre solo ve la lesión de su hijo', U.padre, `select * from eventos where tipo='LESION'`, 1);
-await caso(SL, 'El jugador no ve lesiones de compañeros', U.jug, `select * from eventos where tipo='LESION'`, 0);
+const SL = '4b · Lesiones (visibles para el equipo, con consentimiento)';
+await caso(SL, 'El padre ve las lesiones del equipo', U.padre, `select * from eventos where tipo='LESION'`, 2);
+await caso(SL, 'El jugador ve las lesiones del equipo', U.jug, `select * from eventos where tipo='LESION'`, 2);
 await caso(SL, 'El cuerpo técnico ve todas las lesiones', U.staff, `select * from eventos where tipo='LESION'`, 2);
 await caso(SL, 'Todos siguen viendo los goles', U.padre, `select * from eventos where tipo='GOL'`, 2);
 const S5 = '5 · Después de publicar la alineación';
@@ -118,7 +119,7 @@ await caso(S5, 'El jugador ya ve la alineación', U.jug, `select * from alineaci
 const S6 = '6 · Entrenador';
 await caso(S6, 'Ve la suscripción de su equipo', U.ent, `select * from suscripciones`, 1);
 await caso(S6, 'No puede activarse Premium por su cuenta (solo el servidor)', U.ent, `update suscripciones set plan='CLUB'`, 'error');
-await caso(S6, 'Invita a un nuevo miembro del cuerpo técnico', U.ent, `insert into miembros_equipo(equipo_id,usuario_id,rol) values ('${ID.A}','${U.extra}','staff')`, 1);
+await caso(S6, 'Ni el entrenador puede dar acceso directo: solo por invitación', U.ent, `insert into miembros_equipo(equipo_id,usuario_id,rol) values ('${ID.A}','${U.extra}','staff')`, 'error');
 await caso(S6, 'Puede borrar un partido (y sus eventos)', U.ent, `delete from partidos where id='${ID.pA}'`, 1);
 
 const S7 = '7 · Inyección SQL y validación';
@@ -127,6 +128,53 @@ await caso(S7, 'La tabla partidos sigue existiendo', U.ent, `select count(*) fro
 await caso(S7, 'Rechaza minutos imposibles', U.staff, `insert into eventos(partido_id,equipo_id,tipo,minuto) values ('${ID.pA}','${ID.A}','GOL',500)`, 'error');
 await caso(S7, 'Rechaza goles negativos', U.staff, `insert into partidos(equipo_id,rival,fecha_hora,goles_favor) values ('${ID.A}','X',now(),-3)`, 'error');
 await caso(S7, 'Rechaza roles inventados', U.ent, `insert into miembros_equipo(equipo_id,usuario_id,rol) values ('${ID.A}','${U.entB}','admin')`, 'error');
+
+const S8 = '8 · Credenciales: invitaciones, canje y aprobación';
+const NUEVO = '00000000-0000-0000-0000-0000000000d1', OTRO = '00000000-0000-0000-0000-0000000000d2', ATAC = '00000000-0000-0000-0000-0000000000d3';
+const inv = async (user, rol, jug, horas=72) => como(user, `select crear_invitacion($1,$2,$3,'prueba',$4) as c`, [ID.A, rol, jug, horas]);
+await caso(S8, 'El cuerpo técnico no puede crear invitaciones', U.staff, `select crear_invitacion('${ID.A}','staff',null,'x',72)`, 'error');
+await caso(S8, 'Un jugador no puede crear invitaciones', U.jug, `select crear_invitacion('${ID.A}','staff',null,'x',72)`, 'error');
+await caso(S8, 'Un padre no puede crear invitaciones', U.padre, `select crear_invitacion('${ID.A}','padre','${ID.kevin}','x',72)`, 'error');
+await caso(S8, 'Nadie puede invitar a alguien como entrenador', U.ent, `select crear_invitacion('${ID.A}','entrenador',null,'x',72)`, 'error');
+await caso(S8, 'No se permiten vigencias de más de 7 días', U.ent, `select crear_invitacion('${ID.A}','staff',null,'x',720)`, 'error');
+await caso(S8, 'El entrenador de otro equipo no puede invitar al nuestro', U.entB, `select crear_invitacion('${ID.A}','staff',null,'x',72)`, 'error');
+await caso(S8, 'No se puede invitar como jugador a quien ya tiene cuenta', U.ent, `select crear_invitacion('${ID.A}','jugador','${ID.mora}','x',72)`, 'error');
+const r1 = await inv(U.ent, 'padre', ID.rivas); const code = r1.rows?.[0]?.c;
+caso_manual(S8, 'El entrenador crea una invitación con formato FUT-XXXXX-XXXXX', /^FUT-[A-HJ-NP-Z2-9]{5}-[A-HJ-NP-Z2-9]{5}$/.test(code||''), code);
+const guardado = (await como(U.ent, `select * from invitaciones where para='prueba'`)).rows?.[0] || {};
+caso_manual(S8, 'La base guarda solo el hash, nunca el código', !JSON.stringify(guardado).includes(code) && /^[0-9a-f]{64}$/.test(guardado.codigo_hash||''));
+await caso(S8, 'Un jugador no puede leer las invitaciones ni sus hashes', U.jug, `select * from invitaciones`, 0);
+await inv(U.ent, 'padre', ID.rivas);
+await caso(S8, 'Máximo 2 tutores por jugador', U.ent, `select crear_invitacion('${ID.A}','padre','${ID.rivas}','x',72)`, 'error');
+await caso(S8, 'Sin sesión no se puede canjear', null, `select canjear_invitacion('${code}')`, 'error');
+for (let k=0; k<5; k++) await como(ATAC, `select canjear_invitacion($1)`, ['FUT-AAAAA-AAAA' + 'BCDEF'[k]]);
+await caso(S8, 'Tras 5 intentos fallidos se bloquea, aun con el código correcto', ATAC, `select canjear_invitacion('${code}')`, 'error');
+await caso(S8, 'Un código con espacios o minúsculas se reconoce igual', NUEVO, `select canjear_invitacion($1) as m`, 1, ['  ' + code.toLowerCase() + ' ']);
+await caso(S8, 'Quien canjea queda “por aprobar”, con el rol y jugador de la invitación', U.ent, `select * from miembros_equipo where usuario_id='${NUEVO}' and estado='por_aprobar' and rol='padre' and jugador_id='${ID.rivas}'`, 1);
+await caso(S8, 'Mientras no lo aprueben, no ve nada del equipo', NUEVO, `select * from jugadores`, 0);
+const reuso = await como(OTRO, `select canjear_invitacion($1) as m`, [code]);
+caso_manual(S8, 'Un código no sirve dos veces', reuso.ok && reuso.rows[0].m === null);
+await caso(S8, 'Quien canjeó no puede aprobarse a sí mismo', NUEVO, `select resolver_miembro((select id from miembros_equipo where usuario_id='${NUEVO}'), true)`, 'error');
+await caso(S8, 'Quien canjeó no puede cambiarse el rol', NUEVO, `update miembros_equipo set rol='staff', jugador_id=null where usuario_id='${NUEVO}'`, 0);
+await caso(S8, 'El cuerpo técnico no puede aprobar', U.staff, `select resolver_miembro((select id from miembros_equipo where usuario_id='${NUEVO}'), true)`, 'error');
+await caso(S8, 'El entrenador de otro equipo no puede aprobar', U.entB, `select resolver_miembro('${'00000000-0000-0000-0000-000000000000'}', true)`, 'error');
+await caso(S8, 'El entrenador aprueba', U.ent, `select resolver_miembro((select id from miembros_equipo where usuario_id='${NUEVO}'), true)`, 1);
+await caso(S8, 'Ya aprobado, ve el equipo y su plantel', NUEVO, `select * from equipos e join jugadores j on j.equipo_id = e.id where e.id='${ID.A}' limit 1`, 1);
+await db.exec(`update invitaciones set expira_en = now() - interval '1 minute', creada_en = now() - interval '2 days' where para='prueba' and usada_en is null`);
+const vencido = (await como(U.ent, `select crear_invitacion($1,'staff',null,'vence',24) as c`, [ID.A])).rows[0].c;
+await db.exec(`update invitaciones set expira_en = now() - interval '1 minute', creada_en = now() - interval '2 days' where para='vence'`);
+const rv = await como(OTRO, `select canjear_invitacion($1) as m`, [vencido]);
+caso_manual(S8, 'Un código vencido no sirve', rv.ok && rv.rows[0].m === null);
+const revocado = (await como(U.ent, `select crear_invitacion($1,'staff',null,'revocar',24) as c`, [ID.A])).rows[0].c;
+await caso(S8, 'El entrenador revoca una invitación', U.ent, `update invitaciones set revocada_en = now() where para='revocar'`, 1);
+const rr = await como(OTRO, `select canjear_invitacion($1) as m`, [revocado]);
+caso_manual(S8, 'Un código revocado no sirve', rr.ok && rr.rows[0].m === null);
+await caso(S8, 'Quitar a un miembro le corta el acceso de inmediato', U.ent, `update miembros_equipo set estado='quitado' where usuario_id='${NUEVO}'`, 1);
+await caso(S8, 'Ya quitado, no ve nada', NUEVO, `select * from jugadores`, 0);
+await caso(S8, 'Cada aceptación de términos queda registrada', U.padre, `insert into consentimientos(usuario_id,tipo,version) values ('${U.padre}','tutor','1.0')`, 1);
+await caso(S8, 'Nadie puede registrar consentimientos a nombre de otro', U.ent, `insert into consentimientos(usuario_id,tipo,version) values ('${U.padre}','salud','1.0')`, 'error');
+await caso(S8, 'Solo el entrenador ve el registro de accesos', U.staff, `select * from auditoria`, 0);
+await caso(S8, 'El entrenador ve el registro de accesos', U.ent, `select * from auditoria where accion='miembro_aprobado'`, 1);
 
 // ---------- reporte ----------
 let sec = '';

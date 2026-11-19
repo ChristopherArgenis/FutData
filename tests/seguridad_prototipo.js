@@ -12,7 +12,8 @@ const caso = (sec, desc, pasa, det='') => { res.push({sec, desc, pasa, det}); if
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 1200, height: 900 } });
   const errores = []; p.on('pageerror', e => errores.push(e.message));
-  const cargar = async () => { await p.goto('about:blank'); await p.setContent('<!doctype html><html><head><meta charset="utf-8"><style>[hidden]{display:none!important}</style></head><body>' + HTML + '</body></html>', { waitUntil: 'load' }); await p.waitForTimeout(400); };
+  const cargar = async () => { await p.goto('about:blank'); await p.setContent('<!doctype html><html><head><meta charset="utf-8"><style>[hidden]{display:none!important}</style></head><body>' + HTML + '</body></html>', { waitUntil: 'load' }); await p.waitForTimeout(400);
+    await p.evaluate(() => { Object.keys(ROLES).forEach(r => { S.legal.aceptaciones[r] = {version: LEGAL.version, fecha: '2026-11-19T10:00', items: {}}; }); render(true); }); };
   const c = async s => { await p.click(s, { timeout: 8000 }); await p.waitForTimeout(80); };
   const xss = () => p.evaluate(() => (window.__xss || 0) + document.querySelectorAll('img[src="x"], #sheet svg[onload], #view svg[onload]').length);
   const rol = async r => p.evaluate(r => { ui.rol = r; ui.view = null; ui.tab = 'inicio'; ui.anaSeg = (r==='entrenador'||r==='staff') ? 'temporada' : 'yo'; ui.eqSeg = r==='padre' ? 'sedes' : 'plantel'; render(true); }, r);
@@ -81,26 +82,60 @@ const caso = (sec, desc, pasa, det='') => { res.push({sec, desc, pasa, det}); if
     caso(S4, `${r}: ${prohibidas.length} acciones y ${forms.length} formularios prohibidos no cambian ningún dato`, antes === despues);
   }
 
-  // ---------- 5. Datos que un padre no debe ver ----------
-  const S5 = '5 · Datos de otros menores visibles para un padre';
+  // ---------- 5. Lo que ve un padre (decisiones de producto del 19 nov 2026) ----------
+  const S5 = '5 · Lo que ve un padre';
   await cargar(); await rol('padre');
   const otros = await p.evaluate(() => S.jugadores.filter(j => j.id !== ROLES.padre.jugadorId).map(j => j.nombre.split(' ').slice(-1)[0]));
-  const textos = [];
-  for (const t of ['inicio','calendario','competicion','analisis','equipo']) { await c(`[data-tab="${t}"]`); textos.push([t, await p.textContent('#view')]); }
-  await p.evaluate(() => { ui.anaSeg = 'equipo'; render(); }); textos.push(['análisis › equipo', await p.textContent('#view')]);
-  for (const pid of ['p13','p0']) for (const t of ['convocatoria','cancha','stats','sede']) if (!(pid==='p0' && t==='cancha'))  // un partido jugado no tiene pestaña Cancha
-    textos.push([`partido ${pid} › ${t}`, await p.evaluate(([id, t]) => { ui.view = {name:'partido', id}; ui.pTab = t; render(); return document.querySelector('#view').textContent; }, [pid, t])]);
-  const fugas = textos.flatMap(([d, txt]) => otros.filter(n => txt.includes(n)).map(n => `${n} en ${d}`));
-  caso(S5, 'Ningún nombre de otro jugador aparece fuera de los eventos del partido', fugas.length === 0, fugas.slice(0, 6).join(' · '));
-  const ev = await p.evaluate(() => { ui.view = {name:'partido', id:'p0'}; ui.pTab = 'eventos'; render(); return document.querySelector('#view').textContent; });
-  caso(S5, 'Los goles del partido sí se ven (información pública)', otros.some(n => ev.includes(n)));
-
+  const ver = async (fn) => p.evaluate(fn);
+  const analisis = await ver(() => { ui.view = null; ui.tab = 'analisis'; ui.anaSeg = 'equipo'; render(); return document.querySelector('#view').textContent; });
+  caso(S5, 'No ve la tabla de goleadores', !/Goleadores/.test(analisis) && !otros.some(n => analisis.includes(n)));
+  const conv = await ver(() => { ui.view = {name:'partido', id:'p13'}; ui.pTab = 'convocatoria'; render(); return document.querySelector('#view').textContent; });
+  caso(S5, 'No ve las respuestas de convocatoria de otros', !otros.some(n => conv.includes(n)));
+  const cancha = await ver(() => { ui.view = {name:'partido', id:'p13'}; ui.pTab = 'cancha'; render(); return document.querySelector('#view').textContent; });
+  caso(S5, 'Sí ve los nombres en la alineación publicada', otros.some(n => cancha.includes(n)));
+  const equipo = await ver(() => { ui.view = null; ui.tab = 'equipo'; ui.eqSeg = 'plantel'; render(); return document.querySelector('#view').textContent; });
+  caso(S5, 'Sí ve el plantel (nombre, dorsal, posición)', otros.some(n => equipo.includes(n)));
+  caso(S5, 'No ve Miembros y accesos ni el plan', !/Miembros y accesos/.test(equipo) && !/\$59/.test(equipo));
   await cargar(); await p.evaluate(() => { partido('p0').eventos.push({id:'les1', min:70, tipo:'LESION', rival:false, jugadorId:'j9', detalle:'Tobillo'}); });
   for (const r of ['padre','jugador']) { await rol(r); const t = await p.evaluate(() => { ui.view = {name:'partido', id:'p0'}; ui.pTab = 'eventos'; render(); return document.querySelector('#view').textContent; });
-    caso(S5, `${r}: no ve la lesión de otro jugador (dato de salud)`, !t.includes('Tobillo') && !t.includes('Lesión')); }
-  await rol('staff'); { const t = await p.evaluate(() => { ui.view = {name:'partido', id:'p0'}; ui.pTab = 'eventos'; render(); return document.querySelector('#view').textContent; });
-    caso(S5, 'cuerpo técnico: sí ve la lesión', t.includes('Tobillo')); }
-  caso('6 · Estabilidad', 'Sin errores de JavaScript durante todas las pruebas', errores.length === 0, errores.slice(0,3).join(' | '));
+    caso(S5, `${r}: ve la lesión de un compañero (decisión: el equipo se entera de ausencias)`, t.includes('Tobillo')); }
+
+  // ---------- 6. Términos e invitaciones ----------
+  const S6 = '6 · Términos y credenciales';
+  await p.goto('about:blank'); await p.setContent('<!doctype html><html><head><meta charset="utf-8"><style>[hidden]{display:none!important}</style></head><body>' + HTML + '</body></html>', { waitUntil: 'load' }); await p.waitForTimeout(400);
+  caso(S6, 'Sin aceptar términos no se puede entrar a la app', await p.evaluate(() => !!document.querySelector('.onb') && !document.querySelector('[data-tab]')));
+  const antesT = await p.evaluate(() => JSON.stringify(S));
+  await p.evaluate(() => { for (const a of ['tab','invitar','premium-confirmar','nuevo-partido']) { const b = document.createElement('button'); b.dataset.act = a; b.dataset.tab = 'analisis'; document.body.appendChild(b); b.click(); b.remove(); } });
+  caso(S6, 'Forzar acciones antes de aceptar no hace nada', antesT === await p.evaluate(() => JSON.stringify(S)) && await p.evaluate(() => !!document.querySelector('.onb')));
+  await p.evaluate(() => { const f = document.querySelector('form[data-form="aceptar"]'); f.requestSubmit(); });
+  caso(S6, 'Enviar el formulario sin casillas no registra aceptación', await p.evaluate(() => !S.legal.aceptaciones.entrenador));
+  await p.evaluate(() => { Object.keys(ROLES).forEach(r => { S.legal.aceptaciones[r] = {version: LEGAL.version, fecha: 'x', items: {}}; }); render(true); });
+  for (const r of ['staff','jugador','padre']) { await rol(r);
+    const nInv = await p.evaluate(() => S.acc.invitaciones.length + S.acc.miembros.filter(m => m.estado === 'activo').length);
+    await p.evaluate(() => { const fm = document.createElement('form'); fm.dataset.form = 'invitar'; for (const [n, v] of Object.entries({rol:'staff', para:'Intruso', horas:'168'})) { const i = document.createElement('input'); i.name = n; i.value = v; fm.appendChild(i); } const e = document.createElement('div'); e.id = 'ferr'; fm.appendChild(e); document.body.appendChild(fm); fm.requestSubmit(); fm.remove();
+      const id = S.acc.miembros.find(m => m.estado === 'por_aprobar')?.id; for (const a of ['aprobar-miembro','quitar-miembro','do-quitar-miembro']) { const b = document.createElement('button'); b.dataset.act = a; b.dataset.id = id || 'm2'; document.body.appendChild(b); b.click(); b.remove(); } closeSheet(); });
+    await p.waitForTimeout(150);
+    caso(S6, `${r}: no puede crear invitaciones, aprobar ni quitar accesos`, nInv === await p.evaluate(() => S.acc.invitaciones.length + S.acc.miembros.filter(m => m.estado === 'activo').length)); }
+  await rol('entrenador');
+  await p.evaluate(() => { ui.view = {name:'miembros'}; render(); }); await c('[data-act="invitar"]'); await c('label:has(input[name=rol][value=jugador])'); await p.selectOption('#f-ij', 'j10'); await p.fill('#f-ipara', 'Duplicado'); await c('.sheet button[type=submit]');
+  caso(S6, 'No deja invitar a un jugador que ya tiene cuenta', /ya tiene cuenta/.test(await p.textContent('#ferr')));
+  await p.selectOption('#f-ij', 'j14'); await c('.sheet button[type=submit]'); await p.waitForTimeout(400);
+  const code = await p.textContent('.code'); await p.evaluate(() => closeSheet());
+  const inv = await p.evaluate(c => { const i = S.acc.invitaciones.at(-1); return {hashOk: /^[0-9a-f]{64}$/.test(i.hash), sinCodigo: !JSON.stringify({...i, codigoDemo:undefined}).includes(c)}; }, code);
+  caso(S6, 'Se guarda solo el hash del código (formato FUT-XXXXX-XXXXX, sin O/0/I/1)', /^FUT-[A-HJ-NP-Z2-9]{5}-[A-HJ-NP-Z2-9]{5}$/.test(code) && inv.hashOk && inv.sinCodigo, code);
+  await p.evaluate(() => hojaCanje()); for (let k = 0; k < 5; k++) { await p.fill('#f-code', 'FUT-ZZZZZ-ZZZZZ'); await p.fill('#f-cnom', 'X'); await c('.sheet button[type=submit]'); await p.waitForTimeout(80); }
+  await p.evaluate(() => { closeSheet(); hojaCanje(); }); await p.fill('#f-code', code); await p.fill('#f-cnom', 'Bloqueado'); await p.evaluate(() => document.querySelector('.sheet button[type=submit]').disabled = false); await c('.sheet button[type=submit]'); await p.waitForTimeout(200);
+  caso(S6, 'Tras 5 intentos fallidos se bloquea, aun con el código correcto', /Demasiados intentos/.test(await p.evaluate(() => document.querySelector('#ferr')?.textContent || '')) && await p.evaluate(() => S.acc.invitaciones.at(-1).estado === 'pendiente'));
+  await p.evaluate(() => { S.acc.intentos = {fallidos:[], bloqueadoHasta:null}; closeSheet(); hojaCanje(); }); await p.fill('#f-code', code); await p.fill('#f-cnom', 'Pablo Ríos'); await c('.sheet button[type=submit]'); await p.waitForTimeout(250);
+  const nuevo = await p.evaluate(() => S.acc.miembros.at(-1));
+  caso(S6, 'Canjear deja la cuenta “por aprobar”, con el rol y jugador de la invitación', nuevo.estado === 'por_aprobar' && nuevo.rol === 'jugador' && nuevo.jugadorId === 'j14');
+  await p.evaluate(() => hojaCanje()); await p.fill('#f-code', code); await p.fill('#f-cnom', 'Otro'); await c('.sheet button[type=submit]'); await p.waitForTimeout(200);
+  caso(S6, 'Un código no sirve dos veces', await p.evaluate(() => S.acc.miembros.filter(m => m.persona === 'Otro').length === 0));
+  await p.evaluate(() => { closeSheet(); const i = S.acc.invitaciones.find(x => x.id === 'i1'); i.expira = '2020-01-01T00:00'; hojaCanje(); }); await p.fill('#f-code', 'FUT-K7Q2M-X9PTA'); await p.fill('#f-cnom', 'Tarde'); await c('.sheet button[type=submit]'); await p.waitForTimeout(200);
+  caso(S6, 'Un código vencido no sirve', await p.evaluate(() => S.acc.miembros.filter(m => m.persona === 'Tarde').length === 0));
+  await p.evaluate(() => closeSheet());
+
+  caso('7 · Estabilidad', 'Sin errores de JavaScript durante todas las pruebas', errores.length === 0, errores.slice(0,3).join(' | '));
   await b.close();
   let sec = ''; for (const r of res) { if (r.sec !== sec) { sec = r.sec; console.log('\n' + sec); } console.log(`  ${r.pasa ? '✓' : '✗'} ${r.desc}${r.det ? `  [${r.det}]` : ''}`); }
   console.log(`\n${res.length - fallos}/${res.length} pruebas pasaron.`); process.exit(fallos ? 1 : 0);

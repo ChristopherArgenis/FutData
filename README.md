@@ -17,6 +17,7 @@ convocatorias, con análisis gratuitos y premium.
 | `db/test_schema.py` | Prueba del esquema con datos de ejemplo |
 | `db/supabase/` | Esquema de la nube con reglas de acceso por rol (RLS) y sus pruebas |
 | `docs/SEGURIDAD.md` | Pruebas de seguridad, hallazgos corregidos y recomendaciones |
+| `docs/CREDENCIALES.md` | Cómo se crean y entregan los accesos (invitaciones) |
 | `docs/legal/` | Borrador de Términos y Condiciones y Aviso de Privacidad (para revisión legal) |
 
 ## Probar el esquema
