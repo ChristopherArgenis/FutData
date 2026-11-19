@@ -422,6 +422,7 @@ svg text{font-family:var(--f)}
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
   <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-mas" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></symbol>
   <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 7V4h4v3M6 7l1 13h10l1-13" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></symbol>
   <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></symbol>
   <symbol id="i-score" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 5v14M7 10v4M17 10v4" stroke="currentColor" stroke-width="2"/></symbol>
@@ -981,6 +982,10 @@ const TXT_AVISO = [
   ['Cambios', 'Publicaremos cambios en la app y te pediremos aceptar la nueva versión.'],
 ];
 function hojaTexto(titulo, partes){ openSheet(titulo, `<div class="legal">${partes.map(([h,t])=>`<h4>${esc(h)}</h4><p>${esc(t)}</p>`).join('')}<p class="hint">Versión ${LEGAL.version} · ${fFecha(LEGAL.fecha+'T12:00')} · Borrador sujeto a revisión legal.</p></div><button class="btn" type="button" data-act="close">Cerrar</button>`); }
+function hojaMas(){
+  const permisos = ui.rol!=='padre' ? `<button class="btn" type="button" data-act="permisos">¿Qué puede ver cada rol?</button>` : '';
+  openSheet('Más opciones', `${cardPrivacidad()}${permisos}<button class="btn ghost" type="button" data-act="reset">Restablecer datos de ejemplo</button>`);
+}
 function cardPrivacidad(){
   const a = aceptacion();
   return `<div class="card"><b style="font-size:14px">Privacidad y legal</b>
@@ -1274,8 +1279,6 @@ function vEquipoV(){
     <p class="hint" style="margin:0">Solo nombre, dorsal y posición. Teléfonos y fechas de nacimiento no se comparten con el plantel.</p>`;
   else html += `<div class="card list" style="padding:4px 14px">${S.sedes.map(s=>`<div class="ro"><span class="crest sm" style="background:var(--ac-soft);color:var(--ac)"><svg width="16" height="16"><use href="#i-pin"/></svg></span>
       <div><div class="t">${esc(s.nombre)}${s.cancha?' · '+esc(s.cancha):''}</div><div class="s">${MODS[s.modalidad||'F11'].txt} · ${esc(s.direccion||'')}</div></div><a class="link" style="font-size:12.5px" href="${esc(rutaSede(s))}" target="_blank" rel="noopener">Cómo llegar</a></div>`).join('')}</div>`;
-  html += cardPrivacidad();
-  if (ui.rol==='jugador') html += `<button class="btn" type="button" data-act="permisos">¿Qué puede ver cada rol?</button>`;
   return html;
 }
 function rutaSede(s){ return s.lat!=null && s.lng!=null ? `https://www.google.com/maps/dir/?api=1&destination=${s.lat},${s.lng}` : s.mapsUrl ? s.mapsUrl : `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${s.nombre} ${s.direccion||''}`)}`; }
@@ -1305,7 +1308,7 @@ function render(resetScroll){
       top = `<div style="flex:1;min-width:0"><div class="sub">Hola, ${esc(ROLES[ui.rol].persona.split(' ')[0])}</div><h2>${esc(S.equipo.nombre)}</h2></div>${rolPill()}${crestMio(false,true)}`;
       body = esStaff() ? vInicio() : vInicioV(); fab = can('programar');
     } else {
-      top = `<h2>${titles[ui.tab]}</h2>` + (ui.tab==='analisis' && esStaff() ? (ui.premium ? '<span class="badge prem">★ PREMIUM</span>' : '<span class="badge prog">Gratis</span>') : '') + rolPill();
+      top = `<h2>${titles[ui.tab]}</h2>` + (ui.tab==='equipo' ? `<button class="iconbtn" type="button" data-act="menu-mas" aria-label="Más opciones">${ico('i-mas')}</button>` : '') + (ui.tab==='analisis' && esStaff() ? (ui.premium ? '<span class="badge prem">★ PREMIUM</span>' : '<span class="badge prog">Gratis</span>') : '') + rolPill();
       body = ui.tab==='calendario' ? vCalendario() : ui.tab==='competicion' ? vCompeticion() : ui.tab==='analisis' ? (esStaff() ? vAnalisis() : vAnalisisV()) : (esStaff() ? vEquipo() : vEquipoV());
       fab = (ui.tab==='calendario' || ui.tab==='equipo' || ui.tab==='competicion') && can('programar');
     }
@@ -1689,9 +1692,6 @@ function vEquipo(){
   }
   html += `<div class="card list" style="padding:4px 14px">${items || '<div class="empty">Vacío</div>'}</div>`;
   html += `<button class="btn pri" type="button" data-act="eq-add">+ Agregar ${({plantel:'jugador',rivales:'rival',sedes:'sede'})[ui.eqSeg]}</button>`;
-  html += cardPrivacidad();
-  html += `<button class="btn" type="button" data-act="permisos">¿Qué puede ver cada rol?</button>`;
-  html += `<button class="btn ghost" type="button" data-act="reset">Restablecer datos de ejemplo</button>`;
   return html;
 }
 
@@ -1912,7 +1912,7 @@ document.addEventListener('click', ev=>{
     case 'premium-toggle': if (!ui.premium) hojaPremium(); else { ui.premium = false; toast('Volviste al plan Gratis'); render(); } break;
     case 'leer-terminos': hojaTexto('Términos y Condiciones', TXT_TERMINOS); break;
     case 'leer-aviso': hojaTexto('Aviso de Privacidad', TXT_AVISO); break;
-    case 'toggle-novedades': { const ac = aceptacion(); ac.items.novedades = !ac.items.novedades; toast(ac.items.novedades ? 'Recibirás novedades' : 'Ya no recibirás novedades'); render(); break; }
+    case 'toggle-novedades': { const ac = aceptacion(); ac.items.novedades = !ac.items.novedades; toast(ac.items.novedades ? 'Recibirás novedades' : 'Ya no recibirás novedades'); render(); if ($('#sheet').innerHTML) hojaMas(); break; }
     case 'descargar-datos': { const yo = yoId(), datos = {cuenta:{persona:ROLES[ui.rol].persona, rol:ROLES[ui.rol].nombre}, consentimientos:aceptacion(),
         ...(yo ? {jugador:jug(yo), partidos_jugados:finalizados().filter(p=>p.jugaron.includes(yo)).map(p=>({fecha:p.fecha, rival:rival(p.rivalId).nombre})), eventos:S.partidos.flatMap(p=>p.eventos.filter(e=>e.jugadorId===yo).map(e=>({partido:p.id, ...e})))} : {})};
       openSheet('Descargar mis datos', `<p class="mu" style="margin:0;font-size:12.5px">En la app se genera un archivo JSON con todo lo que guardamos de ti. Así se ve:</p><pre class="jsonprev">${esc(JSON.stringify(datos, null, 2).slice(0, 2500))}</pre><button class="btn" type="button" data-act="close">Cerrar</button>`); break; }
@@ -1948,6 +1948,7 @@ document.addEventListener('click', ev=>{
     case 'do-del-sede': S.sedes = S.sedes.filter(s=>s.id!==id); S.partidos.forEach(p=>{ if (p.sedeId===id) p.sedeId = ''; }); closeSheet(); toast('Sede eliminada'); render(); break;
     case 'close': closeSheet(); break;
     case 'forma': verForma(); break;
+    case 'menu-mas': hojaMas(); break;
     case 'comp-sel': ui.compSel = el.dataset.c; ui.ronda = null; render(true); break;
     case 'ronda': ui.ronda = el.dataset.r; render(); break;
     case 'edit-tabla': formTabla(el.dataset.c); break;
@@ -1977,7 +1978,7 @@ document.addEventListener('click', ev=>{
     case 'pick-day': { const f = el.closest('form'); f.dia.value = el.dataset.d; f.querySelector('#f-dia-otro').value = ''; syncFecha(f); break; }
     case 'pick-time': { const f = el.closest('form'); f.hora.value = el.dataset.t; f.querySelector('#f-hora-otra').value = ''; syncFecha(f); break; }
     case 'forma-open': closeSheet(); ui.view = {name:'partido', id}; ui.pTab = 'eventos'; render(true); break;
-    case 'reset': reset(); toast('Datos de ejemplo restaurados'); break;
+    case 'reset': closeSheet(); reset(); toast('Datos de ejemplo restaurados'); break;
   }
 });
 $('#fab').addEventListener('click', ()=>{ if (!can('programar')) return; if (ui.tab==='equipo' && !ui.view) ({plantel:()=>formJugador(), rivales:()=>formRival(), sedes:()=>formSede()})[ui.eqSeg](); else formPartido(null, ui.tab==='calendario' ? ui.calDay : null, ui.tab==='competicion' ? ui.compSel : null); });
