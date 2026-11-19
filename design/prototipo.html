@@ -129,7 +129,7 @@ nav.tabs button.on{color:var(--ac)}
 .score-hint svg{width:13px;height:13px}
 .checks{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .checks label{display:flex;gap:8px;align-items:center;font-size:12.5px;font-weight:600;background:var(--card);border-radius:10px;padding:8px 10px;box-shadow:var(--sh)}
-.radio.tipos{display:grid;grid-template-columns:repeat(3,1fr)}
+.radio.tipos{display:grid;grid-template-columns:repeat(2,1fr)}
 .ev-cambio{display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap}
 .ev-cambio .in{color:var(--ac)}.ev-cambio .out{color:var(--loss)}
 .score .big{font-size:40px;font-weight:800;letter-spacing:-.02em;font-family:var(--mono)}
@@ -311,7 +311,6 @@ table.tabla{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-nu
 .ev .m{font-family:var(--mono);font-weight:700;color:var(--mu);font-size:12.5px}
 .ev.rival .who{color:var(--mu)}
 .card-y,.card-r{width:12px;height:16px;border-radius:2px;display:inline-block}
-.ic-les{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:5px;background:var(--loss);color:#fff;font-size:12px;font-weight:800}
 .card-y{background:#f2c933}.card-r{background:#e0483b}
 .st{display:grid;gap:10px}
 .st .lab{display:grid;grid-template-columns:34px 1fr 34px;font-size:12.5px;text-align:center}
@@ -922,16 +921,13 @@ function itemsConsentimiento(rol){
   ];
   const porRol = {
     entrenador:[
-      {k:'responsable', req:true, t:'Declaro que cuento con la autorización de los jugadores y, en el caso de menores de edad, de sus padres o tutores, para registrar sus datos en FutData, y que soy responsable de la información que capturo.'},
-      {k:'salud', req:true, t:'Registraré datos de salud (lesiones) solo de jugadores que lo hayan autorizado, sabiendo que serán visibles para los miembros del equipo.'}],
+      {k:'responsable', req:true, t:'Declaro que cuento con la autorización de los jugadores y, en el caso de menores de edad, de sus padres o tutores, para registrar sus datos en FutData, y que soy responsable de la información que capturo.'},],
     staff:[
-      {k:'confidencial', req:true, t:'Me comprometo a usar los datos de contacto y de salud del plantel solo para fines del equipo y a no compartirlos fuera de él.'}],
+      {k:'confidencial', req:true, t:'Me comprometo a usar los datos de contacto del plantel solo para fines del equipo y a no compartirlos fuera de él.'}],
     jugador:[
-      {k:'edad', req:true, t:'Tengo 18 años o más, o tengo entre 13 y 17 años y mi padre, madre o tutor autorizó mi cuenta.'},
-      {k:'salud', req:true, t:'Autorizo de forma expresa que se registren mis lesiones (datos de salud) y que las vean los miembros del equipo para saber de mis ausencias.'}],
+      {k:'edad', req:true, t:'Tengo 18 años o más, o tengo entre 13 y 17 años y mi padre, madre o tutor autorizó mi cuenta.'}],
     padre:[
-      {k:'tutor', req:true, t:`Soy padre, madre o tutor legal de <b>${esc(hijo)}</b> y autorizo el tratamiento de sus datos como menor de edad.`},
-      {k:'salud', req:true, t:`Autorizo de forma expresa que se registren las lesiones de ${esc(hijo.split(' ')[0])} (datos de salud) y que las vean los miembros del equipo.`}],
+      {k:'tutor', req:true, t:`Soy padre, madre o tutor legal de <b>${esc(hijo)}</b> y autorizo el tratamiento de sus datos como menor de edad.`}],
   };
   return base.concat(porRol[rol] || [], [{k:'novedades', req:false, t:'Quiero recibir novedades y promociones de FutData (opcional).'}]);
 }
@@ -944,9 +940,8 @@ function vBienvenida(){
       <span class="mu" style="font-size:12.5px">Entrarás como <b>${r.nombre}</b> · ${esc(r.persona)}</span></div></div>
     <div class="card onb-res"><b>Antes de empezar, lo importante:</b>
       <ul>
-        <li>Guardamos los datos del equipo: partidos, asistencia, estadísticas y, si se registran, lesiones.</li>
+        <li>Guardamos los datos del equipo: partidos, asistencia, alineaciones y estadísticas.</li>
         <li>Cada rol ve solo lo que le corresponde${ui.rol==='padre' ? '; tú ves los datos de tu hijo y la información general del equipo' : ''}.</li>
-        <li>Las lesiones son datos de salud: solo se registran con autorización y las ve el equipo.</li>
         <li>No vendemos tus datos. Puedes descargarlos o borrar tu cuenta cuando quieras desde Equipo › Privacidad.</li>
         ${ui.rol==='entrenador' ? '<li>El plan Premium se cobra por la tienda de tu teléfono y se renueva solo hasta que lo canceles.</li>' : ''}
       </ul>
@@ -969,15 +964,14 @@ const TXT_TERMINOS = [
   ['7. Plan gratuito', 'Los datos se guardan solo en tu teléfono. Si borras la app o pierdes el teléfono sin respaldo, se pierden y no podemos recuperarlos.'],
   ['8. Suscripción Premium', 'Precio en pesos mexicanos con IVA incluido, cobrado por App Store o Google Play. Se renueva automáticamente cada periodo hasta que la canceles en la tienda, al menos 24 horas antes de la renovación. La prueba gratis de 7 días se convierte en pago si no cancelas. Los reembolsos siguen la política de cada tienda. Avisaremos antes de cambiar el precio. Si dejas de pagar, tus datos siguen en el teléfono y los de la nube se conservan 90 días.'],
   ['9. Análisis y pronósticos', 'Son estimaciones con los datos que capturas. No garantizan resultados y no deben usarse para apostar.'],
-  ['10. Salud', 'FutData no es un servicio médico. Registrar una lesión no sustituye la atención de un profesional.'],
-  ['11. Disponibilidad y responsabilidad', 'Ofrecemos el servicio tal cual y puede tener interrupciones. Nuestra responsabilidad se limita a lo pagado en los últimos 12 meses y no cubre decisiones deportivas ni pérdida de datos guardados solo en el teléfono.'],
-  ['12. Cuenta y borrado', 'Puedes borrar tu cuenta en cualquier momento desde Equipo › Privacidad. Podemos suspenderla si incumples estos términos.'],
-  ['13. Cambios', 'Si cambiamos algo importante te avisaremos en la app y te pediremos aceptar de nuevo.'],
-  ['14. Ley aplicable', 'Leyes de México y tribunales de [ciudad]. Puedes acudir a PROFECO.'],
+  ['10. Disponibilidad y responsabilidad', 'Ofrecemos el servicio tal cual y puede tener interrupciones. Nuestra responsabilidad se limita a lo pagado en los últimos 12 meses y no cubre decisiones deportivas ni pérdida de datos guardados solo en el teléfono.'],
+  ['11. Cuenta y borrado', 'Puedes borrar tu cuenta en cualquier momento desde Equipo › Privacidad. Podemos suspenderla si incumples estos términos.'],
+  ['12. Cambios', 'Si cambiamos algo importante te avisaremos en la app y te pediremos aceptar de nuevo.'],
+  ['13. Ley aplicable', 'Leyes de México y tribunales de [ciudad]. Puedes acudir a PROFECO.'],
 ];
 const TXT_AVISO = [
   ['Responsable', `${LEGAL.empresa}. Contacto para datos personales: ${LEGAL.contacto}.`],
-  ['Datos que recabamos', 'Cuenta: nombre, correo o teléfono y rol. Jugadores: nombre, dorsal, posición, asistencia, minutos, goles y tarjetas; opcionalmente fecha de nacimiento y teléfono de contacto. Datos sensibles: lesiones (salud), solo con autorización expresa. No recibimos datos de tarjetas: los pagos los procesa la tienda.'],
+  ['Datos que recabamos', 'Cuenta: nombre, correo o teléfono y rol. Jugadores: nombre, dorsal, posición, asistencia, minutos, goles y tarjetas; opcionalmente fecha de nacimiento y teléfono de contacto. No recabamos datos sensibles. No recibimos datos de tarjetas: los pagos los procesa la tienda.'],
   ['Para qué los usamos', 'Primarias: operar tu cuenta y tu equipo, convocatorias, avisos de partidos, análisis y soporte. Secundarias (puedes negarte): enviarte novedades y mejorar la app con datos agregados y anónimos.'],
   ['Menores de edad', 'Tratamos datos de menores con la autorización de su padre, madre o tutor, quien puede consultarlos, corregirlos o pedir que se borren.'],
   ['Quién más los ve', 'Dentro del equipo, cada rol ve lo que la app le permite. Usamos proveedores para operar: nube (Supabase), suscripciones (RevenueCat), tiendas (Apple, Google) y notificaciones. No vendemos tus datos.'],
@@ -1511,11 +1505,11 @@ function vPartido(p){
     if (!p.eventos.length) html += `<div class="card empty">${prog?'Los eventos se registran cuando inicia el partido.':'Sin eventos registrados.'}${prog||!can('registrar')?'':`<br><button class="link" type="button" data-act="nuevo-evento" data-id="${p.id}">Agregar gol o tarjeta</button>`}</div>`;
     else html += `<div class="card" style="padding:4px 14px">` + p.eventos.slice().sort((a,b)=>a.min-b.min).map(e=>{
       const icon = e.tipo==='GOL' ? `<svg width="18" height="18" style="color:${e.rival?'var(--them)':'var(--ac)'}"><use href="#i-ball"/></svg>`
-        : e.tipo==='CAMBIO' ? `<svg width="18" height="18" style="color:var(--liga)"><use href="#i-swap"/></svg>` : e.tipo==='LESION' ? `<span class="ic-les" aria-hidden="true">✚</span>` : `<span class="card-${e.tipo==='ROJA'?'r':'y'}"></span>`;
+        : e.tipo==='CAMBIO' ? `<svg width="18" height="18" style="color:var(--liga)"><use href="#i-swap"/></svg>` : `<span class="card-${e.tipo==='ROJA'?'r':'y'}"></span>`;
       const quien = e.rival ? esc(rival(p.rivalId).nombre)
         : e.tipo==='CAMBIO' ? `<span class="ev-cambio"><span class="in">↑ ${esc(apellido(jug(e.jugadorId)?.nombre))}</span><span class="out">↓ ${esc(apellido(jug(e.jugadorSaleId)?.nombre))}</span></span>`
-        : e.tipo==='LESION' ? `Lesión: ${esc(jug(e.jugadorId)?.nombre || '—')}` : esc(jug(e.jugadorId)?.nombre || '—');
-      const extra = e.tipo==='GOL' && e.asistId ? ` <span class="mu">· asist. ${esc(apellido(jug(e.asistId)?.nombre))}</span>` : (e.rival ? ` <span class="mu">· ${({GOL:'gol',AMARILLA:'amarilla',ROJA:'roja'})[e.tipo]}</span>` : e.tipo==='LESION' && e.detalle ? ` <span class="mu">· ${esc(e.detalle)}</span>` : '');
+        : esc(jug(e.jugadorId)?.nombre || '—');
+      const extra = e.tipo==='GOL' && e.asistId ? ` <span class="mu">· asist. ${esc(apellido(jug(e.asistId)?.nombre))}</span>` : (e.rival ? ` <span class="mu">· ${({GOL:'gol',AMARILLA:'amarilla',ROJA:'roja'})[e.tipo]}</span>` : '');
       const inner = `<span class="m">${e.min}'</span>${icon}<span class="who"><b>${quien}</b>${extra}</span>`;
       return can('registrar') ? `<button type="button" class="ev ${e.rival?'rival':''}" data-act="edit-evento" data-id="${p.id}" data-e="${e.id}">${inner}<span class="chev">›</span></button>` : `<div class="ev ${e.rival?'rival':''}">${inner}<span></span></div>`;
     }).join('') + `</div>`;
@@ -1710,7 +1704,7 @@ function mapsValido(url){
   if (/^(www\.|maps\.)?google\.(com|com\.mx|es|com\.ar|com\.co|cl|com\.pe|com\.us)$/.test(h)) return h.startsWith('maps.') || u.pathname.startsWith('/maps');
   return false;
 }
-const LIMITES = {notas:500, mapsUrl:400, direccion:160, detalle:120};
+const LIMITES = {notas:500, mapsUrl:400, direccion:160};
 const colorSeguro = (v, def) => /^#[0-9a-f]{6}$/i.test(v||'') ? v : def;
 const mapsSearch = (n, dir) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(((n||'')+' '+(dir||'')).trim() || 'cancha de futbol')}`;
 function coordsDe(url){ const m = url.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/) || url.match(/[?&](?:q|query|ll|destination)=(-?\d+\.\d+),\s*(-?\d+\.\d+)/);
@@ -1787,25 +1781,23 @@ function formEvento(pid, eid){
   const lado = e?.rival ? '1' : '0', tipo = e?.tipo || 'GOL', T = (v,l) => `<label><input type="radio" name="tipo" value="${v}" ${tipo===v?'checked':''}>${l}</label>`;
   const jsel = (name, sel, vacio) => `<select name="${name}" id="f-${name}">${vacio?`<option value="">${vacio}</option>`:''}${S.jugadores.slice().sort((a,b)=>a.dorsal-b.dorsal).map(j=>opt(j.id,`${j.dorsal} · ${j.nombre}`,sel)).join('')}</select>`;
   openSheet(e?'Editar evento':'Nuevo evento', `<form data-form="evento" data-id="${pid}" data-e="${eid||''}">
-    <div class="radio tipos" role="radiogroup" aria-label="Tipo">${T('GOL','⚽ Gol')}${T('AMARILLA','Amarilla')}${T('ROJA','Roja')}${T('CAMBIO','⇄ Cambio')}${T('LESION','✚ Lesión')}</div>
+    <div class="radio tipos" role="radiogroup" aria-label="Tipo">${T('GOL','⚽ Gol')}${T('AMARILLA','Amarilla')}${T('ROJA','Roja')}${T('CAMBIO','⇄ Cambio')}</div>
     <div class="radio" role="radiogroup" aria-label="Equipo" data-show="lado"><label><input type="radio" name="rival" value="0" ${lado==='0'?'checked':''}>${esc(S.equipo.nombre)}</label><label><input type="radio" name="rival" value="1" ${lado==='1'?'checked':''}>${esc(rival(p.rivalId).nombre)}</label></div>
     <div class="field"><label for="f-min">Minuto</label><input id="f-min" type="number" name="min" min="0" max="130" required value="${e?.min ?? ''}" placeholder="Ej. 67"></div>
     <div class="field" data-show="cambio"><label for="f-jugadorSaleId">Sale</label>${jsel('jugadorSaleId', e?.jugadorSaleId)}</div>
     <div class="field" data-show="mio"><label for="f-jugadorId" id="lbl-jug">Jugador</label>${jsel('jugadorId', e?.jugadorId)}</div>
     <div class="field" data-show="mio-gol"><label for="f-asistId">Asistencia (opcional)</label>${jsel('asistId', e?.asistId, 'Sin asistencia')}</div>
-    <div class="field" data-show="lesion"><label for="f-det">Detalle (opcional)</label><input id="f-det" name="detalle" value="${esc(e?.detalle||'')}" placeholder="Tobillo, golpe en la cabeza…"></div>
     ${btns(e?'del-evento':'')}</form>`);
   syncEventoForm();
 }
 function syncEventoForm(){
   const f = $('#sheet form[data-form="evento"]'); if (!f) return;
-  const t = f.tipo.value, propio = t==='CAMBIO' || t==='LESION', rv = !propio && f.rival.value==='1', gol = t==='GOL';
+  const t = f.tipo.value, propio = t==='CAMBIO', rv = !propio && f.rival.value==='1', gol = t==='GOL';
   f.querySelector('[data-show="lado"]').hidden = propio;
   f.querySelector('[data-show="mio"]').hidden = rv;
   f.querySelector('[data-show="mio-gol"]').hidden = rv || !gol;
   f.querySelector('[data-show="cambio"]').hidden = t!=='CAMBIO';
-  f.querySelector('[data-show="lesion"]').hidden = t!=='LESION';
-  $('#lbl-jug').textContent = t==='CAMBIO' ? 'Entra' : t==='LESION' ? 'Lesionado' : 'Jugador';
+  $('#lbl-jug').textContent = t==='CAMBIO' ? 'Entra' : 'Jugador';
 }
 function formStats(pid){
   const p = partido(pid), s = p.stats || {tiros:[0,0],puerta:[0,0],corners:[0,0]}, r = rival(p.rivalId);
@@ -2057,13 +2049,12 @@ document.addEventListener('submit', ev=>{
       const p = partido(id), min = +d.min;
       if (!(d.min!=='' && min>=0 && min<=130)) return err('Escribe el minuto (0 a 130).');
       if (p.estado==='PROGRAMADO'){ p.estado = 'EN_JUEGO'; p.gf = 0; p.gc = 0; }
-      const propio = d.tipo==='CAMBIO' || d.tipo==='LESION';
+      const propio = d.tipo==='CAMBIO';
       const e = {min, tipo:d.tipo, rival: !propio && d.rival==='1'};
       if (!e.rival) { e.jugadorId = d.jugadorId; e.asistId = e.tipo==='GOL' && d.asistId && d.asistId!==d.jugadorId ? d.asistId : null; }
       if (e.tipo==='CAMBIO'){ if (d.jugadorSaleId===d.jugadorId) return err('El que entra y el que sale deben ser distintos.'); e.jugadorSaleId = d.jugadorSaleId; }
-      if (e.tipo==='LESION') e.detalle = (d.detalle||'').trim();
       if (f.dataset.e){ const old = p.eventos.find(x=>x.id===f.dataset.e); golDelta(p, old, -1); Object.keys(old).forEach(k=>{ if(k!=='id') delete old[k]; }); Object.assign(old, e); golDelta(p, old, 1); toast('Evento actualizado'); }
-      else { e.id = uid('e'); p.eventos.push(e); golDelta(p, e, 1); toast(e.tipo==='GOL' ? `¡Gol! ${p.gf}–${p.gc}` : e.tipo==='CAMBIO' ? 'Cambio registrado' : e.tipo==='LESION' ? 'Lesión registrada' : 'Tarjeta registrada');
+      else { e.id = uid('e'); p.eventos.push(e); golDelta(p, e, 1); toast(e.tipo==='GOL' ? `¡Gol! ${p.gf}–${p.gc}` : e.tipo==='CAMBIO' ? 'Cambio registrado' : 'Tarjeta registrada');
         if (!e.rival && !p.jugaron.includes(e.jugadorId)) p.jugaron.push(e.jugadorId); }
       ui.pTab = 'eventos'; break; }
     case 'stats': { const n = k => Math.max(0, +d[k]||0);

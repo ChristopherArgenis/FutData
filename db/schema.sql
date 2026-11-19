@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS eventos (
   partido_id      TEXT NOT NULL REFERENCES partidos(id) ON DELETE CASCADE,
   tipo            TEXT NOT NULL CHECK (tipo IN
                     ('GOL','AUTOGOL','PENAL_FALLADO','TARJETA_AMARILLA','TARJETA_ROJA',
-                     'CAMBIO','TIRO','LESION')),
+                     'CAMBIO','TIRO')),
   minuto          INTEGER NOT NULL CHECK (minuto >= 0),
   es_rival        INTEGER NOT NULL DEFAULT 0 CHECK (es_rival IN (0,1)),
   jugador_id      TEXT REFERENCES jugadores(id),          -- NULL si es rival sin registrar
@@ -153,7 +153,6 @@ CREATE TABLE IF NOT EXISTS eventos (
   pos_x           REAL CHECK (pos_x BETWEEN 0 AND 1),     -- TIRO: coordenadas normalizadas
   pos_y           REAL CHECK (pos_y BETWEEN 0 AND 1),
   xg              REAL,                                   -- calculado (Premium)
-  detalle         TEXT,                                   -- LESION: zona o descripción
   creado_en       TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')),
   actualizado_en  TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')),
   eliminado_en    TEXT,

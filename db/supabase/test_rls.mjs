@@ -32,7 +32,6 @@ await db.exec(`
     ('${ID.pA}','${ID.mora}','${ID.A}','PENDIENTE'), ('${ID.pA}','${ID.kevin}','${ID.A}','VOY'), ('${ID.pA}','${ID.rivas}','${ID.A}','VOY');
   insert into alineaciones values ('${ID.pA}','${ID.kevin}','${ID.A}','MED'), ('${ID.pA}','${ID.rivas}','${ID.A}','DEL');
   insert into eventos(partido_id,equipo_id,tipo,minuto,jugador_id) values ('${ID.pA}','${ID.A}','GOL',12,'${ID.rivas}');
-  insert into eventos(partido_id,equipo_id,tipo,minuto,jugador_id) values ('${ID.pA}','${ID.A}','LESION',40,'${ID.rivas}'), ('${ID.pA}','${ID.A}','LESION',55,'${ID.kevin}');
   insert into suscripciones values ('${ID.A}','PREMIUM','activa', now() + interval '30 days');
 `);
 
@@ -107,11 +106,6 @@ await caso(S4, 'No puede invitar miembros ni cambiar roles', U.staff, `insert in
 await caso(S4, 'No puede colgar un evento de un partido de otro equipo', U.staff, `insert into eventos(partido_id,equipo_id,tipo,minuto) values ('${ID.pB}','${ID.A}','GOL',5)`, 'error');
 await caso(S4, 'No puede escribir con el equipo_id de otro equipo', U.staff, `insert into eventos(partido_id,equipo_id,tipo,minuto) values ('${ID.pB}','${ID.B}','GOL',5)`, 'error');
 
-const SL = '4b · Lesiones (visibles para el equipo, con consentimiento)';
-await caso(SL, 'El padre ve las lesiones del equipo', U.padre, `select * from eventos where tipo='LESION'`, 2);
-await caso(SL, 'El jugador ve las lesiones del equipo', U.jug, `select * from eventos where tipo='LESION'`, 2);
-await caso(SL, 'El cuerpo técnico ve todas las lesiones', U.staff, `select * from eventos where tipo='LESION'`, 2);
-await caso(SL, 'Todos siguen viendo los goles', U.padre, `select * from eventos where tipo='GOL'`, 2);
 const S5 = '5 · Después de publicar la alineación';
 await caso(S5, 'El padre ya ve la alineación', U.padre, `select * from alineaciones`, 2);
 await caso(S5, 'El jugador ya ve la alineación', U.jug, `select * from alineaciones`, 2);
@@ -127,6 +121,7 @@ await caso(S7, 'Un nombre malicioso se guarda como texto, no se ejecuta', U.staf
 await caso(S7, 'La tabla partidos sigue existiendo', U.ent, `select count(*) from partidos`, 1);
 await caso(S7, 'Rechaza minutos imposibles', U.staff, `insert into eventos(partido_id,equipo_id,tipo,minuto) values ('${ID.pA}','${ID.A}','GOL',500)`, 'error');
 await caso(S7, 'Rechaza goles negativos', U.staff, `insert into partidos(equipo_id,rival,fecha_hora,goles_favor) values ('${ID.A}','X',now(),-3)`, 'error');
+await caso(S7, 'Rechaza eventos de lesión (ya no se registran)', U.staff, `insert into eventos(partido_id,equipo_id,tipo,minuto) values ('${ID.pB}','${ID.B}','LESION',5)`, 'error');
 await caso(S7, 'Rechaza roles inventados', U.ent, `insert into miembros_equipo(equipo_id,usuario_id,rol) values ('${ID.A}','${U.entB}','admin')`, 'error');
 
 const S8 = '8 · Credenciales: invitaciones, canje y aprobación';
@@ -172,7 +167,7 @@ caso_manual(S8, 'Un código revocado no sirve', rr.ok && rr.rows[0].m === null);
 await caso(S8, 'Quitar a un miembro le corta el acceso de inmediato', U.ent, `update miembros_equipo set estado='quitado' where usuario_id='${NUEVO}'`, 1);
 await caso(S8, 'Ya quitado, no ve nada', NUEVO, `select * from jugadores`, 0);
 await caso(S8, 'Cada aceptación de términos queda registrada', U.padre, `insert into consentimientos(usuario_id,tipo,version) values ('${U.padre}','tutor','1.0')`, 1);
-await caso(S8, 'Nadie puede registrar consentimientos a nombre de otro', U.ent, `insert into consentimientos(usuario_id,tipo,version) values ('${U.padre}','salud','1.0')`, 'error');
+await caso(S8, 'Nadie puede registrar consentimientos a nombre de otro', U.ent, `insert into consentimientos(usuario_id,tipo,version) values ('${U.padre}','tutor','1.0')`, 'error');
 await caso(S8, 'Solo el entrenador ve el registro de accesos', U.staff, `select * from auditoria`, 0);
 await caso(S8, 'El entrenador ve el registro de accesos', U.ent, `select * from auditoria where accion='miembro_aprobado'`, 1);
 

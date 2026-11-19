@@ -122,7 +122,6 @@ En la nube se aplica con Row Level Security; en la app se ocultan las pantallas 
 | Ver la alineación publicada | ✓ | ✓ | ✓ | ✓ | Solo cuando se publica, para no crear expectativas con borradores |
 | Ver plantel completo (nombre, dorsal, posición) | ✓ | ✓ | ✓ | ✓ | Se conocen en persona; contactos y nacimiento quedan ocultos |
 | Ver tabla de goleadores | ✓ | ✓ | ✓ | — | Motiva al plantel; se evita comparar niños ante padres |
-| Ver lesiones de jugadores | ✓ | ✓ | ✓ | ✓ | Todos se enteran de ausencias; requiere consentimiento expreso de datos de salud |
 | Ver y cambiar la convocatoria de todos | ✓ | ✓ | — | — | Planeación del partido; nadie cambia la respuesta de otro |
 | Armar y publicar la alineación | ✓ | ✓ | — | — | Decisión técnica |
 | Registrar resultados, eventos y estadísticas | ✓ | ✓ | — | — | Pocos autorizados evitan marcadores contradictorios |
@@ -135,7 +134,7 @@ En la nube se aplica con Row Level Security; en la app se ocultan las pantallas 
 Teléfonos, fechas de nacimiento y contactos de jugadores solo los ven el cuerpo técnico, el propio jugador y su tutor.
 Las reglas están implementadas en `db/supabase/esquema_rls.sql` y probadas (ver `docs/SEGURIDAD.md`).
 
-Decisiones confirmadas (actualizado 19 nov 2026: los padres ven plantel y alineación con nombres; las lesiones las ve todo el equipo con consentimiento expreso): el padre no ve la tabla de goleadores; los avisos de "por qué no ves esto" solo se muestran a jugadores (a padres no); el jugador ve quién va, quién duda y quién no va; el cuerpo técnico no puede borrar nada.
+Decisiones confirmadas (actualizado 19 nov 2026: los padres ven plantel y alineación con nombres; las lesiones no se registran): el padre no ve la tabla de goleadores; los avisos de "por qué no ves esto" solo se muestran a jugadores (a padres no); el jugador ve quién va, quién duda y quién no va; el cuerpo técnico no puede borrar nada.
 
 ## 5. Stack Flutter
 

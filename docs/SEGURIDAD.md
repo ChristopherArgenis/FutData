@@ -28,7 +28,6 @@ node tests/seguridad_prototipo.js            # prototipo (requiere Playwright)
 - Cuerpo técnico: registra y corrige, publica la alineación; no borra partidos ni jugadores, no invita miembros, no ve la suscripción.
 - Entrenador: único que ve la suscripción e invita; ni él puede activarse Premium desde la app (solo el servidor tras el pago).
 - Alineación invisible para jugadores y padres hasta publicarse.
-- Lesiones (dato de salud): solo cuerpo técnico, el jugador y su tutor.
 - Integridad cruzada: no se puede colgar un evento en un partido de otro equipo ni escribir con el `equipo_id` de otro.
 - Inyección SQL con consultas parametrizadas, y rechazo de minutos, goles y roles inválidos.
 
@@ -36,7 +35,7 @@ node tests/seguridad_prototipo.js            # prototipo (requiere Playwright)
 
 **Prototipo:** código malicioso en 12 campos de texto con 3 variantes y vistas de los 4 roles; enlaces y colores manipulados;
 textos gigantes; escudo SVG con código; 46 acciones y 11 formularios forzados por jugador y padre (y 18 + 2 por cuerpo técnico);
-nombres de otros menores visibles para un padre; lesiones ajenas visibles.
+lo que ve un padre según las decisiones de producto; pantalla de términos e invitaciones.
 
 ### Hallazgos corregidos
 
@@ -46,7 +45,7 @@ nombres de otros menores visibles para un padre; lesiones ajenas visibles.
 | 2 | Un color manipulado (`red;background-image:url(...)`) se guardaba tal cual | Bajo: inyección de CSS, rastreo por imagen externa | Solo se aceptan colores `#rrggbb` |
 | 3 | Sin límite de largo en textos | Bajo: llenar la base o romper pantallas | Límite en cada campo (80 caracteres, notas 500) en formulario y al guardar |
 | 4 | El padre veía los nombres de los otros niños en la alineación publicada | — | **Revertido por decisión de producto (19 nov 2026):** los padres ven alineación y plantel porque conocen a los niños en persona. Teléfonos y fechas de nacimiento siguen ocultos |
-| 5 | Las lesiones (dato de salud) las veía todo el equipo | Legal | **Se mantienen visibles por decisión de producto** (avisar ausencias). Mitigación: consentimiento expreso de datos de salud al iniciar la app (jugador y tutor) y declaración del entrenador; queda registrado con fecha y versión |
+| 5 | Las lesiones (dato de salud) las veía todo el equipo | Legal | **Eliminado (19 nov 2026):** FutData ya no registra lesiones. Se quitó el tipo de evento, el campo de detalle y los consentimientos de salud; la base rechaza eventos de lesión |
 
 ## Credenciales
 

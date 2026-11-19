@@ -40,7 +40,7 @@ create table jugadores (
 );
 alter table miembros_equipo add foreign key (jugador_id, equipo_id) references jugadores(id, equipo_id);
 
--- Datos sensibles separados: solo cuerpo técnico, el propio jugador y su tutor.
+-- Datos de contacto separados: solo cuerpo técnico, el propio jugador y su tutor.
 create table jugadores_privado (
   jugador_id    uuid primary key,
   equipo_id     uuid not null,
@@ -67,7 +67,7 @@ create table eventos (
   id            uuid primary key default gen_random_uuid(),
   partido_id    uuid not null,
   equipo_id     uuid not null,
-  tipo          text not null check (tipo in ('GOL','AUTOGOL','TARJETA_AMARILLA','TARJETA_ROJA','CAMBIO','LESION','TIRO')),
+  tipo          text not null check (tipo in ('GOL','AUTOGOL','TARJETA_AMARILLA','TARJETA_ROJA','CAMBIO','TIRO')),
   minuto        int not null check (minuto between 0 and 130),
   jugador_id    uuid,
   foreign key (partido_id, equipo_id) references partidos(id, equipo_id) on delete cascade
@@ -172,9 +172,7 @@ create policy pa_ins on partidos for insert to authenticated with check (fn_es_s
 create policy pa_upd on partidos for update to authenticated using (fn_es_staff(equipo_id)) with check (fn_es_staff(equipo_id));
 create policy pa_del on partidos for delete to authenticated using (fn_es_entrenador(equipo_id));
 
--- eventos (goles, tarjetas, cambios, lesiones): públicos para el equipo; staff los registra y corrige.
--- Eventos, incluidas lesiones, visibles para el equipo: así todos saben de ausencias.
--- Requiere consentimiento expreso de datos de salud (tabla consentimientos, tipo 'salud').
+-- eventos (goles, tarjetas, cambios): públicos para el equipo; staff los registra y corrige.
 create policy ev_sel on eventos for select to authenticated using (fn_es_miembro(equipo_id));
 create policy ev_ins on eventos for insert to authenticated with check (fn_es_staff(equipo_id));
 create policy ev_upd on eventos for update to authenticated using (fn_es_staff(equipo_id)) with check (fn_es_staff(equipo_id));
@@ -219,7 +217,7 @@ create table invitaciones (
 create table intentos_canje (usuario_id uuid not null, en timestamptz not null default now(), ok boolean not null);
 create table consentimientos (
   usuario_id    uuid not null,
-  tipo          text not null check (tipo in ('terminos','privacidad','salud','tutor','responsable','confidencial','edad','novedades')),
+  tipo          text not null check (tipo in ('terminos','privacidad','tutor','responsable','confidencial','edad','novedades')),
   version       text not null,
   aceptado_en   timestamptz not null default now(),
   revocado_en   timestamptz,

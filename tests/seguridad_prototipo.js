@@ -31,12 +31,12 @@ const caso = (sec, desc, pasa, det='') => { res.push({sec, desc, pasa, det}); if
     await c('[data-act="edit-equipo"]'); await p.fill('#f-en', pl); await c('.sheet button[type=submit]');
     await c('[data-tab="competicion"]'); await c('[data-act="comp-nueva"]'); await p.fill('#f-cn', pl); await p.fill('#f-ct', pl); await c('.sheet button[type=submit]');
     await c('#fab'); await p.fill('#f-jor', 'J99'); await p.fill('#f-notas', pl); await p.selectOption('#f-comp', 'liga'); await c('.sheet button[type=submit]');
-    await c('[data-act="iniciar"]'); await c('[data-act="nuevo-evento"]'); await c('label:has(input[value=LESION])'); await p.fill('#f-min', '50'); await p.fill('#f-det', pl); await c('.sheet button[type=submit]');
+    await c('[data-act="iniciar"]');
     await c('[data-act="back"]');
   }
   await recorrer();
   for (const r of ['staff','jugador','padre']) { await rol(r); await recorrer(); }
-  caso(S1, `Ningún payload se ejecutó en ${PAYLOADS.length} variantes × 12 campos × 4 roles`, (await xss()) === 0, `ejecuciones: ${await xss()}`);
+  caso(S1, `Ningún payload se ejecutó en ${PAYLOADS.length} variantes × 11 campos × 4 roles`, (await xss()) === 0, `ejecuciones: ${await xss()}`);
 
   // ---------- 2. Enlaces y colores manipulados ----------
   const S2 = '2 · Enlaces y colores manipulados';
@@ -96,9 +96,8 @@ const caso = (sec, desc, pasa, det='') => { res.push({sec, desc, pasa, det}); if
   const equipo = await ver(() => { ui.view = null; ui.tab = 'equipo'; ui.eqSeg = 'plantel'; render(); return document.querySelector('#view').textContent; });
   caso(S5, 'Sí ve el plantel (nombre, dorsal, posición)', otros.some(n => equipo.includes(n)));
   caso(S5, 'No ve Miembros y accesos ni el plan', !/Miembros y accesos/.test(equipo) && !/\$59/.test(equipo));
-  await cargar(); await p.evaluate(() => { partido('p0').eventos.push({id:'les1', min:70, tipo:'LESION', rival:false, jugadorId:'j9', detalle:'Tobillo'}); });
-  for (const r of ['padre','jugador']) { await rol(r); const t = await p.evaluate(() => { ui.view = {name:'partido', id:'p0'}; ui.pTab = 'eventos'; render(); return document.querySelector('#view').textContent; });
-    caso(S5, `${r}: ve la lesión de un compañero (decisión: el equipo se entera de ausencias)`, t.includes('Tobillo')); }
+  const tipos = await ver(() => { ui.view = {name:'partido', id:'p13'}; render(); const f = (formEvento('p13'), document.querySelector('#sheet').textContent); closeSheet(); return f; });
+  caso(S5, 'El formulario de eventos ya no ofrece lesiones', !/Lesi/.test(tipos));
 
   // ---------- 6. Términos e invitaciones ----------
   const S6 = '6 · Términos y credenciales';
