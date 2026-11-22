@@ -3,7 +3,8 @@
 const { chromium } = require('playwright');
 const fs = require('fs'), path = require('path'), os = require('os');
 
-const HTML = fs.readFileSync(path.join(__dirname, '..', 'design', 'prototipo.html'), 'utf8');
+const HTML = fs.readFileSync(path.join(__dirname, '..', 'design', 'futdata.html'), 'utf8');
+const HTML_FAM = fs.readFileSync(path.join(__dirname, '..', 'design', 'familia.html'), 'utf8');
 const PAYLOADS = ['<img src=x onerror="window.__xss=(window.__xss||0)+1">', '"><svg onload="window.__xss=(window.__xss||0)+1">', "'><script>window.__xss=1</script>"];
 const res = []; let fallos = 0;
 const caso = (sec, desc, pasa, det='') => { res.push({sec, desc, pasa, det}); if (!pasa) fallos++; };
@@ -13,7 +14,7 @@ const caso = (sec, desc, pasa, det='') => { res.push({sec, desc, pasa, det}); if
   const p = await b.newPage({ viewport: { width: 1200, height: 900 } });
   const errores = []; p.on('pageerror', e => errores.push(e.message));
   const cargar = async () => { await p.goto('about:blank'); await p.setContent('<!doctype html><html><head><meta charset="utf-8"><style>[hidden]{display:none!important}</style></head><body>' + HTML + '</body></html>', { waitUntil: 'load' }); await p.waitForTimeout(400);
-    await p.evaluate(() => { FAMILIA.abrirApp('fd'); Object.keys(ROLES).forEach(r => { S.legal.aceptaciones[r] = {version: LEGAL.version, fecha: '2026-11-19T10:00', items: {}}; }); render(true); }); };
+    await p.evaluate(() => { Object.keys(ROLES).forEach(r => { S.legal.aceptaciones[r] = {version: LEGAL.version, fecha: '2026-11-19T10:00', items: {}}; }); render(true); }); };
   const c = async s => { await p.click(s, { timeout: 8000 }); await p.waitForTimeout(80); };
   const xss = () => p.evaluate(() => (window.__xss || 0) + document.querySelectorAll('img[src="x"], #sheet svg[onload], #view svg[onload]').length);
   const rol = async r => p.evaluate(r => { ui.rol = r; ui.view = null; ui.tab = 'inicio'; ui.anaSeg = (r==='entrenador'||r==='staff') ? 'temporada' : 'yo'; ui.eqSeg = r==='padre' ? 'sedes' : 'plantel'; render(true); }, r);
@@ -101,7 +102,7 @@ const caso = (sec, desc, pasa, det='') => { res.push({sec, desc, pasa, det}); if
 
   // ---------- 6. Términos e invitaciones ----------
   const S6 = '6 · Términos y credenciales';
-  await p.goto('about:blank'); await p.setContent('<!doctype html><html><head><meta charset="utf-8"><style>[hidden]{display:none!important}</style></head><body>' + HTML + '</body></html>', { waitUntil: 'load' }); await p.waitForTimeout(400); await p.evaluate(() => FAMILIA.abrirApp('fd'));
+  await p.goto('about:blank'); await p.setContent('<!doctype html><html><head><meta charset="utf-8"><style>[hidden]{display:none!important}</style></head><body>' + HTML + '</body></html>', { waitUntil: 'load' }); await p.waitForTimeout(400);
   caso(S6, 'Sin aceptar términos no se puede entrar a la app', await p.evaluate(() => !!document.querySelector('.onb') && !document.querySelector('[data-tab]')));
   const antesT = await p.evaluate(() => JSON.stringify(S));
   await p.evaluate(() => { for (const a of ['tab','invitar','premium-confirmar','nuevo-partido']) { const b = document.createElement('button'); b.dataset.act = a; b.dataset.tab = 'analisis'; document.body.appendChild(b); b.click(); b.remove(); } });
@@ -136,9 +137,9 @@ const caso = (sec, desc, pasa, det='') => { res.push({sec, desc, pasa, det}); if
 
   // ---------- 8. FutData Familia ----------
   const S8 = '8 · FutData Familia';
-  await p.goto('about:blank'); await p.setContent('<!doctype html><html><head><meta charset="utf-8"><style>[hidden]{display:none!important}</style></head><body>' + HTML + '</body></html>', { waitUntil: 'load' }); await p.waitForTimeout(400);
-  caso(S8, 'Al abrir aparece el selector de apps, no una app', await p.evaluate(() => !document.querySelector('#launcher').hidden && document.querySelector('#app').hidden && document.querySelector('#app2').hidden));
-  await p.evaluate(() => FAMILIA.abrirApp('fam'));
+  caso(S8, 'FutData no contiene nada de Familia', !/FAMILIA|fm-kid|FutData Familia/.test(HTML));
+  await p.goto('about:blank'); await p.setContent('<!doctype html><html><head><meta charset="utf-8"><style>[hidden]{display:none!important}</style></head><body>' + HTML_FAM + '</body></html>', { waitUntil: 'load' }); await p.waitForTimeout(400);
+  caso(S8, 'Familia es independiente: no carga el código ni los datos de FutData', await p.evaluate(() => typeof ROLES === 'undefined' && typeof S === 'undefined' && !!window.FAMILIA));
   const antesF = await p.evaluate(() => JSON.stringify(FAMILIA.F));
   await p.evaluate(() => { for (const a of ['tab','hijo-nuevo','go-live','plan','papa-invitar']) { const b = document.createElement('button'); b.dataset.fa = a; b.dataset.t = 'prog'; b.dataset.k = 'k2'; b.dataset.v = 'suscribir'; document.querySelector('#app2').appendChild(b); b.click(); b.remove(); } });
   caso(S8, 'Sin aceptar los términos no se puede usar ni forzar acciones', antesF === await p.evaluate(() => JSON.stringify(FAMILIA.F)) && await p.evaluate(() => !!document.querySelector('#fview form[data-ff="legal"]')));
@@ -156,7 +157,7 @@ const caso = (sec, desc, pasa, det='') => { res.push({sec, desc, pasa, det}); if
   }
   await p.evaluate(() => { const F = FAMILIA.F; FAMILIA.fu.view = {name:'partido', id:'pt12'}; FAMILIA.renderF(); });
   for (const pl of PAYLOADS){ await p.click('#fview [data-fa="nota"]'); await p.fill('#fx-nota', pl); await p.click('#fsheet button[type=submit]'); await p.waitForTimeout(60); }
-  await p.click('#fview [data-fa="partido-edit"]'); await p.fill('#fx-riv', PAYLOADS[1]); await p.fill('#fx-lug2', PAYLOADS[0]); await p.click('#fsheet button[type=submit]'); await p.waitForTimeout(80);
+  await p.click('#ftop [data-fa="partido-edit"]'); await p.fill('#fx-riv', PAYLOADS[1]); await p.fill('#fx-lug2', PAYLOADS[0]); await p.click('#fsheet button[type=submit]'); await p.waitForTimeout(80);
   for (const t of ['inicio','cal','prog','hijos']) await p.evaluate(t => { FAMILIA.fu.view = null; FAMILIA.fu.tab = t; FAMILIA.F.hijos.forEach(h => { FAMILIA.fu.kid = h.id; FAMILIA.renderF(); }); }, t);
   await p.evaluate(() => { FAMILIA.fu.view = {name:'partido', id:'pt12'}; FAMILIA.renderF(); FAMILIA.fu.view = {name:'premium'}; FAMILIA.renderF(); });
   caso(S8, 'Código malicioso en nombre, categoría, equipo, liga, notas, rival y lugar no se ejecuta', (await xss()) === 0, `ejecuciones: ${await xss()}`);
