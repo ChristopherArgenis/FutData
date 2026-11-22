@@ -199,8 +199,9 @@ Modelo de datos adicional: `familias`, `adultos_familia(familia_id, usuario_id, 
 
 ## 8. Distribución: sitio web, sin App Store ni Google Play (decisión del 22 nov 2026)
 
-- Se distribuye desde el sitio oficial. Recomendación técnica: **PWA** (app web instalable) para iPhone y Android,
-  y opcionalmente un **APK** firmado para Android. En iPhone no se pueden instalar apps nativas desde un sitio web en México.
+- Se distribuye desde el sitio oficial como **app web instalable (PWA)**, ya implementada en `tools/build_site.py`:
+  cada app tiene su carpeta, manifest, service worker (funciona sin internet) e íconos, y se instala por separado.
+  Opcionalmente, más adelante, un **APK** firmado para Android. En iPhone no se pueden instalar apps nativas desde un sitio web en México.
 - Cobro con tarjeta en el sitio (procesador de pagos, p. ej. Stripe o Mercado Pago); sin comisión de tienda.
   Cancelación por el mismo medio, factura (CFDI) y política de reembolsos propias.
 - Datos locales en el navegador (IndexedDB / SQLite en WebAssembly). En iPhone el sistema puede borrar datos de sitios
