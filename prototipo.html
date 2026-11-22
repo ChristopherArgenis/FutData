@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{height:100%}
+body{margin:0;font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<meta name="theme-color" content="#f3f6f1">
+<link rel="icon" type="image/png" href="icons/favicon-64.png">
+</head>
+<body>
+<title>FutData</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* Portada del sitio: dos apps independientes, una tarjeta por app; tema claro único como las apps */
+:root{
+  color-scheme:light;
+  --bg:#f3f6f1; --card:#ffffff; --fg:#13251a; --mu:#5f6f62; --line:#e2e9e2;
+  --ac:#13924d; --ac-dk:#0b6b38; --fam:#e08a2e; --fam-dk:#b8621a;
+  --f:"Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --sh:0 1px 2px rgba(20,40,25,.06),0 10px 28px -16px rgba(20,40,25,.35);
+}
+body{background:linear-gradient(175deg,#e6f4ea,var(--bg) 40%);color:var(--fg);font-family:var(--f);font-size:15px;line-height:1.5;min-height:100%}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:48px 56px;display:grid;gap:32px}
+header{display:grid;gap:10px;justify-items:start}
+.logo{width:56px;height:56px;border-radius:17px;background:var(--ac);color:#fff;display:grid;place-items:center;font-weight:800;font-size:28px}
+h1{margin:0;font-size:clamp(32px,6vw,48px);font-weight:800;letter-spacing:-.02em;line-height:1.05;text-wrap:balance}
+header p{margin:0;color:var(--mu);font-size:17px;max-width:60ch}
+.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.app{background:var(--card);border-radius:26px;padding:24px;box-shadow:var(--sh);display:grid;gap:14px;align-content:start;border:2px solid transparent;min-width:0}
+.app .ic{width:56px;height:56px;border-radius:17px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:20px}
+.app h2{margin:0;font-size:24px;font-weight:800;letter-spacing:-.01em}
+.app .para{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.app p{margin:0;color:var(--mu)}
+.app ul{margin:0;padding-left:20px;display:grid;gap:5px;font-size:14px}
+.go{justify-self:start;display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#fff;font-weight:800;padding:12px 18px;border-radius:14px}
+.go:focus-visible{outline:3px solid var(--fg);outline-offset:2px}
+.fd .ic,.fd .go{background:var(--ac)} .fd .para{color:var(--ac-dk)}
+.fam .ic,.fam .go{background:var(--fam)} .fam .para{color:var(--fam-dk)}
+.app:hover{border-color:var(--line)}
+footer{color:var(--mu);font-size:13px;display:grid;gap:4px}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="logo" aria-hidden="true">F</span>
+    <h1>FutData</h1>
+    <p>Dos apps de fútbol, cada una para quien la usa. Elige la tuya para probar el prototipo.</p>
+  </header>
+
+  <div class="apps">
+    <section class="app fd" aria-labelledby="t-fd">
+      <span class="ic" aria-hidden="true">FD</span>
+      <span class="para">Para entrenadores y su equipo</span>
+      <h2 id="t-fd">FutData</h2>
+      <p>Lleva al equipo completo: partidos, convocatorias, alineaciones, competiciones y análisis.</p>
+      <ul><li>Captura en vivo de goles, tarjetas y cambios</li><li>Tabla de la liga y llaves de torneos</li><li>Roles para cuerpo técnico, jugadores y padres</li></ul>
+      <a class="go" href="futdata/">Abrir FutData ›</a>
+    </section>
+    <section class="app fam" aria-labelledby="t-fam">
+      <span class="ic" aria-hidden="true">FF</span>
+      <span class="para">Para mamás y papás</span>
+      <h2 id="t-fam">FutData Familia</h2>
+      <p>El progreso de tus hijos, capturado por ti: cuánto juegan, qué hacen en la cancha y cómo mejoran.</p>
+      <ul><li>Minutos de juego con un reloj por hijo</li><li>Calendario familiar y días de entrenamiento</li><li>Hasta 4 hijos; análisis Premium por hijo</li></ul>
+      <a class="go" href="familia/">Abrir FutData Familia ›</a>
+    </section>
+  </div>
+
+  <footer><span>Prototipos: los datos viven solo en tu navegador y se reinician al recargar.</span></footer>
+</div>
+
+</body>
+</html>
