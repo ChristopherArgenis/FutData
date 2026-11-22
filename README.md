@@ -62,6 +62,6 @@ Genera `site/`:
 En el celular cada app se abre a pantalla completa y muestra cómo instalarla: botón “Instalar” en Android,
 o “Compartir › Agregar a inicio” en iPhone. Ya instalada, abre sin barra del navegador, con su ícono.
 
-El flujo `.github/workflows/pages.yml` lo publica solo en cada push a `main` (Settings › Pages › Source: **GitHub Actions**).
+El flujo `.github/workflows/pages.yml` construye el sitio en cada push a `main` y lo sube a la rama **`gh-pages`**. En GitHub: Settings › Pages › Source: **Deploy from a branch** › `gh-pages` / `(root)`.
 Para probarlo en tu computadora: `cd site && python3 -m http.server 8000` y abre `http://localhost:8000`
 (o la carpeta `site/` con Live Server de VS Code).
