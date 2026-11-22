@@ -173,3 +173,35 @@ lib/
 3. MVP gratuito: equipos, rivales, sedes, calendario, registrar partido/eventos, estadísticas básicas.
 4. Premium: cuentas, Supabase, sincronización, RevenueCat, primeros análisis.
 5. Beta con 2–3 equipos de una liga local.
+
+
+## 7. FutData Familia (segunda app)
+
+App para que mamá, papá o tutor registren el progreso de sus hijos. Comparte estilo, captura en vivo, calendario,
+invitaciones seguras y términos con FutData.
+
+- **Familia:** hasta 2 adultos (invitación de un solo uso + aprobación) y hasta 4 hijos. Los niños no tienen cuenta.
+- **Perfil del hijo:** nombre, fecha de nacimiento (edad y categoría sugerida automáticas), pie, número, posición principal
+  y secundaria en una cancha, categoría (Sub-X u “Otro” con texto libre, p. ej. “6-9”), nivel y equipo.
+- **Hermanos en el mismo equipo:** desde el 2º hijo se pregunta si juega con un hermano. Si sí, comparten equipo,
+  partidos y entrenamientos (un partido con varias participaciones), y la captura en vivo muestra un reloj de minutos por hijo.
+- **En vivo:** reloj del partido (1T, medio tiempo, 2T) y reloj de minutos del niño (entra/sale). Botones según posición
+  (portero: atajadas, goles recibidos…; delantero: goles, tiros…). Un gol suma una sola vez al marcador; la asistencia
+  puede ser del hermano.
+- **Calendario familiar:** un color por hijo; borde = partido, relleno = entrenamiento; varios hijos el mismo día parten
+  la celda en sus colores. Días de entrenamiento recurrentes con “Fue / No fue”.
+- **Planes:** gratis todo lo anterior y el progreso básico; **Premium $100 MXN/mes por hijo**, con prueba de 7 días por hijo,
+  para el análisis avanzado (tendencias, eficiencia por minuto, por rival/horario/cancha, minutos según resultado, récords, reporte).
+
+Modelo de datos adicional: `familias`, `adultos_familia(familia_id, usuario_id, rol, estado)`, `hijos(familia_id, equipo_id, color, plan…)`,
+`equipos_familia(entrenamiento recurrente)`, `partidos_familia`, `participaciones(partido_id, hijo_id, titular, tramos, estadisticas)`,
+`asistencia_entrenamiento(hijo_id, fecha, fue)`, `notas_partido`.
+
+## 8. Distribución: sitio web, sin App Store ni Google Play (decisión del 22 nov 2026)
+
+- Se distribuye desde el sitio oficial. Recomendación técnica: **PWA** (app web instalable) para iPhone y Android,
+  y opcionalmente un **APK** firmado para Android. En iPhone no se pueden instalar apps nativas desde un sitio web en México.
+- Cobro con tarjeta en el sitio (procesador de pagos, p. ej. Stripe o Mercado Pago); sin comisión de tienda.
+  Cancelación por el mismo medio, factura (CFDI) y política de reembolsos propias.
+- Datos locales en el navegador (IndexedDB / SQLite en WebAssembly). En iPhone el sistema puede borrar datos de sitios
+  no instalados y poco usados, por lo que conviene pedir “Agregar a pantalla de inicio” y ofrecer respaldo en la nube.

@@ -13,7 +13,7 @@ const caso = (sec, desc, pasa, det='') => { res.push({sec, desc, pasa, det}); if
   const p = await b.newPage({ viewport: { width: 1200, height: 900 } });
   const errores = []; p.on('pageerror', e => errores.push(e.message));
   const cargar = async () => { await p.goto('about:blank'); await p.setContent('<!doctype html><html><head><meta charset="utf-8"><style>[hidden]{display:none!important}</style></head><body>' + HTML + '</body></html>', { waitUntil: 'load' }); await p.waitForTimeout(400);
-    await p.evaluate(() => { Object.keys(ROLES).forEach(r => { S.legal.aceptaciones[r] = {version: LEGAL.version, fecha: '2026-11-19T10:00', items: {}}; }); render(true); }); };
+    await p.evaluate(() => { FAMILIA.abrirApp('fd'); Object.keys(ROLES).forEach(r => { S.legal.aceptaciones[r] = {version: LEGAL.version, fecha: '2026-11-19T10:00', items: {}}; }); render(true); }); };
   const c = async s => { await p.click(s, { timeout: 8000 }); await p.waitForTimeout(80); };
   const xss = () => p.evaluate(() => (window.__xss || 0) + document.querySelectorAll('img[src="x"], #sheet svg[onload], #view svg[onload]').length);
   const rol = async r => p.evaluate(r => { ui.rol = r; ui.view = null; ui.tab = 'inicio'; ui.anaSeg = (r==='entrenador'||r==='staff') ? 'temporada' : 'yo'; ui.eqSeg = r==='padre' ? 'sedes' : 'plantel'; render(true); }, r);
@@ -101,7 +101,7 @@ const caso = (sec, desc, pasa, det='') => { res.push({sec, desc, pasa, det}); if
 
   // ---------- 6. Términos e invitaciones ----------
   const S6 = '6 · Términos y credenciales';
-  await p.goto('about:blank'); await p.setContent('<!doctype html><html><head><meta charset="utf-8"><style>[hidden]{display:none!important}</style></head><body>' + HTML + '</body></html>', { waitUntil: 'load' }); await p.waitForTimeout(400);
+  await p.goto('about:blank'); await p.setContent('<!doctype html><html><head><meta charset="utf-8"><style>[hidden]{display:none!important}</style></head><body>' + HTML + '</body></html>', { waitUntil: 'load' }); await p.waitForTimeout(400); await p.evaluate(() => FAMILIA.abrirApp('fd'));
   caso(S6, 'Sin aceptar términos no se puede entrar a la app', await p.evaluate(() => !!document.querySelector('.onb') && !document.querySelector('[data-tab]')));
   const antesT = await p.evaluate(() => JSON.stringify(S));
   await p.evaluate(() => { for (const a of ['tab','invitar','premium-confirmar','nuevo-partido']) { const b = document.createElement('button'); b.dataset.act = a; b.dataset.tab = 'analisis'; document.body.appendChild(b); b.click(); b.remove(); } });
@@ -133,6 +133,37 @@ const caso = (sec, desc, pasa, det='') => { res.push({sec, desc, pasa, det}); if
   await p.evaluate(() => { closeSheet(); const i = S.acc.invitaciones.find(x => x.id === 'i1'); i.expira = '2020-01-01T00:00'; hojaCanje(); }); await p.fill('#f-code', 'FUT-K7Q2M-X9PTA'); await p.fill('#f-cnom', 'Tarde'); await c('.sheet button[type=submit]'); await p.waitForTimeout(200);
   caso(S6, 'Un código vencido no sirve', await p.evaluate(() => S.acc.miembros.filter(m => m.persona === 'Tarde').length === 0));
   await p.evaluate(() => closeSheet());
+
+  // ---------- 8. FutData Familia ----------
+  const S8 = '8 · FutData Familia';
+  await p.goto('about:blank'); await p.setContent('<!doctype html><html><head><meta charset="utf-8"><style>[hidden]{display:none!important}</style></head><body>' + HTML + '</body></html>', { waitUntil: 'load' }); await p.waitForTimeout(400);
+  caso(S8, 'Al abrir aparece el selector de apps, no una app', await p.evaluate(() => !document.querySelector('#launcher').hidden && document.querySelector('#app').hidden && document.querySelector('#app2').hidden));
+  await p.evaluate(() => FAMILIA.abrirApp('fam'));
+  const antesF = await p.evaluate(() => JSON.stringify(FAMILIA.F));
+  await p.evaluate(() => { for (const a of ['tab','hijo-nuevo','go-live','plan','papa-invitar']) { const b = document.createElement('button'); b.dataset.fa = a; b.dataset.t = 'prog'; b.dataset.k = 'k2'; b.dataset.v = 'suscribir'; document.querySelector('#app2').appendChild(b); b.click(); b.remove(); } });
+  caso(S8, 'Sin aceptar los términos no se puede usar ni forzar acciones', antesF === await p.evaluate(() => JSON.stringify(FAMILIA.F)) && await p.evaluate(() => !!document.querySelector('#fview form[data-ff="legal"]')));
+  await p.evaluate(() => document.querySelector('#fview button[value="ejemplo"]').disabled = false); await p.click('#fview button[value="ejemplo"]'); await p.waitForTimeout(150);
+  caso(S8, 'Forzar el botón sin casillas no registra aceptación', await p.evaluate(() => !FAMILIA.F.legal));
+  for (const n of ['terminos','privacidad','tutor']) await p.click(`#fview input[name=${n}]`);
+  await p.click('#fview button[value="ejemplo"]'); await p.waitForTimeout(150);
+  caso(S8, 'Con las 3 casillas obligatorias entra y queda registro con versión', await p.evaluate(() => FAMILIA.F.legal && FAMILIA.F.legal.version === LEGAL.version && FAMILIA.F.legal.items.tutor === true));
+  for (const pl of PAYLOADS){
+    await p.evaluate(() => { FAMILIA.fu.tab = 'hijos'; FAMILIA.fu.view = null; FAMILIA.renderF(true); });
+    await p.click('#fview [data-fa="hijo-nuevo"]').catch(()=>{}); if (!(await p.$('#fx-nom'))) break;
+    await p.fill('#fx-nom', pl); await p.fill('#fx-nac', '2015-01-01'); await p.click('#fview button[type=submit]'); await p.waitForTimeout(80);
+    await p.click('.fm-zona:nth-of-type(7)'); await p.click('#fview [data-fa="cat"][data-c="otro"]'); await p.fill('#fview input[name=catOtro]', pl.slice(0,20)); await p.click('#fview button[type=submit]'); await p.waitForTimeout(80);
+    await p.click('label.fm-opt:has(input[value="otro"])'); await p.waitForTimeout(80); await p.fill('#fx-eq', pl); await p.fill('#fx-liga', pl); await p.click('#fview button[type=submit]'); await p.waitForTimeout(120);
+  }
+  await p.evaluate(() => { const F = FAMILIA.F; FAMILIA.fu.view = {name:'partido', id:'pt12'}; FAMILIA.renderF(); });
+  for (const pl of PAYLOADS){ await p.click('#fview [data-fa="nota"]'); await p.fill('#fx-nota', pl); await p.click('#fsheet button[type=submit]'); await p.waitForTimeout(60); }
+  await p.click('#fview [data-fa="partido-edit"]'); await p.fill('#fx-riv', PAYLOADS[1]); await p.fill('#fx-lug2', PAYLOADS[0]); await p.click('#fsheet button[type=submit]'); await p.waitForTimeout(80);
+  for (const t of ['inicio','cal','prog','hijos']) await p.evaluate(t => { FAMILIA.fu.view = null; FAMILIA.fu.tab = t; FAMILIA.F.hijos.forEach(h => { FAMILIA.fu.kid = h.id; FAMILIA.renderF(); }); }, t);
+  await p.evaluate(() => { FAMILIA.fu.view = {name:'partido', id:'pt12'}; FAMILIA.renderF(); FAMILIA.fu.view = {name:'premium'}; FAMILIA.renderF(); });
+  caso(S8, 'Código malicioso en nombre, categoría, equipo, liga, notas, rival y lugar no se ejecuta', (await xss()) === 0, `ejecuciones: ${await xss()}`);
+  caso(S8, 'Máximo 4 hijos: el asistente no permite un 5º', await p.evaluate(() => { FAMILIA.fu.tab = 'hijos'; FAMILIA.fu.view = null; FAMILIA.renderF(); const b = document.createElement('button'); b.dataset.fa = 'hijo-nuevo'; document.querySelector('#app2').appendChild(b); b.click(); b.remove(); return FAMILIA.F.hijos.length <= 4 && !(FAMILIA.fu.view && FAMILIA.fu.view.name === 'wiz'); }));
+  caso(S8, 'Máximo 2 adultos: no se puede generar otra invitación', await p.evaluate(() => { const b = document.createElement('button'); b.dataset.fa = 'papa-invitar'; document.querySelector('#app2').appendChild(b); b.click(); b.remove(); return FAMILIA.F.papas.length === 2 && !FAMILIA.F.invit; }));
+  caso(S8, 'La prueba gratis no se puede repetir para el mismo hijo', await p.evaluate(() => { const h = FAMILIA.F.hijos.find(x => x.id === 'k3'); const fin = h.plan.pruebaFin; const b = document.createElement('button'); b.dataset.fa = 'plan'; b.dataset.k = 'k3'; b.dataset.v = 'prueba'; document.querySelector('#app2').appendChild(b); b.click(); b.remove(); return h.plan.pruebaFin === fin; }));
+  caso(S8, 'Nombres y notas se recortan a su largo máximo', await p.evaluate(() => FAMILIA.F.hijos.every(h => h.nombre.length <= 60 && String(h.cat).length <= 20) && FAMILIA.F.partidos.every(x => x.notas.every(n => n.txt.length <= 300))));
 
   caso('7 · Estabilidad', 'Sin errores de JavaScript durante todas las pruebas', errores.length === 0, errores.slice(0,3).join(' | '));
   await b.close();

@@ -10,7 +10,8 @@ convocatorias, con análisis gratuitos y premium.
 | Ruta | Qué es |
 |---|---|
 | `design/propuestas.html` | Direcciones de diseño A, B, C y la mezcla B+. **Elegida: B · Cancha (tema claro)** |
-| `design/prototipo.html` | Prototipo interactivo de B (abrir en el navegador): CRUD de partidos, eventos en vivo, convocatorias, rivales, sedes, plantel y análisis; datos en memoria |
+| `design/prototipo.html` | Prototipo con **dos apps**: al abrir eliges **FutData** (entrenador y equipo) o **FutData Familia** (mamá y papá registran a hasta 4 hijos). Todo funciona en memoria |
+| `design/prototipo.html` (detalle) | Prototipo interactivo de B (abrir en el navegador): CRUD de partidos, eventos en vivo, convocatorias, rivales, sedes, plantel y análisis; datos en memoria |
 | `docs/ARQUITECTURA.md` | Planes gratis/premium, catálogo de análisis, almacenamiento SQLite + nube, stack Flutter, roadmap |
 | `db/schema.sql` | Esquema SQLite local (preparado para sincronizar con Postgres/Supabase) |
 | `db/consultas_analisis.sql` | Consultas de análisis gratuitas y premium |

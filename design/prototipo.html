@@ -296,6 +296,114 @@ table.tabla{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-nu
 .code{font-size:22px;font-weight:700;letter-spacing:.08em}
 .qr{min-height:150px;display:grid;place-items:center}
 .qr img,.qr canvas{border-radius:8px}
+.ic14{width:14px;height:14px;vertical-align:-2px}
+.tl-axis{display:flex;justify-content:space-between;font-size:10px;color:var(--mu);margin-top:3px}
+.fm-brand{display:flex;align-items:center;gap:7px;font-weight:800;font-size:12px;color:var(--ac-dk)}
+.fm-brand i,.fm-logo{width:22px;height:22px;border-radius:7px;background:var(--ac);display:grid;place-items:center;color:#fff;font-style:normal;font-size:12px;font-weight:800;flex:none}
+.fm-logo{width:48px;height:48px;border-radius:15px;font-size:24px}
+.fm-kids{display:flex;gap:10px;align-items:flex-start;flex:none;overflow-x:auto;scrollbar-width:none}
+.fm-kid{display:grid;justify-items:center;gap:3px;font-size:10.5px;font-weight:800;color:var(--mu);flex:none}
+.fm-kid.on{color:var(--fg)}.fm-kid.on .fm-av{box-shadow:0 0 0 3px var(--kc)}
+.fm-av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px;border:2px solid #fff;background:var(--kc);flex:none}
+.fm-av.sm{width:34px;height:34px;font-size:11.5px}
+.fm-add{width:44px;height:44px;border-radius:50%;border:2px dashed #c3cbc4;display:grid;place-items:center;color:var(--mu);font-size:20px;flex:none}
+.fm-ring{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
+.fm-btnlive{display:block;width:100%;margin-top:10px;background:var(--loss);color:#fff;font-weight:800;border-radius:13px;padding:10px;font-size:13.5px}
+#fnav .fm-livebtn{width:50px;height:50px;border-radius:18px;background:var(--loss);color:#fff;display:grid;place-items:center;justify-self:center;margin-top:-22px;box-shadow:0 8px 16px -6px rgba(224,72,59,.7);font-size:10px;font-weight:800;line-height:1.1;padding:0}
+#fnav .fm-livebtn.on{animation:fmpulso 1.4s infinite}
+@keyframes fmpulso{50%{box-shadow:0 0 0 8px rgba(224,72,59,.18)}}
+@media (prefers-reduced-motion:reduce){#fnav .fm-livebtn.on{animation:none}}
+.fm-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}
+.fm-cal .h{font-size:10.5px;color:var(--mu);font-weight:700;padding:2px 0}
+.fm-cal button{height:36px;border-radius:10px;font-family:var(--mono);font-size:12.5px;border:2.5px solid transparent;background:transparent}
+.fm-cal button.p{font-weight:800}
+.fm-cal button.today{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px;font-weight:800}
+.fm-cal button.sel{outline:2px solid var(--fg);outline-offset:1px}
+.fm-tl{position:relative;height:26px;border-radius:8px;background:#e4e9e4;overflow:hidden;margin-top:4px}
+.fm-tl span{position:absolute;top:0;bottom:0;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff}
+.fm-tl i{position:absolute;top:0;bottom:0;width:2px;background:#fff;margin-left:-1px}
+.fm-kidstats{display:grid;gap:8px}
+.fm-note{display:grid;gap:3px;padding:9px 0;border-bottom:1px solid var(--line)}
+.fm-note:last-of-type{border-bottom:0}
+.fm-share{background:#13251a;color:#fff;border-radius:20px;padding:16px;display:grid;gap:8px}
+.fm-share .k{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#7fe0a8}
+.fm-share .big{font-size:22px;font-weight:800}
+.fm-share .row{font-size:12.5px}
+.fm-livetop{background:#13251a;color:#fff;margin:-18px -18px 0;padding:14px 18px 12px;display:grid;gap:8px;width:calc(100% + 36px)}
+.fm-score{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center;font-size:13px}
+.fm-score .big{font-family:var(--mono);font-size:32px}
+.fm-clock{display:flex;justify-content:center;gap:8px;align-items:center;font-size:12px;font-weight:700}
+.fm-clock .t{font-family:var(--mono);font-size:15px;background:rgba(255,255,255,.12);padding:3px 9px;border-radius:8px}
+.fm-lctrl{display:flex;gap:8px;justify-content:center}
+.fm-lbtn{background:#fff;color:#13251a;font-weight:800;font-size:12px;border-radius:10px;padding:7px 12px}
+.fm-lbtn.ghost{background:rgba(255,255,255,.14);color:#fff}
+.fm-sibs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fm-sib{background:var(--card);border-radius:16px;padding:10px;box-shadow:var(--sh);display:grid;gap:2px;border:2px solid transparent;cursor:pointer;text-align:left}
+.fm-sib.on{border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 25%,transparent),var(--sh)}
+.fm-sib .t,.fm-encancha .t{font-family:var(--mono);font-size:22px;font-weight:700}
+.fm-sib .st{font-size:10.5px;color:var(--mu);font-weight:700}
+.fm-dot{width:9px;height:9px;border-radius:50%;background:var(--ac)}.fm-dot.off{background:#c3cbc4}
+.fm-io{justify-self:start;margin-top:4px;font-size:11.5px;font-weight:800;padding:6px 11px;border-radius:9px;background:color-mix(in srgb,var(--c,#13924d) 15%,#fff);color:var(--fg)}
+.fm-encancha{display:flex;align-items:center;justify-content:space-between;background:var(--ac);border-radius:16px;padding:11px 13px;color:#fff}
+.fm-encancha.banca{background:#5f6b62}
+.fm-encancha .fm-io{background:#fff;color:var(--ac-dk);margin:0}
+.fm-pad{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.fm-pad button{background:var(--card);border-radius:18px;padding:12px;box-shadow:var(--sh);display:grid;gap:2px;position:relative;text-align:left;min-height:86px;align-content:start}
+.fm-pad button b{font-family:var(--mono);font-size:28px;line-height:1}
+.fm-pad button>span:not(.plus){font-size:12.5px;font-weight:800}
+.fm-pad button small{font-size:10.5px;color:var(--mu)}
+.fm-pad button.main{color:#fff}.fm-pad button.main small{color:rgba(255,255,255,.85)}
+.fm-pad button.neg{background:#fff4f2}.fm-pad button.neg b{color:var(--loss)}
+.fm-pad .plus{position:absolute;right:10px;top:10px;width:26px;height:26px;border-radius:9px;background:rgba(19,146,77,.12);color:var(--ac);display:grid;place-items:center;font-weight:800;font-size:17px}
+.fm-pad button.main .plus{background:rgba(255,255,255,.22);color:#fff}
+.fm-pad button:active{transform:scale(.97)}
+.chipbtn{font-size:11.5px;font-weight:800;padding:6px 10px;border-radius:999px;background:var(--card);box-shadow:var(--sh)}
+.fm-bars{display:flex;gap:5px;align-items:flex-end;height:80px}
+.fm-bars>*{flex:1;display:grid;grid-template-rows:1fr auto;justify-items:center;height:100%;gap:3px;font-size:8.5px;color:var(--mu);min-width:0;background:none;padding:0}
+.fm-bars i{align-self:end;width:100%;border-radius:5px 5px 2px 2px;display:block}
+.fm-trow{display:grid;grid-template-columns:1fr 30px 40px 64px;gap:6px;font-size:12px;padding:3px 0}
+.fm-trow.head{font-size:10px;color:var(--mu);font-weight:700}
+.fm-trow>span:not(:first-child){text-align:right;font-family:var(--mono)}
+.fm-feat{display:grid;grid-template-columns:20px 1fr;gap:6px;font-size:12.5px}
+.fm-feat b{color:var(--ac)}
+.fm-hijo{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;width:100%;text-align:left}
+.fm-hijo .fm-av{width:52px;height:52px;font-size:16px}
+.fm-addkid{display:flex;gap:12px;align-items:center;width:100%;border:2px dashed #c3cbc4;box-shadow:none;background:transparent}
+.fm-papa{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.fm-steps{display:flex;gap:5px;flex:none}.fm-steps i{flex:1;height:5px;border-radius:3px;background:#d5ddd5}.fm-steps i.on{background:var(--ac)}
+.fm-pitch{position:relative;width:100%;aspect-ratio:1.25;border-radius:16px;overflow:hidden;background:repeating-linear-gradient(90deg,#1aa35a 0 12.5%,#169150 12.5% 25%);flex:none}
+.fm-pitch svg{position:absolute;inset:0;width:100%;height:100%}
+.fm-zona{position:absolute;transform:translate(-50%,-50%);padding:6px 9px;border-radius:999px;font-size:10.5px;font-weight:800;background:rgba(255,255,255,.22);color:#fff;border:1.5px dashed rgba(255,255,255,.8);white-space:nowrap}
+.fm-zona.on{background:#fff;color:var(--ac-dk);border:2px solid #fff;box-shadow:0 0 0 4px rgba(242,201,51,.95)}
+.fm-zona.sec{background:rgba(255,255,255,.88);color:var(--ac-dk);border-style:solid}
+.fm-opt{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;background:var(--card);border-radius:16px;padding:11px 12px;box-shadow:var(--sh);cursor:pointer;font-size:13px;position:relative}
+.fm-opt input{position:absolute;opacity:0;pointer-events:none}
+.fm-opt.on,.fm-opt:has(input:checked){box-shadow:0 0 0 2px var(--ac),var(--sh)}
+.fm-wd{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.fm-wd label{position:relative}
+.fm-wd input{position:absolute;opacity:0}
+.fm-wd span{height:40px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:12.5px;background:var(--card);box-shadow:var(--sh);color:var(--mu);cursor:pointer}
+.fm-wd input:checked+span{background:var(--liga);color:#fff}
+.fm-wd input:focus-visible+span{outline:2px solid var(--ac)}
+.fm-counts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.fm-counts label{display:grid;grid-template-columns:1fr 54px;gap:6px;align-items:center;font-size:11.5px;font-weight:700}
+.fm-counts input{width:100%;background:var(--bg);border:1.5px solid var(--line);border-radius:9px;padding:6px;text-align:center;font-family:var(--mono)}
+.segr{position:relative;display:inline-flex}
+.segr input{position:absolute;opacity:0}
+.segr span{font-size:11px;font-weight:700;padding:5px 9px;border-radius:8px;color:var(--mu);cursor:pointer}
+.segr input:checked+span{background:var(--card);color:var(--fg);box-shadow:var(--sh)}
+.launch{background:linear-gradient(170deg,#eaf6ee,#f3f6f1 45%)}
+.launch-in{flex:1;display:flex;flex-direction:column;gap:14px;justify-content:center;padding:24px 20px calc(24px + env(safe-area-inset-bottom,0px))}
+.launch-in h1{margin:0;font-size:28px;font-weight:800;letter-spacing:-.02em}
+.launch-card{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:center;text-align:left;background:var(--card);border-radius:22px;padding:16px;box-shadow:var(--sh);border:2px solid transparent}
+.launch-card:hover,.launch-card:focus-visible{border-color:var(--ac);outline:none}
+.launch-card .ic{grid-row:span 3;width:52px;height:52px;border-radius:16px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:20px}
+.launch-card b{font-size:17px}
+.launch-card span.d{font-size:12.5px;color:var(--mu)}
+.launch-card span.go{font-size:12.5px;font-weight:800;color:var(--ac)}
+.info .apps{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.info .apps button{background:var(--card);box-shadow:var(--sh);border-radius:10px;padding:9px;font-weight:800;font-size:12.5px}
+.info .apps button.on{outline:2px solid var(--ac)}
 .bignum{font-family:var(--mono);font-size:34px;font-weight:700;line-height:1}
 .bignum small{font-size:18px;color:var(--mu)}
 .escudo-row{display:flex;align-items:center;gap:12px}
@@ -432,6 +540,13 @@ svg text{font-family:var(--f)}
 
 <div class="stage">
   <aside class="info">
+    <div style="display:grid;gap:6px"><b style="font-size:13px">Elige la app</b><div class="apps"><button type="button" data-launch="fd">FutData</button><button type="button" data-launch="fam">FutData Familia</button></div>
+      <button class="link" type="button" data-launch="menu" style="justify-self:start;font-size:13px">Volver a la pantalla de inicio ›</button></div>
+    <div data-aside="intro" style="display:grid;gap:12px"><h1>Dos apps, un prototipo</h1><p><b>FutData</b> es para el entrenador y su equipo. <b>FutData Familia</b> es para que mamá y papá registren el progreso de sus hijos.</p><p class="note">Elige una en el teléfono. Los datos viven solo en esta pestaña.</p></div>
+    <div data-aside="fam" style="display:grid;gap:12px" hidden><span class="badge prog" style="justify-self:start">Prototipo · FutData Familia</span><h1>FutData Familia</h1>
+      <ul><li>Familia de ejemplo: Mateo y Leo (gemelos, mismo equipo) y Sofía (otro equipo).</li><li>Botón rojo <b>EN VIVO</b>: captura el partido; un reloj de minutos por hijo. Usa la velocidad demo (1 s = 1 min).</li><li><b>Calendario</b>: un color por hijo; toca un día. Configura los días de entrenamiento.</li><li><b>Progreso</b>: lo básico es gratis; el análisis se activa por hijo.</li><li><b>Hijos</b>: agrega hasta 4. Desde el 2º pregunta si juega con un hermano.</li></ul>
+      <p class="note">En Hijos › ⋯ puedes empezar desde cero o restablecer el ejemplo.</p></div>
+    <div data-aside="fd" style="display:grid;gap:12px" hidden>
     <span class="badge prog" style="justify-self:start">Prototipo · diseño B</span>
     <h1>FutData en tu navegador</h1>
     <p>Así se sentiría la app real. Todo funciona: crear, editar y borrar partidos, eventos, jugadores, rivales y sedes. Los análisis se recalculan con cada cambio.</p>
@@ -449,8 +564,23 @@ svg text{font-family:var(--f)}
       <button class="link" type="button" data-act="canje" style="justify-self:start;font-size:13px">Probar “Tengo un código” ›</button></div>
     <p class="note">Los datos viven solo en esta pestaña. Al recargar vuelve la temporada de ejemplo.</p>
     <button class="reset" data-act="reset" type="button">Restablecer datos de ejemplo</button>
+    </div>
   </aside>
-  <div class="device"><div class="app" id="app">
+  <div class="device">
+  <div class="app launch" id="launcher"><div class="launch-in">
+    <span class="fm-logo">F</span><div><h1>FutData</h1><p class="mu" style="margin:4px 0 0">¿Qué quieres abrir?</p></div>
+    <button type="button" class="launch-card" data-launch="fd"><span class="ic" style="background:var(--ac)">FD</span><b>FutData</b><span class="d">Para entrenadores y su equipo: partidos, convocatorias, alineaciones, competiciones y análisis.</span><span class="go">Abrir ›</span></button>
+    <button type="button" class="launch-card" data-launch="fam"><span class="ic" style="background:#e08a2e">FF</span><b>FutData Familia</b><span class="d">Para mamás y papás: minutos de juego, captura en vivo y progreso de hasta 4 hijos.</span><span class="go">Abrir ›</span></button>
+    <p class="hint" style="margin:0;text-align:center">Prototipo · los datos viven solo en esta pestaña.</p></div></div>
+  <div class="app" id="app2" hidden>
+    <header class="top" id="ftop"></header>
+    <main id="fview"></main>
+    <button class="fab" id="ffab" type="button" aria-label="Nuevo partido" hidden><svg><use href="#i-plus"/></svg></button>
+    <nav class="tabs" id="fnav"></nav>
+    <div id="fsheet"></div>
+    <div id="ftoast" class="toast" hidden></div>
+  </div>
+  <div class="app" id="app" hidden>
     <header class="top" id="top"></header>
     <main id="view"></main>
     <button class="fab" id="fab" type="button" aria-label="Nuevo partido" hidden><svg><use href="#i-plus"/></svg></button>
@@ -944,7 +1074,7 @@ function vBienvenida(){
         <li>Guardamos los datos del equipo: partidos, asistencia, alineaciones y estadísticas.</li>
         <li>Cada rol ve solo lo que le corresponde${ui.rol==='padre' ? '; tú ves los datos de tu hijo y la información general del equipo' : ''}.</li>
         <li>No vendemos tus datos. Puedes descargarlos o borrar tu cuenta cuando quieras desde Equipo › Privacidad.</li>
-        ${ui.rol==='entrenador' ? '<li>El plan Premium se cobra por la tienda de tu teléfono y se renueva solo hasta que lo canceles.</li>' : ''}
+        ${ui.rol==='entrenador' ? '<li>El plan Premium se cobra con tarjeta en el sitio web y se renueva solo hasta que lo canceles.</li>' : ''}
       </ul>
       <div class="actions"><button class="btn" type="button" data-act="leer-terminos">Leer Términos</button><button class="btn" type="button" data-act="leer-aviso">Leer Aviso de Privacidad</button></div></div>
     <form data-form="aceptar" class="onb-form">
@@ -963,7 +1093,7 @@ const TXT_TERMINOS = [
   ['5. Contenido que subes', 'Eres dueño de lo que subes (escudos, notas). Nos das permiso limitado para mostrarlo dentro del servicio. No subas contenido ofensivo, de terceros sin permiso ni datos de personas que no lo autorizaron.'],
   ['6. Uso aceptable', 'Prohibido acosar o exhibir a menores, usar la app para apuestas, intentar entrar a datos de otros equipos o vulnerar la seguridad. Podemos suspender cuentas que lo hagan.'],
   ['7. Plan gratuito', 'Los datos se guardan solo en tu teléfono. Si borras la app o pierdes el teléfono sin respaldo, se pierden y no podemos recuperarlos.'],
-  ['8. Suscripción Premium', 'Precio en pesos mexicanos con IVA incluido, cobrado por App Store o Google Play. Se renueva automáticamente cada periodo hasta que la canceles en la tienda, al menos 24 horas antes de la renovación. La prueba gratis de 7 días se convierte en pago si no cancelas. Los reembolsos siguen la política de cada tienda. Avisaremos antes de cambiar el precio. Si dejas de pagar, tus datos siguen en el teléfono y los de la nube se conservan 90 días.'],
+  ['8. Suscripción Premium', 'Precio en pesos mexicanos con IVA incluido, cobrado con tarjeta a través de nuestro procesador de pagos en el sitio web. Se renueva automáticamente cada periodo hasta que la canceles desde la app o el sitio, por el mismo medio en que contrataste. La prueba gratis de 7 días se convierte en pago si no cancelas antes de que termine. Los reembolsos se solicitan a nuestro contacto. Avisaremos antes de cambiar el precio. Si dejas de pagar, tus datos siguen en el teléfono y los de la nube se conservan 90 días.'],
   ['9. Análisis y pronósticos', 'Son estimaciones con los datos que capturas. No garantizan resultados y no deben usarse para apostar.'],
   ['10. Disponibilidad y responsabilidad', 'Ofrecemos el servicio tal cual y puede tener interrupciones. Nuestra responsabilidad se limita a lo pagado en los últimos 12 meses y no cubre decisiones deportivas ni pérdida de datos guardados solo en el teléfono.'],
   ['11. Cuenta y borrado', 'Puedes borrar tu cuenta en cualquier momento desde Equipo › Privacidad. Podemos suspenderla si incumples estos términos.'],
@@ -972,10 +1102,10 @@ const TXT_TERMINOS = [
 ];
 const TXT_AVISO = [
   ['Responsable', `${LEGAL.empresa}. Contacto para datos personales: ${LEGAL.contacto}.`],
-  ['Datos que recabamos', 'Cuenta: nombre, correo o teléfono y rol. Jugadores: nombre, dorsal, posición, asistencia, minutos, goles y tarjetas; opcionalmente fecha de nacimiento y teléfono de contacto. No recabamos datos sensibles. No recibimos datos de tarjetas: los pagos los procesa la tienda.'],
+  ['Datos que recabamos', 'Cuenta: nombre, correo o teléfono y rol. Jugadores: nombre, dorsal, posición, asistencia, minutos, goles y tarjetas; opcionalmente fecha de nacimiento y teléfono de contacto. No recabamos datos sensibles. No recibimos datos de tarjetas: los pagos los procesa nuestro procesador de pagos.'],
   ['Para qué los usamos', 'Primarias: operar tu cuenta y tu equipo, convocatorias, avisos de partidos, análisis y soporte. Secundarias (puedes negarte): enviarte novedades y mejorar la app con datos agregados y anónimos.'],
   ['Menores de edad', 'Tratamos datos de menores con la autorización de su padre, madre o tutor, quien puede consultarlos, corregirlos o pedir que se borren.'],
-  ['Quién más los ve', 'Dentro del equipo, cada rol ve lo que la app le permite. Usamos proveedores para operar: nube (Supabase), suscripciones (RevenueCat), tiendas (Apple, Google) y notificaciones. No vendemos tus datos.'],
+  ['Quién más los ve', 'Dentro del equipo, cada rol ve lo que la app le permite. Usamos proveedores para operar: nube (Supabase), procesador de pagos con tarjeta y notificaciones. No vendemos tus datos.'],
   ['Tus derechos', 'Acceder, rectificar, cancelar u oponerte (ARCO), revocar tu consentimiento o limitar su uso, escribiendo a ' + LEGAL.contacto + ' o desde Equipo › Privacidad (descargar mis datos, borrar mi cuenta).'],
   ['Cuánto tiempo', 'Mientras tu cuenta esté activa. Al borrarla, 30 días para recuperarla y después se eliminan, salvo obligación legal.'],
   ['Seguridad', 'Cifrado en tránsito y en el teléfono, acceso por roles e invitaciones de un solo uso.'],
@@ -984,7 +1114,7 @@ const TXT_AVISO = [
 function hojaTexto(titulo, partes){ openSheet(titulo, `<div class="legal">${partes.map(([h,t])=>`<h4>${esc(h)}</h4><p>${esc(t)}</p>`).join('')}<p class="hint">Versión ${LEGAL.version} · ${fFecha(LEGAL.fecha+'T12:00')} · Borrador sujeto a revisión legal.</p></div><button class="btn" type="button" data-act="close">Cerrar</button>`); }
 function hojaMas(){
   const permisos = ui.rol!=='padre' ? `<button class="btn" type="button" data-act="permisos">¿Qué puede ver cada rol?</button>` : '';
-  openSheet('Más opciones', `${cardPrivacidad()}${permisos}<button class="btn ghost" type="button" data-act="reset">Restablecer datos de ejemplo</button>`);
+  openSheet('Más opciones', `${cardPrivacidad()}${permisos}<button class="btn" type="button" data-launch="menu">Cambiar de app (FutData / Familia)</button><button class="btn ghost" type="button" data-act="reset">Restablecer datos de ejemplo</button>`);
 }
 function cardPrivacidad(){
   const a = aceptacion();
@@ -1000,9 +1130,9 @@ function cardPrivacidad(){
 }
 function hojaPremium(){
   openSheet('FutData Premium', `<div class="card" style="display:grid;gap:6px"><b style="font-size:16px">7 días gratis, después $59 MXN al mes</b>
-    <span class="mu" style="font-size:12.5px">o $499 MXN al año · IVA incluido · se cobra por la tienda de tu teléfono</span>
+    <span class="mu" style="font-size:12.5px">o $499 MXN al año · IVA incluido · se cobra con tarjeta en el sitio web</span>
     <ul style="margin:6px 0 0;padding-left:18px;font-size:12.5px;display:grid;gap:4px"><li>Proyección de la liga y probabilidades del torneo</li><li>Marcador durante el partido, minutos reales y asistencia</li><li>Nube, varios dispositivos y cuerpo técnico</li></ul></div>
-    <p class="hint" style="margin:0">La suscripción se renueva automáticamente al terminar la prueba y cada mes, hasta que la canceles en la tienda (App Store o Google Play) al menos 24 horas antes. Puedes restaurar tus compras en otro teléfono. Al continuar aceptas los <a data-act="leer-terminos" href="#" class="link">Términos</a> y el <a data-act="leer-aviso" href="#" class="link">Aviso de Privacidad</a>.</p>
+    <p class="hint" style="margin:0">La suscripción se renueva automáticamente al terminar la prueba y cada mes, hasta que la canceles desde la app o el sitio web, por el mismo medio en que contrataste. Tu plan queda en tu cuenta: entras en otro teléfono y sigue activo. Al continuar aceptas los <a data-act="leer-terminos" href="#" class="link">Términos</a> y el <a data-act="leer-aviso" href="#" class="link">Aviso de Privacidad</a>.</p>
     <button class="btn pri" type="button" data-act="premium-confirmar">Iniciar prueba gratis de 7 días</button><button class="btn ghost" type="button" data-act="close">Ahora no</button>`);
 }
 
@@ -1166,7 +1296,7 @@ function hojaRoles(){
   openSheet('Ver la app como…', `<p class="mu" style="margin:0;font-size:12.5px">En la app real cada persona entra con su cuenta y su rol. Aquí puedes cambiar para comparar.</p>
     <div class="card" style="padding:4px 14px">${Object.entries(ROLES).map(([k,r])=>`<button type="button" class="pick" data-act="set-rol" data-r="${k}">
       <span class="rolav ${k}">${r.corto}</span><span><b>${r.nombre}</b> <span class="mu" style="font-size:12px">· ${esc(r.persona)}</span><br><span class="mu" style="font-size:12px">${esc(r.desc)}</span></span>${k===ui.rol?'<span class="badge prog">Actual</span>':'<span class="chev">›</span>'}</button>`).join('')}</div>
-    <button class="btn" type="button" data-act="permisos">Ver tabla de permisos</button><button class="btn ghost" type="button" data-act="canje">Probar “Tengo un código”</button>`);
+    <button class="btn" type="button" data-act="permisos">Ver tabla de permisos</button><button class="btn ghost" type="button" data-act="canje">Probar “Tengo un código”</button><button class="btn ghost" type="button" data-launch="menu">Cambiar de app</button>`);
 }
 function hojaPermisos(){
   const ks = Object.keys(ROLES);
@@ -2103,4 +2233,766 @@ document.addEventListener('submit', ev=>{
 });
 
 reset();
+</script>
+<script>
+/* ======================================================================
+   FutData Familia · prototipo funcional (los datos viven en memoria)
+   Módulo aislado: usa data-fa / data-ff para no cruzarse con FutData.
+   ====================================================================== */
+(() => {
+const $f = s => document.querySelector(s);
+const KCOL = [{c:'#e08a2e', t:'#fdf0e3', d:'#b8621a'}, {c:'#3b7fc4', t:'#e6f0fa', d:'#2d6aa8'}, {c:'#8a4fd1', t:'#f2eafb', d:'#7a3fc0'}, {c:'#d0457a', t:'#fbe8ef', d:'#a8325e'}];
+const MAX_HIJOS = 4, PRECIO = 100, PRUEBA_DIAS = 7;
+const ZONAS = [ {k:'POR', l:'Portero', g:'POR', x:9, y:50}, {k:'LATI', l:'Lateral', g:'DEF', x:27, y:20}, {k:'CEN', l:'Central', g:'DEF', x:25, y:50}, {k:'LATD', l:'Lateral', g:'DEF', x:27, y:80},
+  {k:'MED', l:'Medio', g:'MED', x:50, y:50}, {k:'EXTI', l:'Extremo', g:'DEL', x:68, y:20}, {k:'DEL', l:'Delantero', g:'DEL', x:84, y:50}, {k:'EXTD', l:'Extremo', g:'DEL', x:68, y:80} ];
+const ZL = Object.fromEntries(ZONAS.map(z=>[z.k, z]));
+const POSN = {POR:'Portero', DEF:'Defensa', MED:'Medio', DEL:'Delantero'};
+const STATS = {
+  DEL:[['gol','⚽ Gol','main'],['asist','Asistencia'],['tpuerta','Tiro a puerta'],['tdesv','Tiro desviado'],['frec','Falta recibida'],['offside','Fuera de lugar','neg']],
+  MED:[['pclave','Pase clave','main'],['recup','Recuperación'],['asist','Asistencia'],['gol','⚽ Gol'],['tpuerta','Tiro a puerta'],['perdida','Balón perdido','neg']],
+  DEF:[['recup','Recuperación','main'],['despeje','Despeje'],['duelo','Duelo ganado'],['bloqueo','Bloqueo'],['gol','⚽ Gol'],['fcom','Falta cometida','neg']],
+  POR:[['atajada','🧤 Atajada','main'],['grec','Gol recibido','neg'],['salida','Salida / achique'],['despeje','Despeje'],['penal','Penal atajado'],['saque','Saque a compañero']] };
+const SNAME = {}; Object.values(STATS).forEach(l=>l.forEach(([k,n])=>{ SNAME[k] = n.replace(/^[^\wÁ-ú]+\s*/,''); })); SNAME.amarilla = 'Amarilla'; SNAME.roja = 'Roja';
+const MAIN = {DEL:'gol', MED:'pclave', DEF:'recup', POR:'atajada'};
+const CATS = ['Sub-7','Sub-9','Sub-11','Sub-13','Sub-15','Sub-17'];
+const NIVELES = ['Recreativo','Competitivo','Selectivo','Escuela'];
+const MODAL = {F7:'Fútbol 7', F9:'Fútbol 9', F11:'Fútbol 11'};
+const DSEM = ['D','L','M','M','J','V','S'];               // getDay(): 0 = domingo
+const DSEML = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+const cleanTxt = (v, n=60) => String(v ?? '').replace(/\s+/g,' ').trim().slice(0, n);
+const dkey = d => isoLocal(d).slice(0,10);
+const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate()+n); return x; };
+const edadDe = nac => { if (!nac) return null; const n = new Date(nac+'T12:00'), h = new Date(); let e = h.getFullYear()-n.getFullYear(); if (h.getMonth()<n.getMonth() || (h.getMonth()===n.getMonth() && h.getDate()<n.getDate())) e--; return e; };
+const catSugerida = e => e==null ? null : CATS.find(c => +c.slice(4) > e) || 'Sub-17';
+const iniciales = n => cleanTxt(n).split(' ').filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join('') || '?';
+
+/* ---------------- datos de ejemplo ---------------- */
+function seedF(){
+  const r = rng(2026), hoy = new Date(); hoy.setHours(0,0,0,0);
+  const at = (dias, hh, mm=0) => { const d = addDays(hoy, dias); d.setHours(hh, mm, 0, 0); return isoLocal(d); };
+  const sab = -(((hoy.getDay()+1) % 7) || 7), dom = -(hoy.getDay() || 7);   // último sábado y último domingo
+  const equipos = [
+    {id:'t1', nombre:'Tigres FC', liga:'Liga Infantil Municipal', modalidad:'F7', dur:25, entrena:{dias:[2,4], ini:'18:00', fin:'19:30', lugar:'Cancha Tigres · Col. Las Flores', hasta:'temporada', aviso:'1h'}},
+    {id:'t2', nombre:'Águilas', liga:'Liga Femenil Infantil', modalidad:'F7', dur:20, entrena:{dias:[3], ini:'17:00', fin:'18:30', lugar:'Campo Las Palmas', hasta:'temporada', aviso:'1h'}} ];
+  const hijos = [
+    {id:'k1', nombre:'Mateo Ruiz', nac:'2016-03-14', pie:'Derecho', numero:9, zona:'DEL', zona2:'EXTD', cat:'9-11', nivel:'Competitivo', equipoId:'t1', color:0, plan:{estado:'premium', pruebaUsada:true, pruebaFin:null}},
+    {id:'k2', nombre:'Sofía Ruiz', nac:'2018-06-02', pie:'Izquierdo', numero:1, zona:'POR', zona2:null, cat:'Sub-9', nivel:'Recreativo', equipoId:'t2', color:1, plan:{estado:'gratis', pruebaUsada:false, pruebaFin:null}},
+    {id:'k3', nombre:'Leo Ruiz', nac:'2016-03-14', pie:'Derecho', numero:4, zona:'CEN', zona2:'LATD', cat:'9-11', nivel:'Competitivo', equipoId:'t1', color:2, plan:{estado:'prueba', pruebaUsada:true, pruebaFin:at(5, 23, 59)}} ];
+  const papas = [ {id:'p1', nombre:'Ana López', rel:'Mamá', yo:true, estado:'activo'}, {id:'p2', nombre:'Luis Ruiz', rel:'Papá', estado:'activo'} ];
+  const rivT = ['Halcones','Pumitas','Real Sur','Atlético Lomas','Deportivo Mar','Leones','Unión Norte','Halcones','Pumitas','Real Sur','Atlético Lomas','Deportivo Mar'];
+  const rivA = ['Halconcitas','Estrellas','Gacelas','Panteras','Halconcitas','Estrellas','Gacelas','Panteras'];
+  const minM = [30,25,42,18,35,40,22,38,45,50,36,38], minL = [20,30,25,35,28,40,25,30,22,35,29,33];
+  const segsDe = (m, dur) => { if (m >= 2*dur) return [[0, 2*dur]]; const a = Math.min(dur, Math.round(m*.55)), b = m - a; const s = []; if (a) s.push([0, a]); if (b) s.push([2*dur-b, 2*dur]); return s; };
+  const partidos = [];
+  for (let i=0; i<12; i++){
+    const id = 'pt'+(i+1), fecha = at(sab - 7*(11-i), i%3===0 ? 9 : 10);
+    const stM = {gol: [1,0,2,0,1,1,0,2,1,0,1,2][i], asist: i%4===1 ? 1 : 0, tpuerta: 0, tdesv: Math.round(r()*2), frec: Math.round(r()*2), offside: r()>.7 ? 1 : 0};
+    stM.tpuerta = stM.gol + Math.round(r()*2);
+    const stL = {recup: 2 + Math.round(r()*4), despeje: 1 + Math.round(r()*3), duelo: 1 + Math.round(r()*3), bloqueo: Math.round(r()*2), gol: i===6 ? 1 : 0, fcom: Math.round(r()*2)};
+    const gf = stM.gol + stL.gol + Math.round(r()*2), gc = Math.round(r()*3);
+    partidos.push({id, equipoId:'t1', rival:rivT[i], fecha, lugar: i%2 ? 'Unidad Deportiva Sur' : 'Cancha Tigres', comp: i===9 ? 'Copa Primavera' : 'Liga', local: i%2===0, estado:'FINALIZADO', gf, gc,
+      part:{ k1:{jugo:true, titular: minM[i] >= 25 || i%2===0, segs: segsDe(minM[i], 25), st: stM}, k3:{jugo:true, titular: minL[i] >= 25, segs: segsDe(minL[i], 25), st: stL} }, notas:[] });
+  }
+  partidos[11].notas.push({id:'n1', autor:'Ana', hora:'11:20', kid:'k1', txt:'El segundo gol fue de cabeza, primera vez que lo intenta.'}, {id:'n2', autor:'Luis', hora:'11:42', kid:'k1', txt:'El entrenador lo puso de extremo en el segundo tiempo.'});
+  for (let i=0; i<8; i++){
+    const at_ = 3 + Math.round(r()*4), rec = Math.round(r()*3);
+    const st = {atajada: at_, grec: rec, salida: Math.round(r()*3), despeje: 1 + Math.round(r()*2), penal: r()>.85 ? 1 : 0, saque: 1 + Math.round(r()*3)};
+    partidos.push({id:'pa'+(i+1), equipoId:'t2', rival:rivA[i], fecha: at(dom - 7*(7-i), 12, 30), lugar:'Campo Las Palmas', comp:'Liga', local: i%2===1, estado:'FINALIZADO', gf: Math.round(r()*3), gc: rec,
+      part:{ k2:{jugo:true, titular:true, segs: i===3 ? [[0,20]] : [[0,40]], st} }, notas:[] });
+  }
+  const nuevo = (o) => ({estado:'PROGRAMADO', gf:null, gc:null, notas:[], part:{}, comp:'Liga', local:true, ...o});
+  partidos.push(nuevo({id:'pf1', equipoId:'t1', rival:'Pumitas', fecha: at(1, 9), lugar:'Unidad Deportiva Sur'}),
+                nuevo({id:'pf2', equipoId:'t2', rival:'Halconcitas', fecha: at(1, 12, 30), lugar:'Campo Las Palmas', local:false}),
+                nuevo({id:'pf3', equipoId:'t2', rival:'Estrellas', fecha: at(6, 11), lugar:'Campo Las Palmas'}),
+                nuevo({id:'pf4', equipoId:'t1', rival:'Real Sur', fecha: at(7, 10), lugar:'Campo Real Sur', local:false}));
+  // asistencia a entrenamientos de las últimas 6 semanas
+  const asis = {};
+  for (let d = -42; d < 0; d++){ const f = addDays(hoy, d);
+    equipos.forEach(t=>{ if (t.entrena.dias.includes(f.getDay())) hijos.filter(h=>h.equipoId===t.id).forEach(h=>{ asis[`${h.id}|${dkey(f)}`] = r() < .87; }); }); }
+  return { familia:'Familia Ruiz', papas, hijos, equipos, partidos, asis, temporada:{ini: dkey(addDays(hoy,-100)), fin: dkey(addDays(hoy, 70))}, live:null, invit:null, legal:null };
+}
+
+/* ---------------- estado y consultas ---------------- */
+let F = null, fu = null, ftoastT;
+const hijo = id => F.hijos.find(h=>h.id===id);
+const equipo = id => F.equipos.find(t=>t.id===id);
+const partidoF = id => F.partidos.find(p=>p.id===id);
+const col = h => KCOL[h.color % KCOL.length];
+const posDe = h => ZL[h.zona]?.g || 'MED';
+const hijosDe = tid => F.hijos.filter(h=>h.equipoId===tid);
+const hermanos = h => F.hijos.filter(x=>x.id!==h.id && x.equipoId===h.equipoId);
+const ordenP = () => F.partidos.slice().sort((a,b)=>a.fecha.localeCompare(b.fecha));
+const kidsDe = p => Object.keys(p.part).length ? Object.keys(p.part).filter(k=>hijo(k)) : hijosDe(p.equipoId).map(h=>h.id);
+const jugoEn = (p, kid) => p.estado==='FINALIZADO' && p.part[kid]?.jugo;
+const minutosEn = (p, kid) => (p.part[kid]?.segs || []).reduce((s,[a,b])=>s + Math.max(0, b-a), 0);
+const durTotal = p => 2*(equipo(p.equipoId)?.dur || 25);
+const finDe = kid => ordenP().filter(p=>p.estado==='FINALIZADO' && p.part[kid]);
+const jugadosDe = kid => finDe(kid).filter(p=>p.part[kid].jugo);
+const proxDe = kid => { const h = hijo(kid); const ahora = isoLocal(new Date()); return ordenP().find(p=>p.estado!=='FINALIZADO' && p.equipoId===h?.equipoId && p.fecha.slice(0,10) >= ahora.slice(0,10)) || ordenP().find(p=>p.estado!=='FINALIZADO' && p.equipoId===h?.equipoId); };
+const resF = p => p.gf>p.gc ? 'G' : p.gf===p.gc ? 'E' : 'P';
+const tieneAnalisis = h => h.plan.estado==='premium' || (h.plan.estado==='prueba' && h.plan.pruebaFin && h.plan.pruebaFin > isoLocal(new Date()));
+const yoPapa = () => F.papas.find(p=>p.yo);
+function avatar(h, sm){ const c = col(h); return `<span class="fm-av${sm?' sm':''}" style="--kc:${c.c}" aria-hidden="true">${esc(iniciales(h.nombre))}</span>`; }
+function chipKid(h){ const c = col(h); return `<span class="badge" style="background:${c.t};color:${c.d}">${esc(h.nombre.split(' ')[0])}</span>`; }
+function ftoast(m){ const t = $f('#ftoast'); t.textContent = m; t.hidden = false; clearTimeout(ftoastT); ftoastT = setTimeout(()=>t.hidden = true, 2000); }
+function fsheet(title, inner){ $f('#fsheet').innerHTML = `<div class="scrim" data-fa="fscrim"><div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(title)}"><span class="grab"></span><div class="sheet-head"><h3>${esc(title)}</h3></div>${inner}</div></div>`;
+  $f('#fsheet').querySelectorAll('input:not([type]),input[type=text],textarea').forEach(i=>{ if (!i.maxLength || i.maxLength<0) i.maxLength = i.tagName==='TEXTAREA' ? 300 : 60; }); }
+function fclose(){ $f('#fsheet').innerHTML = ''; }
+const fbtns = (extra='') => `<div class="err" id="fferr"></div><div class="formbtns">${extra}<button class="btn" type="button" data-fa="fclose">Cancelar</button><button class="btn pri" type="submit">Guardar</button></div>`;
+const ferr = m => { const e = $f('#fferr'); if (e) e.textContent = m; };
+function kidsRow(){
+  return `<div class="fm-kids">${F.hijos.map(h=>`<button type="button" class="fm-kid ${h.id===fu.kid?'on':''}" data-fa="kid" data-k="${h.id}">${avatar(h)}<span>${esc(h.nombre.split(' ')[0])}</span></button>`).join('')}
+    ${F.hijos.length < MAX_HIJOS ? `<button type="button" class="fm-kid" data-fa="hijo-nuevo"><span class="fm-add">+</span><span>Agregar</span></button>` : ''}</div>`;
+}
+
+/* ---------------- render ---------------- */
+let flastKey = '';
+function renderF(resetScroll){
+  if (!F) return;
+  const view = $f('#fview'); let top = '', body = '', nav = true, fab = false;
+  if (!F.legal){ $f('#ftop').innerHTML = ''; view.innerHTML = vLegalF(); $f('#fnav').innerHTML = ''; $f('#ffab').hidden = true; view.scrollTop = 0; return; }
+  if (!F.hijos.length && !(fu.view && fu.view.name==='wiz')){ fu.view = {name:'wiz', step:1, d:nuevoBorrador(), primero:true}; }
+  if (fu.kid && !hijo(fu.kid)) fu.kid = F.hijos[0]?.id;
+  const v = fu.view;
+  if (v && v.name==='wiz'){ [top, body] = vWizard(); nav = false; }
+  else if (v && v.name==='live'){ [top, body] = vLive(); nav = false; }
+  else if (v && v.name==='partido'){ [top, body] = vPartidoF(v.id); }
+  else if (v && v.name==='premium'){ top = `<button class="iconbtn" data-fa="back" aria-label="Volver">${ico('i-back')}</button><h2>Premium</h2>`; body = vPremium(); }
+  else if (v && v.name==='entreno'){ top = `<button class="iconbtn" data-fa="back" aria-label="Volver">${ico('i-back')}</button><div style="flex:1;min-width:0"><h2>Días de entrenamiento</h2><div class="sub">${esc(equipo(v.id)?.nombre||'')}</div></div>`; body = vEntreno(v.id); }
+  else if (fu.tab==='inicio'){ top = `<div style="flex:1"><div class="fm-brand"><i>F</i>FutData Familia</div><div class="sub" style="margin-top:3px">${yoPapa()?.nombre==='Tú' ? 'Hola' : `Hola, ${esc(yoPapa()?.nombre.split(' ')[0] || '')}`}</div></div>`; body = vInicioF(); }
+  else if (fu.tab==='cal'){ top = `<h2>Calendario</h2><span class="sub">${MESL[fu.calM]} ${fu.calY}</span>`; body = vCalF(); fab = true; }
+  else if (fu.tab==='prog'){ top = `<h2>Progreso</h2>`; body = vProgreso(); }
+  else { top = `<h2>Hijos</h2><span class="sub">${F.hijos.length} de ${MAX_HIJOS}</span><button class="iconbtn" type="button" data-fa="menu" aria-label="Más opciones">${ico('i-mas')}</button>`; body = vHijos(); }
+  $f('#ftop').innerHTML = top;
+  const st = view.scrollTop; view.innerHTML = body;
+  const key = (v ? v.name + (v.id||'') + (v.step||'') : fu.tab);
+  view.scrollTop = (resetScroll || key!==flastKey) ? 0 : st; flastKey = key;
+  $f('#ffab').hidden = !fab;
+  const liveOn = !!F.live;
+  $f('#fnav').innerHTML = nav ? [['inicio','i-home','Inicio'],['cal','i-cal','Calendario'],['live','',''],['prog','i-chart','Progreso'],['hijos','i-team','Hijos']].map(([k,i,l])=>
+    k==='live' ? `<button type="button" class="fm-livebtn ${liveOn?'on':''}" data-fa="go-live" aria-label="Capturar en vivo">${liveOn?'● EN<br>VIVO':'EN<br>VIVO'}</button>`
+    : `<button type="button" class="${fu.tab===k && !v ? 'on':''}" data-fa="tab" data-t="${k}">${ico(i)}${l}</button>`).join('') : '';
+  $f('#fnav').hidden = !nav;
+}
+
+/* ---------------- términos (familia) ---------------- */
+const FAM_TERMINOS = [
+  ['1. Qué es FutData Familia', 'Una herramienta para que mamá, papá o tutor registren partidos, minutos jugados, entrenamientos y progreso de sus hijos (hasta 4 por familia). No es un servicio oficial de ninguna liga.'],
+  ['2. Quién la usa', 'Solo adultos: madre, padre o tutor legal. Los niños no tienen cuenta. Cada familia puede tener hasta 2 adultos con acceso, invitados con un código de un solo uso.'],
+  ['3. Datos que capturas', 'Tú decides qué registras de tus hijos y respondes por que sea correcto. No registramos datos de salud ni otros datos sensibles.'],
+  ['4. Plan gratuito', 'Incluye perfiles, captura en vivo, minutos, calendario, entrenamientos, notas y progreso básico.'],
+  ['5. Premium por hijo', `El análisis avanzado cuesta $${PRECIO} MXN al mes por cada hijo, con IVA incluido. Cada hijo tiene una prueba gratis de ${PRUEBA_DIAS} días, que se usa cuando quieras. El cobro se hace con tarjeta a través de nuestro procesador de pagos en el sitio web y se renueva cada mes hasta que lo canceles; puedes cancelar en cualquier momento desde la app o el sitio, por el mismo medio en que contrataste.`],
+  ['6. Instalación', 'La app se descarga desde nuestro sitio web oficial; no la instales desde otros sitios.'],
+  ['7. Uso aceptable', 'No subas contenido ofensivo ni datos de niños que no sean tus hijos o pupilos.'],
+  ['8. Responsabilidad', 'El servicio se ofrece tal cual. Los análisis son estimaciones y no deben usarse para apostar.'],
+  ['9. Cuenta y borrado', 'Puedes descargar tus datos o borrar tu cuenta cuando quieras. Ley aplicable: México; puedes acudir a PROFECO.'] ];
+const FAM_AVISO = [
+  ['Responsable', `${LEGAL.empresa}. Contacto: ${LEGAL.contacto}.`],
+  ['Datos', 'Tuyos: nombre, correo o teléfono. De tus hijos: nombre, fecha de nacimiento, posición, número, categoría, equipo, partidos, minutos, estadísticas de juego, asistencia a entrenamientos y notas. No recabamos datos sensibles.'],
+  ['Para qué', 'Mostrar el progreso de tus hijos, sincronizar con el otro papá o mamá, recordatorios y análisis. Con tu permiso, novedades.'],
+  ['Menores', 'Los datos de menores se tratan con tu autorización como madre, padre o tutor; puedes consultarlos, corregirlos o borrarlos.'],
+  ['Pagos', 'Los datos de tu tarjeta los recibe el procesador de pagos; nosotros no los guardamos.'],
+  ['Tus derechos', `Acceso, rectificación, cancelación y oposición (ARCO) escribiendo a ${LEGAL.contacto} o desde la app.`] ];
+function vLegalF(){
+  return `<div class="onb" style="padding-top:8px">
+    <div class="onb-head"><span class="fm-logo">F</span><div><span class="mu" style="font-size:12px;font-weight:700">BIENVENIDA A</span><h2 style="margin:0;font-size:22px">FutData Familia</h2><span class="mu" style="font-size:12.5px">El progreso de tus hijos, capturado por ti.</span></div></div>
+    <div class="card onb-res"><b>Antes de empezar:</b><ul>
+      <li>Solo los adultos de la familia tienen cuenta (máximo 2). Los niños no.</li>
+      <li>Registras lo que tú decides; no pedimos datos de salud.</li>
+      <li>Lo básico es gratis. El análisis avanzado cuesta $${PRECIO} al mes por hijo, con ${PRUEBA_DIAS} días gratis para cada uno.</li>
+      <li>Puedes descargar tus datos o borrar tu cuenta cuando quieras.</li></ul>
+      <div class="actions"><button class="btn" type="button" data-fa="leer-t">Leer Términos</button><button class="btn" type="button" data-fa="leer-a">Leer Aviso de Privacidad</button></div></div>
+    <form data-ff="legal" class="onb-form">
+      <label class="chk"><input type="checkbox" name="terminos" data-req="1"><span>Leí y acepto los Términos y Condiciones de FutData Familia.</span></label>
+      <label class="chk"><input type="checkbox" name="privacidad" data-req="1"><span>Leí el Aviso de Privacidad y autorizo el tratamiento de mis datos para las finalidades descritas.</span></label>
+      <label class="chk"><input type="checkbox" name="tutor" data-req="1"><span>Soy madre, padre o tutor legal de los menores que registre y autorizo el tratamiento de sus datos.</span></label>
+      <label class="chk"><input type="checkbox" name="novedades"><span>Quiero recibir novedades (opcional).</span></label>
+      <div class="err" id="fferr"></div>
+      <span class="lbl" style="margin-top:4px">¿CÓMO QUIERES PROBARLA?</span>
+      <div class="actions"><button class="btn pri" type="submit" name="modo" value="ejemplo" disabled data-acepta>Con familia de ejemplo</button><button class="btn" type="submit" name="modo" value="cero" disabled data-acepta>Desde cero</button></div>
+      <p class="hint" style="margin:0;text-align:center">Versión ${LEGAL.version} · guardamos fecha, versión y casillas aceptadas.</p>
+    </form></div>`;
+}
+
+/* ---------------- inicio ---------------- */
+function vInicioF(){
+  const h = hijo(fu.kid); if (!h) return '';
+  const jug = jugadosDe(h.id), fin = finDe(h.id), min = sum(fin.map(p=>minutosEn(p, h.id))), pos = sum(fin.map(durTotal)), pc = pos ? min/pos : 0;
+  const ult4 = jug.slice(-4), pri4 = jug.slice(0,4), dif = ult4.length && pri4.length ? Math.round(mean(ult4.map(p=>minutosEn(p,h.id))) - mean(pri4.map(p=>minutosEn(p,h.id)))) : 0;
+  const C = 2*Math.PI*38, c = col(h);
+  let html = kidsRow();
+  html += `<div class="card fm-ring"><svg width="96" height="96" viewBox="0 0 96 96" role="img" aria-label="${Math.round(100*pc)}% del tiempo"><circle cx="48" cy="48" r="38" fill="none" stroke="#e2e9e2" stroke-width="11"/><circle cx="48" cy="48" r="38" fill="none" stroke="${c.c}" stroke-width="11" stroke-linecap="round" stroke-dasharray="${C*pc} ${C}" transform="rotate(-90 48 48)"/><text x="48" y="47" text-anchor="middle" font-size="19" font-weight="800" fill="var(--fg)" font-family="JetBrains Mono, monospace">${Math.round(100*pc)}%</text><text x="48" y="61" text-anchor="middle" font-size="9" fill="var(--mu)">del tiempo</text></svg>
+    <div style="display:grid;gap:3px"><span class="lbl">MINUTOS DE ${esc(h.nombre.split(' ')[0].toUpperCase())}</span><b class="num" style="font-size:26px">${min}'</b><span class="mu" style="font-size:12px">de ${pos} posibles · ${fin.length} partidos</span>
+    ${dif ? `<span class="badge" style="justify-self:start;${dif<0?'background:#fdecea;color:#a3261c':''}">${dif>0?'↑':'↓'} ${Math.abs(dif)}' por partido vs. el inicio</span>` : ''}</div></div>`;
+  const n = proxDe(h.id);
+  if (n){ const dias = Math.round((new Date(n.fecha.slice(0,10)+'T00:00') - new Date(dkey(new Date())+'T00:00'))/864e5), t = equipo(n.equipoId), otros = kidsDe(n).filter(k=>k!==h.id).map(hijo).filter(Boolean);
+    html += `<div class="hero" role="button" tabindex="0" data-fa="partido" data-id="${n.id}"><div class="row"><span class="k">PRÓXIMO · ${esc(n.comp.toUpperCase())}</span><span class="k">${dias<=0?'hoy':dias===1?'mañana':`en ${dias} días`}</span></div>
+      <div class="row" style="margin:10px 0"><b style="font-size:15px">${esc(n.local ? t.nombre : n.rival)}</b><div style="text-align:center"><b style="font-size:24px;display:block;line-height:1">${fHora(n.fecha)}</b><small style="opacity:.85">${fFecha(n.fecha)}</small></div><b style="font-size:15px;text-align:right">${esc(n.local ? n.rival : t.nombre)}</b></div>
+      <div class="loc">${ico('i-pin')}<span>${esc(n.lugar||'Sin lugar')}</span></div>
+      ${otros.length ? `<div style="font-size:11.5px;margin-top:8px;font-weight:700">También juega ${esc(otros.map(o=>o.nombre.split(' ')[0]).join(' y '))} · se capturan juntos</div>` : ''}
+      <button type="button" class="fm-btnlive" data-fa="prelive" data-id="${n.id}">● Capturar en vivo</button></div>`; }
+  else html += `<div class="card empty">${esc(h.nombre.split(' ')[0])} no tiene partidos programados.<br><button class="link" type="button" data-fa="tab" data-t="cal">Agregar en el calendario</button></div>`;
+  const last = jug[jug.length-1];
+  if (last){ const st = last.part[h.id].st, main = MAIN[posDe(h)];
+    html += `<div class="sec">Último partido <button type="button" data-fa="tab" data-t="prog">Ver progreso</button></div>
+      <button type="button" class="card" style="display:grid;gap:8px;width:100%;text-align:left" data-fa="partido" data-id="${last.id}"><div class="row"><b>${esc(equipo(last.equipoId).nombre)} ${last.gf} – ${last.gc} ${esc(last.rival)}</b><span class="badge ${resF(last)}">${({G:'Ganado',E:'Empate',P:'Perdido'})[resF(last)]}</span></div>
+      <div class="tiles" style="grid-template-columns:repeat(3,1fr)"><div><b>${minutosEn(last,h.id)}'</b><span>JUGÓ</span></div><div><b>${st[main]||0}</b><span>${esc(SNAME[main].toUpperCase())}</span></div><div><b>${posDe(h)==='POR' ? (st.grec||0) : (st.asist||0)}</b><span>${posDe(h)==='POR' ? 'RECIBIDOS' : 'ASIST.'}</span></div></div></button>`; }
+  return html;
+}
+
+/* ---------------- calendario de la familia ---------------- */
+function eventosDia(k){
+  const evs = [], d = new Date(k+'T12:00');
+  F.partidos.forEach(p=>{ if (p.fecha.slice(0,10)===k) evs.push({tipo:'p', p, kids: kidsDe(p)}); });
+  if (k >= F.temporada.ini && k <= F.temporada.fin) F.equipos.forEach(t=>{ const e = t.entrena; if (!e || !e.dias.includes(d.getDay())) return; if (e.hasta!=='temporada' && k > e.hasta) return;
+    const kids = hijosDe(t.id).map(h=>h.id); if (kids.length) evs.push({tipo:'e', t, kids}); });
+  const fil = fu.calFil;
+  return evs.map(e=>({...e, kids: fil==='todos' ? e.kids : e.kids.filter(x=>x===fil)})).filter(e=>e.kids.length).sort((a,b)=>(a.tipo==='p'?a.p.fecha.slice(11):a.t.entrena.ini).localeCompare(b.tipo==='p'?b.p.fecha.slice(11):b.t.entrena.ini));
+}
+function gradColores(cols){ if (cols.length===1) return cols[0]; if (cols.length===2) return `linear-gradient(135deg,${cols[0]} 50%,${cols[1]} 50%)`;
+  return `conic-gradient(from 45deg,${cols.map((c,i)=>`${c} ${100*i/cols.length}% ${100*(i+1)/cols.length}%`).join(',')})`; }
+function vCalF(){
+  const y = fu.calY, m = fu.calM, first = new Date(y, m, 1), days = new Date(y, m+1, 0).getDate(), lead = (first.getDay()+6)%7, hoyK = dkey(new Date());
+  let cells = ['L','M','M','J','V','S','D'].map(d=>`<span class="h">${d}</span>`).join('') + '<span></span>'.repeat(lead);
+  for (let d=1; d<=days; d++){
+    const k = `${y}-${pad(m+1)}-${pad(d)}`, ev = eventosDia(k);
+    const kp = [...new Set(ev.filter(e=>e.tipo==='p').flatMap(e=>e.kids))].map(id=>col(hijo(id)).c), ke = [...new Set(ev.filter(e=>e.tipo==='e').flatMap(e=>e.kids))].map(id=>col(hijo(id)).t);
+    let style = '';
+    if (kp.length || ke.length){
+      const fill = ke.length > 1 ? gradColores(ke) : ke.length ? `linear-gradient(${ke[0]},${ke[0]})` : 'linear-gradient(#fff,#fff)';
+      const bord = kp.length > 1 ? gradColores(kp) : kp.length ? `linear-gradient(${kp[0]},${kp[0]})` : null;
+      style = bord ? `border-color:transparent;background:${fill} padding-box,${bord} border-box;` : `background:${fill};`; }
+    cells += `<button type="button" class="${k===hoyK?'today':''} ${k===fu.calDay?'sel':''} ${kp.length?'p':''}" style="${style}" data-fa="cal-day" data-d="${k}" aria-label="${d} de ${MESL[m]}${ev.length?`, ${ev.length} evento(s)`:''}">${d}</button>`;
+  }
+  let html = `<div class="chips">${[['todos','Todos']].concat(F.hijos.map(h=>[h.id, h.nombre.split(' ')[0]])).map(([k,l])=>{ const h = hijo(k);
+    return `<button type="button" class="${fu.calFil===k?'on':''}" data-fa="cal-fil" data-k="${k}" ${h&&fu.calFil!==k?`style="color:${col(h).d}"`:''}>${h?'● ':''}${esc(l)}</button>`; }).join('')}</div>`;
+  html += `<div class="card"><div class="calhead"><button class="iconbtn" data-fa="cal-prev" aria-label="Mes anterior">${ico('i-back')}</button><b>${MESL[m]} ${y}</b><button class="iconbtn" data-fa="cal-next" aria-label="Mes siguiente" style="transform:scaleX(-1)">${ico('i-back')}</button></div>
+    <div class="fm-cal" style="margin-top:8px">${cells}</div>
+    <div class="legend" style="margin-top:8px;flex-wrap:wrap"><span><i class="box" style="border-color:#555"></i>Partido</span><span><i class="dot" style="background:#d8dfd9;border-radius:3px"></i>Entrenamiento</span>${F.hijos.length>1?`<span><i class="dot" style="background:${gradColores(F.hijos.map(h=>col(h).c))};border-radius:3px"></i>Varios hijos</span>`:''}</div></div>`;
+  const sel = fu.calDay || hoyK, ev = eventosDia(sel), dsel = new Date(sel+'T12:00');
+  html += `<div class="sec">${DIAS[dsel.getDay()]} ${dsel.getDate()} ${MES[dsel.getMonth()]}${ev.length?` · ${ev.length} evento${ev.length>1?'s':''}`:''}</div>`;
+  if (!ev.length) html += `<div class="card empty">Sin partidos ni entrenamientos.</div>`;
+  ev.forEach(e=>{
+    if (e.tipo==='p'){ const p = e.p, t = equipo(p.equipoId), c = col(hijo(e.kids[0]));
+      html += `<button type="button" class="card match" data-fa="partido" data-id="${p.id}"><div class="dbox" style="background:${c.t};color:${c.d}"><small>${fHora(p.fecha)}</small><b style="font-size:12px">${esc(p.comp.slice(0,8))}</b></div>
+        <div><div class="ttl">${esc(p.local ? `${t.nombre} vs ${p.rival}` : `${p.rival} vs ${t.nombre}`)}</div><div class="meta">${esc(p.lugar||'')}</div><div style="display:flex;gap:4px;margin-top:4px">${e.kids.map(k=>chipKid(hijo(k))).join('')}</div></div>
+        ${p.estado==='FINALIZADO' ? `<div class="score-r">${p.gf}–${p.gc}</div>` : F.live?.pid===p.id ? '<span class="badge live">EN VIVO</span>' : '<span class="chev">›</span>'}</button>`; }
+    else { const t = e.t, pasado = sel <= hoyK;
+      html += `<div class="card" style="display:grid;gap:8px"><div class="match" style="grid-template-columns:50px 1fr"><div class="dbox" style="background:var(--liga-soft);color:#1f4fa8"><small>${t.entrena.ini}</small><b style="font-size:11px">Entreno</b></div>
+        <div><div class="ttl">Entrenamiento · ${esc(t.nombre)}</div><div class="meta">${t.entrena.ini} – ${t.entrena.fin} · ${esc(t.entrena.lugar||'')}</div></div></div>
+        ${e.kids.map(k=>{ const h = hijo(k), v = F.asis[`${k}|${sel}`];
+          return `<div class="row" style="font-size:12.5px"><span>${chipKid(h)}</span>${pasado ? `<span class="seg"><button type="button" class="${v===true?'on v':''}" data-fa="asis" data-k="${k}" data-d="${sel}" data-v="1">Fue</button><button type="button" class="${v===false?'on n':''}" data-fa="asis" data-k="${k}" data-d="${sel}" data-v="0">No fue</button></span>` : '<span class="mu">Próximo</span>'}</div>`; }).join('')}</div>`; }
+  });
+  const ps = ev.filter(e=>e.tipo==='p' && e.p.estado!=='FINALIZADO').map(e=>e.p).sort((a,b)=>a.fecha.localeCompare(b.fecha));
+  for (let i=1; i<ps.length; i++) if (ps[i].equipoId !== ps[i-1].equipoId){ const mins = (new Date(ps[i].fecha) - new Date(ps[i-1].fecha))/60000 - 2*(equipo(ps[i-1].equipoId).dur) - 15;
+    html += `<div class="insight">${mins >= 30 ? `Entre un partido y otro quedan ${Math.floor(mins/60) ? Math.floor(mins/60)+' h ' : ''}${Math.round(mins%60)} min libres (contando el medio tiempo).` : `<b>Ojo:</b> los partidos de ${esc(equipo(ps[i-1].equipoId).nombre)} y ${esc(equipo(ps[i].equipoId).nombre)} casi se empalman.`}</div>`; }
+  const equiposVis = F.equipos.filter(t=>fu.calFil==='todos' ? hijosDe(t.id).length : t.id===hijo(fu.calFil)?.equipoId);
+  equiposVis.forEach(t=>{ const e = t.entrena;
+    html += `<button type="button" class="card row" style="width:100%;text-align:left;padding:11px 13px" data-fa="entreno" data-id="${t.id}"><div><b style="font-size:12.5px">${esc(t.nombre)} · ${e && e.dias.length ? `entrena ${e.dias.map(d=>DSEML[d]).join(' y ')}` : 'sin días de entrenamiento'}</b><div class="mu" style="font-size:11px">${e && e.dias.length ? `${e.ini} – ${e.fin} · se repite cada semana` : 'Toca para configurarlos'}</div></div><span style="color:var(--ac);font-weight:800;font-size:12px">Editar</span></button>`; });
+  return html;
+}
+function vEntreno(tid){
+  const t = equipo(tid), e = t.entrena || {dias:[], ini:'18:00', fin:'19:30', lugar:'', hasta:'temporada', aviso:'1h'};
+  return `<form data-ff="entreno" data-id="${tid}" style="display:grid;gap:12px">
+    <p class="mu" style="margin:0;font-size:12.5px">Para ${esc(hijosDe(tid).map(h=>h.nombre.split(' ')[0]).join(' y '))}. Se configuran una vez y se repiten cada semana.</p>
+    <div class="field"><span class="lbl">¿Qué días entrena?</span><div class="fm-wd">${[1,2,3,4,5,6,0].map(d=>`<label><input type="checkbox" name="dia" value="${d}" ${e.dias.includes(d)?'checked':''}><span>${DSEM[d]}</span></label>`).join('')}</div></div>
+    <div class="two"><div class="field"><label for="fx-ini">Empieza</label><input id="fx-ini" type="time" name="ini" value="${e.ini}" required></div><div class="field"><label for="fx-fin">Termina</label><input id="fx-fin" type="time" name="fin" value="${e.fin}" required></div></div>
+    <div class="field"><label for="fx-lug">Lugar</label><input id="fx-lug" name="lugar" value="${esc(e.lugar)}" placeholder="Cancha, colonia"></div>
+    <div class="field"><span class="lbl">Se repite hasta</span><div class="radio"><label><input type="radio" name="hasta" value="temporada" ${e.hasta==='temporada'?'checked':''}>Fin de temporada</label><label><input type="radio" name="hasta" value="fecha" ${e.hasta!=='temporada'?'checked':''}>Una fecha</label></div>
+      <input type="date" name="hastaFecha" value="${e.hasta!=='temporada'?e.hasta:F.temporada.fin}" style="background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:9px 12px"></div>
+    <div class="field"><span class="lbl">Recordatorio</span><div class="radio">${[['no','No'],['1h','1 hora antes'],['dia','El día anterior']].map(([v,l])=>`<label><input type="radio" name="aviso" value="${v}" ${e.aviso===v?'checked':''}>${l}</label>`).join('')}</div></div>
+    <div class="insight">Esos días quedan marcados en el calendario. Al terminar cada entrenamiento la app pregunta si fue: Fue / No fue.</div>
+    <div class="err" id="fferr"></div><button class="btn pri" type="submit">Guardar</button></form>`;
+}
+
+/* ---------------- partido: detalle y resumen ---------------- */
+function lineaTiempo(p, kid){
+  const D = durTotal(p), segs = p.part[kid]?.segs || [], c = col(hijo(kid));
+  return `<div class="fm-tl" aria-label="Minutos en la cancha">${segs.map(([a,b])=>`<span style="left:${100*a/D}%;width:${100*Math.max(0,b-a)/D}%;background:${c.c}">${b-a >= D*.14 ? `${Math.round(b-a)}'` : ''}</span>`).join('')}<i style="left:50%"></i></div>`;
+}
+function vPartidoF(id){
+  const p = partidoF(id); if (!p){ fu.view = null; return ['', '']; }
+  const t = equipo(p.equipoId), fin = p.estado==='FINALIZADO', kids = kidsDe(p).map(hijo).filter(Boolean), D = durTotal(p);
+  const top = `<button class="iconbtn" data-fa="back" aria-label="Volver">${ico('i-back')}</button><div style="flex:1;min-width:0"><h2>${esc(p.local ? `${t.nombre} vs ${p.rival}` : `${p.rival} vs ${t.nombre}`)}</h2><div class="sub">${fFecha(p.fecha)} · ${fHora(p.fecha)} · ${esc(p.comp)}</div></div><button class="iconbtn" data-fa="partido-edit" data-id="${p.id}" aria-label="Editar partido">${ico('i-edit')}</button>`;
+  let html = `<div class="card" style="text-align:center;display:grid;gap:6px">${fin ? `<div class="num" style="font-size:36px;font-weight:700">${p.local ? `${p.gf} – ${p.gc}` : `${p.gc} – ${p.gf}`}</div><span class="badge ${resF(p)}" style="justify-self:center">${({G:'Ganaron',E:'Empate',P:'Perdieron'})[resF(p)]}</span>`
+    : `<div class="num" style="font-size:30px;font-weight:700">${fHora(p.fecha)}</div><span class="badge prog" style="justify-self:center">Programado</span>`}
+    <span class="mu" style="font-size:12px">${ico('i-pin','ic14')} ${esc(p.lugar||'Sin lugar')} · ${MODAL[t.modalidad]} · 2 tiempos de ${t.dur}'</span>
+    <div style="display:flex;gap:4px;justify-content:center">${kids.map(chipKid).join('')}</div></div>`;
+  if (!fin){
+    html += `<div class="actions"><button class="btn pri" type="button" data-fa="prelive" data-id="${p.id}" style="background:var(--loss)">● Capturar en vivo</button><button class="btn" type="button" data-fa="registrar" data-id="${p.id}">Registrar después</button></div>
+      <div class="mu" style="font-size:12px;text-align:center">“Registrar después” sirve si no pudiste capturar durante el partido.</div>`;
+  } else {
+    html += `<div class="card" style="display:grid;gap:10px"><span class="lbl">MINUTOS EN LA CANCHA</span>${kids.map(h=>{ const pt = p.part[h.id];
+      return `<div><div class="row" style="font-size:12.5px"><b style="color:${col(h).d}">${esc(h.nombre.split(' ')[0])}</b><b class="num">${pt?.jugo ? `${minutosEn(p,h.id)}' de ${D} · ${pct(minutosEn(p,h.id), D)}%` : 'No jugó'}</b></div>${pt?.jugo ? lineaTiempo(p, h.id) : ''}</div>`; }).join('')}
+      <div class="tl-axis"><span>1er tiempo</span><span>medio tiempo</span><span>2º tiempo</span></div></div>`;
+    html += `<div class="fm-kidstats" style="grid-template-columns:repeat(${Math.min(2,kids.length)},1fr)">${kids.map(h=>{ const pt = p.part[h.id]; if (!pt?.jugo) return `<div class="card" style="box-shadow:inset 0 3px ${col(h).c},var(--sh)"><b>${esc(h.nombre.split(' ')[0])}</b><div class="mu" style="font-size:12px">No jugó este partido</div></div>`;
+      const pos = posDe(h), items = STATS[pos].filter(([k])=>pt.st[k]).concat(['amarilla','roja'].filter(k=>pt.st[k]).map(k=>[k,SNAME[k]]));
+      const ef = pos==='POR' && (pt.st.atajada||0)+(pt.st.grec||0) ? `<span><b class="num">${pct(pt.st.atajada||0, (pt.st.atajada||0)+(pt.st.grec||0))}%</b> de tiros detenidos</span>` : '';
+      return `<div class="card" style="box-shadow:inset 0 3px ${col(h).c},var(--sh);display:grid;gap:4px"><b>${esc(h.nombre.split(' ')[0])}</b><div class="mu" style="font-size:11px">${POSN[pos]}</div>
+        ${items.length ? items.map(([k,n])=>`<span style="font-size:12.5px"><b class="num">${pt.st[k]}</b> ${esc(SNAME[k]||n).toLowerCase()}</span>`).join('') : '<span class="mu" style="font-size:12px">Sin acciones registradas</span>'}${ef}</div>`; }).join('')}</div>`;
+    const conMin = kids.filter(h=>p.part[h.id]?.jugo), seguidos = conMin.map(h=>{ const j = jugadosDe(h.id); let n = 0; for (let i=j.length-1; i>=0 && minutosEn(j[i],h.id) >= durTotal(j[i])*.7; i--) n++; return [h,n]; }).filter(([,n])=>n>=3);
+    if (seguidos.length) html += `<div class="insight">${seguidos.map(([h,n])=>`${esc(h.nombre.split(' ')[0])} lleva ${n} partidos seguidos jugando más del 70% del tiempo.`).join(' ')}</div>`;
+  }
+  html += `<div class="card" style="display:grid;gap:2px"><div class="row"><b>Notas</b><button class="link" type="button" data-fa="nota" data-id="${p.id}" style="font-size:12px">+ Agregar</button></div>
+    ${p.notas.length ? p.notas.map(n=>`<div class="fm-note"><span class="mu" style="font-size:11px;font-weight:700">${esc(n.autor)} · ${esc(n.hora)}${n.kid && kids.length>1 ? ` · sobre ${esc(hijo(n.kid)?.nombre.split(' ')[0]||'')}` : ''}</span><span style="font-size:12.5px">${esc(n.txt)}</span></div>`).join('') : '<span class="mu" style="font-size:12px;padding:6px 0">Sin notas todavía.</span>'}</div>`;
+  if (fin) html += `<div class="actions"><button class="btn pri" type="button" data-fa="compartir" data-id="${p.id}">Compartir tarjeta</button><button class="btn" type="button" data-fa="registrar" data-id="${p.id}">Editar datos</button></div>`;
+  return [top, html];
+}
+function formNota(pid){
+  const p = partidoF(pid), kids = kidsDe(p).map(hijo).filter(Boolean);
+  fsheet('Agregar nota', `<form data-ff="nota" data-id="${pid}">${kids.length>1 ? `<div class="field"><span class="lbl">Sobre</span><div class="radio">${kids.map((h,i)=>`<label><input type="radio" name="kid" value="${h.id}" ${i===0?'checked':''}>${esc(h.nombre.split(' ')[0])}</label>`).join('')}</div></div>` : `<input type="hidden" name="kid" value="${kids[0]?.id||''}">`}
+    <div class="field"><label for="fx-nota">Nota</label><textarea id="fx-nota" name="txt" rows="3" required placeholder="Lo que quieras recordar de este partido"></textarea></div>${fbtns()}</form>`);
+}
+function formPartidoF(pid, fecha){
+  const p = pid ? partidoF(pid) : null, def = fecha ? fecha+'T10:00' : isoLocal((d=>{ d.setDate(d.getDate()+((6-d.getDay()+7)%7||7)); d.setHours(10,0,0,0); return d; })(new Date()));
+  const eqs = F.equipos.filter(t=>hijosDe(t.id).length);
+  const picker = pickerFecha(p?.fecha || def).replace(/data-act="pick-(day|time)"/g, 'data-fa="pick-$1"');
+  fsheet(p ? 'Editar partido' : 'Nuevo partido', `<form data-ff="partido" data-id="${pid||''}">
+    <div class="field"><span class="lbl">Equipo</span><div class="radio">${eqs.map((t,i)=>`<label><input type="radio" name="equipoId" value="${t.id}" ${(p ? p.equipoId===t.id : (hijo(fu.kid)?.equipoId===t.id || (!hijo(fu.kid) && i===0))) ? 'checked' : ''}>${esc(t.nombre)} <small class="mu">(${esc(hijosDe(t.id).map(h=>h.nombre.split(' ')[0]).join(', '))})</small></label>`).join('')}</div></div>
+    <div class="field"><label for="fx-riv">Rival</label><input id="fx-riv" name="rival" required value="${esc(p?.rival||'')}" placeholder="Nombre del equipo rival"></div>
+    <div class="radio"><label><input type="radio" name="local" value="1" ${!p||p.local?'checked':''}>Local</label><label><input type="radio" name="local" value="0" ${p&&!p.local?'checked':''}>Visita</label></div>
+    ${picker}
+    <div class="two"><div class="field"><label for="fx-lug2">Lugar</label><input id="fx-lug2" name="lugar" value="${esc(p?.lugar||'')}" placeholder="Cancha"></div><div class="field"><label for="fx-comp">Competición</label><input id="fx-comp" name="comp" value="${esc(p?.comp||'Liga')}" placeholder="Liga, Copa, Amistoso"></div></div>
+    ${fbtns(p ? `<button class="btn del" type="button" data-fa="partido-del" data-id="${p.id}">Eliminar</button>` : '')}</form>`);
+}
+function formRegistrar(pid){
+  const p = partidoF(pid), t = equipo(p.equipoId), D = durTotal(p), kids = hijosDe(p.equipoId).concat(kidsDe(p).map(hijo).filter(h=>h && h.equipoId!==p.equipoId));
+  fsheet(p.estado==='FINALIZADO' ? 'Editar datos del partido' : 'Registrar después', `<form data-ff="registrar" data-id="${pid}">
+    <div class="two"><div class="field"><label for="fx-gf">Goles de ${esc(t.nombre)}</label><input id="fx-gf" type="number" min="0" max="40" name="gf" value="${p.gf ?? 0}" required></div><div class="field"><label for="fx-gc">Goles de ${esc(p.rival)}</label><input id="fx-gc" type="number" min="0" max="40" name="gc" value="${p.gc ?? 0}" required></div></div>
+    ${kids.map(h=>{ const pt = p.part[h.id] || {jugo:true, titular:true, segs:[[0,D]], st:{}}, pos = posDe(h), m = pt.jugo ? minutosEn(p,h.id) : 0;
+      return `<div class="card" style="display:grid;gap:8px;box-shadow:inset 0 3px ${col(h).c},var(--sh)"><div class="row"><b>${esc(h.nombre.split(' ')[0])} · ${POSN[pos]}</b><label class="otra" style="gap:6px"><input type="checkbox" name="jugo_${h.id}" ${pt.jugo?'checked':''} style="flex:none;width:18px;height:18px">Jugó</label></div>
+        <div class="two"><div class="field"><label for="fx-min-${h.id}">Minutos jugados (de ${D})</label><input id="fx-min-${h.id}" type="number" min="0" max="${D}" name="min_${h.id}" value="${m}"></div>
+        <div class="field"><span class="lbl">Empezó</span><div class="radio"><label><input type="radio" name="tit_${h.id}" value="1" ${pt.titular!==false?'checked':''}>En la cancha</label><label><input type="radio" name="tit_${h.id}" value="0" ${pt.titular===false?'checked':''}>En la banca</label></div></div></div>
+        <div class="fm-counts">${STATS[pos].concat([['amarilla','Amarilla'],['roja','Roja']]).map(([k,n])=>`<label><span>${esc(SNAME[k]||n)}</span><input type="number" min="0" max="50" name="st_${h.id}_${k}" value="${pt.st[k]||0}"></label>`).join('')}</div></div>`; }).join('')}
+    <p class="hint" style="margin:0">Con “Capturar en vivo” se guarda el minuto exacto de cada entrada y salida; aquí solo el total.</p>
+    ${fbtns()}</form>`);
+}
+function hojaCompartir(pid){
+  const p = partidoF(pid), t = equipo(p.equipoId), kids = kidsDe(p).map(hijo).filter(h=>h && p.part[h.id]?.jugo);
+  fsheet('Compartir', `<div class="fm-share"><span class="k">${esc(p.comp)} · ${fFecha(p.fecha)}</span><div class="big">${esc(t.nombre)} ${p.gf} – ${p.gc} ${esc(p.rival)}</div>
+    ${kids.map(h=>{ const st = p.part[h.id].st, main = MAIN[posDe(h)]; return `<div class="row"><b>${esc(h.nombre.split(' ')[0])}</b><span>${minutosEn(p,h.id)}' jugados · ${st[main]||0} ${esc(SNAME[main].toLowerCase())}</span></div>`; }).join('')}
+    <span class="k" style="opacity:.6">FutData Familia</span></div>
+    <p class="hint" style="margin:0">En la app se guarda como imagen para mandarla por WhatsApp a abuelos o tíos. No incluye datos privados.</p><button class="btn" type="button" data-fa="fclose">Cerrar</button>`);
+}
+
+/* ---------------- en vivo ---------------- */
+function hojaPrelive(pid){
+  const p = partidoF(pid), kids = hijosDe(p.equipoId);
+  if (F.live && F.live.pid!==pid){ ftoast('Ya hay un partido en vivo; termínalo primero'); return; }
+  if (F.live){ fu.view = {name:'live'}; renderF(true); return; }
+  fsheet('Antes de empezar', `<form data-ff="prelive" data-id="${pid}">
+    ${kids.map(h=>`<div class="card" style="display:grid;gap:8px;box-shadow:inset 0 3px ${col(h).c},var(--sh)"><b>${esc(h.nombre.split(' ')[0])} · ${POSN[posDe(h)]}</b>
+      <div class="row" style="font-size:12.5px"><span>¿Juega hoy?</span><span class="seg"><label class="segr"><input type="radio" name="va_${h.id}" value="1" checked><span>Sí</span></label><label class="segr"><input type="radio" name="va_${h.id}" value="0"><span>No</span></label></span></div>
+      <div class="row" style="font-size:12.5px"><span>¿Empieza en la cancha?</span><span class="seg"><label class="segr"><input type="radio" name="on_${h.id}" value="1" checked><span>Sí</span></label><label class="segr"><input type="radio" name="on_${h.id}" value="0"><span>Banca</span></label></span></div></div>`).join('')}
+    <div class="field"><span class="lbl">Velocidad del reloj (solo prototipo)</span><div class="radio"><label><input type="radio" name="vel" value="60" checked>Demo: 1 s = 1 min</label><label><input type="radio" name="vel" value="1">Real</label></div></div>
+    <div class="err" id="fferr"></div><div class="formbtns"><button class="btn" type="button" data-fa="fclose">Cancelar</button><button class="btn pri" type="submit" style="background:var(--loss)">Empezar partido</button></div></form>`);
+}
+const L = () => F.live;
+const durL = () => equipo(partidoF(L().pid).equipoId).dur;
+const segL = () => { const l = L(); return l.seg + (l.run ? (Date.now()-l.t0)/1000*l.vel : 0); };
+const absMin = () => { const l = L(), d = durL(); if (l.per==='D') return d; if (l.per==='F') return 2*d; return (l.per-1)*d + Math.min(segL()/60, d + 15); };
+const minKid = kid => { const l = L(), k = l.k[kid], p = partidoF(l.pid); return minutosEn(p, kid) + (k.on && k.desde!=null ? Math.max(0, absMin()-k.desde) : 0); };
+const mmss = s => `${pad(Math.floor(s/60))}:${pad(Math.floor(s%60))}`;
+function vLive(){
+  const l = L(); if (!l){ fu.view = null; return ['','']; }
+  const p = partidoF(l.pid), t = equipo(p.equipoId), kids = Object.keys(l.k).filter(k=>l.k[k].va).map(hijo), sel = hijo(l.sel) || kids[0], d = t.dur;
+  const perTxt = l.per===1 ? '1er tiempo' : l.per===2 ? '2º tiempo' : l.per==='D' ? 'Medio tiempo' : 'Final';
+  const ctrl = l.per==='D' ? `<button type="button" class="fm-lbtn" data-fa="live-2t">Empezar 2º tiempo</button>`
+    : `<button type="button" class="fm-lbtn" data-fa="live-run">${l.run ? '‖ Pausar' : (l.seg ? '▶ Reanudar' : '▶ Empezar')}</button><button type="button" class="fm-lbtn ghost" data-fa="${l.per===1?'live-mt':'live-fin'}">${l.per===1 ? 'Terminar 1er tiempo' : 'Terminar partido'}</button>`;
+  const top = `<div class="fm-livetop"><div class="row" style="font-size:11px;font-weight:800;opacity:.85"><span>● EN VIVO · ${esc(p.comp)}</span><button type="button" data-fa="live-undo" style="color:#fff;font-weight:800;font-size:11px">Deshacer</button></div>
+    <div class="fm-score"><b>${esc(t.nombre)}</b><b class="big">${p.gf} – ${p.gc}</b><b>${esc(p.rival)}</b></div>
+    <div class="fm-clock">${perTxt} <span class="t" data-clk="match">${l.per==='D'||l.per==='F' ? '--:--' : mmss(segL())}</span> de ${d}:00</div>
+    <div class="fm-lctrl">${ctrl}</div></div>`;
+  let html = '';
+  if (kids.length > 1) html += `<div class="fm-sibs">${kids.map(h=>{ const k = l.k[h.id], c = col(h);
+      return `<div class="fm-sib ${h.id===sel.id?'on':''}" style="--c:${c.c}" role="button" tabindex="0" data-fa="live-sel" data-k="${h.id}"><div class="row"><b style="color:${c.d}">${esc(h.nombre.split(' ')[0])}</b><span class="fm-dot ${k.on?'':'off'}"></span></div>
+        <span class="t" data-clk="${h.id}">${mmss(minKid(h.id)*60)}</span><span class="st">${k.on ? 'En la cancha' : 'En la banca'}</span>
+        <button type="button" class="fm-io" data-fa="live-io" data-k="${h.id}">${k.on ? 'Salió' : 'Entró'}</button></div>`; }).join('')}</div>`;
+  else if (sel) { const k = l.k[sel.id];
+    html += `<div class="fm-encancha ${k.on?'':'banca'}"><div><div style="font-size:11px;font-weight:800;opacity:.9">${esc(sel.nombre.split(' ')[0].toUpperCase())} ${k.on ? (posDe(sel)==='POR'?'EN LA PORTERÍA':'EN LA CANCHA') : 'EN LA BANCA'}</div><div class="t" data-clk="${sel.id}">${mmss(minKid(sel.id)*60)}</div><div style="font-size:11px;opacity:.85">minutos jugados</div></div>
+      <button type="button" class="fm-io" data-fa="live-io" data-k="${sel.id}">${k.on ? 'Salió a la banca' : 'Entró a la cancha'}</button></div>`; }
+  if (sel){ const pos = posDe(sel), st = p.part[sel.id].st, c = col(sel);
+    if (kids.length > 1) html += `<div class="row" style="font-size:12px"><span class="mu">Capturando a</span><b style="color:${c.d}">${esc(sel.nombre.split(' ')[0])} · ${POSN[pos]}</b></div>`;
+    html += `<div class="fm-pad">${STATS[pos].map(([k,n,tipo])=>{ const extra = k==='atajada' && (st.atajada||0)+(st.grec||0) ? `${pct(st.atajada||0,(st.atajada||0)+(st.grec||0))}% de tiros detenidos` : k==='gol' ? 'suma al marcador' : k==='grec' ? 'suma al rival' : '';
+      return `<button type="button" class="${tipo||''}" style="${tipo==='main'?`background:${c.c}`:''}" data-fa="live-stat" data-k="${sel.id}" data-s="${k}"><span class="plus">+</span><b>${st[k]||0}</b><span>${esc(n)}</span><small>${extra}</small></button>`; }).join('')}</div>`;
+    html += `<div class="row" style="font-size:12px"><span class="mu">Tarjetas de ${esc(sel.nombre.split(' ')[0])}</span><span style="display:flex;gap:6px"><button type="button" class="chipbtn" data-fa="live-stat" data-k="${sel.id}" data-s="amarilla">🟨 ${st.amarilla||0}</button><button type="button" class="chipbtn" data-fa="live-stat" data-k="${sel.id}" data-s="roja">🟥 ${st.roja||0}</button></span></div>`;
+  }
+  html += `<div class="row" style="font-size:12px"><span class="mu">Marcador del equipo</span><span style="display:flex;gap:6px"><button type="button" class="chipbtn" data-fa="live-team" data-s="gf">+ Gol de otro compañero</button><button type="button" class="chipbtn" data-fa="live-team" data-s="gc">+ Gol rival</button></span></div>`;
+  const log = l.undo.slice(-4).reverse();
+  if (log.length) html += `<div class="card" style="font-size:11.5px;display:grid;gap:4px;padding:10px 12px"><b style="font-size:12px">Últimos</b>${log.map(u=>`<span>${u.kid ? `<b style="color:${col(hijo(u.kid)).d}">${esc(hijo(u.kid).nombre.split(' ')[0])}</b> · ` : ''}${u.txt}</span>`).join('')}</div>`;
+  return [top, html];
+}
+function tickLive(){
+  if (!F || !F.live || !fu.view || fu.view.name!=='live' || $f('#app2').hidden) return;
+  const m = $f('[data-clk="match"]'); if (m && F.live.per!=='D' && F.live.per!=='F') m.textContent = mmss(segL());
+  Object.keys(F.live.k).forEach(k=>{ const e = $f(`[data-clk="${k}"]`); if (e) e.textContent = mmss(minKid(k)*60); });
+}
+setInterval(tickLive, 500);
+function liveCerrar(kid, hasta){ const l = L(), k = l.k[kid], p = partidoF(l.pid); if (k.on && k.desde!=null){ const a = k.desde, b = Math.max(a, hasta); if (b > a) p.part[kid].segs.push([+a.toFixed(2), +b.toFixed(2)]); k.desde = null; } }
+function liveFin(){
+  const l = L(), p = partidoF(l.pid), d = durL();
+  if (l.per!=='D') Object.keys(l.k).forEach(k=>liveCerrar(k, Math.min(absMin(), 2*d)));
+  Object.keys(l.k).forEach(k=>{ const pt = p.part[k]; pt.segs = pt.segs.map(([a,b])=>[Math.round(a), Math.round(b)]).filter(([a,b])=>b>a); pt.jugo = l.k[k].va && (pt.segs.length > 0 || Object.values(pt.st).some(Boolean)); if (!l.k[k].va) pt.jugo = false; });
+  p.estado = 'FINALIZADO'; F.live = null; fu.view = {name:'partido', id:p.id}; ftoast(`Partido terminado: ${p.gf}–${p.gc}`); renderF(true);
+}
+
+/* ---------------- progreso (gratis + premium por hijo) ---------------- */
+function vProgreso(){
+  const h = hijo(fu.kid); if (!h) return '';
+  const c = col(h), pos = posDe(h), main = MAIN[pos], fin = finDe(h.id), jug = jugadosDe(h.id);
+  let html = kidsRow();
+  html += `<div class="row"><b style="font-size:15px">${esc(h.nombre)}</b><span class="badge ${tieneAnalisis(h)?'prem':''}" style="${tieneAnalisis(h)?'':'background:#eef1ee;color:var(--mu)'}">${h.plan.estado==='premium'?'Premium':h.plan.estado==='prueba' && tieneAnalisis(h)?'Prueba Premium':'Gratis'}</span></div>`;
+  if (!fin.length) return html + `<div class="card empty">Aún no hay partidos jugados de ${esc(h.nombre.split(' ')[0])}.</div>`;
+  const mins = fin.map(p=>({p, m: minutosEn(p,h.id), D: durTotal(p)})), prom = mean(mins.map(x=>x.m)), maxD = Math.max(...mins.map(x=>x.D));
+  html += `<div class="card" style="display:grid;gap:8px"><div class="row"><b>Minutos por partido</b><span class="mu" style="font-size:11.5px">promedio <b style="color:var(--fg)">${Math.round(prom)}'</b> de ${maxD}</span></div>
+    <div class="fm-bars">${mins.slice(-12).map((x,i)=>`<button type="button" data-fa="partido" data-id="${x.p.id}" aria-label="${fFecha(x.p.fecha)}: ${x.m} minutos"><i style="height:${Math.max(3,100*x.m/maxD)}%;background:${x.m < x.D/2 ? '#f0a92a' : c.c}"></i><span>${x.p.fecha.slice(8,10)}/${x.p.fecha.slice(5,7)}</span></button>`).join('')}</div>
+    <div class="legend"><span><i class="dot" style="background:${c.c}"></i>Minutos jugados</span><span><i class="dot" style="background:#f0a92a"></i>Menos de la mitad</span></div></div>`;
+  const tit = fin.filter(p=>p.part[h.id].titular && p.part[h.id].jugo).length, totMain = sum(jug.map(p=>p.part[h.id].st[main]||0));
+  const ent = Object.entries(F.asis).filter(([k])=>k.startsWith(h.id+'|')), entPct = ent.length ? pct(ent.filter(([,v])=>v).length, ent.length) : null;
+  html += `<div class="tiles" style="grid-template-columns:repeat(3,1fr)"><div><b>${jug.length}/${fin.length}</b><span>JUGADOS</span></div><div><b>${totMain}</b><span>${esc(SNAME[main].toUpperCase())}</span></div><div><b>${entPct==null?'—':entPct+'%'}</b><span>ENTRENAMIENTOS</span></div></div>`;
+  html += `<div class="tiles" style="grid-template-columns:repeat(2,1fr)"><div><b>${tit}/${jug.length}</b><span>EMPEZÓ EN LA CANCHA</span></div><div><b>${mins.filter(x=>x.m < x.D/2).length}</b><span>CON POCOS MINUTOS</span></div></div>`;
+  const avanzado = analisisAvanzado(h);
+  if (tieneAnalisis(h)) html += avanzado + (h.plan.estado==='prueba' ? `<div class="insight">Prueba gratis hasta el ${fFecha(h.plan.pruebaFin)}. <button class="link" type="button" data-fa="premium">Ver opciones</button></div>` : '');
+  else html += `<div class="card locked"><div class="inner">${avanzado}</div><div class="over"><b>Análisis avanzado de ${esc(h.nombre.split(' ')[0])}</b><span class="mu" style="font-size:12px">Tendencias, eficiencia por minuto, rendimiento por rival, cancha y horario, récords y reporte mensual.</span>
+    <button type="button" data-fa="premium">${h.plan.pruebaUsada ? `Premium para ${esc(h.nombre.split(' ')[0])} · $${PRECIO}/mes` : `Probar ${PRUEBA_DIAS} días gratis`}</button></div></div>`;
+  return html;
+}
+function analisisAvanzado(h){
+  const pos = posDe(h), main = MAIN[pos], jug = jugadosDe(h.id), c = col(h);
+  if (jug.length < 2) return `<div class="card"><b>Análisis avanzado</b><p class="mu" style="margin:6px 0 0;font-size:12.5px">Se necesitan al menos 2 partidos jugados.</p></div>`;
+  const m = p => minutosEn(p,h.id), st = (p,k) => p.part[h.id].st[k]||0, totMin = sum(jug.map(m));
+  const pri = jug.slice(0, Math.min(4, Math.floor(jug.length/2))), ult = jug.slice(-Math.min(4, Math.floor(jug.length/2)));
+  const tend = Math.round(mean(ult.map(m)) - mean(pri.map(m)));
+  const por40 = totMin ? 40*sum(jug.map(p=>st(p,main)))/totMin : 0;
+  let efic = '';
+  if (pos==='POR'){ const a = sum(jug.map(p=>st(p,'atajada'))), g = sum(jug.map(p=>st(p,'grec'))); efic = `<div class="row" style="font-size:12.5px"><span>Tiros detenidos</span><b class="num">${pct(a, a+g)}%</b></div><div class="row" style="font-size:12.5px"><span>Goles recibidos cada 40'</span><b class="num">${totMin ? (40*g/totMin).toFixed(2) : '—'}</b></div>`; }
+  else { const tp = sum(jug.map(p=>st(p,'tpuerta'))), td = sum(jug.map(p=>st(p,'tdesv'))), gl = sum(jug.map(p=>st(p,'gol')));
+    efic = (tp+td ? `<div class="row" style="font-size:12.5px"><span>Tiros que van a puerta</span><b class="num">${pct(tp, tp+td)}%</b></div>` : '') + (gl && tp+td ? `<div class="row" style="font-size:12.5px"><span>Goles por cada 10 tiros</span><b class="num">${(10*gl/(tp+td)).toFixed(1)}</b></div>` : ''); }
+  const porRes = ['G','E','P'].map(r=>{ const ps = jug.filter(p=>resF(p)===r); return [r, ps.length ? Math.round(mean(ps.map(m))) : null, ps.length]; });
+  const rivales = {}; jug.forEach(p=>{ (rivales[p.rival] ??= []).push(p); });
+  const filasR = Object.entries(rivales).map(([r,ps])=>({r, n:ps.length, min:Math.round(mean(ps.map(m))), v: (40*sum(ps.map(p=>st(p,main)))/Math.max(1,sum(ps.map(m)))) })).sort((a,b)=>b.v-a.v).slice(0,5);
+  const franjas = {}; jug.forEach(p=>{ const n = +p.fecha.slice(11,13), f = n < 11 ? 'Temprano (antes de 11)' : n < 15 ? 'Mediodía' : 'Tarde'; (franjas[f] ??= []).push(p); });
+  const lugares = {}; jug.forEach(p=>{ (lugares[p.lugar||'Sin lugar'] ??= []).push(p); });
+  let racha = 0, mejor = 0; jug.forEach(p=>{ if (m(p) >= durTotal(p)/2){ racha++; mejor = Math.max(mejor, racha); } else racha = 0; });
+  const maxMin = jug.reduce((a,p)=>m(p)>m(a)?p:a, jug[0]), maxMain = jug.reduce((a,p)=>st(p,main)>st(a,main)?p:a, jug[0]);
+  const meses = {}; jug.forEach(p=>{ const k = p.fecha.slice(0,7); (meses[k] ??= []).push(p); });
+  const mesTxt = k => `${MESL[+k.slice(5,7)-1]}`;
+  const linea = Object.entries(meses).sort().map(([k,ps])=>({k, v: Math.round(mean(ps.map(m)))}));
+  const mx = Math.max(...linea.map(x=>x.v), 1);
+  return `<div class="card" style="display:grid;gap:8px"><div class="row"><b>Tendencia de minutos</b><span class="badge" style="${tend<0?'background:#fdecea;color:#a3261c':''}">${tend>=0?'↑':'↓'} ${Math.abs(tend)}' por partido</span></div>
+      <div class="fm-bars" style="height:60px">${linea.map(x=>`<div><i style="height:${100*x.v/mx}%;background:${c.c}"></i><span>${esc(mesTxt(x.k).slice(0,3))}</span></div>`).join('')}</div>
+      <span class="mu" style="font-size:11.5px">Promedio de minutos por mes. Últimos ${ult.length} partidos vs. primeros ${pri.length}.</span></div>
+    <div class="card" style="display:grid;gap:7px"><b>Eficiencia como ${POSN[pos].toLowerCase()}</b><div class="row" style="font-size:12.5px"><span>${esc(SNAME[main])} cada 40 minutos</span><b class="num">${por40.toFixed(2)}</b></div>${efic}</div>
+    <div class="card" style="display:grid;gap:7px"><b>Minutos según el resultado</b>${porRes.map(([r,v,n])=>`<div class="bar-row"><span>${({G:'Ganados',E:'Empates',P:'Perdidos'})[r]} <small class="mu">(${n})</small></span><span class="b"><i style="width:${v==null?0:pct(v, 50)}%;background:${({G:'var(--win)',E:'var(--draw)',P:'var(--loss)'})[r]}"></i></span><b>${v==null?'—':v+"'"}</b></div>`).join('')}</div>
+    <div class="card" style="display:grid;gap:6px"><b>Por rival</b><div class="fm-trow head"><span>Rival</span><span>PJ</span><span>Min</span><span>${esc(SNAME[main])}/40'</span></div>${filasR.map(x=>`<div class="fm-trow"><span>${esc(x.r)}</span><span>${x.n}</span><span>${x.min}'</span><span>${x.v.toFixed(2)}</span></div>`).join('')}</div>
+    <div class="card" style="display:grid;gap:6px"><b>Por horario y cancha</b>${Object.entries(franjas).map(([f,ps])=>`<div class="row" style="font-size:12.5px"><span>${esc(f)} <small class="mu">(${ps.length})</small></span><b class="num">${Math.round(mean(ps.map(m)))}' · ${(40*sum(ps.map(p=>st(p,main)))/Math.max(1,sum(ps.map(m)))).toFixed(2)}</b></div>`).join('')}
+      ${Object.entries(lugares).map(([f,ps])=>`<div class="row" style="font-size:12.5px"><span>${esc(f)} <small class="mu">(${ps.length})</small></span><b class="num">${Math.round(mean(ps.map(m)))}' · ${(40*sum(ps.map(p=>st(p,main)))/Math.max(1,sum(ps.map(m)))).toFixed(2)}</b></div>`).join('')}
+      <span class="mu" style="font-size:11px">Minutos promedio · ${esc(SNAME[main].toLowerCase())} cada 40'.</span></div>
+    <div class="card" style="display:grid;gap:6px"><b>Récords</b>
+      <div class="row" style="font-size:12.5px"><span>Más minutos en un partido</span><b class="num">${m(maxMin)}' · ${fFecha(maxMin.fecha)}</b></div>
+      <div class="row" style="font-size:12.5px"><span>Más ${esc(SNAME[main].toLowerCase())} en un partido</span><b class="num">${st(maxMain,main)} · ${fFecha(maxMain.fecha)}</b></div>
+      <div class="row" style="font-size:12.5px"><span>Racha jugando la mitad o más</span><b class="num">${mejor} partidos</b></div></div>
+    <button class="btn" type="button" data-fa="reporte" data-k="${h.id}">Ver reporte del mes</button>`;
+}
+function hojaReporte(kid){
+  const h = hijo(kid), mes = isoLocal(new Date()).slice(0,7), jug = jugadosDe(kid), ps = jug.filter(p=>p.fecha.slice(0,7)===mes), lista = ps.length ? ps : jug.slice(-4), main = MAIN[posDe(h)];
+  const ent = Object.entries(F.asis).filter(([k])=>k.startsWith(kid+'|') && k.slice(kid.length+1, kid.length+8)===mes);
+  fsheet(`Reporte · ${MESL[new Date().getMonth()]}`, `<div class="card" style="display:grid;gap:6px;font-size:12.5px"><b style="font-size:15px">${esc(h.nombre)}</b>
+    <span>${lista.length} partidos · ${sum(lista.map(p=>minutosEn(p,kid)))} minutos jugados (${Math.round(mean(lista.map(p=>minutosEn(p,kid))))}' por partido)</span>
+    <span>${sum(lista.map(p=>p.part[kid].st[main]||0))} ${esc(SNAME[main].toLowerCase())}</span>
+    ${ent.length ? `<span>Entrenamientos: fue a ${ent.filter(([,v])=>v).length} de ${ent.length}</span>` : ''}
+    ${!ps.length ? '<span class="mu">Sin partidos este mes; se muestran los últimos 4.</span>' : ''}</div>
+    <p class="hint" style="margin:0">En la app se descarga como PDF para guardarlo o compartirlo.</p><button class="btn" type="button" data-fa="fclose">Cerrar</button>`);
+}
+function vPremium(){
+  const total = F.hijos.filter(h=>h.plan.estado==='premium').length * PRECIO;
+  return `<div class="card" style="display:grid;gap:6px"><b style="font-size:16px">Análisis avanzado, por hijo</b><span class="mu" style="font-size:12.5px">$${PRECIO} MXN al mes por cada hijo · IVA incluido · ${PRUEBA_DIAS} días gratis para cada uno, cuando quieras usarlos</span>
+      ${['Tendencia de minutos mes a mes','Eficiencia: goles, recuperaciones o atajadas por minuto jugado','Rendimiento por rival, horario y cancha','Minutos en partidos ganados, empatados y perdidos','Récords, rachas y reporte mensual'].map(t=>`<div class="fm-feat"><b>✓</b><span>${t}</span></div>`).join('')}</div>
+    <span class="lbl">CADA HIJO POR SEPARADO</span>
+    ${F.hijos.map(h=>{ const pl = h.plan, vig = tieneAnalisis(h);
+      const estado = pl.estado==='premium' ? '<span class="badge prem">Premium</span>' : pl.estado==='prueba' && vig ? `<span class="badge" style="background:#eef1ee;color:var(--mu)">Prueba hasta ${fFecha(pl.pruebaFin)}</span>` : '<span class="badge" style="background:#eef1ee;color:var(--mu)">Gratis</span>';
+      const acc = pl.estado==='premium' ? `<button class="btn del" type="button" data-fa="plan" data-k="${h.id}" data-v="cancelar">Cancelar</button>`
+        : `${!pl.pruebaUsada ? `<button class="btn" type="button" data-fa="plan" data-k="${h.id}" data-v="prueba">Probar ${PRUEBA_DIAS} días</button>` : ''}<button class="btn pri" type="button" data-fa="plan" data-k="${h.id}" data-v="suscribir">$${PRECIO}/mes</button>`;
+      return `<div class="card" style="display:grid;gap:8px"><div class="row" style="justify-content:flex-start;gap:10px">${avatar(h,true)}<div style="flex:1"><b>${esc(h.nombre.split(' ')[0])}</b><div class="mu" style="font-size:11.5px">${POSN[posDe(h)]} · ${esc(h.cat)}</div></div>${estado}</div><div class="actions">${acc}</div></div>`; }).join('')}
+    <div class="card row"><span>Total al mes</span><b class="num" style="font-size:18px">$${total}</b></div>
+    <p class="hint" style="margin:0">Se cobra con tarjeta en el sitio web y se renueva cada mes hasta que lo canceles aquí, por el mismo medio en que lo contrataste. La prueba no cobra nada y termina sola. Lo puede pagar mamá o papá; ambos ven el análisis. (Prototipo: no se cobra nada.)</p>`;
+}
+
+/* ---------------- hijos, papás y asistente ---------------- */
+function vHijos(){
+  let html = F.hijos.map(h=>{ const t = equipo(h.equipoId), her = hermanos(h), e = edadDe(h.nac);
+    return `<button type="button" class="card fm-hijo" data-fa="hijo-edit" data-k="${h.id}">${avatar(h)}<div><b style="font-size:15px">${esc(h.nombre)} · #${h.numero}</b><div class="mu" style="font-size:12px">${e} años · ${POSN[posDe(h)]} · ${esc(h.cat)} · ${esc(t?.nombre||'')}</div>
+      <div style="display:flex;gap:5px;margin-top:5px;flex-wrap:wrap">${tieneAnalisis(h) ? `<span class="badge prem">${h.plan.estado==='premium'?'Premium':'Prueba'}</span>` : '<span class="badge" style="background:#eef1ee;color:var(--mu)">Gratis</span>'}${her.length ? `<span class="badge gold">Juega con ${esc(her.map(x=>x.nombre.split(' ')[0]).join(' y '))}</span>` : ''}</div></div><span class="chev">›</span></button>`; }).join('');
+  if (F.hijos.length < MAX_HIJOS) html += `<button type="button" class="card fm-addkid" data-fa="hijo-nuevo"><span class="fm-add">+</span><div style="text-align:left"><b>Agregar hijo</b><div class="mu" style="font-size:12px">Te ${MAX_HIJOS-F.hijos.length===1?'queda 1 lugar':`quedan ${MAX_HIJOS-F.hijos.length} lugares`}</div></div></button>`;
+  else html += `<p class="hint" style="margin:0">Llegaste al máximo de ${MAX_HIJOS} hijos por familia.</p>`;
+  html += `<div class="card" style="display:grid;gap:2px"><b>Mamá y papá</b><span class="mu" style="font-size:12px">Máximo 2 adultos por familia. Ambos ven y capturan a todos los hijos.</span>
+    ${F.papas.map(p=>`<div class="fm-papa"><span class="fm-av sm" style="--kc:#8a9a8d">${esc(iniciales(p.nombre))}</span><div><b>${esc(p.nombre)}</b><div class="mu" style="font-size:11.5px">${esc(p.rel)}${p.yo?' · tú':''}</div></div>
+      ${p.yo ? '<span class="badge">Activa</span>' : p.estado==='por_aprobar' ? `<span style="display:flex;gap:4px"><button class="btn del" type="button" data-fa="papa-no" data-id="${p.id}" style="padding:6px 9px;font-size:11.5px">Rechazar</button><button class="btn pri" type="button" data-fa="papa-si" data-id="${p.id}" style="padding:6px 9px;font-size:11.5px">Aprobar</button></span>` : `<button class="btn del" type="button" data-fa="papa-quitar" data-id="${p.id}" style="padding:6px 9px;font-size:11.5px">Quitar</button>`}</div>`).join('')}
+    ${F.papas.length < 2 ? (F.invit ? `<div class="fm-papa"><span class="fm-av sm" style="--kc:#c3cbc4">+</span><div><b>Invitación enviada</b><div class="mu" style="font-size:11.5px">Vence ${fFecha(F.invit.expira)} · un solo uso</div></div><span style="display:flex;gap:4px"><button class="link" type="button" data-fa="papa-sim" style="font-size:11.5px">Simular canje</button><button class="btn del" type="button" data-fa="papa-revocar" style="padding:6px 9px;font-size:11.5px">Revocar</button></span></div>`
+      : `<button class="btn pri" type="button" data-fa="papa-invitar" style="margin-top:8px">Invitar a papá o mamá</button>`) : ''}</div>`;
+  return html;
+}
+function nuevoBorrador(){ return {nombre:'', nac:'', pie:'Derecho', numero:'', zona:null, zona2:null, catSel:null, catOtro:'', nivel:'Competitivo', con:null, eq:{nombre:'', liga:'', modalidad:'F7', dur:25}, marca:'zona'}; }
+function vWizard(){
+  const w = fu.view, d = w.d, total = w.primero && F.papas.length < 2 ? 4 : 3, cancel = F.hijos.length ? `<button class="iconbtn" data-fa="wiz-cancel" aria-label="Cancelar">${ico('i-x')}</button>` : '';
+  const head = (t) => `<div style="flex:1;min-width:0">${w.primero?'<div class="fm-brand"><i>F</i>FutData Familia</div>':''}<div class="sub" style="margin-top:4px">${w.editId?'Editar':'Agregar hijo'} · Paso ${w.step} de ${w.editId?3:total}</div><h2>${t}</h2></div>${cancel}`;
+  const steps = `<div class="fm-steps">${Array.from({length: w.editId?3:total},(_,i)=>`<i class="${i<w.step?'on':''}"></i>`).join('')}</div>`;
+  const e = edadDe(d.nac), sug = catSugerida(e), nom = d.nombre.split(' ')[0] || 'tu hijo';
+  if (w.step===1) return [head('¿Quién juega?'), `${steps}<form data-ff="wiz1" style="display:grid;gap:12px">
+    <div class="field"><label for="fx-nom">Nombre</label><input id="fx-nom" name="nombre" required value="${esc(d.nombre)}" placeholder="Nombre y apellido"></div>
+    <div class="field"><label for="fx-nac">Fecha de nacimiento</label><input id="fx-nac" type="date" name="nac" required value="${d.nac}" max="${dkey(new Date())}" style="background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px">
+      <span class="hint" id="fx-edad">${e!=null ? `${e} años · categoría sugerida ${sug}` : 'La edad y la categoría se calculan solas.'}</span></div>
+    <div class="field"><span class="lbl">Pie hábil</span><div class="radio">${['Derecho','Izquierdo','Ambos'].map(p=>`<label><input type="radio" name="pie" value="${p}" ${d.pie===p?'checked':''}>${p}</label>`).join('')}</div></div>
+    <div class="field"><label for="fx-num">Número de camiseta</label><input id="fx-num" type="number" min="0" max="99" name="numero" value="${d.numero}" style="width:100px"></div>
+    ${!w.editId && w.primero ? `<p class="hint" style="margin:0">Puedes agregar hasta ${MAX_HIJOS} hijos; a los demás los agregas después desde “Hijos”.</p>` : ''}
+    <div class="err" id="fferr"></div><button class="btn pri" type="submit">Siguiente</button></form>`];
+  if (w.step===2) return [head(`¿Dónde juega ${esc(nom)}?`), `${steps}<form data-ff="wiz2" style="display:grid;gap:12px">
+    <div class="radio"><label><input type="radio" name="marca" value="zona" ${d.marca==='zona'?'checked':''}>Posición principal</label><label><input type="radio" name="marca" value="zona2" ${d.marca==='zona2'?'checked':''}>Secundaria</label></div>
+    <div class="fm-pitch"><svg viewBox="0 0 400 320" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2.5"><rect x="8" y="8" width="384" height="304"/><line x1="200" y1="8" x2="200" y2="312"/><circle cx="200" cy="160" r="40"/><rect x="8" y="90" width="60" height="140"/><rect x="332" y="90" width="60" height="140"/></g></svg>
+      ${ZONAS.map(z=>`<button type="button" class="fm-zona ${d.zona===z.k?'on':d.zona2===z.k?'sec':''}" style="left:${z.x}%;top:${z.y}%" data-fa="zona" data-z="${z.k}" aria-pressed="${d.zona===z.k||d.zona2===z.k}">${z.l}${d.zona===z.k?' ★':''}</button>`).join('')}</div>
+    <div class="legend"><span>★ Principal: <b style="color:var(--fg)">${d.zona ? ZL[d.zona].l : '—'}</b></span><span>Secundaria: <b style="color:var(--fg)">${d.zona2 ? ZL[d.zona2].l : 'ninguna'}</b></span></div>
+    <div class="field"><span class="lbl">Categoría${sug ? ` · sugerida: ${sug}` : ''}</span><div class="chips" style="flex-wrap:wrap">${CATS.map(cn=>`<button type="button" class="${d.catSel===cn?'on':''}" data-fa="cat" data-c="${cn}">${cn}</button>`).join('')}<button type="button" class="${d.catSel==='otro'?'on':''}" data-fa="cat" data-c="otro">Otro</button></div>
+      ${d.catSel==='otro' ? `<input name="catOtro" value="${esc(d.catOtro)}" maxlength="20" placeholder="Ej. 6-9, Infantil B, Pony" style="background:var(--card);border:1.5px solid var(--ac);border-radius:12px;padding:10px 12px"><span class="hint">Escríbela como la llama su liga.</span>` : ''}</div>
+    <div class="field"><span class="lbl">Nivel</span><div class="radio">${NIVELES.map(n=>`<label><input type="radio" name="nivel" value="${n}" ${d.nivel===n?'checked':''}>${n}</label>`).join('')}</div></div>
+    <div class="err" id="fferr"></div><div class="formbtns"><button class="btn" type="button" data-fa="wiz-atras">Atrás</button><button class="btn pri" type="submit">Siguiente</button></div></form>`];
+  if (w.step===3){
+    const otros = F.hijos.filter(h=>h.id!==w.editId), eqsOtros = [...new Map(otros.map(h=>[h.equipoId, h])).values()];
+    const preg = eqsOtros.length ? `<span class="lbl">¿${esc(nom)} juega con alguno de sus hermanos?</span>
+      ${eqsOtros.map(h=>{ const t = equipo(h.equipoId), quienes = hijosDe(t.id).filter(x=>x.id!==w.editId).map(x=>x.nombre.split(' ')[0]).join(' y ');
+        return `<label class="fm-opt ${d.con===t.id?'on':''}"><input type="radio" name="con" value="${t.id}" ${d.con===t.id?'checked':''}><span>${avatar(h,true)}</span><span><b>Sí, con ${esc(quienes)}</b><br><span class="mu" style="font-size:11.5px">${esc(t.nombre)} · ${MODAL[t.modalidad]}</span></span></label>`; }).join('')}
+      <label class="fm-opt ${d.con==='otro'?'on':''}"><input type="radio" name="con" value="otro" ${d.con==='otro'?'checked':''}><span class="fm-add" style="width:34px;height:34px">+</span><span><b>No, en otro equipo</b><br><span class="mu" style="font-size:11.5px">Capturamos sus propios datos de equipo</span></span></label>
+      ${d.con && d.con!=='otro' ? `<div class="card" style="display:grid;gap:5px;font-size:12.5px"><b>Si juegan juntos</b>${['Comparten equipo, partidos y entrenamientos: se capturan una vez','En vivo capturas a los dos en la misma pantalla, cada quien con su reloj de minutos','Si un día solo va uno, lo marcas en ese partido'].map(t=>`<div class="fm-feat"><b>✓</b><span>${t}</span></div>`).join('')}</div>` : ''}` : '';
+    const nuevoEq = !eqsOtros.length || d.con==='otro';
+    return [head('Su equipo'), `${steps}<form data-ff="wiz3" style="display:grid;gap:10px">${preg}
+      ${nuevoEq ? `<div class="field"><label for="fx-eq">Equipo</label><input id="fx-eq" name="eqNombre" required value="${esc(d.eq.nombre)}" placeholder="Ej. Tigres FC"></div>
+      <div class="field"><label for="fx-liga">Liga o torneo</label><input id="fx-liga" name="eqLiga" value="${esc(d.eq.liga)}" placeholder="Ej. Liga Infantil Municipal"></div>
+      <div class="two"><div class="field"><span class="lbl">Modalidad</span><select name="eqModalidad" style="background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:10px">${Object.entries(MODAL).map(([k,v])=>opt(k,v,d.eq.modalidad)).join('')}</select></div>
+      <div class="field"><span class="lbl">Cada tiempo dura</span><select name="eqDur" style="background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:10px">${[15,20,25,30,35,40,45].map(n=>opt(n,`${n} minutos`,d.eq.dur)).join('')}</select></div></div>
+      <span class="hint">La duración se usa para medir cuántos minutos juega.</span>` : ''}
+      <div class="err" id="fferr"></div><div class="formbtns"><button class="btn" type="button" data-fa="wiz-atras">Atrás</button><button class="btn pri" type="submit">${w.editId ? 'Guardar' : total===4 ? 'Siguiente' : `Guardar a ${esc(nom)}`}</button></div></form>`];
+  }
+  return [head('Invita a papá o mamá'), `${steps}<div class="card" style="display:grid;gap:8px"><b>Un mismo perfil para los dos</b><span class="mu" style="font-size:12.5px">Ambos capturan y ven lo mismo de cada hijo. Máximo 2 adultos por familia.</span>
+      ${F.invit ? `<div class="code num" style="text-align:center">${esc(F.invit.codigo)}</div><span class="mu" style="font-size:12px;text-align:center">Un solo uso · vence ${fFecha(F.invit.expira)} · envíalo por mensaje privado</span>` : `<button class="btn pri" type="button" data-fa="papa-invitar">Generar código</button>`}</div>
+    <p class="mu" style="font-size:12px;text-align:center;margin:0">Cuando lo canjee, tú lo apruebas.</p>
+    <div style="flex:1"></div><div class="actions"><button class="btn ghost" type="button" data-fa="wiz-fin">Hacerlo después</button><button class="btn pri" type="button" data-fa="wiz-fin">Empezar</button></div>`];
+}
+function guardarHijo(){
+  const w = fu.view, d = w.d;
+  let eqId = d.con && d.con!=='otro' ? d.con : null;
+  if (!eqId){ const ex = w.editId && hijo(w.editId), solo = ex && hermanos(ex).length===0 ? equipo(ex.equipoId) : null;
+    if (solo){ Object.assign(solo, {nombre:cleanTxt(d.eq.nombre), liga:cleanTxt(d.eq.liga), modalidad:d.eq.modalidad, dur:+d.eq.dur}); eqId = solo.id; }
+    else { eqId = uid('t'); F.equipos.push({id:eqId, nombre:cleanTxt(d.eq.nombre), liga:cleanTxt(d.eq.liga), modalidad:d.eq.modalidad, dur:+d.eq.dur, entrena:{dias:[], ini:'18:00', fin:'19:30', lugar:'', hasta:'temporada', aviso:'1h'}}); } }
+  const cat = d.catSel==='otro' ? cleanTxt(d.catOtro, 20) : d.catSel;
+  const datos = {nombre:cleanTxt(d.nombre), nac:d.nac, pie:d.pie, numero: d.numero==='' ? 0 : Math.max(0, Math.min(99, parseInt(d.numero)||0)), zona:d.zona, zona2:d.zona2, cat, nivel:d.nivel, equipoId:eqId};
+  if (w.editId){ const h = hijo(w.editId), viejo = h.equipoId; Object.assign(h, datos); limpiarEquipos(viejo); ftoast('Datos guardados'); fu.kid = h.id; }
+  else { const usados = new Set(F.hijos.map(h=>h.color)), color = [0,1,2,3].find(c=>!usados.has(c)) ?? 0;
+    const h = {id:uid('k'), ...datos, color, plan:{estado:'gratis', pruebaUsada:false, pruebaFin:null}}; F.hijos.push(h); fu.kid = h.id;
+    F.partidos.filter(p=>p.equipoId===eqId && p.estado!=='FINALIZADO').forEach(p=>{ if (Object.keys(p.part).length) p.part[h.id] = {jugo:true, titular:true, segs:[], st:{}}; });
+    ftoast(`${datos.nombre.split(' ')[0]} agregado${hermanos(h).length ? ` · juega con ${hermanos(h).map(x=>x.nombre.split(' ')[0]).join(' y ')}` : ''}`); }
+}
+function limpiarEquipos(prev){ if (prev && !hijosDe(prev).length){ F.equipos = F.equipos.filter(t=>t.id!==prev); F.partidos = F.partidos.filter(p=>p.equipoId!==prev); } }
+function hojaHijo(kid){
+  const h = hijo(kid);
+  fsheet(h.nombre, `<div class="card" style="display:grid;gap:4px;font-size:12.5px"><span><b>Nacimiento:</b> ${fFecha(h.nac+'T12:00')} ${h.nac.slice(0,4)} · ${edadDe(h.nac)} años</span><span><b>Posición:</b> ${ZL[h.zona]?.l||'—'}${h.zona2?` · secundaria ${ZL[h.zona2].l}`:''}</span><span><b>Categoría:</b> ${esc(h.cat)} · ${esc(h.nivel)}</span><span><b>Equipo:</b> ${esc(equipo(h.equipoId)?.nombre||'')} · ${esc(equipo(h.equipoId)?.liga||'')}</span><span><b>Pie:</b> ${esc(h.pie)} · <b>Número:</b> ${h.numero}</span></div>
+    <div class="actions"><button class="btn pri" type="button" data-fa="hijo-editar" data-k="${kid}">Editar datos</button><button class="btn" type="button" data-fa="entreno" data-id="${h.equipoId}">Entrenamientos</button></div>
+    <button class="btn del" type="button" data-fa="hijo-borrar" data-k="${kid}" style="justify-self:start">Quitar a ${esc(h.nombre.split(' ')[0])}</button>`);
+}
+function hojaMenuF(){
+  fsheet('Más opciones', `<div class="card list" style="padding:4px 14px">
+    <button type="button" data-fa="leer-t"><span class="crest sm" style="background:var(--ac-soft);color:var(--ac)">${ico('i-doc')}</span><div class="t">Términos y Condiciones</div><span class="chev">›</span></button>
+    <button type="button" data-fa="leer-a"><span class="crest sm" style="background:var(--ac-soft);color:var(--ac)">${ico('i-lock')}</span><div class="t">Aviso de Privacidad</div><span class="chev">›</span></button>
+    <button type="button" data-fa="premium"><span class="crest sm" style="background:var(--gold-soft);color:#7a5200">★</span><div class="t">Premium por hijo</div><span class="chev">›</span></button>
+    <button type="button" data-fa="borrar-cuenta"><span class="crest sm" style="background:#fdecea;color:var(--loss)">${ico('i-x')}</span><div><div class="t" style="color:var(--loss)">Eliminar mi cuenta</div><div class="s">Se borra en 30 días; puedes arrepentirte antes</div></div><span class="chev">›</span></button></div>
+    <button class="btn" type="button" data-fa="a-launcher">Cambiar de app (FutData / Familia)</button>
+    <div class="actions"><button class="btn ghost" type="button" data-fa="f-reset">Restablecer ejemplo</button><button class="btn ghost" type="button" data-fa="f-cero">Empezar desde cero</button></div>`);
+}
+function fconfirm(txt, act, data={}){ fsheet('¿Seguro?', `<p style="margin:0">${txt}</p><div class="formbtns"><button class="btn" type="button" data-fa="fclose">Cancelar</button><button class="btn warn" type="button" data-fa="${act}" ${Object.entries(data).map(([k,v])=>`data-${k}="${esc(v)}"`).join(' ')}>Sí, continuar</button></div>`); }
+
+/* ---------------- acciones ---------------- */
+function familiaVacia(legal){ const s = seedF(); return {...s, familia:'', papas:[{id:'p1', nombre:'Tú', rel:'Mamá o papá', yo:true, estado:'activo'}], hijos:[], equipos:[], partidos:[], asis:{}, live:null, invit:null, legal}; }
+function uiInicial(){ const n = new Date(); return {tab:'inicio', kid: F.hijos[0]?.id || null, view:null, calY:n.getFullYear(), calM:n.getMonth(), calDay:null, calFil:'todos'}; }
+function resetF(keepLegal){ const lg = keepLegal ? F?.legal : null; F = seedF(); F.legal = lg; fu = uiInicial(); fclose(); renderF(true); }
+const minTxt = () => { const l = L(); if (!l) return ''; const d = durL(), a = absMin(); return l.per===2 || a > d ? `2T ${Math.max(0, Math.ceil(a-d))}'` : `1T ${Math.ceil(a)}'`; };
+function liveStat(kid, s){
+  const l = L(), p = partidoF(l.pid), pt = p.part[kid]; pt.st[s] = (pt.st[s]||0) + 1;
+  const u = {kid, s, team: s==='gol' ? 'gf' : s==='grec' ? 'gc' : null, txt:`${minTxt()} · ${esc(SNAME[s])}`};
+  if (u.team) p[u.team] = (p[u.team]||0) + 1;
+  l.undo.push(u);
+  if (s==='gol'){ const otros = Object.keys(l.k).filter(k=>k!==kid && l.k[k].va && l.k[k].on);
+    if (otros.length){ fsheet('¿Quién dio la asistencia?', `<div style="display:grid;gap:8px">${otros.map(k=>`<button class="btn" type="button" data-fa="asis-pick" data-k="${k}" style="color:${col(hijo(k)).d}">${esc(hijo(k).nombre.split(' ')[0])}</button>`).join('')}
+      <button class="btn" type="button" data-fa="asis-pick" data-k="">Otro compañero o nadie</button></div>`); } }
+}
+document.addEventListener('click', ev=>{
+  const ln = ev.target.closest('[data-launch]'); if (ln){ abrirApp(ln.dataset.launch); return; }
+  const el = ev.target.closest('[data-fa]'); if (!el || !F) return;
+  const a = el.dataset.fa, id = el.dataset.id;
+  if (a==='fscrim'){ if (ev.target===el) fclose(); return; }
+  if (el.tagName==='A') ev.preventDefault();
+  if (!F.legal && !['leer-t','leer-a','fclose','fscrim'].includes(a)) return;
+  const l = F.live;
+  switch(a){
+    case 'fclose': fclose(); break;
+    case 'back': fu.view = null; renderF(true); break;
+    case 'tab': fu.tab = el.dataset.t; fu.view = null; renderF(true); break;
+    case 'kid': fu.kid = el.dataset.k; renderF(); break;
+    case 'leer-t': hojaTexto('Términos · FutData Familia', FAM_TERMINOS); moverHoja(); break;
+    case 'leer-a': hojaTexto('Aviso de Privacidad · FutData Familia', FAM_AVISO); moverHoja(); break;
+    case 'menu': hojaMenuF(); break;
+    case 'a-launcher': fclose(); abrirApp('menu'); break;
+    case 'f-reset': resetF(true); ftoast('Familia de ejemplo restaurada'); break;
+    case 'f-cero': F = familiaVacia(F.legal); fu = uiInicial(); fclose(); renderF(true); break;
+    case 'borrar-cuenta': fconfirm('Se cerrará tu sesión y tu cuenta se borrará en 30 días. Si el otro papá o mamá sigue activo, conserva los datos de los hijos.', 'do-borrar-cuenta'); break;
+    case 'do-borrar-cuenta': F = familiaVacia(null); fu = uiInicial(); fclose(); ftoast('Cuenta eliminada (demo)'); renderF(true); break;
+    case 'premium': fclose(); fu.view = {name:'premium'}; renderF(true); break;
+    case 'plan': { const h = hijo(el.dataset.k), v = el.dataset.v, n = h.nombre.split(' ')[0];
+      if (v==='prueba' && !h.plan.pruebaUsada){ const f = new Date(); f.setDate(f.getDate()+PRUEBA_DIAS); h.plan = {estado:'prueba', pruebaUsada:true, pruebaFin:isoLocal(f)}; ftoast(`Prueba de ${PRUEBA_DIAS} días para ${n}`); }
+      else if (v==='suscribir') { h.plan.estado = 'premium'; ftoast(`Premium activo para ${n} (demo, sin cobro)`); }
+      else if (v==='cancelar') { h.plan.estado = 'gratis'; ftoast(`Premium cancelado para ${n}`); }
+      renderF(); break; }
+    case 'reporte': hojaReporte(el.dataset.k); break;
+    case 'partido': fu.view = {name:'partido', id}; renderF(true); break;
+    case 'partido-edit': formPartidoF(id); break;
+    case 'partido-del': if (l && l.pid===id){ ferr('Termina primero el partido en vivo.'); break; } fconfirm('Se eliminará el partido con sus minutos, acciones y notas.', 'do-partido-del', {id}); break;
+    case 'do-partido-del': F.partidos = F.partidos.filter(p=>p.id!==id); fclose(); fu.view = null; ftoast('Partido eliminado'); renderF(true); break;
+    case 'nota': formNota(id); break;
+    case 'registrar': if (l && l.pid===id){ ftoast('Este partido está en vivo'); break; } formRegistrar(id); break;
+    case 'compartir': hojaCompartir(id); break;
+    case 'prelive': hojaPrelive(id); break;
+    case 'go-live': { if (l){ fu.view = {name:'live'}; renderF(true); break; } const n = fu.kid && proxDe(fu.kid);
+      if (n) hojaPrelive(n.id); else ftoast('No hay partidos programados. Agrega uno en Calendario.'); break; }
+    case 'live-sel': l.sel = el.dataset.k; renderF(); break;
+    case 'live-io': { ev.stopPropagation(); const k = l.k[el.dataset.k];
+      if (k.on){ if (l.per!=='D') liveCerrar(el.dataset.k, absMin()); k.on = false; l.undo.push({kid:el.dataset.k, txt:`${minTxt()} · salió a la banca`}); }
+      else { k.on = true; k.desde = (l.started && l.per!=='D') ? absMin() : null; l.undo.push({kid:el.dataset.k, txt:`${minTxt()} · entró a la cancha`}); }
+      renderF(); break; }
+    case 'live-run': if (l.run){ l.seg = segL(); l.run = false; }
+      else { l.t0 = Date.now(); l.run = true; if (!l.started){ l.started = true; const a = absMin(); Object.values(l.k).forEach(k=>{ if (k.on && k.va && k.desde==null) k.desde = a; }); } }
+      renderF(); break;
+    case 'live-mt': { const d = durL(); l.seg = segL(); l.run = false; Object.keys(l.k).forEach(k=>liveCerrar(k, Math.min(absMin(), d+15))); l.per = 'D'; ftoast('Medio tiempo'); renderF(); break; }
+    case 'live-2t': { const d = durL(); l.per = 2; l.seg = 0; l.t0 = Date.now(); l.run = true; l.started = true; Object.values(l.k).forEach(k=>{ if (k.on && k.va) k.desde = d; }); renderF(); break; }
+    case 'live-fin': fconfirm('¿Terminar el partido? Se guardan los minutos y las acciones.', 'do-live-fin'); break;
+    case 'do-live-fin': fclose(); liveFin(); break;
+    case 'live-stat': liveStat(el.dataset.k, el.dataset.s); renderF(); break;
+    case 'asis-pick': { if (el.dataset.k){ const p = partidoF(l.pid); p.part[el.dataset.k].st.asist = (p.part[el.dataset.k].st.asist||0) + 1; l.undo.push({kid:el.dataset.k, s:'asist', txt:`${minTxt()} · asistencia`, liga:true}); } fclose(); renderF(); break; }
+    case 'live-team': { const p = partidoF(l.pid), s = el.dataset.s; p[s] = (p[s]||0) + 1; const u = {team:s, txt:`${minTxt()} · ${s==='gf'?'gol de un compañero':'gol del rival'}`};
+      if (s==='gc'){ const por = Object.keys(l.k).find(k=>l.k[k].on && l.k[k].va && posDe(hijo(k))==='POR'); if (por){ p.part[por].st.grec = (p.part[por].st.grec||0) + 1; u.kid = por; u.s = 'grec'; } }
+      l.undo.push(u); renderF(); break; }
+    case 'live-undo': { const u = l.undo.pop(); if (!u){ ftoast('Nada que deshacer'); break; } const p = partidoF(l.pid);
+      if (u.s && u.kid){ p.part[u.kid].st[u.s] = Math.max(0, (p.part[u.kid].st[u.s]||0) - 1); }
+      if (u.team) p[u.team] = Math.max(0, (p[u.team]||0) - 1);
+      if (u.liga){ const prev = l.undo.pop(); if (prev && prev.s==='gol'){ p.part[prev.kid].st.gol = Math.max(0,(p.part[prev.kid].st.gol||0)-1); p.gf = Math.max(0,p.gf-1); } }
+      if (!u.s && !u.team) ftoast('Las entradas y salidas se corrigen con los botones Entró / Salió'); else ftoast('Deshecho'); renderF(); break; }
+    case 'cal-day': fu.calDay = el.dataset.d; renderF(); break;
+    case 'cal-fil': fu.calFil = el.dataset.k; renderF(); break;
+    case 'cal-prev': fu.calM--; if (fu.calM<0){ fu.calM = 11; fu.calY--; } renderF(); break;
+    case 'cal-next': fu.calM++; if (fu.calM>11){ fu.calM = 0; fu.calY++; } renderF(); break;
+    case 'asis': { const key = `${el.dataset.k}|${el.dataset.d}`, v = el.dataset.v==='1'; if (F.asis[key]===v) delete F.asis[key]; else F.asis[key] = v; renderF(); break; }
+    case 'entreno': fclose(); fu.view = {name:'entreno', id}; renderF(true); break;
+    case 'hijo-nuevo': if (F.hijos.length >= MAX_HIJOS){ ftoast(`Máximo ${MAX_HIJOS} hijos por familia`); break; } fu.view = {name:'wiz', step:1, d:nuevoBorrador(), primero:false}; renderF(true); break;
+    case 'hijo-edit': hojaHijo(el.dataset.k); break;
+    case 'hijo-editar': { const h = hijo(el.dataset.k), t = equipo(h.equipoId), cat = CATS.includes(h.cat) ? h.cat : 'otro';
+      fclose(); fu.view = {name:'wiz', step:1, editId:h.id, primero:false, d:{nombre:h.nombre, nac:h.nac, pie:h.pie, numero:h.numero, zona:h.zona, zona2:h.zona2, catSel:cat, catOtro: cat==='otro' ? h.cat : '', nivel:h.nivel, con: hermanos(h).length ? h.equipoId : 'otro', eq:{nombre:t.nombre, liga:t.liga, modalidad:t.modalidad, dur:t.dur}, marca:'zona'}}; renderF(true); break; }
+    case 'hijo-borrar': { const h = hijo(el.dataset.k), solo = hijosDe(h.equipoId).length===1, n = F.partidos.filter(p=>p.equipoId===h.equipoId).length;
+      if (l && kidsDe(partidoF(l.pid)).includes(h.id)){ ftoast('Termina primero el partido en vivo'); break; }
+      fconfirm(`Se quitará a ${esc(h.nombre)} con su historial.${solo && n ? ` También se borrarán los ${n} partidos de ${esc(equipo(h.equipoId).nombre)}.` : ''}`, 'do-hijo-borrar', {k:h.id}); break; }
+    case 'do-hijo-borrar': { const k = el.dataset.k, h = hijo(k), t = h.equipoId; F.hijos = F.hijos.filter(x=>x.id!==k); F.partidos.forEach(p=>{ delete p.part[k]; });
+      Object.keys(F.asis).forEach(x=>{ if (x.startsWith(k+'|')) delete F.asis[x]; }); limpiarEquipos(t); fclose(); fu.kid = F.hijos[0]?.id || null; ftoast('Hijo quitado'); renderF(true); break; }
+    case 'zona': { const d = fu.view.d, z = el.dataset.z, campo = d.marca;
+      if (campo==='zona'){ d.zona = d.zona===z ? null : z; if (d.zona2===z) d.zona2 = null; } else { if (d.zona===z) break; d.zona2 = d.zona2===z ? null : z; }
+      renderF(); break; }
+    case 'cat': { const d = fu.view.d; d.catSel = el.dataset.c; renderF(); if (d.catSel==='otro') $f('#fview input[name=catOtro]')?.focus(); break; }
+    case 'wiz-atras': fu.view.step = Math.max(1, fu.view.step-1); renderF(true); break;
+    case 'wiz-cancel': fu.view = null; renderF(true); break;
+    case 'wiz-fin': fu.view = null; fu.tab = 'inicio'; renderF(true); break;
+    case 'papa-invitar': { if (F.papas.length >= 2){ ftoast('Ya hay 2 adultos en la familia'); break; } const f = new Date(); f.setDate(f.getDate()+3);
+      F.invit = {codigo: generarCodigo(), expira: isoLocal(f)};
+      if (fu.view && fu.view.name==='wiz') renderF();
+      else fsheet('Invitación lista', `<div class="card" style="display:grid;gap:8px;text-align:center"><div class="code num">${esc(F.invit.codigo)}</div><span class="mu" style="font-size:12px">Un solo uso · vence ${fFecha(F.invit.expira)} · envíalo por mensaje privado</span></div><p class="mu" style="margin:0;font-size:12px;text-align:center">Cuando lo canjee, tú lo apruebas.</p><button class="btn" type="button" data-fa="fclose">Listo</button>`), renderF();
+      break; }
+    case 'papa-sim': F.papas.push({id:uid('p'), nombre:'Luis Ruiz', rel:'Papá', estado:'por_aprobar'}); F.invit = null; ftoast('Luis canjeó el código: apruébalo'); renderF(); break;
+    case 'papa-revocar': F.invit = null; ftoast('Invitación revocada'); renderF(); break;
+    case 'papa-si': F.papas.find(p=>p.id===id).estado = 'activo'; ftoast('Ya tiene acceso'); renderF(); break;
+    case 'papa-no': F.papas = F.papas.filter(p=>p.id!==id); ftoast('Acceso rechazado'); renderF(); break;
+    case 'papa-quitar': fconfirm('Perderá el acceso a la familia y se cerrará su sesión.', 'do-papa-quitar', {id}); break;
+    case 'do-papa-quitar': F.papas = F.papas.filter(p=>p.id!==id); fclose(); ftoast('Acceso retirado'); renderF(); break;
+    case 'pick-day': { const f = el.closest('form'); f.dia.value = el.dataset.d; f.querySelector('#f-dia-otro').value = ''; syncFecha(f); break; }
+    case 'pick-time': { const f = el.closest('form'); f.hora.value = el.dataset.t; f.querySelector('#f-hora-otra').value = ''; syncFecha(f); break; }
+  }
+});
+function moverHoja(){ // los textos legales se abren en la hoja de FutData: los paso a la de Familia
+  const s = document.querySelector('#sheet .sheet'); if (!s) return; const html = s.innerHTML; document.querySelector('#sheet').innerHTML = '';
+  $f('#fsheet').innerHTML = `<div class="scrim" data-fa="fscrim"><div class="sheet">${html.replace(/data-act="close"/g,'data-fa="fclose"')}</div></div>`;
+}
+$f('#ffab')?.addEventListener('click', ()=>formPartidoF(null, fu.calDay));
+document.addEventListener('keydown', ev=>{ if (ev.key==='Escape' && $f('#fsheet')?.innerHTML) fclose(); });
+function syncDraft(f){
+  const w = fu.view; if (!w || w.name!=='wiz' || !f) return; const d = w.d, fd = Object.fromEntries(new FormData(f));
+  if (f.dataset.ff==='wiz1'){ d.nombre = fd.nombre ?? d.nombre; d.nac = fd.nac ?? d.nac; d.pie = fd.pie ?? d.pie; d.numero = fd.numero ?? d.numero; }
+  if (f.dataset.ff==='wiz2'){ d.marca = fd.marca || d.marca; d.nivel = fd.nivel || d.nivel; if ('catOtro' in fd) d.catOtro = fd.catOtro; }
+  if (f.dataset.ff==='wiz3'){ if (fd.con) d.con = fd.con; if ('eqNombre' in fd) d.eq = {nombre:fd.eqNombre, liga:fd.eqLiga, modalidad:fd.eqModalidad, dur:+fd.eqDur}; }
+}
+document.addEventListener('input', ev=>{ const f = ev.target.form; if (f?.dataset.ff?.startsWith('wiz')) syncDraft(f); });
+document.addEventListener('change', ev=>{
+  const t = ev.target, f = t.form; if (!f?.dataset.ff) return;
+  if (f.dataset.ff==='legal'){ const ok = [...f.querySelectorAll('[data-req]')].every(i=>i.checked); f.querySelectorAll('[data-acepta]').forEach(b=>b.disabled = !ok); }
+  if (f.dataset.ff.startsWith('wiz')){ syncDraft(f); if (t.name==='con' || t.name==='marca') renderF(); if (t.name==='nac'){ const e = edadDe(t.value), h = $f('#fx-edad'); if (h) h.textContent = e!=null && e>=0 ? `${e} años · categoría sugerida ${catSugerida(e)}` : 'Revisa la fecha.'; } }
+});
+document.addEventListener('submit', ev=>{
+  const f = ev.target; if (!f.dataset?.ff) return; ev.preventDefault();
+  const d = Object.fromEntries(new FormData(f)), id = f.dataset.id;
+  switch(f.dataset.ff){
+    case 'legal': { if ([...f.querySelectorAll('[data-req]')].some(i=>!i.checked)) return ferr('Marca las casillas obligatorias.');
+      const legal = {version:LEGAL.version, fecha:isoLocal(new Date()), items:{terminos:true, privacidad:true, tutor:true, novedades:!!d.novedades}};
+      if (ev.submitter?.value==='cero') F = familiaVacia(legal); else { F = seedF(); F.legal = legal; }
+      fu = uiInicial(); ftoast('Listo, bienvenida'); renderF(true); return; }
+    case 'nota': { const txt = cleanTxt(d.txt, 300); if (!txt) return ferr('Escribe la nota.'); const ahora = new Date();
+      partidoF(id).notas.push({id:uid('n'), autor: yoPapa().nombre==='Tú' ? 'Tú' : yoPapa().nombre.split(' ')[0], hora:`${pad(ahora.getHours())}:${pad(ahora.getMinutes())}`, kid:d.kid||null, txt}); fclose(); ftoast('Nota guardada'); renderF(); return; }
+    case 'partido': { const rival = cleanTxt(d.rival); if (!rival) return ferr('Escribe el rival.'); if (!d.equipoId) return ferr('Elige el equipo.');
+      if (!d.dia || !/^\d\d:\d\d$/.test(d.hora)) return ferr('Elige el día y la hora.');
+      const datos = {equipoId:d.equipoId, rival, fecha:`${d.dia}T${d.hora}`, local:d.local==='1', lugar:cleanTxt(d.lugar), comp:cleanTxt(d.comp,30)||'Liga'};
+      if (id){ Object.assign(partidoF(id), datos); ftoast('Partido actualizado'); } else { const p = {id:uid('pf'), estado:'PROGRAMADO', gf:null, gc:null, notas:[], part:{}, ...datos}; F.partidos.push(p); fu.calDay = d.dia; ftoast('Partido agregado'); }
+      fclose(); renderF(); return; }
+    case 'registrar': { const p = partidoF(id), D = durTotal(p), n = v => Math.max(0, Math.min(99, parseInt(v)||0));
+      p.gf = Math.min(40, n(d.gf)); p.gc = Math.min(40, n(d.gc));
+      hijosDe(p.equipoId).concat(kidsDe(p).map(hijo).filter(h=>h && h.equipoId!==p.equipoId)).forEach(h=>{ const jugo = !!d['jugo_'+h.id], m = Math.min(D, n(d['min_'+h.id])), tit = d['tit_'+h.id]!=='0';
+        const st = {}; STATS[posDe(h)].concat([['amarilla'],['roja']]).forEach(([k])=>{ const v = n(d[`st_${h.id}_${k}`]); if (v) st[k] = v; });
+        p.part[h.id] = {jugo, titular:tit, segs: jugo && m ? (tit ? [[0,m]] : [[D-m, D]]) : [], st: jugo ? st : {}}; });
+      p.estado = 'FINALIZADO'; fclose(); fu.view = {name:'partido', id}; ftoast('Partido guardado'); renderF(true); return; }
+    case 'prelive': { const p = partidoF(id), k = {}; hijosDe(p.equipoId).forEach(h=>{ k[h.id] = {va: d['va_'+h.id]==='1', on: d['va_'+h.id]==='1' && d['on_'+h.id]==='1', desde:null}; });
+      if (!Object.values(k).some(x=>x.va)) return ferr('Marca al menos a un hijo que juegue hoy.');
+      p.part = {}; Object.entries(k).forEach(([kid,x])=>{ p.part[kid] = {jugo:x.va, titular:x.on, segs:[], st:{}}; }); p.gf = 0; p.gc = 0;
+      F.live = {pid:id, per:1, seg:0, run:false, t0:null, started:false, vel: d.vel==='1' ? 1 : 60, k, sel: Object.keys(k).find(x=>k[x].va), undo:[]};
+      fclose(); fu.view = {name:'live'}; renderF(true); return; }
+    case 'entreno': { const t = equipo(id), dias = new FormData(f).getAll('dia').map(Number);
+      if (d.ini >= d.fin) return ferr('La hora de término debe ser después del inicio.');
+      t.entrena = {dias, ini:d.ini, fin:d.fin, lugar:cleanTxt(d.lugar), hasta: d.hasta==='fecha' && d.hastaFecha ? d.hastaFecha : 'temporada', aviso:d.aviso||'no'};
+      ftoast(dias.length ? `Entrena ${dias.map(x=>DSEML[x]).join(' y ')}` : 'Sin días de entrenamiento'); fu.view = null; fu.tab = 'cal'; renderF(true); return; }
+    case 'wiz1': { syncDraft(f); const w = fu.view, dd = w.d, e = edadDe(dd.nac);
+      if (!cleanTxt(dd.nombre)) return ferr('Escribe su nombre.'); if (e==null || e < 3 || e > 20) return ferr('Revisa la fecha de nacimiento (entre 3 y 20 años).');
+      if (!dd.catSel) dd.catSel = catSugerida(e); w.step = 2; renderF(true); return; }
+    case 'wiz2': { syncDraft(f); const w = fu.view, dd = w.d; if (!dd.zona) return ferr('Toca en la cancha su posición principal.');
+      if (!dd.catSel || (dd.catSel==='otro' && !cleanTxt(dd.catOtro,20))) return ferr('Elige o escribe la categoría.');
+      if (dd.con==null && !w.editId) dd.con = F.hijos.length ? null : 'otro'; w.step = 3; renderF(true); return; }
+    case 'wiz3': { syncDraft(f); const w = fu.view, dd = w.d, hayOtros = F.hijos.some(h=>h.id!==w.editId);
+      if (hayOtros && !dd.con) return ferr('Dinos si juega con alguno de sus hermanos.');
+      if ((!hayOtros || dd.con==='otro') && !cleanTxt(dd.eq.nombre)) return ferr('Escribe el nombre del equipo.');
+      if (!hayOtros) dd.con = 'otro';
+      guardarHijo(); if (w.primero && !w.editId && F.papas.length < 2){ w.step = 4; renderF(true); } else { fu.view = null; fu.tab = w.editId ? 'hijos' : 'inicio'; renderF(true); } return; }
+  }
+});
+
+/* ---------------- arranque y selector de app ---------------- */
+function abrirApp(cual){
+  const lan = $f('#launcher'), a1 = $f('#app'), a2 = $f('#app2');
+  if (cual==='menu'){ lan.hidden = false; a1.hidden = true; a2.hidden = true; }
+  else if (cual==='fd'){ lan.hidden = true; a1.hidden = false; a2.hidden = true; }
+  else { lan.hidden = true; a1.hidden = true; a2.hidden = false; renderF(true); }
+  document.querySelectorAll('[data-aside]').forEach(s=>{ s.hidden = s.dataset.aside !== (cual==='menu' ? 'intro' : cual); });
+  document.querySelectorAll('.info .apps button').forEach(b=>b.classList.toggle('on', b.dataset.launch===cual));
+  document.querySelector('#sheet').innerHTML = ''; fclose();
+}
+F = seedF(); fu = uiInicial(); renderF(true); abrirApp('menu');
+window.FAMILIA = { get F(){ return F; }, get fu(){ return fu; }, renderF, abrirApp, resetF };   // para pruebas
+})();
+
 </script>

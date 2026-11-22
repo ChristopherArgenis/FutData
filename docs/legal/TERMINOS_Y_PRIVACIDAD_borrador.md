@@ -16,7 +16,8 @@
   Particulares vigente (la nueva ley de 2025 y la autoridad que la supervisa), Ley Federal de Protección al
   Consumidor (PROFECO) para la suscripción, Código Civil (patria potestad para menores), y si habrá usuarios fuera de
   México, GDPR (UE) y COPPA (EE. UU., menores de 13).
-- **Requisitos de las tiendas:** enlace al aviso de privacidad en la ficha y en la app; **borrar la cuenta desde la
+- **Distribución (actualizado 22 nov 2026):** la app **no se publica en App Store ni Google Play**; se descarga desde el sitio web y el cobro es con tarjeta en el sitio. Lo de las tiendas que sigue queda como referencia si algún día se publica ahí.
+- **Requisitos de las tiendas (referencia):** enlace al aviso de privacidad en la ficha y en la app; **borrar la cuenta desde la
   app** (y en Google Play también desde una página web); formulario de “Seguridad de los datos” (Google) y
   “Etiquetas de privacidad” (Apple); textos claros de suscripción (precio, periodo, renovación automática, cómo
   cancelar, restaurar compras). Si la app se dirige a niños, aplican políticas de Familias; recomendado: **los menores
@@ -82,3 +83,11 @@ Antes de activar Premium se muestran precio, prueba gratis, renovación automát
 - [x] Ajustes › Privacidad (prototipo, en Equipo): ver y descargar mis datos, borrar mi cuenta, retirar consentimientos, enlaces a ambos documentos.
 - [x] Pantalla de Premium con precio, periodo, renovación automática, cómo cancelar, restaurar compras y enlaces legales.
 - [x] Tabla `consentimientos(usuario_id, tipo, version, aceptado_en, revocado_en)` en la nube (`db/supabase/esquema_rls.sql`).
+
+
+## 5. FutData Familia (resumen para el abogado)
+
+- Usuarios: solo adultos (madre, padre o tutor), máximo 2 por familia; registran datos de hasta 4 hijos menores.
+- Casillas obligatorias al iniciar: Términos, Aviso de Privacidad y “Soy madre, padre o tutor legal de los menores que registre y autorizo el tratamiento de sus datos”. Novedades es opcional.
+- No se registran datos de salud.
+- Premium: $100 MXN al mes por hijo, prueba gratis de 7 días por hijo, cobro con tarjeta en el sitio web, renovación mensual y cancelación por el mismo medio.
