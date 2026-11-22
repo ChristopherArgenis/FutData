@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS jugadores (
 CREATE TABLE IF NOT EXISTS competiciones (
   id              TEXT PRIMARY KEY,
   nombre          TEXT NOT NULL,             -- 'Liga Municipal', 'Copa Ciudad'
-  tipo            TEXT NOT NULL CHECK (tipo IN ('LIGA','COPA','AMISTOSO','TORNEO')),
+  tipo            TEXT NOT NULL CHECK (tipo IN ('LIGA','TORNEO','AMISTOSO')),  -- LIGA = tabla de puntos, TORNEO = llaves
   creado_en       TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')),
   actualizado_en  TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')),
   eliminado_en    TEXT,
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS eventos (
   partido_id      TEXT NOT NULL REFERENCES partidos(id) ON DELETE CASCADE,
   tipo            TEXT NOT NULL CHECK (tipo IN
                     ('GOL','AUTOGOL','PENAL_FALLADO','TARJETA_AMARILLA','TARJETA_ROJA',
-                     'CAMBIO','TIRO','LESION')),
+                     'CAMBIO','TIRO')),
   minuto          INTEGER NOT NULL CHECK (minuto >= 0),
   es_rival        INTEGER NOT NULL DEFAULT 0 CHECK (es_rival IN (0,1)),
   jugador_id      TEXT REFERENCES jugadores(id),          -- NULL si es rival sin registrar
@@ -163,7 +163,6 @@ CREATE TABLE IF NOT EXISTS estadisticas_partido (
   partido_id      TEXT PRIMARY KEY REFERENCES partidos(id) ON DELETE CASCADE,
   tiros_favor     INTEGER, tiros_contra     INTEGER,
   a_puerta_favor  INTEGER, a_puerta_contra  INTEGER,
-  posesion_favor  INTEGER CHECK (posesion_favor BETWEEN 0 AND 100),
   corners_favor   INTEGER, corners_contra   INTEGER,
   faltas_favor    INTEGER, faltas_contra    INTEGER,
   fueras_juego_favor INTEGER, fueras_juego_contra INTEGER,
@@ -183,6 +182,50 @@ CREATE TABLE IF NOT EXISTS convocatorias (
   version         INTEGER NOT NULL DEFAULT 1,
   UNIQUE (partido_id, jugador_id)
 );
+
+-- ---------------------------------------------------------------------
+-- Competición: tabla de la liga y llaves de torneos
+-- ---------------------------------------------------------------------
+-- Tabla de posiciones capturada de la liga oficial (otros equipos).
+-- La fila de mi equipo NO se guarda: se calcula con v_resultados.
+CREATE TABLE IF NOT EXISTS tabla_posiciones (
+  temporada_id    TEXT NOT NULL REFERENCES temporadas(id),
+  equipo_id       TEXT NOT NULL REFERENCES equipos(id),
+  g INTEGER NOT NULL DEFAULT 0 CHECK (g >= 0),
+  e INTEGER NOT NULL DEFAULT 0 CHECK (e >= 0),
+  p INTEGER NOT NULL DEFAULT 0 CHECK (p >= 0),
+  gf INTEGER NOT NULL DEFAULT 0 CHECK (gf >= 0),
+  gc INTEGER NOT NULL DEFAULT 0 CHECK (gc >= 0),
+  actualizado_en  TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')),
+  version         INTEGER NOT NULL DEFAULT 1,
+  PRIMARY KEY (temporada_id, equipo_id)
+);
+
+-- Llaves de eliminación directa. ronda 0 = primera ronda; orden = posición en la llave.
+-- Si el cruce es nuestro, partido_id apunta al partido y el marcador sale de ahí.
+CREATE TABLE IF NOT EXISTS cruces (
+  id              TEXT PRIMARY KEY,
+  temporada_id    TEXT NOT NULL REFERENCES temporadas(id),
+  ronda           INTEGER NOT NULL CHECK (ronda >= 0),
+  nombre_ronda    TEXT NOT NULL,            -- 'Octavos', 'Cuartos', 'Semifinal', 'Final'
+  orden           INTEGER NOT NULL CHECK (orden >= 0),
+  equipo_a_id     TEXT REFERENCES equipos(id),
+  equipo_b_id     TEXT REFERENCES equipos(id),
+  goles_a INTEGER, goles_b INTEGER, penales_a INTEGER, penales_b INTEGER,
+  partido_id      TEXT REFERENCES partidos(id),
+  actualizado_en  TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')),
+  eliminado_en    TEXT,
+  version         INTEGER NOT NULL DEFAULT 1,
+  UNIQUE (temporada_id, ronda, orden)
+);
+
+CREATE VIEW IF NOT EXISTS v_tabla_liga AS
+SELECT temporada_id, equipo_id, g+e+p AS pj, g, e, p, gf, gc, gf-gc AS dg, 3*g+e AS pts FROM tabla_posiciones
+UNION ALL
+SELECT r.temporada_id, r.equipo_id, COUNT(*), SUM(r.resultado='G'), SUM(r.resultado='E'), SUM(r.resultado='P'),
+       SUM(r.goles_favor), SUM(r.goles_contra), SUM(r.goles_favor)-SUM(r.goles_contra), SUM(r.puntos)
+FROM v_resultados r JOIN temporadas t ON t.id = r.temporada_id JOIN competiciones c ON c.id = t.competicion_id
+WHERE c.tipo = 'LIGA' GROUP BY r.temporada_id, r.equipo_id;
 
 -- ---------------------------------------------------------------------
 -- Sincronización (solo se usa con Premium)
