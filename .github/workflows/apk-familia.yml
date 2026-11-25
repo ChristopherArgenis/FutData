@@ -1,0 +1,56 @@
+# Compila la app Android de FutData Familia y la publica como descarga (Releases › "FutData Familia (Android)").
+name: APK FutData Familia
+
+on:
+  push:
+    branches: [main, claude/zen-volta-p895x2]
+    paths: ['apps/familia/**', '.github/workflows/apk-familia.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apk-familia
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/familia
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: '3.50.1'
+          cache: true
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+      - run: flutter build apk --release --build-number=${{ github.run_number }}
+      - run: cp build/app/outputs/flutter-apk/app-release.apk FutDataFamilia.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FutDataFamilia-apk
+          path: apps/familia/FutDataFamilia.apk
+      - name: Publicar descarga
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: familia-android
+          name: FutData Familia (Android)
+          target_commitish: ${{ github.sha }}
+          prerelease: true
+          body: |
+            Versión de prueba de FutData Familia para Android (compilación ${{ github.run_number }}).
+            1. Abre este enlace desde tu celular Android y descarga **FutDataFamilia.apk**.
+            2. Ábrelo y permite "Instalar apps de origen desconocido" si te lo pide.
+            Si ya tenías otra compilación instalada y no deja actualizar, desinstálala primero.
+          files: apps/familia/FutDataFamilia.apk
+          overwrite_files: true

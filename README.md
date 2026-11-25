@@ -13,6 +13,7 @@ convocatorias, con análisis gratuitos y premium.
 | `design/prototipo.html` | **Página principal** del sitio: elige entre las dos apps |
 | `design/futdata.html` | Prototipo funcional de **FutData** (entrenadores y equipo) |
 | `design/familia.html` | Prototipo funcional de **FutData Familia** (mamás y papás, hasta 4 hijos) |
+| `apps/familia/` | **App Flutter de FutData Familia** (Android). El APK se descarga en Releases › “FutData Familia (Android)” |
 | `tools/build_site.py` | Genera el sitio en `site/` para GitHub Pages: cada app como app web instalable |
 | `tools/make_icons.py` · `design/iconos/` | Íconos de cada app para Android, iPhone y navegador |
 | `docs/ARQUITECTURA.md` | Planes gratis/premium, catálogo de análisis, almacenamiento SQLite + nube, stack Flutter, roadmap |
